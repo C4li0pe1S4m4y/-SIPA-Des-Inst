@@ -28,3 +28,8 @@ C:\Users\Administrator\Desktop\PRODUCCION V2\SolucionCDAG\CapaEN\bin\Release\Cap
 C:\Users\Administrator\Desktop\PRODUCCION V2\SolucionCDAG\CapaEN\obj\Release\CapaEN.csprojResolveAssemblyReference.cache
 C:\Users\Administrator\Desktop\PRODUCCION V2\SolucionCDAG\CapaEN\obj\Release\CapaEN.dll
 C:\Users\Administrator\Desktop\PRODUCCION V2\SolucionCDAG\CapaEN\obj\Release\CapaEN.pdb
+C:\Users\user Dell\Documents\Trabajo\SIPA Archivos\PRODUCCION V2\SolucionCDAG\SIPA\CapaEN\bin\Release\CapaEN.dll
+C:\Users\user Dell\Documents\Trabajo\SIPA Archivos\PRODUCCION V2\SolucionCDAG\SIPA\CapaEN\bin\Release\CapaEN.pdb
+C:\Users\user Dell\Documents\Trabajo\SIPA Archivos\PRODUCCION V2\SolucionCDAG\SIPA\CapaEN\obj\Release\CapaEN.csprojResolveAssemblyReference.cache
+C:\Users\user Dell\Documents\Trabajo\SIPA Archivos\PRODUCCION V2\SolucionCDAG\SIPA\CapaEN\obj\Release\CapaEN.dll
+C:\Users\user Dell\Documents\Trabajo\SIPA Archivos\PRODUCCION V2\SolucionCDAG\SIPA\CapaEN\obj\Release\CapaEN.pdb

@@ -56,7 +56,7 @@ namespace CapaAD
             conectar.CerrarConexion();
             return tabla;
         }
-        public DataTable datosIdDetalleAccion (PacEN pacEN)
+        public DataTable datosIdDetalleAccion(PacEN pacEN)
         {
             conectar = new ConexionBD();
             DataTable tabla = new DataTable();
@@ -120,7 +120,7 @@ namespace CapaAD
                 saldo = 0;
             }
             return saldo;
-        
+
         }
         public double montoActualPac(PacEN pacEN)
         {
@@ -143,7 +143,7 @@ namespace CapaAD
             return saldo;
         }
 
-               
+
         public double codificadoPacPac(PacEN pacEN)
         {
             double saldo;
@@ -185,7 +185,7 @@ namespace CapaAD
             }
             return saldo;
         }
-      
+
         public DataTable dropUnidadesUsuario(PacEN pacEN)
         {
             conectar = new ConexionBD();
@@ -323,6 +323,62 @@ namespace CapaAD
             return NoIngreso;
         }
 
-        
+        public DataSet PedidoPACItem(int unidad, string condicion)
+        {
+            conectar = new ConexionBD();
+            DataSet tabla = new DataSet();
+            conectar.AbrirConexion();
+            string query = string.Format("select (p.no_solicitud) Solicitud, fn_codigo_accion(ac.id_accion, 0, '', 2) accion, p.fecha_pedido Fecha, u.Unidad, " +
+                        "CONCAT(ep.id_estado_pedido, ' - ', ep.nombre_estado)  Estado from sipa_pedidos p inner join sipa_acciones ac on ac.id_accion = p.id_accion " +
+                        "inner join ccl_unidades u on u.id_unidad = p.id_unidad inner join sipa_estados_pedido ep on ep.id_estado_pedido = p.id_estado_pedido " +
+                        "inner join sipa_pedido_detalle pd on pd.id_pedido = p.id_pedido inner join sipa_pac pac on pac.id_pac = pd.id_pac where pac.id_detalle <> pd.id_detalle_accion and u.id_unidad ={0} {1} group by p.id_pedido; "
+                        , unidad, condicion);
+            MySqlDataAdapter consulta = new MySqlDataAdapter(query, conectar.conectar);
+            consulta.Fill(tabla);
+            conectar.CerrarConexion();
+            return tabla;
+        }
+        public DataTable DdlRenglon(string unida, string renglon, string anio, string accion)
+        {
+            conectar = new ConexionBD();
+            DataTable tabla = new DataTable();
+            conectar.AbrirConexion();
+            string query = string.Format("select pa.id_pac,da.no_renglon from sipa_pac pa inner join sipa_detalles_accion da on pa.id_detalle = da.id_detalle inner join sipa_poa poa on pa.id_poa = poa.id_poa " +
+                            "inner join ccl_unidades u on u.id_unidad = poa.id_unidad inner join sipa_acciones ac on  ac.id_accion = da.id_accion where u.id_unidad = {0} and da.no_renglon = {1} and poa.anio ={2} and fn_codigo_accion(ac.id_accion, 0, '', 2) ='{3}'; "
+                            , unida, renglon, anio, accion);
+            MySqlDataAdapter consulta = new MySqlDataAdapter(query, conectar.conectar);
+            consulta.Fill(tabla);
+            conectar.CerrarConexion();
+            return tabla;
+        }
+
+        public bool ActualizarPAC(string PAC, string detalle)
+        {
+            conectar = new ConexionBD();
+            conectar.AbrirConexion();
+            MySqlTransaction transaccion = conectar.conectar.BeginTransaction();
+            MySqlCommand command = conectar.conectar.CreateCommand();
+            command.Transaction = transaccion;
+            try
+            {
+                
+                command.CommandText = string.Format("Update sipa_pedido_detalle set id_pac = {0} where id_pedido_detalle = {1};",PAC,detalle);
+                command.ExecuteNonQuery();
+                transaccion.Commit();
+                conectar.CerrarConexion();
+                return true;
+            }
+            catch (Exception ex)
+            {
+                try
+                {
+                    transaccion.Rollback();
+                }
+                catch
+                { };
+                conectar.CerrarConexion();
+                return false;
+            };
+        }
     }
 }

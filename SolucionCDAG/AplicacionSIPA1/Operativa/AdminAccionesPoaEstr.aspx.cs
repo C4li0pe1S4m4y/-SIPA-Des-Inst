@@ -1008,8 +1008,8 @@ namespace AplicacionSIPA1.Operativa
 
                 decimal pptoPoaUnidad = decimal.Parse(dsPpto.Tables["BUSQUEDA"].Rows[0]["PPTO_POA_UNIDAD"].ToString());
                 decimal pptoDisponibleUnidad = decimal.Parse(dsPpto.Tables["BUSQUEDA"].Rows[0]["DISPONIBLE_UNIDAD"].ToString());
-                decimal pptoPoaDependencia = decimal.Parse(dsPpto.Tables["BUSQUEDA"].Rows[0]["PPTO_POA_UNIDAD"].ToString());
-                decimal pptoDisponibleDep = decimal.Parse(dsPpto.Tables["BUSQUEDA"].Rows[0]["DISPONIBLE_UNIDAD"].ToString());
+                decimal pptoPoaDependencia = decimal.Parse(dsPpto.Tables["BUSQUEDA"].Rows[0]["PPTO_POA_DEPENDENCIA"].ToString());
+                decimal pptoDisponibleDep = decimal.Parse(dsPpto.Tables["BUSQUEDA"].Rows[0]["DISPONIBLE_DEPENDENCIA"].ToString());
 
 
                 lblTechoU.Text = String.Format(CultureInfo.InvariantCulture, "Q.{0:0,0.00}", pptoPoaUnidad);
@@ -1486,8 +1486,8 @@ namespace AplicacionSIPA1.Operativa
 
                 decimal pptoPoaUnidad = decimal.Parse(dsPptoPoa.Tables["BUSQUEDA"].Rows[0]["PPTO_POA_UNIDAD"].ToString());
                 decimal pptoDisponibleUnidad = decimal.Parse(dsPptoPoa.Tables["BUSQUEDA"].Rows[0]["DISPONIBLE_UNIDAD"].ToString());
-                decimal pptoPoaDependencia = decimal.Parse(dsPptoPoa.Tables["BUSQUEDA"].Rows[0]["PPTO_POA_UNIDAD"].ToString());
-                decimal pptoDisponibleDep = decimal.Parse(dsPptoPoa.Tables["BUSQUEDA"].Rows[0]["DISPONIBLE_UNIDAD"].ToString());
+                decimal pptoPoaDependencia = decimal.Parse(dsPptoPoa.Tables["BUSQUEDA"].Rows[0]["PPTO_POA_DEPENDENCIA"].ToString());
+                decimal pptoDisponibleDep = decimal.Parse(dsPptoPoa.Tables["BUSQUEDA"].Rows[0]["DISPONIBLE_DEPENDENCIA"].ToString());
 
                 DataSet dsPptoRenglon = planAccionLN.PptoRenglonAccion(idDetalleAccion);
                 decimal codificadoDetalleAccion = 0;

@@ -465,7 +465,7 @@ namespace AplicacionSIPA1.Pedido.Multianuales
                 int.TryParse(ddlPac.SelectedValue, out idPac);
 
                 pAnualLN = new PlanAnualLN();
-                DataSet dsResultado = pAnualLN.InformacionPac(idPac, int.Parse(ddlAnios.SelectedValue));
+                DataSet dsResultado = pAnualLN.InformacionPac(idPac, 2018);
                 
                 if (bool.Parse(dsResultado.Tables[0].Rows[0]["ERRORES"].ToString()))
                     throw new Exception("No se CONSULTÓ la informaciónd el PAC: " + dsResultado.Tables[0].Rows[0]["MSG_ERROR"].ToString());
@@ -965,7 +965,7 @@ namespace AplicacionSIPA1.Pedido.Multianuales
             if (idPac > 0)
             {
                 //INFORMACIÓN DEL PLAN ANUAL DE COMPRAS
-                DataSet dsInformacionPac = pAnualLN.InformacionPac(idPac, int.Parse(ddlAnios.SelectedValue));
+                DataSet dsInformacionPac = pAnualLN.InformacionPac(idPac, 2018);
                 if (dsInformacionPac.Tables.Count == 0)
                     throw new Exception("Error al consultar la información del Plan: " + dsInformacionPac.Tables[0].Rows[0]["MSG_ERROR"].ToString());
 

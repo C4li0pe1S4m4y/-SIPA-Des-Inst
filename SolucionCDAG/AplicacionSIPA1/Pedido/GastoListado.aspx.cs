@@ -22,7 +22,7 @@ namespace AplicacionSIPA1.Pedido
         private PlanOperativoLN pOperativoLN;
         private PlanAccionLN pAccionLN;
         private PlanAnualLN pAnualLN;
-
+        private bool bDepencia = false;
         private PedidosLN pInsumoLN;
         
         protected void Page_LoadComplete(object sender, EventArgs e)
@@ -32,6 +32,9 @@ namespace AplicacionSIPA1.Pedido
                 try
                 {
                     nuevaBusqueda();
+                    pOperativoLN = new PlanOperativoLN();
+                    if (!bDepencia)
+                        pOperativoLN.DdlDependencias(ddlDependencia, ddlUnidades.SelectedValue);
                 }
                 catch (Exception ex)
                 {
@@ -206,7 +209,11 @@ namespace AplicacionSIPA1.Pedido
                 int.TryParse(ddlUnidades.SelectedValue, out idUnidad);
 
                 if (anio > 0 && idUnidad > 0)
+                {
+                    pOperativoLN = new PlanOperativoLN();
+                    pOperativoLN.DdlDependencias(ddlDependencia, idUnidad.ToString());
                     validarPoaListadoPedido(idUnidad, anio);
+                }
                 else
                     lblIdPoa.Text = "0";
 
@@ -319,7 +326,7 @@ namespace AplicacionSIPA1.Pedido
                     GridView gridPlan = new GridView();
 
                     ReportesLN reportes = new ReportesLN();
-                    DataSet dsResultado = reportes.ReportesSipa(idEncabezado, 0, "PEDIDOS", 1);
+                    DataSet dsResultado = reportes.ReportesSipa(idEncabezado, 0, "GASTOS", 1);
 
                     if (bool.Parse(dsResultado.Tables[0].Rows[0]["ERRORES"].ToString()))
                         throw new Exception("No se CONSULTÓ la información del gasto (encabezado): " + dsResultado.Tables[0].Rows[0]["MSG_ERROR"].ToString());
@@ -329,7 +336,7 @@ namespace AplicacionSIPA1.Pedido
                     RD.Value = dsResultado.Tables[1];
                     RD.Name = "DataSet1";
 
-                    dsResultado = reportes.ReportesSipa(idEncabezado, 0, "PEDIDOS", 2);
+                    dsResultado = reportes.ReportesSipa(idEncabezado, 0, "GASTOS", 2);
 
                     if (bool.Parse(dsResultado.Tables[0].Rows[0]["ERRORES"].ToString()))
                         throw new Exception("No se CONSULTÓ la información del gasto (detalles): " + dsResultado.Tables[0].Rows[0]["MSG_ERROR"].ToString());
@@ -341,8 +348,8 @@ namespace AplicacionSIPA1.Pedido
                     rViewer.LocalReport.DataSources.Clear();
                     rViewer.LocalReport.DataSources.Add(RD);
                     rViewer.LocalReport.DataSources.Add(RD2);
-                    rViewer.LocalReport.ReportEmbeddedResource = "\\Reportes/rptRequisicion.rdlc";
-                    rViewer.LocalReport.ReportPath = @"Reportes\\rptRequisicion.rdlc";
+                    rViewer.LocalReport.ReportEmbeddedResource = "\\Reportes/rptGasto.rdlc";
+                    rViewer.LocalReport.ReportPath = @"Reportes\\rptGasto.rdlc";
                     rViewer.LocalReport.Refresh();
 
 
@@ -383,7 +390,7 @@ namespace AplicacionSIPA1.Pedido
             bool pptoValido = false;
 
             DataSet dsPptoRenglon = pAnualLN.InformacionRenglonAccion(idDetalleAccion, int.Parse(ddlAnios.SelectedValue));
-            DataSet dsPptoPac = pAnualLN.InformacionPac(idPac, int.Parse(ddlAnios.SelectedValue));
+            DataSet dsPptoPac = pAnualLN.InformacionPac(idPac,2018);
 
             if (bool.Parse(dsPptoRenglon.Tables[0].Rows[0]["ERRORES"].ToString()))
                 throw new Exception("No se consultó el presupuesto del Renglón: " + dsPptoRenglon.Tables[0].Rows[0]["MSG_ERROR"].ToString());
@@ -457,8 +464,14 @@ namespace AplicacionSIPA1.Pedido
 
                 if (idEncabezado == 0)
                     throw new Exception("Seleccione un pedido!");
-
-                Response.Redirect("GastoIngreso.aspx?No=" + Convert.ToString(idEncabezado));
+                if (ddlDependencia.SelectedIndex > 0)
+                {
+                    Response.Redirect("GastoIngreso.aspx?No=" + Convert.ToString(idEncabezado) + "&dep=" + ddlDependencia.SelectedValue);
+                }else
+                {
+                    Response.Redirect("GastoIngreso.aspx?No=" + Convert.ToString(idEncabezado));
+                }
+               
             }
             catch (Exception ex)
             {
@@ -500,6 +513,85 @@ namespace AplicacionSIPA1.Pedido
             {
                 lblError.Text = "btnEliminar(). " + ex.Message;
             }*/
+        }
+
+        protected void ddlDependencia_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            try
+            {
+                limpiarControlesError();
+
+
+                int anio = 0;
+                int idUnidad = 0;
+                string id_unidad = ddlDependencia.SelectedItem.Value;
+                int.TryParse(ddlAnios.SelectedValue, out anio);
+                int.TryParse(ddlDependencia.SelectedValue, out idUnidad);
+
+
+                if (anio > 0 && idUnidad > 0)
+                {
+                    pOperativoLN = new PlanOperativoLN();
+                    pOperativoLN.DdlDependencias(ddlJefaturaUnidad, id_unidad);
+                    validarPoaListadoPedido(idUnidad, anio);
+                }
+
+                int idPoa = 0;
+                int.TryParse(lblIdPoa.Text, out idPoa);
+
+                pAccionLN = new PlanAccionLN();
+                //pAccionLN.DdlAccionesPoa(ddlAcciones, idPoa);
+                pAccionLN.DdlAcciones(ddlAcciones, idPoa, 0, "", 3);
+                ddlAcciones.Items[0].Text = "<< Elija un valor >>";
+                bDepencia = true;
+                
+
+                filtrarGridDetalles(idPoa);
+
+            }
+            catch (Exception ex)
+            {
+                lblError.Text = "ddlUnidades_SelectedIndexChanged(). " + ex.Message;
+            }
+        }
+
+        protected void ddlJefaturaUnidad_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            try
+            {
+                limpiarControlesError();
+
+
+                int anio = 0;
+                int idUnidad = 0;
+                string id_unidad = ddlJefaturaUnidad.SelectedItem.Value;
+                int.TryParse(ddlAnios.SelectedValue, out anio);
+                int.TryParse(ddlJefaturaUnidad.SelectedValue, out idUnidad);
+
+
+                if (anio > 0 && idUnidad > 0)
+                {
+
+                    validarPoaListadoPedido(idUnidad, anio);
+                }
+
+                int idPoa = 0;
+                int.TryParse(lblIdPoa.Text, out idPoa);
+
+                pAccionLN = new PlanAccionLN();
+                //pAccionLN.DdlAccionesPoa(ddlAcciones, idPoa);
+                pAccionLN.DdlAcciones(ddlAcciones, idPoa, 0, "", 3);
+                ddlAcciones.Items[0].Text = "<< Elija un valor >>";
+
+               
+
+                filtrarGridDetalles(idPoa);
+
+            }
+            catch (Exception ex)
+            {
+                lblError.Text = "ddlUnidades_SelectedIndexChanged(). " + ex.Message;
+            }
         }
 
     }

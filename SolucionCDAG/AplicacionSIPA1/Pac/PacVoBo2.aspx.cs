@@ -222,7 +222,7 @@ namespace AplicacionSIPA1.Pac
             pAnualLN = new PlanAnualLN();
             int idAccion = 0;
             int.TryParse(ddlAcciones.SelectedValue, out idAccion);
-            pAnualLN.GridDetallesAccion(gridRenglon, idAccion, int.Parse(ddlAnios.SelectedValue));
+            pAnualLN.GridDetallesAccion(gridRenglon, idAccion);
 
             if (gridRenglon.Rows.Count == 1)
             {
@@ -244,7 +244,7 @@ namespace AplicacionSIPA1.Pac
             pAnualLN = new PlanAnualLN();
             int idAccion = 0;
             int.TryParse(ddlAcciones.SelectedValue, out idAccion);
-            pAnualLN.GridDetallesAccion(gridRenglon, idAccion, int.Parse(ddlAnios.SelectedValue));
+            pAnualLN.GridDetallesAccion(gridRenglon, idAccion);
 
             if (gridRenglon.Rows.Count > 1 && gridRenglon.SelectedIndex > -1)
             {
@@ -795,7 +795,7 @@ namespace AplicacionSIPA1.Pac
 
             //DataSet dsPptoAccion = pAccionLN.PptoAccion(idAccion);
             DataSet dsPptoRenglon = pAnualLN.InformacionRenglonAccion(idDetalleAccion, int.Parse(ddlAnios.SelectedValue));
-            DataSet dsPptoPac = pAnualLN.InformacionPac(idPac, int.Parse(ddlAnios.SelectedValue));
+            DataSet dsPptoPac = pAnualLN.InformacionPac(idPac, 2018);
 
             if (bool.Parse(dsPptoRenglon.Tables[0].Rows[0]["ERRORES"].ToString()))
                 throw new Exception("No se consultó el presupuesto del Renglón: " + dsPptoRenglon.Tables[0].Rows[0]["MSG_ERROR"].ToString());
@@ -1185,7 +1185,7 @@ namespace AplicacionSIPA1.Pac
                         throw new Exception("No se ELIMINÓ el PAC: " + dsResultado.Tables[0].Rows[0]["MSG_ERROR"].ToString());
 
                     string usuario = Session["usuario"].ToString();
-                    pAnualLN.GridListadoPacs(gridPac, usuario, lblCIdPoa.Text, int.Parse(ddlAnios.SelectedValue));
+                    pAnualLN.GridListadoPacs(gridPac, usuario, lblCIdPoa.Text);
 
                     filtrarGrid();
                     ScriptManager.RegisterStartupScript(this, typeof(string), "Mensaje", "alert('" + "Eliminacion Exitosa!" + "');", true);
@@ -1417,7 +1417,7 @@ namespace AplicacionSIPA1.Pac
 
                     pAnualLN = new PlanAnualLN();
 
-                    DataSet dsResultado = pAnualLN.InformacionPac(idPac, int.Parse(ddlAnios.SelectedValue));
+                    DataSet dsResultado = pAnualLN.InformacionPac(idPac, 2018);
 
                     if (bool.Parse(dsResultado.Tables[0].Rows[0]["ERRORES"].ToString()))
                         throw new Exception("No se CONSULTÓ el PAC: " + dsResultado.Tables[0].Rows[0]["MSG_ERROR"].ToString());

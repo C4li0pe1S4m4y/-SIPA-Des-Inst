@@ -632,7 +632,7 @@ namespace AplicacionSIPA1.Pedido
                         }*/
                         //throw new Exception("Codifique todos los detalles con Renglón, Programa, Subprograma y Actividad!");
 
-                        ////VALIDACIÓN DEL SALDO DEL PAC AL QUE PERTENECE CADA DETALLE DEL PEDIDO
+                        //VALIDACIÓN DEL SALDO DEL PAC AL QUE PERTENECE CADA DETALLE DEL PEDIDO
                         //dsResultado = pInsumoLN.PptoCodificarSalida(idSalida, 0, "", 5);
 
                         //if (bool.Parse(dsResultado.Tables["RESULTADO"].Rows[0]["ERRORES"].ToString()))
@@ -764,6 +764,8 @@ namespace AplicacionSIPA1.Pedido
                         dsResultado = pInsumoLN.InformacionPedido(idEncabezado, 0, 0, "", 3);
                     else if (idTipoSalida == 2)
                         dsResultado = pInsumoLN.InformacionVale(idEncabezado, 0, 3);
+                    else if (idTipoSalida == 3)
+                        dsResultado = pInsumoLN.InformacionGasto(idEncabezado, 0, 3);
 
                     if (bool.Parse(dsResultado.Tables[0].Rows[0]["ERRORES"].ToString()))
                         throw new Exception("No se CONSULTÓ la información de los detalles: " + dsResultado.Tables[0].Rows[0]["MSG_ERROR"].ToString());

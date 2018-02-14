@@ -21,7 +21,7 @@ namespace AplicacionSIPA1.Pedido
 
         private PedidosLN pInsumoLN;
         private PedidosEN pInsumoEN;
-
+        private bool bDepencia = false;
         private FuncionesVarias funciones;
         
         protected void Page_LoadComplete(object sender, EventArgs e)
@@ -33,7 +33,7 @@ namespace AplicacionSIPA1.Pedido
                     btnNuevo_Click(sender, e);
 
                     string s = Convert.ToString(Request.QueryString["No"]);
-
+                    string dep = Convert.ToString(Request.QueryString["dep"]);
                     if (s != null)
                     {
                         int idEncabezado = 0;
@@ -42,23 +42,48 @@ namespace AplicacionSIPA1.Pedido
                         string noSolicitud = "";
 
                         pInsumoLN = new PedidosLN();
-                        DataSet dsResultado = pInsumoLN.InformacionGasto(idEncabezado, 0, 2);
+                        pOperativoLN = new PlanOperativoLN();
 
-                        if (bool.Parse(dsResultado.Tables["RESULTADO"].Rows[0]["ERRORES"].ToString()))
-                            throw new Exception(dsResultado.Tables["RESULTADO"].Rows[0]["MSG_ERROR"].ToString());
+                        if (!bDepencia)
+                            pOperativoLN.DdlDependencias(ddlDependencia, ddlUnidades.SelectedValue);
+                        DataSet dsResultado;
 
-                        if (dsResultado.Tables.Count == 0)
-                            throw new Exception("Error al consultar la información del registro.");
+                        
 
-                        if (dsResultado.Tables[0].Rows.Count == 0)
-                            throw new Exception("No existe información del registro");
+                        int anio, idUnidad, idAccion, dependencia , idSolicitante, idJefe, idFand = 0;
+                        dependencia = 0;
+                        if (dep != null)
+                        {
+                            dsResultado = pInsumoLN.InformacionGasto(idEncabezado, 0, 16);
+                            if (bool.Parse(dsResultado.Tables["RESULTADO"].Rows[0]["ERRORES"].ToString()))
+                                throw new Exception(dsResultado.Tables["RESULTADO"].Rows[0]["MSG_ERROR"].ToString());
 
+                            if (dsResultado.Tables.Count == 0)
+                                throw new Exception("Error al consultar la información del pedido.");
+
+                            if (dsResultado.Tables[0].Rows.Count == 0)
+                                throw new Exception("No existe información del pedido");
+
+                            int.TryParse(dsResultado.Tables["BUSQUEDA"].Rows[0]["ID_UNIDAD"].ToString(), out dependencia);
+                            int.TryParse(dsResultado.Tables["BUSQUEDA"].Rows[0]["dunidad"].ToString(), out idUnidad);
+                        }
+                        else
+                        {
+                            dsResultado = pInsumoLN.InformacionGasto(idEncabezado, 0, 2);
+                            if (bool.Parse(dsResultado.Tables["RESULTADO"].Rows[0]["ERRORES"].ToString()))
+                                throw new Exception(dsResultado.Tables["RESULTADO"].Rows[0]["MSG_ERROR"].ToString());
+
+                            if (dsResultado.Tables.Count == 0)
+                                throw new Exception("Error al consultar la información del pedido.");
+
+                            if (dsResultado.Tables[0].Rows.Count == 0)
+                                throw new Exception("No existe información del pedido");
+
+                            int.TryParse(dsResultado.Tables["BUSQUEDA"].Rows[0]["ID_UNIDAD"].ToString(), out idUnidad);
+                        }
                         noSolicitud = dsResultado.Tables["BUSQUEDA"].Rows[0]["NO_ANIO_SOLICITUD"].ToString();
-
-                        int anio, idUnidad, idAccion, idSolicitante, idJefe, idFand = 0;
-
                         int.TryParse(dsResultado.Tables["BUSQUEDA"].Rows[0]["ANIO"].ToString(), out anio);
-                        int.TryParse(dsResultado.Tables["BUSQUEDA"].Rows[0]["ID_UNIDAD"].ToString(), out idUnidad);
+                        
                         int.TryParse(dsResultado.Tables["BUSQUEDA"].Rows[0]["ID_ACCION"].ToString(), out idAccion);
                         int.TryParse(dsResultado.Tables["BUSQUEDA"].Rows[0]["ID_SOLICITANTE"].ToString(), out idSolicitante);
                         int.TryParse(dsResultado.Tables["BUSQUEDA"].Rows[0]["ID_JEFE_DIRECCION"].ToString(), out idJefe);
@@ -77,7 +102,12 @@ namespace AplicacionSIPA1.Pedido
                             ddlUnidades.SelectedValue = idUnidad.ToString();
                             ddlUnidades_SelectedIndexChanged(sender, e);
                         }
-
+                        item = ddlDependencia.Items.FindByValue(dependencia.ToString());
+                        if (item != null)
+                        {
+                            ddlDependencia.SelectedValue = dependencia.ToString();
+                            ddlDependencia_SelectedIndexChanged(sender, e);
+                        }
                         item = ddlAcciones.Items.FindByValue(idAccion.ToString());
                         if (item != null)
                         {
@@ -323,7 +353,12 @@ namespace AplicacionSIPA1.Pedido
                 int.TryParse(ddlUnidades.SelectedValue, out idUnidad);
 
                 if (anio > 0 && idUnidad > 0)
+                {
+                    pOperativoLN = new PlanOperativoLN();
+                    pOperativoLN.DdlDependencias(ddlDependencia, idUnidad.ToString());
                     validarPoaIngresoVale(idUnidad, anio);
+
+                }
                 else
                     lblIdPoa.Text = "0";
 
@@ -889,10 +924,10 @@ namespace AplicacionSIPA1.Pedido
                 if (bool.Parse(dsResultado.Tables["RESULTADO"].Rows[0]["ERRORES"].ToString()))
                     throw new Exception(dsResultado.Tables["RESULTADO"].Rows[0]["MSG_ERROR"].ToString());
 
-                txtDescripcion.Text = dsResultado.Tables["BUSQUEDA"].Rows[0]["DESCRIPCION"].ToString();
+                txtDescripcion.Text = dsResultado.Tables["BUSQUEDA"].Rows[0]["descripcion_detalle"].ToString();
 
                 txtCantidad.Text = dsResultado.Tables["BUSQUEDA"].Rows[0]["CANTIDAD"].ToString();
-
+                btnGuardar.Visible = true;
                 decimal costo = 0;
                 decimal.TryParse(dsResultado.Tables["BUSQUEDA"].Rows[0]["COSTO_ESTIMADO"].ToString(), out costo);
                 txtCosto.Text = String.Format(CultureInfo.InvariantCulture, "Q.{0:0,0.00}", costo);
@@ -1038,6 +1073,82 @@ namespace AplicacionSIPA1.Pedido
         {
             limpiarControlesError();
         }
+        protected void ddlDependencia_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            try
+            {
+                limpiarControlesError();
+                NuevoEnc();
+                NuevoDet();
 
+                int anio = 0;
+                int idUnidad = 0;
+                string id_unidad = ddlDependencia.SelectedItem.Value;
+                int.TryParse(ddlAnios.SelectedValue, out anio);
+                int.TryParse(ddlDependencia.SelectedValue, out idUnidad);
+
+                if (anio > 0 && idUnidad > 0)
+                {
+                    pOperativoLN = new PlanOperativoLN();
+                    pOperativoLN.DdlDependencias(ddlJefatura, id_unidad);
+                    validarPoaIngresoVale(idUnidad, anio);
+                    
+                }
+
+
+                int idPoa = 0;
+                int.TryParse(lblIdPoa.Text, out idPoa);
+
+                pAccionLN = new PlanAccionLN();
+                //pAccionLN.DdlAccionesPoa(ddlAcciones, idPoa);
+                pAccionLN.DdlAcciones(ddlAcciones, idPoa, 0, "", 3);
+                ddlAcciones.Items[0].Text = "<< Elija un valor >>";
+                bDepencia = true;
+               
+
+            }
+            catch (Exception ex)
+            {
+                lblError.Text = "ddlUnidades_SelectedIndexChanged(). " + ex.Message;
+            }
+        }
+
+        protected void ddlJefaturaUnidad_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            try
+            {
+                limpiarControlesError();
+                NuevoEnc();
+                NuevoDet();
+
+                int anio = 0;
+                int idUnidad = 0;
+                string id_unidad = ddlJefatura.SelectedItem.Value;
+                int.TryParse(ddlAnios.SelectedValue, out anio);
+                int.TryParse(ddlJefatura.SelectedValue, out idUnidad);
+
+                if (anio > 0 && idUnidad > 0)
+                {
+
+                    validarPoaIngresoVale(idUnidad, anio);
+                }
+
+
+                int idPoa = 0;
+                int.TryParse(lblIdPoa.Text, out idPoa);
+
+                pAccionLN = new PlanAccionLN();
+                //pAccionLN.DdlAccionesPoa(ddlAcciones, idPoa);
+                pAccionLN.DdlAcciones(ddlAcciones, idPoa, 0, "", 3);
+                ddlAcciones.Items[0].Text = "<< Elija un valor >>";
+
+               
+
+            }
+            catch (Exception ex)
+            {
+                lblError.Text = "ddlUnidades_SelectedIndexChanged(). " + ex.Message;
+            }
+        }
     }
 }

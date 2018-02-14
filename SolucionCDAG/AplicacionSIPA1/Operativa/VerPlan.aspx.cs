@@ -12,6 +12,7 @@ using CapaEN;
 
 using Microsoft.Reporting.WebForms;
 using System.IO;
+using System.ComponentModel;
 
 namespace AplicacionSIPA1.Operativa
 {
@@ -122,17 +123,20 @@ namespace AplicacionSIPA1.Operativa
 
                 object obj = gridPlan.DataSource;
                 System.Data.DataTable tbl = gridPlan.DataSource as System.Data.DataTable;
+               
                 System.Data.DataView dv = tbl.DefaultView;
+                dv.Sort = "cod_ee asc";
 
                 filtro = " anio = " + ddlAnios.SelectedValue;
 
                 if (!ddlAcciones.SelectedValue.Equals("0"))
                     filtro += " AND id_accion = " + ddlAcciones.SelectedValue;
-
+                
                 //AGREGAR GROUP BY 
                 dv.RowFilter = filtro;
 
                 gridPlan.DataSource = dv;
+                
                 gridPlan.DataBind();
 
                 filtrarGridRenglonesUnidad();

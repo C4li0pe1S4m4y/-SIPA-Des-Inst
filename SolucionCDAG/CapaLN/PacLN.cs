@@ -169,5 +169,33 @@ namespace CapaLN
             pacAD = new PacAD();
             return pacAD.ModificarPacDetalle(pacEN);
         }
+        
+        public DataSet PedidoPACItem(int idunidad,string condicion)
+        {
+            pacAD = new PacAD();
+            return pacAD.PedidoPACItem(idunidad,condicion);
+        }
+
+        public void DdlRenglon(DropDownList drop, string unidad,string renglon,string anio,string accion)
+        {
+            drop.ClearSelection();
+            drop.Items.Clear();
+            drop.AppendDataBoundItems = true;
+            drop.Items.Add("<< Elija un valor >>");
+            drop.Items[0].Value = "0";
+            pacAD = new PacAD();
+            drop.DataSource = pacAD.DdlRenglon(unidad,renglon,anio,accion);
+            drop.DataTextField = "id_pac";
+            drop.DataValueField = "id_pac";
+            drop.DataBind();
+            if (drop.Items.Count == 2)
+                drop.Items.RemoveAt(0);
+        }
+
+        public bool ActualizarPAC(string PAC,string Detalle)
+        {
+            pacAD = new PacAD();
+            return pacAD.ActualizarPAC(PAC, Detalle);
+        }
     }
 }

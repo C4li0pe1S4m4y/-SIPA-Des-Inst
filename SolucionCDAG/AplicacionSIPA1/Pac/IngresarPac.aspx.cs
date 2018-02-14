@@ -229,7 +229,7 @@ namespace AplicacionSIPA1.Pac
             pAnualLN = new PlanAnualLN();
             int idAccion = 0;
             int.TryParse(ddlAcciones.SelectedValue, out idAccion);
-            pAnualLN.GridDetallesAccion(gridRenglon, idAccion, int.Parse(ddlAnios.SelectedValue));
+            pAnualLN.GridDetallesAccion(gridRenglon, idAccion);
 
             if (gridRenglon.Rows.Count == 1)
             {
@@ -251,7 +251,7 @@ namespace AplicacionSIPA1.Pac
             pAnualLN = new PlanAnualLN();
             int idAccion = 0;
             int.TryParse(ddlAcciones.SelectedValue, out idAccion);
-            pAnualLN.GridDetallesAccion(gridRenglon, idAccion, int.Parse(ddlAnios.SelectedValue));
+            pAnualLN.GridDetallesAccion(gridRenglon, idAccion);
 
             if (gridRenglon.Rows.Count > 1 && gridRenglon.SelectedIndex > -1)
             {
@@ -781,7 +781,7 @@ namespace AplicacionSIPA1.Pac
                     int.TryParse(gridRenglon.SelectedValue.ToString(), out idDetalleAccion);
                     int.TryParse(lblIdPac.Text, out idPac);
                     int.TryParse(lblIdPoa.Text, out idPoa);
-
+                    pAnualLN = new PlanAnualLN();
                     dr["ID_PAC"] = idPac;
                     dr["ID_POA"] = idPoa;
                     dr["ID_DETALLE"] = idDetalleAccion;
@@ -805,7 +805,7 @@ namespace AplicacionSIPA1.Pac
 
                         m = stringToDecimalString(((TextBox)(gridDet.Rows[i].FindControl("txtMonto"))).Text);
                         monto = c == string.Empty ? 0 : decimal.Parse(m);
-                        //total += (cantidad * monto);
+                        total += (cantidad * monto);
                         total += monto;
 
                         ((TextBox)(gridDet.Rows[i].FindControl("txtMonto"))).Text = String.Format(CultureInfo.InvariantCulture, "Q.{0:0,0.00}", monto);
@@ -846,7 +846,6 @@ namespace AplicacionSIPA1.Pac
                 lblError.Text = "btnGuardar_Click(). " + ex.Message;
             }
         }
-
         protected bool ValidarPpto(int idDetalleAccion, int idPac, decimal totalPac)
         {
             pAccionLN = new PlanAccionLN();
@@ -855,7 +854,7 @@ namespace AplicacionSIPA1.Pac
 
             //DataSet dsPptoAccion = pAccionLN.PptoAccion(idAccion);
             DataSet dsPptoRenglon = pAnualLN.InformacionRenglonAccion(idDetalleAccion, int.Parse(ddlAnios.SelectedValue));
-            DataSet dsPptoPac = pAnualLN.InformacionPac(idPac, int.Parse(ddlAnios.SelectedValue));
+            DataSet dsPptoPac = pAnualLN.InformacionPac(idPac,2018);
 
             if (bool.Parse(dsPptoRenglon.Tables[0].Rows[0]["ERRORES"].ToString()))
                 throw new Exception("No se consultó el presupuesto del Renglón: " + dsPptoRenglon.Tables[0].Rows[0]["MSG_ERROR"].ToString());
@@ -1109,7 +1108,7 @@ namespace AplicacionSIPA1.Pac
 
                 string usuario = Session["usuario"].ToString();
                 pAnualLN = new PlanAnualLN();
-                pAnualLN.GridListadoPacs(gridPac, usuario, idPoa.ToString(), int.Parse(ddlCAnios.SelectedValue));
+                pAnualLN.GridListadoPacs(gridPac, usuario, idPoa.ToString());
 
                 if (gridPac.Rows.Count > 0)
                 {
@@ -1231,10 +1230,10 @@ namespace AplicacionSIPA1.Pac
                     upConsulta.Visible = false;
                     DataSet dsResultado;
                     pAnualLN = new PlanAnualLN();
-                    int idUnidad, idDepend = 0;
+                    int idUnidad,idDepend = 0;
                     if (!ddlCDependencia.SelectedValue.Equals("0") && ddlCDependencia.SelectedValue != "")
                     {
-                        dsResultado = pAnualLN.InformacionPacDep(idPac, int.Parse(ddlCAnios.SelectedValue));
+                        dsResultado = pAnualLN.InformacionPacDep(idPac);
 
                         if (bool.Parse(dsResultado.Tables[0].Rows[0]["ERRORES"].ToString()))
                             throw new Exception("No se CONSULTÓ el PAC: " + dsResultado.Tables[0].Rows[0]["MSG_ERROR"].ToString());
@@ -1242,10 +1241,9 @@ namespace AplicacionSIPA1.Pac
                         NuevoEncabezadoPoa();
                         int.TryParse(dsResultado.Tables["ENCABEZADO"].Rows[0]["ID_UNIDAD"].ToString(), out idUnidad);
                         int.TryParse(dsResultado.Tables["ENCABEZADO"].Rows[0]["ID_DEPENDENCIA"].ToString(), out idDepend);
-                    }
-                    else
+                    }else
                     {
-                        dsResultado = pAnualLN.InformacionPac(idPac,int.Parse(ddlCAnios.SelectedValue));
+                        dsResultado = pAnualLN.InformacionPac(idPac, 2018);
 
                         if (bool.Parse(dsResultado.Tables[0].Rows[0]["ERRORES"].ToString()))
                             throw new Exception("No se CONSULTÓ el PAC: " + dsResultado.Tables[0].Rows[0]["MSG_ERROR"].ToString());
@@ -1253,11 +1251,11 @@ namespace AplicacionSIPA1.Pac
                         NuevoEncabezadoPoa();
                         int.TryParse(dsResultado.Tables["ENCABEZADO"].Rows[0]["ID_UNIDAD"].ToString(), out idUnidad);
                     }
-
+                    
 
                     int idPoa = 0;
                     int anio = 0;
-
+                    
                     int idAccion = 0;
                     int idDetalleAccion = 0;
                     int idInsumo = 0;
@@ -1276,7 +1274,7 @@ namespace AplicacionSIPA1.Pac
 
                     int.TryParse(dsResultado.Tables["ENCABEZADO"].Rows[0]["ID_POA"].ToString(), out idPoa);
                     int.TryParse(dsResultado.Tables["ENCABEZADO"].Rows[0]["ANIO"].ToString(), out anio);
-
+                    
                     int.TryParse(dsResultado.Tables["ENCABEZADO"].Rows[0]["NOACCION"].ToString(), out idAccion);
                     int.TryParse(dsResultado.Tables["ENCABEZADO"].Rows[0]["ID_DETALLE_ACCION"].ToString(), out idDetalleAccion);
                     int.TryParse(dsResultado.Tables["ENCABEZADO"].Rows[0]["ID_INSUMO"].ToString(), out idInsumo);
@@ -1292,7 +1290,7 @@ namespace AplicacionSIPA1.Pac
                     ddlAnios.SelectedValue = anio.ToString();
                     ddlUnidades.SelectedValue = idUnidad.ToString();
                     ddlUnidades_SelectedIndexChanged(sender, e);
-                    if (idDepend > 0)
+                    if (idDepend>0)
                     {
                         ddlDependencia.SelectedValue = idDepend.ToString();
                         ddlDependencia_SelectedIndexChanged(sender, e);
@@ -1434,7 +1432,7 @@ namespace AplicacionSIPA1.Pac
                         throw new Exception("No se ELIMINÓ el PAC: " + dsResultado.Tables[0].Rows[0]["MSG_ERROR"].ToString());
 
                     string usuario = Session["usuario"].ToString();
-                    pAnualLN.GridListadoPacs(gridPac, usuario, lblCIdPoa.Text, int.Parse(ddlAnios.SelectedValue));
+                    pAnualLN.GridListadoPacs(gridPac, usuario, lblCIdPoa.Text);
 
                     filtrarGrid();
                     ScriptManager.RegisterStartupScript(this, typeof(string), "Mensaje", "alert('" + "Eliminacion Exitosa!" + "');", true);

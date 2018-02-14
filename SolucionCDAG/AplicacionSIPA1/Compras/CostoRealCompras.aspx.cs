@@ -179,29 +179,25 @@ namespace AplicacionSIPA1.Compras
                         btnAprobar.Visible = btnRechazar.Visible = btnAnular.Visible = true;
                         
                         if (idEstadoPedido == 12)
+                            lblError.Text = "El documento seleccionado ya tiene asignado valor real.";
+
+                        /*if (idEstadoPedido == 12)
                         {
                             lblError.Text = "El documento seleccionado ya tiene asignado valor real.";
-                            //btnAprobar.Visible = btnRechazar.Visible = btnAnular.Visible = true;
-                        }
-                           
-                            
-                        //if (idEstadoPedido == 12)
-                        //{
-                        //    lblError.Text = "El documento seleccionado ya tiene asignado valor real.";
-                        //    btnAprobar.Visible = btnRechazar.Visible = btnAnular.Visible = false;
+                            btnAprobar.Visible = btnRechazar.Visible = btnAnular.Visible = false;
 
-                        //    //SI TIENE EL ROL DE ADMINISTRADOR DE ASIGNACIÓN DE VALOR REAL PERMITIRÁ HACER NUEVAMENTE LA LIQUIDACIÓN, RECHAZO O ANULACIÓN
-                        //    pInsumoLN = new PedidosLN();
-                        //    dsResultado = pInsumoLN.InformacionPermisos(0, 0, " AND c.id_tipo = 50", 12); //50 - ADMIN ASIGNACIÓN VALOR REAL COMPRA
+                            //SI TIENE EL ROL DE ADMINISTRADOR DE ASIGNACIÓN DE VALOR REAL PERMITIRÁ HACER NUEVAMENTE LA LIQUIDACIÓN, RECHAZO O ANULACIÓN
+                            pInsumoLN = new PedidosLN();
+                            dsResultado = pInsumoLN.InformacionPermisos(0, 0, " AND c.id_tipo = 50", 12); //50 - ADMIN ASIGNACIÓN VALOR REAL COMPRA
 
-                        //    if (bool.Parse(dsResultado.Tables["RESULTADO"].Rows[0]["ERRORES"].ToString()))
-                        //        throw new Exception(dsResultado.Tables["RESULTADO"].Rows[0]["MSG_ERROR"].ToString());
+                            if (bool.Parse(dsResultado.Tables["RESULTADO"].Rows[0]["ERRORES"].ToString()))
+                                throw new Exception(dsResultado.Tables["RESULTADO"].Rows[0]["MSG_ERROR"].ToString());
 
-                        //    if (dsResultado.Tables["BUSQUEDA"].Rows.Count > 0)
-                        //        btnAprobar.Visible = btnRechazar.Visible = btnAnular.Visible = true;
-                        //    else
-                        //        btnAprobar.Visible = btnRechazar.Visible = btnAnular.Visible = false;
-                        //}
+                            if (dsResultado.Tables["BUSQUEDA"].Rows.Count > 0)
+                                btnAprobar.Visible = btnRechazar.Visible = btnAnular.Visible = true;
+                            else
+                                btnAprobar.Visible = btnRechazar.Visible = btnAnular.Visible = false;
+                        }*/
                     }
                     else
                     {

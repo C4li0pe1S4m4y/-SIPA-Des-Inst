@@ -306,6 +306,12 @@ namespace CapaLN
             grid.DataSource = ObjAD.GridCodificacion(idPoa);
             grid.DataBind();
         }
+        public void GridCodificacionCompleto(GridView grid, int idPoa)
+        {
+            ObjAD = new PlanOperativoAD();
+            grid.DataSource = ObjAD.GridPlanCompleto(29,idPoa,2018);
+            grid.DataBind();
+        }
 
         public DataSet AlmacenarObjetivo(ObjOperativosEN ObjEN, string usuario,string ip,string mac,string pc)
         {
@@ -654,6 +660,29 @@ namespace CapaLN
         {
             ObjAD = new PlanOperativoAD();
             return ObjAD.ObtenerCorreoxUsuario(idempleado);
+        }
+
+        public string ProductoxUnidad(int unidad)
+        {
+            ObjAD = new PlanOperativoAD();
+            return ObjAD.ProductoxUnidad(unidad);
+        }
+
+        public void ddlSubproducto(DropDownList drop,int idUnidad)
+        {
+            drop.ClearSelection();
+            drop.Items.Clear();
+            drop.AppendDataBoundItems = true;
+            drop.Items.Add("<< Elija un valor >>");
+            drop.Items[0].Value = "0";
+            ObjAD = new PlanOperativoAD();
+            drop.DataSource = ObjAD.ddlSubproducto(idUnidad); ;
+            drop.DataTextField = "subproducto";
+            drop.DataValueField = "id_subproducto";
+            drop.DataBind();
+
+            if (drop.Items.Count == 2)
+                drop.Items.RemoveAt(0);
         }
     }
 }

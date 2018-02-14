@@ -147,35 +147,6 @@ namespace CapaAD
                 return 0;
            
         }
-        public int ActualizarPresUnidad(PresupuestoEN presupuestoEN, string usuario)
-        {
-            conectar = new ConexionBD();
-            conectar.AbrirConexion();
-            MySqlTransaction transaccion = conectar.conectar.BeginTransaction();
-            MySqlCommand command = conectar.conectar.CreateCommand();
-            command.Transaction = transaccion;
-            try
-            {
-
-                command.CommandText = string.Format("Update sipa_poa set monto = {0},monto_global={1} where id_unidad = {2} and anio={3};",
-                    presupuestoEN.monto, presupuestoEN.monto_global, presupuestoEN.idUnidad, presupuestoEN.anio);
-                command.ExecuteNonQuery();
-                transaccion.Commit();
-                conectar.CerrarConexion();
-                return 0;
-            }
-            catch (Exception ex)
-            {
-                try
-                {
-                    transaccion.Rollback();
-                }
-                catch
-                { };
-                conectar.CerrarConexion();
-                return 1;
-            };
-        }
 
         public DataSet AlmacenarModificacionTechoPpto(PresupuestoEN pptoEN, string usuario,int op)
         {
@@ -461,6 +432,36 @@ namespace CapaAD
             conectar.CerrarConexion();
             
             return result;
+        }
+
+        public int ActualizarPresUnidad(PresupuestoEN presupuestoEN, string usuario)
+        {
+            conectar = new ConexionBD();
+            conectar.AbrirConexion();
+            MySqlTransaction transaccion = conectar.conectar.BeginTransaction();
+            MySqlCommand command = conectar.conectar.CreateCommand();
+            command.Transaction = transaccion;
+            try
+            {
+
+                command.CommandText = string.Format("Update sipa_poa set monto = {0},monto_global={1} where id_unidad = {2} and anio={3};",
+                    presupuestoEN.monto, presupuestoEN.monto_global, presupuestoEN.idUnidad, presupuestoEN.anio);
+                command.ExecuteNonQuery();
+                transaccion.Commit();
+                conectar.CerrarConexion();
+                return 0;
+            }
+            catch (Exception ex)
+            {
+                try
+                {
+                    transaccion.Rollback();
+                }
+                catch
+                { };
+                conectar.CerrarConexion();
+                return 1;
+            };
         }
     }
 }

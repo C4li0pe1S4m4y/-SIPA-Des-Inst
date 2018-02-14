@@ -73,11 +73,11 @@ namespace CapaAD
             return tabla;
         }
 
-        public DataTable GridDetallesAccion(int idAccion,int anio)
+        public DataTable GridDetallesAccion(int idAccion)
         {
             conectar = new ConexionBD();
             DataTable tabla = new DataTable();
-            string query = string.Format("CALL sp_slctPptoPac({0}, {1},{2});", idAccion, 1,anio);
+            string query = string.Format("CALL sp_slctPptoPac({0}, {1},2018);", idAccion, 1);
             conectar.AbrirConexion();
             MySqlDataAdapter consulta = new MySqlDataAdapter(query, conectar.conectar);
             consulta.Fill(tabla);
@@ -85,7 +85,7 @@ namespace CapaAD
             return tabla;
         }
 
-        public DataTable GridListadoPacs(string usuario, string idPoa,int anio)
+        public DataTable GridListadoPacs(string usuario, string idPoa)
         {
             conectar = new ConexionBD();
             DataTable tabla = new DataTable();
@@ -261,7 +261,7 @@ namespace CapaAD
             return tabla;
         }
 
-        public DataSet InformacionPac(int idPac,int anio)
+        public DataSet InformacionPac(int idPac)
         {
             conectar = new ConexionBD();
             DataTable tablaEnc = new DataTable("ENCABEZADO");
@@ -270,9 +270,9 @@ namespace CapaAD
             string query = String.Format("CALL sp_slctPacListado('', {0}, 2);", idPac);
             conectar.AbrirConexion();
             MySqlDataAdapter consulta;
+            
 
-
-            if (idPac > 54)
+            if (idPac >54)
             {
                 query = String.Format("CALL sp_slctPacListado('', {0}, 2);", idPac);
                 conectar.AbrirConexion();
@@ -296,7 +296,7 @@ namespace CapaAD
                 consulta = new MySqlDataAdapter(query, conectar.conectar);
                 consulta.Fill(tablaDet);
             }
-
+            
             conectar.CerrarConexion();
 
             DataSet ds = new DataSet();
@@ -305,7 +305,8 @@ namespace CapaAD
 
             return ds;
         }
-        public DataSet InformacionPacDep(int idPac,int anio)
+
+        public DataSet InformacionPacDep(int idPac)
         {
             conectar = new ConexionBD();
             DataTable tablaEnc = new DataTable("ENCABEZADO");
@@ -379,6 +380,22 @@ namespace CapaAD
                 conectar.CerrarConexion();
                 return false;
             }
+        }
+
+        public int Correlativo(string anio)
+        {
+            conectar = new ConexionBD();
+            int result = 0;
+            conectar.AbrirConexion();
+            string permiso = string.Format("select max(id_pac) from sipa_pac where anio = {0};", anio);
+            MySqlCommand cmd = new MySqlCommand(permiso, conectar.conectar);
+            MySqlDataReader dr = cmd.ExecuteReader();
+            while (dr.Read())
+            {
+                result = int.Parse(dr[0].ToString());
+            }
+            conectar.CerrarConexion();
+            return result;
         }
 
     }

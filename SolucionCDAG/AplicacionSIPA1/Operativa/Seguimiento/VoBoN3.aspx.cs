@@ -431,6 +431,7 @@ namespace AplicacionSIPA1.Operativa.Seguimiento
                 if (!estadoPoa.Split('-')[0].Trim().Equals("9"))
                 {
                     btnAprobar.Visible = btnRechazar.Visible = false;
+                    btnRechazar.Visible = true; 
                     lblErrorPoa.Text = lblError.Text = "El CUADRO DE MANDO INTEGRAL seleccionado se encuenta en estado: " + estadoPoa;
                 }
                 else
@@ -483,7 +484,7 @@ namespace AplicacionSIPA1.Operativa.Seguimiento
 
                     sSeguimientoLN = new SeguimientoLN();
                     dsResultado = sSeguimientoLN.InformacionSeguimientos(0, 0, criterio, 2);
-
+                    
                     if (bool.Parse(dsResultado.Tables["RESULTADO"].Rows[0]["ERRORES"].ToString()))
                         throw new Exception(dsResultado.Tables["RESULTADO"].Rows[0]["MSG_ERROR"].ToString());
 
@@ -513,13 +514,13 @@ namespace AplicacionSIPA1.Operativa.Seguimiento
                         seguimientoValido = true;
 
                     }//EL SEGUIMIENTO ESTÁ EN ESTADO 1 - Ingresado, 2	Revisión Subgerencia, 4	Revisión Analista POA, 9	Aprobado Dirección Y NO SE PUEDE MODIFICAR
-                    else if (idEstadoSeguimiento == 1 || idEstadoSeguimiento == 2 || idEstadoSeguimiento == 4)
+                    else if (idEstadoSeguimiento == 1 || idEstadoSeguimiento == 2 || idEstadoSeguimiento == 4 )
                     {
                         btnAprobar.Visible = btnRechazar.Visible = /*gridDet.Columns[0].Visible = gridDet.Columns[1].Visible =*/ false;
                         lblErrorPoa.Text = lblError.Text = "El SEGUIMIENTO seleccionado se encuenta en estado: " + lblEstadoSeguimiento.Text + " y no se puede modificar ";
                         seguimientoValido = false;
                     }
-                    else if (idEstadoSeguimiento == 9)
+                    else if (idEstadoSeguimiento ==9)
                     {
                         btnRechazar.Visible = /*gridDet.Columns[0].Visible = gridDet.Columns[1].Visible =*/ true;
                         lblErrorPoa.Text = lblError.Text = "El SEGUIMIENTO seleccionado se encuenta en estado: " + lblEstadoSeguimiento.Text + " y no se puede modificar ";

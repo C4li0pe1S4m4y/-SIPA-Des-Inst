@@ -8,14 +8,19 @@
      
                     
    <asp:Label runat="server" ID="lblIdPoa"  Visible="false"/>
+    <div class="col-md-4">
+        <asp:Label ID="lblAnio" runat="server" Text="Año"></asp:Label>
+        <asp:DropDownList ID="ddlAnios" runat="server" OnSelectedIndexChanged="ddlAnios_SelectedIndexChanged"  AutoPostBack="True" class="form-control"  Width="80%">
+                        </asp:DropDownList>
+    </div>
     <div class="col-md-5">
         <asp:Label ID="lblUnidad" runat="server" Text="Unidad"></asp:Label>
         <asp:DropDownList ID="ddlUnidades" runat="server" OnSelectedIndexChanged="ddlUnidades_SelectedIndexChanged" AutoPostBack="True" class="form-control"  Width="80%">
                         </asp:DropDownList>
     </div>
- 
+    
    
-    <div class="col-md-6">
+    <div class="col-md-8">
          <asp:Label ID="lblAccion" runat="server" Text="Accion"></asp:Label>
         <asp:DropDownList ID="ddlAcciones" runat="server" AutoPostBack="True" OnSelectedIndexChanged="ddlAcciones_SelectedIndexChanged" BackColor="#003366" class="form-control" ForeColor="White"  Width="80%">
         </asp:DropDownList>

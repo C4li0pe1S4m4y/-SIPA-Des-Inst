@@ -224,7 +224,7 @@ namespace AplicacionSIPA1.Viaticos
                         filtrarGridPpto();
 
                         validarEstadoSolicitud(idEncabezado);
-                        ddlPlanes.Enabled = ddlAnios.Enabled = ddlUnidades.Enabled = /*ddlAcciones.Enabled =*/ false;
+                        ddlPlanes.Enabled =  ddlUnidades.Enabled = /*ddlAcciones.Enabled =*/ false;
                     }
                 }
                 catch (Exception ex)
@@ -288,7 +288,7 @@ namespace AplicacionSIPA1.Viaticos
                 ddlAcciones.Items[0].Text = "<< Elija un valor >>";
                 ddlPlanes.Enabled = ddlAnios.Enabled = ddlAcciones.Enabled = true;
 
-                ddlAnios.Enabled = false;
+                ddlAnios.Enabled = true;
             }
             catch (Exception ex)
             {
@@ -1786,6 +1786,7 @@ namespace AplicacionSIPA1.Viaticos
                 txtPuesto.Text = string.Empty;
                 //txtPuesto.Visible = false;
                 txtSueldoBase.ReadOnly = false;
+                
                 txtSueldoBase.Text = "0";
 
                 pViaticosLN = new ViaticosLN();
@@ -1794,7 +1795,7 @@ namespace AplicacionSIPA1.Viaticos
                 ddlEmpleados.ClearSelection();
                 ddlEmpleados.Items.Clear();
                 ddlEmpleados.DataBind();
-
+                txtSueldoBase.Enabled = true;
                 if (rblTipoPersonal.SelectedValue.Equals("2"))
                 {
                     rblCategoria.SelectedValue = "38";

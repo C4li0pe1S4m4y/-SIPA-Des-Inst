@@ -691,7 +691,7 @@ namespace AplicacionSIPA1.Pedido
                             string usuario = Session["usuario"].ToString();
                             string observaciones = txtObser.Text;
                             dsResultado = pInsumoLN.RecodificacionPpto(idSalida, idTipoSalida, observaciones, usuario,ip[0],ip[1],ip[2]);
-
+                            
                             if (bool.Parse(dsResultado.Tables[0].Rows[0]["ERRORES"].ToString()))
                             {
                                 ddlPRG.ClearSelection();
@@ -1117,7 +1117,6 @@ namespace AplicacionSIPA1.Pedido
                     ddlACT.Items.Add(new ListItem("012", "012"));
                     ddlACT.Items.Add(new ListItem("014", "014"));
                     ddlACT.Items.Add(new ListItem("015", "015"));
-                    ddlACT.Items.Add(new ListItem("016", "016"));
                 }
                 else if (valor.Equals("99"))
                 {

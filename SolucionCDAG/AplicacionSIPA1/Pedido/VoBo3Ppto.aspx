@@ -134,7 +134,7 @@
                     <td>&nbsp;</td>
                     <td>&nbsp;</td>
                     <td colspan="16">
-                        <asp:RadioButtonList ID="rblEstadosPedido" runat="server" AutoPostBack="false" Font-Size="XX-Small"  RepeatColumns="8" RepeatDirection="Horizontal" Width="100%">
+                        <asp:RadioButtonList ID="rblEstadosPedido" runat="server" AutoPostBack="True" Font-Size="XX-Small" OnSelectedIndexChanged="rblEstadosPedido_SelectedIndexChanged" RepeatColumns="8" RepeatDirection="Horizontal" Width="100%">
                         </asp:RadioButtonList>
                     </td>
                     <td>&nbsp;</td>

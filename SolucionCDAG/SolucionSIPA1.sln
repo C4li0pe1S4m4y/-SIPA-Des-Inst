@@ -1,6 +1,8 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-# Visual Studio Express 2012 for Web
+# Visual Studio 14
+VisualStudioVersion = 14.0.25420.1
+MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CapaEN", "CapaEN\CapaEN.csproj", "{7AB9D40C-0E73-4252-B310-FC27F9837082}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CapaAD", "CapaAD\CapaAD.csproj", "{CDC88454-6BF6-4734-82F6-E14860C638A1}"

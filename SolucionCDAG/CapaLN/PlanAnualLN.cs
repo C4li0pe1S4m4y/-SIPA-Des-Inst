@@ -126,20 +126,20 @@ namespace CapaLN
             }
         }
 
-        public void GridDetallesAccion(GridView grid, int idAccion,int anio)
+        public void GridDetallesAccion(GridView grid, int idAccion)
         {
             ObjAD = new PlanAnualAD();
-            DataTable dt = ObjAD.GridDetallesAccion(idAccion,anio-1);
+            DataTable dt = ObjAD.GridDetallesAccion(idAccion);
             if (dt.Rows.Count == 1 && dt.Rows[0]["id"].ToString().Equals(string.Empty))
                 dt = null;
             grid.DataSource = dt; 
             grid.DataBind();
         }
 
-        public void GridListadoPacs(GridView grid, string usuario, string idPoa,int anio)
+        public void GridListadoPacs(GridView grid, string usuario, string idPoa)
         {
             ObjAD = new PlanAnualAD();
-            DataTable dt = ObjAD.GridListadoPacs(usuario, idPoa,anio);
+            DataTable dt = ObjAD.GridListadoPacs(usuario, idPoa);
             if (dt.Rows.Count == 1 && dt.Rows[0]["id"].ToString().Equals(string.Empty))
                 dt = null;
             grid.DataSource = dt;
@@ -227,7 +227,7 @@ namespace CapaLN
 
             try
             {
-                DataSet ds = ObjAD.InformacionPac(idPac, anio - 1);
+                DataSet ds = ObjAD.InformacionPac(idPac);
                 dsResultado.Tables.Add(ds.Tables[0].Copy());
                 dsResultado.Tables.Add(ds.Tables[1].Copy());
                 dsResultado.Tables[0].Rows[0]["ERRORES"] = false;
@@ -239,14 +239,15 @@ namespace CapaLN
 
             return dsResultado;
         }
-        public DataSet InformacionPacDep(int idPac, int anio)
+
+        public DataSet InformacionPacDep(int idPac)
         {
             DataSet dsResultado = armarDsResultado();
             ObjAD = new PlanAnualAD();
 
             try
             {
-                DataSet ds = ObjAD.InformacionPacDep(idPac, anio - 1);
+                DataSet ds = ObjAD.InformacionPacDep(idPac);
                 dsResultado.Tables.Add(ds.Tables[0].Copy());
                 dsResultado.Tables.Add(ds.Tables[1].Copy());
                 dsResultado.Tables[0].Rows[0]["ERRORES"] = false;
@@ -266,7 +267,7 @@ namespace CapaLN
 
             try
             {
-                DataTable dt = ObjAD.InformacionRenglonAccion(idDetalleAccion,anio -1);
+                DataTable dt = ObjAD.InformacionRenglonAccion(idDetalleAccion,anio-1);
                 dt.TableName = "BUSQUEDA";
                 dsResultado.Tables.Add(dt);
                 dsResultado.Tables[0].Rows[0]["ERRORES"] = false;
@@ -300,6 +301,12 @@ namespace CapaLN
             }
 
             return dsResultado;
+        }
+
+        public int correlativo(string anio)
+        {
+            ObjAD = new PlanAnualAD();
+            return ObjAD.Correlativo(anio);
         }
 
     }

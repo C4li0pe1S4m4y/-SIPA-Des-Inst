@@ -100,6 +100,7 @@ namespace AplicacionSIPA1.PedidoInsumos
                     if (!ddlAnios.SelectedValue.Equals("0"))
                     {
                         validarPoaIngresoPedido(int.Parse(ddlUnidades.SelectedValue), int.Parse(ddlAnios.SelectedValue));
+                        lblProduto.Text = pOperativoLN.ProductoxUnidad(int.Parse(ddlUnidades.SelectedValue));
                     }
                 }
 
@@ -642,7 +643,7 @@ namespace AplicacionSIPA1.PedidoInsumos
 
             //DataSet dsPptoAccion = pAccionLN.PptoAccion(idAccion);
             DataSet dsPptoRenglon = pAnualLN.InformacionRenglonAccion(idDetalleAccion, int.Parse(ddlAnios.SelectedValue));
-            DataSet dsPptoPac = pAnualLN.InformacionPac(idPac, int.Parse(ddlAnios.SelectedValue));
+            DataSet dsPptoPac = pAnualLN.InformacionPac(idPac, 2018);
 
             if (bool.Parse(dsPptoRenglon.Tables[0].Rows[0]["ERRORES"].ToString()))
                 throw new Exception("No se consultó el presupuesto del Renglón: " + dsPptoRenglon.Tables[0].Rows[0]["MSG_ERROR"].ToString());

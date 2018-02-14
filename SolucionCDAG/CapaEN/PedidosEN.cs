@@ -51,7 +51,11 @@ namespace CapaEN
         //public string VCOSTO_PEDIDO_MULTIANUAL { get; set; }
         public string VCANTIDAD_PEDIDO_MULTIANUAL { get; set; }
         public string VCOSTO_PEDIDO_MULTIANUAL { get; set; }
-        
+
+        //Codigo de Insumo y Codigo de Presentacion
+        public int Codigo_Insumo { get; set; }
+        public int Codigo_Presentacion { get; set; }
+    
         //VALES
         public int ccidVale { get; set; }
         public int ccidValeDetalle { get; set; }
@@ -76,6 +80,8 @@ namespace CapaEN
         public string VID_TIPO_DOCUMENTO { get; set; }
         public string VID_PROVEEDOR { get; set; }
         public string MULTIANUAL { get; set; }
+
+        //
         
     }
 

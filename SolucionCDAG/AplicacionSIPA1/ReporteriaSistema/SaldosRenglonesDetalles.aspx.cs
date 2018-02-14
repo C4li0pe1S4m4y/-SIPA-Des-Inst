@@ -55,7 +55,7 @@ namespace AplicacionSIPA1.ReporteriaSistema
                 ddlAcciones.Items[0].Text = "<< TODAS >>";
                 System.Text.StringBuilder stringBuilder = new System.Text.StringBuilder();
                 stringBuilder.Append(consulta());
-                if (ddlUnidades.Items.Count == 1)
+                if (ddlUnidades.Items.Count==1)
                 {
                     stringBuilder.Append(" AND id_unidad = " + ddlUnidades.SelectedValue);
                     stringBuilder.Append(" AND t.Año = " + ddlAnios.SelectedValue);
@@ -271,10 +271,11 @@ namespace AplicacionSIPA1.ReporteriaSistema
                 if (ddlUnidades.SelectedValue != "0")
                 {
                     stringBuilder.Append(" AND id_unidad = " + ddlUnidades.SelectedValue);
+                    stringBuilder.Append(" AND t.Año = " + ddlAnios.SelectedValue);
                 }
-
+               
             }
-
+               
             if (ddlAcciones.SelectedIndex > 0)
                 stringBuilder.Append(" AND id_accion = " + ddlAcciones.SelectedValue);
             string tiposSalida = "";

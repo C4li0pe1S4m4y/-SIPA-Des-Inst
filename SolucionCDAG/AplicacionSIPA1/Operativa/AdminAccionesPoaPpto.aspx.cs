@@ -21,7 +21,7 @@ namespace AplicacionSIPA1.Operativa
         private AccionesEN accionesEN;
         private MetasAccionEN metasEN;
         private AccionesDetEN accionDetEN;
-
+        private bool bDepencia = false;
         decimal totalP, totalC, totalS = 0;
 
         protected void Page_LoadComplete(object sender, EventArgs e)
@@ -31,6 +31,8 @@ namespace AplicacionSIPA1.Operativa
                 try
                 {
                     btnNuevo_Click(sender, e);
+                    if (!bDepencia)
+                        planOperativoLN.DdlDependencias(ddlDependencia, ddlUnidades.SelectedValue);
                 }
                 catch (Exception ex)
                 {
@@ -369,11 +371,13 @@ namespace AplicacionSIPA1.Operativa
 
                 planAccionLN = new PlanAccionLN();
                 planAccionLN.DdlDependenciasUnidad(ddlDependencias, idUnidad);
-                
+                planAccionLN.DdlDependenciasUsuario(ddlDependencias, Session["usuario"].ToString(), idUnidad);
                 if (idUnidad > 0)
                 {
                     ddlUnidades.SelectedValue = idUnidad.ToString();
-                    
+                    planOperativoLN = new PlanOperativoLN();
+                    planOperativoLN.DdlDependencias(ddlDependencia, idUnidad.ToString());
+                    ddlUnidades.SelectedValue = idUnidad.ToString();
                     if (anio > 0 && idUnidad > 0)
                         validarPoa(idUnidad, anio);
 
@@ -731,9 +735,9 @@ namespace AplicacionSIPA1.Operativa
                     //if (false)
                     {
                         planAccionLN = new PlanAccionLN();
-                        DataSet dsPpto = planAccionLN.PptoPoa(idPoa, int.Parse(ddlUnidades.SelectedValue));
+                        DataSet dsPpto = planAccionLN.PptoPoa(idPoa, int.Parse(ddlDependencias.SelectedValue));
 
-                        decimal disponible = decimal.Parse(dsPpto.Tables["BUSQUEDA"].Rows[0]["DISPONIBLE_UNIDAD"].ToString());
+                        decimal disponible = decimal.Parse(dsPpto.Tables["BUSQUEDA"].Rows[0]["DISPONIBLE_DEPENDENCIA"].ToString());
                         decimal monto = 0;
                         decimal.TryParse(txtMonto.Text, out monto);
 
@@ -1570,6 +1574,112 @@ namespace AplicacionSIPA1.Operativa
             catch (Exception ex)
             {
                 lblError.Text = "ddlPlanes(). " + ex.Message;
+            }
+        }
+
+        protected void ddlDependen_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            try
+            {
+                limpiarControlesError();
+                int idPlan = int.Parse(ddlPlanes.SelectedValue);
+                int anio = int.Parse(ddlAnios.SelectedValue);
+                int idUnidad = int.Parse(ddlDependencia.SelectedValue);
+                int idUnidadTemp = int.Parse(ddlUnidades.SelectedValue);
+                string id_unidad = ddlDependencia.SelectedItem.Value;
+                //btnNuevo_Click(sender, e);
+                ddlPlanes.SelectedValue = idPlan.ToString();
+                ddlPlanes_SelectedIndexChanged(sender, e);
+
+                ddlAnios.SelectedValue = anio.ToString();
+                btnGuardar.Visible = false;
+
+
+                planOperativoLN = new PlanOperativoLN();
+                planOperativoLN.DdlObjetivosB(ddlObjetivos, anio, idUnidad);
+                ddlObjetivos.Items[0].Text = "<< Elija un valor >>";
+
+                planAccionLN = new PlanAccionLN();
+                planAccionLN.DdlDependenciasUsuario(ddlDependencias, Session["usuario"].ToString(), idUnidadTemp);
+
+                if (idUnidad > 0)
+                {
+                    planOperativoLN = new PlanOperativoLN();
+                    if (idUnidadTemp != idUnidad)
+                    {
+                        planOperativoLN.DdlDependencias(ddlJefaturaUnidad, id_unidad);
+
+                    }
+                    bDepencia = true;
+                    ddlDependencia.SelectedValue = idUnidad.ToString();
+                    ddlUnidades.SelectedValue = idUnidadTemp.ToString();
+                    if (anio > 0 && idUnidad > 0)
+                        validarPoa(idUnidad, anio);
+
+                    if (ddlDependencias.Items.Count == 1)
+                        ddlDependencias_SelectedIndexChanged(sender, e);
+                }
+
+                planOperativoLN = new PlanOperativoLN();
+                planOperativoLN.DdlObjetivosB(ddlObjetivos, int.Parse(ddlAnios.SelectedValue), int.Parse(ddlDependencia.SelectedValue));
+                ddlObjetivos.Items[0].Text = "<< Elija un valor >>";
+
+                chkAccion.Checked = true;
+                chkAccion_CheckedChanged(sender, e);
+            }
+            catch (Exception ex)
+            {
+                lblError.Text = "ddlUnidades_SelectedIndexChanged(). " + ex.Message;
+            }
+        }
+
+        protected void ddlJefaturaUnidad_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            try
+            {
+                limpiarControlesError();
+                int idPlan = int.Parse(ddlPlanes.SelectedValue);
+                int anio = int.Parse(ddlAnios.SelectedValue);
+                int idUnidad = int.Parse(ddlJefaturaUnidad.SelectedValue);
+                string id_unidad = ddlJefaturaUnidad.SelectedItem.Value;
+                int idUnidadTemp = int.Parse(ddlUnidades.SelectedValue);
+                //btnNuevo_Click(sender, e);
+                ddlPlanes.SelectedValue = idPlan.ToString();
+                ddlPlanes_SelectedIndexChanged(sender, e);
+
+                ddlAnios.SelectedValue = anio.ToString();
+                btnGuardar.Visible = false;
+
+
+                planOperativoLN = new PlanOperativoLN();
+                planOperativoLN.DdlObjetivosB(ddlObjetivos, anio, idUnidad);
+                ddlObjetivos.Items[0].Text = "<< Elija un valor >>";
+
+                planAccionLN = new PlanAccionLN();
+                planAccionLN.DdlDependenciasUsuario(ddlDependencias, Session["usuario"].ToString(), idUnidadTemp);
+
+                if (idUnidad > 0)
+                {
+
+                    ddlJefaturaUnidad.SelectedValue = idUnidad.ToString();
+                    ddlUnidades.SelectedValue = idUnidadTemp.ToString();
+                    if (anio > 0 && idUnidad > 0)
+                        validarPoa(idUnidad, anio);
+
+                    if (ddlDependencias.Items.Count == 1)
+                        ddlDependencias_SelectedIndexChanged(sender, e);
+                }
+
+                planOperativoLN = new PlanOperativoLN();
+                planOperativoLN.DdlObjetivosB(ddlObjetivos, int.Parse(ddlAnios.SelectedValue), int.Parse(ddlJefaturaUnidad.SelectedValue));
+                ddlObjetivos.Items[0].Text = "<< Elija un valor >>";
+
+                chkAccion.Checked = true;
+                chkAccion_CheckedChanged(sender, e);
+            }
+            catch (Exception ex)
+            {
+                lblError.Text = "ddlUnidades_SelectedIndexChanged(). " + ex.Message;
             }
         }
 

@@ -1,4 +1,6 @@
-﻿<%@ Page Language="C#" AutoEventWireup="true" CodeBehind="Inicio1.aspx.cs" Inherits="AplicacionSIPA1.Inicio1"  MasterPageFile="~/Principal.Master"  %>
+﻿<%@ Page Language="C#" AutoEventWireup="true" CodeBehind="Inicio1.aspx.cs" Inherits="AplicacionSIPA1.Inicio1" MasterPageFile="~/Principal.Master" %>
+
+<%@ Register Assembly="Microsoft.ReportViewer.WebForms, Version=11.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91" Namespace="Microsoft.Reporting.WebForms" TagPrefix="rsweb" %>
 
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
 </asp:Content>
@@ -24,7 +26,7 @@
                     <br />
                     <br />
                     <br />Puede enviar sus solicitudes de apoyo al correo: soporte.sistemas@cdag.com.gt                                                                                      
-                </strong--> 
+                </strong--></p>
             <!--p class="text-primary" style="font-size: 12pt; color: #FF3300; text-align: center" >
                 <strong>Puede consultar las presentaciones de la capacitación haciendo clic 
                 <asp:HyperLink ID="hlPresentaciones" target="_blank" runat="server" NavigateUrl="http://192.9.200.247/manuales/index.php/SUBGERENCIA%20DE%20DESARROLLO%20INSTITUCIONAL/INNOVACI%C3%93N%20Y%20TECNOLOG%C3%8DA/SIPA/detail" ToolTip="Abrirá una nueva pestaña">aquí</asp:HyperLink><br />
@@ -33,7 +35,6 @@
                 Puede enviar sus solicitudes de apoyo al correo: soporte.sistemas@cdag.com.gt                                                                                      
             </strong></p-->
             <p><a class="btn btn-primary btn-lg" href="#" role="button">Leer más</a></p>
-        
         </div>
     </div>
 

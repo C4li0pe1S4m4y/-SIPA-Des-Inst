@@ -27,10 +27,6 @@ namespace AplicacionSIPA1
                 pOperativoLN = new PlanOperativoLN();
                 pEstrategicoLN.DdlAniosPlan(ddlAnios, 2016, 2020);
                 ddlAnios.Items.RemoveAt(0);
-                int anioActual = DateTime.Now.Year;
-                ListItem item = ddlAnios.Items.FindByValue(anioActual.ToString());
-                if (item != null)
-                    ddlAnios.SelectedValue = anioActual.ToString();
                 string usuario = Session["Usuario"].ToString().ToLower();
                 pOperativoLN.DdlUnidades(ddlUnidades, usuario);
                 if (ddlUnidades.Items.Count<1)

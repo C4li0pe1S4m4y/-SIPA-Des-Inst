@@ -1,5 +1,5 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
-<Project ToolsVersion="12.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+<Project ToolsVersion="4.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
@@ -13,14 +13,13 @@
     <AppDesignerFolder>Properties</AppDesignerFolder>
     <RootNamespace>AplicacionSIPA1</RootNamespace>
     <AssemblyName>AplicacionSIPA1</AssemblyName>
-    <TargetFrameworkVersion>v4.5.2</TargetFrameworkVersion>
+    <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
     <UseIISExpress>true</UseIISExpress>
     <IISExpressSSLPort>44360</IISExpressSSLPort>
     <IISExpressAnonymousAuthentication>enabled</IISExpressAnonymousAuthentication>
     <IISExpressWindowsAuthentication>disabled</IISExpressWindowsAuthentication>
     <IISExpressUseClassicPipelineMode>false</IISExpressUseClassicPipelineMode>
     <UseGlobalApplicationHostFile />
-    <TargetFrameworkProfile />
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <DebugSymbols>true</DebugSymbols>
@@ -61,34 +60,40 @@
       <HintPath>F:\Consultas\DocumentFormat.OpenXml.dll</HintPath>
     </Reference>
     <Reference Include="Microsoft.CSharp" />
-    <Reference Include="Microsoft.ReportViewer.WebForms, Version=11.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91, processorArchitecture=MSIL">
+    <Reference Include="Microsoft.ReportViewer.WebForms, Version=12.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\..\..\..\..\..\Windows\assembly\GAC_MSIL\Microsoft.ReportViewer.WebForms\11.0.0.0__89845dcd8080cc91\Microsoft.ReportViewer.WebForms.DLL</HintPath>
+      <HintPath>..\..\..\..\..\..\GitHub\SIPA\PRODUCCION V2\SolucionCDAG\AplicacionSIPA1\bin\Microsoft.ReportViewer.WebForms.DLL</HintPath>
     </Reference>
-    <Reference Include="MySql.Data, Version=6.10.4.0, Culture=neutral, PublicKeyToken=c5687fc88969c44d, processorArchitecture=MSIL">
+    <Reference Include="MySql.Data, Version=6.9.8.0, Culture=neutral, PublicKeyToken=c5687fc88969c44d, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\CapaAD\bin\Debug\MySql.Data.dll</HintPath>
+      <HintPath>..\..\..\Trabajo\SIPA Archivos\Deploy\bin\MySql.Data.dll</HintPath>
     </Reference>
-    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="System.Configuration.Install" />
+    <Reference Include="System.Management" />
     <Reference Include="System.Runtime.Serialization" />
     <Reference Include="System.ServiceModel" />
+    <Reference Include="System.Transactions" />
+    <Reference Include="System.Web.DataVisualization" />
     <Reference Include="System.Web.DynamicData" />
     <Reference Include="System.Web.Entity" />
     <Reference Include="System.Web.ApplicationServices" />
     <Reference Include="System.ComponentModel.DataAnnotations" />
     <Reference Include="System" />
     <Reference Include="System.Data" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Data.DataSetExtensions" />
     <Reference Include="System.Web.Extensions" />
+    <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Drawing" />
     <Reference Include="System.Web" />
     <Reference Include="System.Xml" />
     <Reference Include="System.Configuration" />
     <Reference Include="System.Web.Services" />
     <Reference Include="System.EnterpriseServices" />
-    <Reference Include="System.Xml.Linq" />
     <Reference Include="WindowsBase" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="About.aspx" />
     <Content Include="bin\AplicacionSIPA1.dll" />
     <Content Include="bin\AplicacionSIPA1.pdb" />
     <Content Include="bin\CapaAD.dll" />
@@ -110,7 +115,9 @@
     <Content Include="Compras\IngresoProveedores.aspx" />
     <Content Include="Compras\ListadoProveedores.aspx" />
     <Content Include="Compras\MesaEntradaCompras.aspx" />
-    <Content Include="Error.aspx" />
+    <Content Include="Content\css\select2.css" />
+    <Content Include="Content\css\select2.min.css" />
+    <Content Include="Copia de Pedido\gastoEstado.aspx" />
     <Content Include="Inicio.aspx" />
     <Content Include="Estrategia\PlanesEstrategicos.aspx" />
     <Content Include="Estrategia\PlanesEstrategicosB.aspx" />
@@ -123,6 +130,7 @@
     <Content Include="Operativa\AdminPlanOperativo.aspx" />
     <Content Include="Operativa\Modificaciones\GESFOR2Listado.aspx" />
     <Content Include="Operativa\Seguimiento\CalendarioSeguimiento.aspx" />
+    <Content Include="Operativa\Seguimiento\No1Seguimiento.aspx" />
     <Content Include="Operativa\Seguimiento\NoSeguimiento.aspx" />
     <Content Include="Operativa\Seguimiento\SeguimientoIngreso.aspx" />
     <Content Include="Operativa\Seguimiento\VoBoN1.aspx" />
@@ -130,14 +138,17 @@
     <Content Include="Operativa\Seguimiento\VoBoN3.aspx" />
     <Content Include="Operativa\VerListadoMods.aspx" />
     <Content Include="Pac\AdminPac.aspx" />
+    <Content Include="Pac\GuardarMoPac.aspx" />
+    <Content Include="Pac\ModificacionPac.aspx" />
     <Content Include="Pac\NoPlan.aspx" />
     <Content Include="Pedido\Ajustes\AjusteIngreso.aspx" />
     <Content Include="Pedido\Ajustes\NoAjuste.aspx" />
     <Content Include="Pedido\Ajustes\VoBoN1.aspx" />
     <Content Include="Pedido\Ajustes\VoBoN2.aspx" />
+    <Content Include="Pedido\GastoaPedido.aspx" />
     <Content Include="Pedido\Multianuales\PedidoMultianual.aspx" />
     <Content Include="Pedido\PedidoAnulacion.aspx" />
-    <Content Include="Pedido\PedidoGuardado.aspx" />
+    <Content Include="Pedido\NoPedidoG.aspx" />
     <Content Include="Pedido\VoBo3PptoRecodificacion.aspx" />
     <Content Include="Presupuesto\AdminTechos.aspx" />
     <Content Include="Presupuesto\ListadoModTechos.aspx" />
@@ -145,12 +156,15 @@
     <Content Include="ReporteriaSistema\EstadosDocumentos.aspx" />
     <Content Include="ReporteriaSistema\Pedidos\HistorialEstados.aspx" />
     <Content Include="ReporteriaSistema\ReportePedidos.aspx" />
-    <Content Include="ReporteriaSistema\ReportePedidos1.aspx" />
     <Content Include="ReporteriaSistema\SaldosRenglones.aspx" />
-    <Content Include="ReporteriaSistema\SaldosRenglonesDetalles3.aspx" />
     <Content Include="ReporteriaSistema\SaldosRenglonesDetalles.aspx" />
+    <Content Include="ReporteriaSistema\SaldosRenglonesDetalles2.aspx" />
     <Content Include="ReporteriaSistema\SalidasBusqueda.aspx" />
+    <Content Include="Reporteria\SaldosRenglonesPen.aspx" />
     <Content Include="Reportes\frmReporte.aspx" />
+    <Content Include="packages.config" />
+    <Content Include="Scripts\select2.js" />
+    <Content Include="Scripts\select2.min.js" />
     <Content Include="Service References\WsTipoCambio\AplicacionSIPA1.WsTipoCambio.DataVariable.datasource">
       <DependentUpon>Reference.svcmap</DependentUpon>
     </Content>
@@ -265,7 +279,7 @@
     <Content Include="css\utilities.css" />
     <Content Include="css\Fondos\FondoLogin.jpg" />
     <Content Include="css\Fondos\LogoCOG.png" />
-    <Content Include="css\Fondos\NoImagen.jpg" />
+    <Content Include="Content\NoImagen.jpg" />
     <Content Include="Estrategia\Ingreso.aspx" />
     <Content Include="img\logoEnc.png" />
     <Content Include="js\jquery-1.11.2.min.js" />
@@ -399,30 +413,49 @@
     </Content>
     <Content Include="bin\AplicacionCOG.dll.config" />
     <Content Include="bin\AplicacionSIPA1.dll.config" />
-    <Content Include="Pac\ArchivoPDF\PAC.xls" />
-    <Content Include="Presentaciones\Capacitacion.pptx" />
-    <Content Include="Pedido\ArchivoPDF\Especificaciones.pdf" />
-    <Content Include="Pedido\ArchivoPDF\FIN-FOR-23 .pdf" />
-    <Content Include="Pedido\ArchivoPDF\Req. No. 2 - 9 - SUBGERENCIA DE DESARROLLO INSTITUCIONAL.pdf" />
-    <Content Include="Pedido\ArchivoPDF\Requisicion.pdf" />
-    <Content Include="Pedido\ArchivoPDF\Vale.pdf" />
-    <Content Include="Pedido\Ajustes\ArchivoPDF\Ajuste.pdf" />
+    <Content Include="Reportes\DataSetDatosRenglones.xsc">
+      <DependentUpon>DataSetDatosRenglones.xsd</DependentUpon>
+    </Content>
+    <Content Include="Reportes\rptGasto.rdlc" />
+    <EmbeddedResource Include="Reportes\SaldosRenglonesDet.rdlc" />
+    <Content Include="fonts\glyphicons-halflings-regular.woff2" />
+    <Content Include="Content\bootstrap.min.css.map" />
+    <Content Include="Content\bootstrap-theme.min.css.map" />
+    <None Include="Reportes\DataSetDatosRenglones.xsd">
+      <SubType>Designer</SubType>
+      <Generator>MSDataSetGenerator</Generator>
+      <LastGenOutput>DataSetDatosRenglones.Designer.cs</LastGenOutput>
+    </None>
+    <Content Include="Reportes\DataSetDatosRenglones.xss">
+      <DependentUpon>DataSetDatosRenglones.xsd</DependentUpon>
+    </Content>
     <None Include="Properties\PublishProfiles\pub.pubxml" />
     <None Include="Properties\PublishProfiles\pubsipa.pubxml" />
     <EmbeddedResource Include="Reportes\crccVale.rpt">
       <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
       <LastGenOutput>crccVale.cs</LastGenOutput>
     </EmbeddedResource>
-    <Content Include="Reportes\dashboard.rdlc" />
-    <Content Include="Reportes\DataSetDatosRenglones.xsc">
-      <DependentUpon>DataSetDatosRenglones.xsd</DependentUpon>
+    <Content Include="Reporte.xsc">
+      <DependentUpon>Reporte.xsd</DependentUpon>
     </Content>
-    <None Include="Reportes\DataSetDatosRenglones.xsd">
+    <None Include="Reporte.xsd">
       <Generator>MSDataSetGenerator</Generator>
+      <LastGenOutput>Reporte.Designer.cs</LastGenOutput>
       <SubType>Designer</SubType>
     </None>
-    <Content Include="Reportes\DataSetDatosRenglones.xss">
-      <DependentUpon>DataSetDatosRenglones.xsd</DependentUpon>
+    <Content Include="Reporte.xss">
+      <DependentUpon>Reporte.xsd</DependentUpon>
+    </Content>
+    <Content Include="Reportes\dsEstados.xsc">
+      <DependentUpon>dsEstados.xsd</DependentUpon>
+    </Content>
+    <None Include="Reportes\dsEstados.xsd">
+      <SubType>Designer</SubType>
+      <Generator>MSDataSetGenerator</Generator>
+      <LastGenOutput>dsEstados.Designer.cs</LastGenOutput>
+    </None>
+    <Content Include="Reportes\dsEstados.xss">
+      <DependentUpon>dsEstados.xsd</DependentUpon>
     </Content>
     <None Include="Reportes\dsSipa.xsd">
       <SubType>Designer</SubType>
@@ -474,12 +507,17 @@
     <Content Include="Reportes\rptFINFOR23.rdlc" />
     <Content Include="Reportes\rptViaticosInt.rdlc" />
     <Content Include="Reportes\rptViaticosExt.rdlc" />
-    <Content Include="Reportes\rptGES_FOR_03.rdlc" />
-    <Content Include="Reportes\Movimientos.rdlc" />
-    <Content Include="Reportes\ReporteSaldosAccionesPor.rdlc" />
-    <Content Include="Reportes\rptCOM_FOR_64.rdlc" />
-    <Content Include="Reportes\EstadosDocumentos.rdlc" />
-    <Content Include="Reportes\SaldosRenglonesDet.rdlc" />
+    <Content Include="Reportes\RequisicionesEstados.xsc">
+      <DependentUpon>RequisicionesEstados.xsd</DependentUpon>
+    </Content>
+    <None Include="Reportes\RequisicionesEstados.xsd">
+      <SubType>Designer</SubType>
+      <Generator>MSDataSetGenerator</Generator>
+      <LastGenOutput>RequisicionesEstados.Designer.cs</LastGenOutput>
+    </None>
+    <Content Include="Reportes\RequisicionesEstados.xss">
+      <DependentUpon>RequisicionesEstados.xsd</DependentUpon>
+    </Content>
     <None Include="Scripts\jquery-1.9.1.intellisense.js" />
     <Content Include="Scripts\jquery-1.9.1.js" />
     <Content Include="Scripts\jquery-1.9.1.min.js" />
@@ -521,6 +559,13 @@
     </Content>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="About.aspx.cs">
+      <DependentUpon>About.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="About.aspx.designer.cs">
+      <DependentUpon>About.aspx</DependentUpon>
+    </Compile>
     <Compile Include="Compras\ETVoBoN2.aspx.cs">
       <DependentUpon>ETVoBoN2.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -535,12 +580,12 @@
     <Compile Include="Compras\ETVoBoN1.aspx.designer.cs">
       <DependentUpon>ETVoBoN1.aspx</DependentUpon>
     </Compile>
-    <Compile Include="Error.aspx.cs">
-      <DependentUpon>Error.aspx</DependentUpon>
+    <Compile Include="Copia de Pedido\gastoEstado.aspx.cs">
+      <DependentUpon>gastoEstado.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
-    <Compile Include="Error.aspx.designer.cs">
-      <DependentUpon>Error.aspx</DependentUpon>
+    <Compile Include="Copia de Pedido\gastoEstado.aspx.designer.cs">
+      <DependentUpon>gastoEstado.aspx</DependentUpon>
     </Compile>
     <Compile Include="Inicio.aspx.cs">
       <DependentUpon>Inicio.aspx</DependentUpon>
@@ -548,6 +593,42 @@
     </Compile>
     <Compile Include="Inicio.aspx.designer.cs">
       <DependentUpon>Inicio.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Pac\GuardarMoPac.aspx.cs">
+      <DependentUpon>GuardarMoPac.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Pac\GuardarMoPac.aspx.designer.cs">
+      <DependentUpon>GuardarMoPac.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Pac\ModificacionPac.aspx.cs">
+      <DependentUpon>ModificacionPac.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Pac\ModificacionPac.aspx.designer.cs">
+      <DependentUpon>ModificacionPac.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="ReporteriaSistema\EstadosDocumentos.aspx.cs">
+      <DependentUpon>EstadosDocumentos.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="ReporteriaSistema\EstadosDocumentos.aspx.designer.cs">
+      <DependentUpon>EstadosDocumentos.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="ReporteriaSistema\SaldosRenglonesDetalles2.aspx.cs">
+      <DependentUpon>SaldosRenglonesDetalles2.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="ReporteriaSistema\SaldosRenglonesDetalles2.aspx.designer.cs">
+      <DependentUpon>SaldosRenglonesDetalles2.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Reportes\DataSetDatosRenglones.cs">
+      <DependentUpon>DataSetDatosRenglones.xsd</DependentUpon>
+    </Compile>
+    <Compile Include="Reportes\DataSetDatosRenglones.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>DataSetDatosRenglones.xsd</DependentUpon>
     </Compile>
     <Compile Include="EnvioDeCorreos.cs" />
     <Compile Include="FuncionesVarias.cs" />
@@ -671,6 +752,13 @@
     <Compile Include="Operativa\Seguimiento\CalendarioSeguimiento.aspx.designer.cs">
       <DependentUpon>CalendarioSeguimiento.aspx</DependentUpon>
     </Compile>
+    <Compile Include="Operativa\Seguimiento\No1Seguimiento.aspx.cs">
+      <DependentUpon>No1Seguimiento.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Operativa\Seguimiento\No1Seguimiento.aspx.designer.cs">
+      <DependentUpon>No1Seguimiento.aspx</DependentUpon>
+    </Compile>
     <Compile Include="Operativa\Seguimiento\NoSeguimiento.aspx.cs">
       <DependentUpon>NoSeguimiento.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -755,6 +843,13 @@
     <Compile Include="Pedido\Ajustes\VoBoN2.aspx.designer.cs">
       <DependentUpon>VoBoN2.aspx</DependentUpon>
     </Compile>
+    <Compile Include="Pedido\GastoaPedido.aspx.cs">
+      <DependentUpon>GastoaPedido.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Pedido\GastoaPedido.aspx.designer.cs">
+      <DependentUpon>GastoaPedido.aspx</DependentUpon>
+    </Compile>
     <Compile Include="Pedido\Multianuales\PedidoMultianual.aspx.cs">
       <DependentUpon>PedidoMultianual.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -769,12 +864,12 @@
     <Compile Include="Pedido\PedidoAnulacion.aspx.designer.cs">
       <DependentUpon>PedidoAnulacion.aspx</DependentUpon>
     </Compile>
-    <Compile Include="Pedido\PedidoGuardado.aspx.cs">
-      <DependentUpon>PedidoGuardado.aspx</DependentUpon>
+    <Compile Include="Pedido\NoPedidoG.aspx.cs">
+      <DependentUpon>NoPedidoG.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
-    <Compile Include="Pedido\PedidoGuardado.aspx.designer.cs">
-      <DependentUpon>PedidoGuardado.aspx</DependentUpon>
+    <Compile Include="Pedido\NoPedidoG.aspx.designer.cs">
+      <DependentUpon>NoPedidoG.aspx</DependentUpon>
     </Compile>
     <Compile Include="Pedido\VoBo3PptoRecodificacion.aspx.cs">
       <DependentUpon>VoBo3PptoRecodificacion.aspx</DependentUpon>
@@ -797,12 +892,10 @@
     <Compile Include="Presupuesto\ListadoModTechos.aspx.designer.cs">
       <DependentUpon>ListadoModTechos.aspx</DependentUpon>
     </Compile>
-    <Compile Include="ReporteriaSistema\EstadosDocumentos.aspx.cs">
-      <DependentUpon>EstadosDocumentos.aspx</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
-    </Compile>
-    <Compile Include="ReporteriaSistema\EstadosDocumentos.aspx.designer.cs">
-      <DependentUpon>EstadosDocumentos.aspx</DependentUpon>
+    <Compile Include="Reporte.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Reporte.xsd</DependentUpon>
     </Compile>
     <Compile Include="ReporteriaSistema\Pedidos\HistorialEstados.aspx.cs">
       <DependentUpon>HistorialEstados.aspx</DependentUpon>
@@ -818,26 +911,12 @@
     <Compile Include="ReporteriaSistema\ReportePedidos.aspx.designer.cs">
       <DependentUpon>ReportePedidos.aspx</DependentUpon>
     </Compile>
-    <Compile Include="ReporteriaSistema\ReportePedidos1.aspx.cs">
-      <DependentUpon>ReportePedidos1.aspx</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
-    </Compile>
-    <Compile Include="ReporteriaSistema\ReportePedidos1.aspx.designer.cs">
-      <DependentUpon>ReportePedidos1.aspx</DependentUpon>
-    </Compile>
     <Compile Include="ReporteriaSistema\SaldosRenglones.aspx.cs">
       <DependentUpon>SaldosRenglones.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
     <Compile Include="ReporteriaSistema\SaldosRenglones.aspx.designer.cs">
       <DependentUpon>SaldosRenglones.aspx</DependentUpon>
-    </Compile>
-    <Compile Include="ReporteriaSistema\SaldosRenglonesDetalles3.aspx.cs">
-      <DependentUpon>SaldosRenglonesDetalles3.aspx</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
-    </Compile>
-    <Compile Include="ReporteriaSistema\SaldosRenglonesDetalles3.aspx.designer.cs">
-      <DependentUpon>SaldosRenglonesDetalles3.aspx</DependentUpon>
     </Compile>
     <Compile Include="ReporteriaSistema\SaldosRenglonesDetalles.aspx.cs">
       <DependentUpon>SaldosRenglonesDetalles.aspx</DependentUpon>
@@ -853,14 +932,24 @@
     <Compile Include="ReporteriaSistema\SalidasBusqueda.aspx.designer.cs">
       <DependentUpon>SalidasBusqueda.aspx</DependentUpon>
     </Compile>
-    <Compile Include="Reportes\DataSetDatosRenglones.Designer.cs" />
+    <Compile Include="Reporteria\SaldosRenglonesPen.aspx.cs">
+      <DependentUpon>SaldosRenglonesPen.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Reporteria\SaldosRenglonesPen.aspx.designer.cs">
+      <DependentUpon>SaldosRenglonesPen.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Reportes\dsEstados.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>dsEstados.xsd</DependentUpon>
+    </Compile>
     <Compile Include="Reportes\DS_ADQUISICIONES.Designer.cs" />
     <Compile Include="Reportes\DS_ADQUISICIONES1.Designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
       <DependentUpon>DS_ADQUISICIONES.xsd</DependentUpon>
     </Compile>
-    <Compile Include="Reportes\DS_PAC.Designer.cs" />
     <Compile Include="Reportes\DS_PAC1.Designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
@@ -884,7 +973,11 @@
     <Compile Include="Reportes\frmReporte.aspx.designer.cs">
       <DependentUpon>frmReporte.aspx</DependentUpon>
     </Compile>
-    <Compile Include="Reportes\RequisicionesEstados.Designer.cs" />
+    <Compile Include="Reportes\RequisicionesEstados.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>RequisicionesEstados.xsd</DependentUpon>
+    </Compile>
     <Compile Include="Service References\WsTipoCambio\Reference.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
@@ -1272,8 +1365,8 @@
     <Compile Include="Reportes\crccVale.cs">
       <DependentUpon>crccVale.rpt</DependentUpon>
       <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
       <SubType>Component</SubType>
+      <DesignTime>True</DesignTime>
     </Compile>
     <Compile Include="Reportes\rptMatrizGeneral.cs">
       <AutoGen>True</AutoGen>
@@ -1408,6 +1501,12 @@
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
+    <EmbeddedResource Include="Reportes\dashboard.rdlc" />
+    <EmbeddedResource Include="Reportes\EstadosDocumentos.rdlc" />
+    <EmbeddedResource Include="Reportes\Movimientos.rdlc" />
+    <EmbeddedResource Include="Reportes\ReporteSaldosAccionesPor.rdlc" />
+    <EmbeddedResource Include="Reportes\rptCOM_FOR_64.rdlc" />
+    <EmbeddedResource Include="Reportes\rptGES_FOR_03.rdlc" />
     <EmbeddedResource Include="Reportes\rptMatrizGeneral.rpt">
       <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
       <LastGenOutput>rptMatrizGeneral.cs</LastGenOutput>
@@ -1437,8 +1536,8 @@
     <Service Include="{C0C07587-41A7-46C8-8FBD-3F9C8EBE2DDC}" />
   </ItemGroup>
   <ItemGroup>
-    <Folder Include="Operativa\ArchivoPdf\" />
     <Folder Include="Operativa\Seguimiento\ArchivoPDF\" />
+    <Folder Include="Pedido\xxx\" />
   </ItemGroup>
   <ItemGroup>
     <WCFMetadata Include="Service References\" />

@@ -12,8 +12,7 @@ namespace CapaAD
     {
 
         //private String contenido = "server=localhost; database =dbcogsipa;user=usr_cdag_sipa; password =5sr_cd1g_s3pa";
-
-        private String contenido = "server=localhost; database =dbcdagsipa;user=root; password =root";
+        public String contenido = "server=localhost; database =dbcdagsipa;user=usr_cdag_sipa; password =5sr_cd1g_s3pa";
         public MySqlConnection conectar = new MySqlConnection();
         public MySqlDataAdapter adaptador = new MySqlDataAdapter();
         public DataTable tabla = new DataTable();

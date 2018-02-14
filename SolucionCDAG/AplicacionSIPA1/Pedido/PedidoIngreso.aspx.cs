@@ -47,10 +47,10 @@ namespace AplicacionSIPA1.Pedido
                         string noSolicitud = "";
                         DataSet dsResultado;
                         pInsumoLN = new PedidosLN();
-                        int idUnidad, dependencia = 0;
-                        if (dep != null)
+                        int idUnidad,dependencia = 0;
+                        if (dep !=null)
                         {
-                            dsResultado = pInsumoLN.InformacionPedido(idEncabezado, 0, 0, "", 16);
+                             dsResultado = pInsumoLN.InformacionPedido(idEncabezado, 0, 0, "", 16);
                             if (bool.Parse(dsResultado.Tables["RESULTADO"].Rows[0]["ERRORES"].ToString()))
                                 throw new Exception(dsResultado.Tables["RESULTADO"].Rows[0]["MSG_ERROR"].ToString());
 
@@ -59,7 +59,7 @@ namespace AplicacionSIPA1.Pedido
 
                             if (dsResultado.Tables[0].Rows.Count == 0)
                                 throw new Exception("No existe información del pedido");
-
+                            
                             int.TryParse(dsResultado.Tables["BUSQUEDA"].Rows[0]["ID_UNIDAD"].ToString(), out dependencia);
                             int.TryParse(dsResultado.Tables["BUSQUEDA"].Rows[0]["dunidad"].ToString(), out idUnidad);
                         }
@@ -74,19 +74,19 @@ namespace AplicacionSIPA1.Pedido
 
                             if (dsResultado.Tables[0].Rows.Count == 0)
                                 throw new Exception("No existe información del pedido");
-
+                           
                             int.TryParse(dsResultado.Tables["BUSQUEDA"].Rows[0]["ID_UNIDAD"].ToString(), out idUnidad);
                         }
+                       
 
-
-
+                        
 
                         noSolicitud = dsResultado.Tables["BUSQUEDA"].Rows[0]["NO_ANIO_SOLICITUD"].ToString();
 
                         int anio, idAccion, idTipoPedido, idSolicitante, idJefe, idFand, idTipoAnexo = 0;
 
                         int.TryParse(dsResultado.Tables["BUSQUEDA"].Rows[0]["ANIO"].ToString(), out anio);
-
+                        
                         int.TryParse(dsResultado.Tables["BUSQUEDA"].Rows[0]["ID_ACCION"].ToString(), out idAccion);
                         int.TryParse(dsResultado.Tables["BUSQUEDA"].Rows[0]["ID_TIPO_PEDIDO"].ToString(), out idTipoPedido);
                         int.TryParse(dsResultado.Tables["BUSQUEDA"].Rows[0]["ID_SOLICITANTE"].ToString(), out idSolicitante);
@@ -158,7 +158,7 @@ namespace AplicacionSIPA1.Pedido
                         lblIdPedido.Text = idEncabezado.ToString();
                         lblNoPedido.Text = noSolicitud;
 
-
+                       
                     }
                 }
                 catch (Exception ex)
@@ -209,6 +209,7 @@ namespace AplicacionSIPA1.Pedido
                     if (!ddlAnios.SelectedValue.Equals("0"))
                     {
                         validarPoaIngresoPedido(int.Parse(ddlUnidades.SelectedValue), int.Parse(ddlAnios.SelectedValue));
+                        
                     }
                 }
 
@@ -223,7 +224,7 @@ namespace AplicacionSIPA1.Pedido
 
                 InformacionPublica_TribunalHonor();
 
-                ddlAnios.Enabled = false;
+                ddlAnios.Enabled = true;
             }
             catch (Exception ex)
             {
@@ -259,7 +260,10 @@ namespace AplicacionSIPA1.Pedido
                 rblTipoDestino_SelectedIndexChanged(new Object(), new EventArgs());
                 rblAnexos.SelectedValue = "1";
                 txtJustificacion.Text = string.Empty;
-
+                txtCantidadMedida.Text = string.Empty;
+                txtCodigoInsumo.Text = string.Empty;
+                txtCodigoPresentacion.Text = string.Empty;
+                txtUnidadesMedida.Text = string.Empty;
                 lblDisponibleP.Text = String.Format(CultureInfo.InvariantCulture, "Q.{0:0,0.00}", 0);
             }
             catch (Exception ex)
@@ -277,9 +281,10 @@ namespace AplicacionSIPA1.Pedido
 
                 pInsumoLN = new PedidosLN();
                 pInsumoLN.DdlPacsxAccion(ddlPac, idAccion);
-                ddlUnidadesMedida.ClearSelection();
+                
                 lblNoDet.Text = "0";
-                lblRenglonPpto.Text = txtDescripcion.Text = txtCantidad.Text = txtCosto.Text = string.Empty;
+                lblRenglonPpto.Text = txtDescripcion.Text = txtCantidad.Text = txtCosto.Text = txtCodigoInsumo.Text = txtCodigoPresentacion.Text =
+                    txtUnidadesMedida.Text = txtCantidadMedida.Text = string.Empty;
 
                 int idPedido = 0;
                 int.TryParse(lblIdPedido.Text, out idPedido);
@@ -393,6 +398,7 @@ namespace AplicacionSIPA1.Pedido
                     planOperativoLN = new PlanOperativoLN();
                     planOperativoLN.DdlDependencias(ddlDependencia, id_unidad);
                     validarPoaIngresoPedido(idUnidad, anio);
+                   
                 }
                 else
                     lblIdPoa.Text = "0";
@@ -422,9 +428,33 @@ namespace AplicacionSIPA1.Pedido
 
                 int idTipoPedido = 0;
                 int.TryParse(ddlTipoPedido.SelectedValue, out idTipoPedido);
-
+                if (idTipoPedido == 1)
+                {
+                    txtUnidadesMedida.Text = "Servicio";
+                    txtDescripcion.Enabled = true;
+                    lblCodigoInsumo.Visible = false;
+                    lblCodigoPresentacion.Visible = false;
+                    txtCodigoInsumo.Visible = false;
+                    txtCodigoPresentacion.Visible = false;
+                    txtCantidadMedida.Visible = false;
+                    btnCodigoPresentacion.Visible = false;
+                    btInsumo.Visible = false;
+                }
+                else
+                {
+                    txtUnidadesMedida.Text = "";
+                    txtDescripcion.Enabled = false;
+                    lblCodigoInsumo.Visible = true;
+                    lblCodigoPresentacion.Visible = true;
+                    txtCodigoInsumo.Visible = true;
+                    txtCodigoPresentacion.Visible = true;
+                    txtCantidadMedida.Visible = true;
+                    btnCodigoPresentacion.Visible = true;
+                    btInsumo.Visible = true;
+                }
+               
                 pInsumoLN = new PedidosLN();
-                pInsumoLN.DdlUnidadesMedida(ddlUnidadesMedida, idTipoPedido);
+               
             }
             catch (Exception ex)
             {
@@ -534,7 +564,7 @@ namespace AplicacionSIPA1.Pedido
             lblErrorSolicitante.Text = lblErrorJefe.Text = lblErrorTipoPedido.Text = string.Empty;
             lblErrorJustificacion.Text = string.Empty;
             lblErrorTipoDestino.Text = lblErrorFand.Text = lblErrorAnexos.Text = string.Empty;
-            lblErrorAccion.Text = lblErrorPac.Text = lblErrorDescripcion.Text = lblErrorUnidadMedida.Text = string.Empty;
+            lblErrorAccion.Text = lblErrorPac.Text = lblErrorDescripcion.Text = string.Empty;
             lblErrorCantidad.Text = lblErrorMonto.Text = string.Empty;
             lblError.Text = lblSuccess.Text = string.Empty;
 
@@ -633,11 +663,7 @@ namespace AplicacionSIPA1.Pedido
                         lblError.Text += "Ingrese una descripción del Bien/Servicio. ";
                     }
 
-                    if (ddlUnidadesMedida.SelectedValue.Equals("0") || ddlUnidadesMedida.Items.Count == 0)
-                    {
-                        lblErrorUnidadMedida.Text = "Seleccione un valor. ";
-                        lblError.Text += "Seleccione una unidad de medida. ";
-                    }
+                 
 
                     funciones = new FuncionesVarias();
                     decimal cantidad = 0;
@@ -868,11 +894,13 @@ namespace AplicacionSIPA1.Pedido
                     pInsumoEN.ID_FAND = int.Parse(ddlFADN.SelectedValue);
                     pInsumoEN.ID_TIPO_ANEXO = int.Parse(rblAnexos.SelectedValue);
                     pInsumoEN.USUARIO = Session["usuario"].ToString();
+                    pInsumoEN.Codigo_Insumo = int.Parse(txtCodigoInsumo.Text);
+                    pInsumoEN.Codigo_Presentacion = int.Parse(txtCodigoPresentacion.Text);
 
                     int idPac, idUnidadMedida = 0;
 
                     int.TryParse(ddlPac.SelectedValue, out idPac);
-                    int.TryParse(ddlUnidadesMedida.SelectedValue, out idUnidadMedida);
+                    idUnidadMedida = 1;
 
                     funciones = new FuncionesVarias();
                     decimal cantidad = funciones.StringToDecimal(txtCantidad.Text);
@@ -881,7 +909,7 @@ namespace AplicacionSIPA1.Pedido
                     pInsumoEN.ID_PEDIDO_DETALLE = -1;
 
                     int idPedidoDetalle = 0;
-                    if (idPac > 0 && !txtDescripcion.Text.Equals("") && idUnidadMedida > 0 && cantidad > 0 && costo > 0)
+                    if (/*idPac > 0 &&*/ !txtDescripcion.Text.Equals("") && idUnidadMedida > 0 && cantidad > 0 && costo > 0)
                     {
                         if (gridDet.SelectedValue != null)
                             int.TryParse(gridDet.SelectedValue.ToString(), out idPedidoDetalle);
@@ -921,7 +949,7 @@ namespace AplicacionSIPA1.Pedido
                             filtrarGridPpto();
                             lblSuccess.Text = "Pedido No. " + lblNoPedido.Text + " ALMACENADO/MODIFICADO exitosamente: ";
                             //FormsAuthentication.RedirectFromLoginPage(this.lblSuccess.Text,false);
-                            ///Response.Redirect("~/Pedido/NoPedido.aspx?No="+lblNoPedido.Text+"&msg="+lblSuccess.Text+"&acc=Ingresado corretamente");
+                            ///Response.Redirect("~/Pedido/NoPedido.aspx?No=" + lblNoPedido.Text + "&msg=" + lblSuccess.Text + "&acc=Ingresado corretamente");
                             btnGuardar.Visible = true;   
 
                         }
@@ -942,7 +970,7 @@ namespace AplicacionSIPA1.Pedido
 
             decimal saldoPac, saldoRenglon, montoDetPedido = 0;
 
-            if (idPac > 0)
+            if (idPac>0)
             {
                 //INFORMACIÓN DEL PLAN ANUAL DE COMPRAS
                 DataSet dsInformacionPac = pAnualLN.InformacionPac(idPac, int.Parse(ddlAnios.SelectedValue));
@@ -1154,17 +1182,21 @@ namespace AplicacionSIPA1.Pedido
 
                 int idUnidadMedida = 0;
                 int.TryParse(dsResultado.Tables["BUSQUEDA"].Rows[0]["ID_UNIDAD_MEDIDA"].ToString(), out idUnidadMedida);
-                item = ddlUnidadesMedida.Items.FindByValue(idUnidadMedida.ToString());
+                //item = ddlUnidadesMedida.Items.FindByValue(idUnidadMedida.ToString());
 
-                ddlUnidadesMedida.ClearSelection();
-                if (item != null)
-                    ddlUnidadesMedida.SelectedValue = idUnidadMedida.ToString();
+               
+                //if (item != null)
+                //    ddlUnidadesMedida.SelectedValue = idUnidadMedida.ToString();
 
                 txtCantidad.Text = dsResultado.Tables["BUSQUEDA"].Rows[0]["CANTIDAD"].ToString();
                 
                 decimal costo = 0;
                 decimal.TryParse(dsResultado.Tables["BUSQUEDA"].Rows[0]["COSTO_ESTIMADO"].ToString(), out costo);
                 txtCosto.Text = String.Format(CultureInfo.InvariantCulture, "Q.{0:0,0.00}", costo);
+
+                //Codigo de insumo
+
+                //txtCodigoInsumo.Text = dsResultado.Tables["BUSQUEDA"].Rows[0].[]
 
             }
             catch (Exception ex)
@@ -1529,6 +1561,43 @@ namespace AplicacionSIPA1.Pedido
             catch (Exception ex)
             {
                 lblError.Text = "ddlUnidades_SelectedIndexChanged(). " + ex.Message;
+            }
+        }
+        protected void OnclickBtnInsumo(object sender, EventArgs e)
+        {
+            try
+            {
+                limpiarControlesError();
+                
+                if (!string.IsNullOrEmpty(txtCodigoInsumo.Text))
+                {
+                    pInsumoLN = new PedidosLN();
+                    DataSet dsResultado = pInsumoLN.BusquedaInsumo(txtCodigoInsumo.Text);
+                    txtDescripcion.Text = dsResultado.Tables["BUSQUEDA"].Rows[0]["Nombre"].ToString() +". " + dsResultado.Tables["BUSQUEDA"].Rows[0]["caracteristicas"].ToString();
+                }
+            }
+            catch (Exception ex)
+            {
+                lblError.Text = "btnBuscarInsumo(). " + ex.Message;
+            }
+        }
+
+        protected void btnCodigoPresentacion_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                limpiarControlesError();
+                if (!string.IsNullOrEmpty(txtCodigoPresentacion.Text) && !string.IsNullOrEmpty(txtCodigoInsumo.Text))
+                {
+                    pInsumoLN = new PedidosLN();
+                    DataSet dsResultado = pInsumoLN.BusquedaPresentacion(txtCodigoPresentacion.Text,txtCodigoInsumo.Text);
+                    txtUnidadesMedida.Text = dsResultado.Tables["BUSQUEDA"].Rows[0]["Presentacion"].ToString();
+                    txtCantidadMedida.Text = dsResultado.Tables["BUSQUEDA"].Rows[0]["cantidad_unidad"].ToString();
+                }
+            }
+            catch (Exception ex)
+            {
+                lblError.Text = "btnBuscarInsumo(). " + ex.Message;
             }
         }
     }

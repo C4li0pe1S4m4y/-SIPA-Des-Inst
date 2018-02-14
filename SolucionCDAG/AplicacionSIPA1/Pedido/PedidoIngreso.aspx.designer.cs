@@ -337,6 +337,60 @@ namespace AplicacionSIPA1.Pedido {
         protected global::System.Web.UI.WebControls.Label lblNoDet;
         
         /// <summary>
+        /// Control lblCodigoInsumo.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label lblCodigoInsumo;
+        
+        /// <summary>
+        /// Control txtCodigoInsumo.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.TextBox txtCodigoInsumo;
+        
+        /// <summary>
+        /// Control btInsumo.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Button btInsumo;
+        
+        /// <summary>
+        /// Control lblCodigoPresentacion.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label lblCodigoPresentacion;
+        
+        /// <summary>
+        /// Control txtCodigoPresentacion.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.TextBox txtCodigoPresentacion;
+        
+        /// <summary>
+        /// Control btnCodigoPresentacion.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Button btnCodigoPresentacion;
+        
+        /// <summary>
         /// Control lblErrorDescripcion.
         /// </summary>
         /// <remarks>
@@ -373,22 +427,22 @@ namespace AplicacionSIPA1.Pedido {
         protected global::System.Web.UI.WebControls.TextBox txtDescripcion;
         
         /// <summary>
-        /// Control lblErrorUnidadMedida.
+        /// Control txtUnidadesMedida.
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Label lblErrorUnidadMedida;
+        protected global::System.Web.UI.WebControls.TextBox txtUnidadesMedida;
         
         /// <summary>
-        /// Control ddlUnidadesMedida.
+        /// Control txtCantidadMedida.
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.DropDownList ddlUnidadesMedida;
+        protected global::System.Web.UI.WebControls.TextBox txtCantidadMedida;
         
         /// <summary>
         /// Control txtCantidad.

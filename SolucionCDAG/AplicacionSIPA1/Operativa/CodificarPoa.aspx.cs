@@ -46,7 +46,7 @@ namespace AplicacionSIPA1.Operativa
 
             int idPoa = int.Parse(lblIdPoa.Text);
             planOperativoLN = new PlanOperativoLN();
-            planOperativoLN.GridCodificacion(gridPlan, idPoa);
+            planOperativoLN.GridCodificacionCompleto(gridPlan, idPoa);
 
             /*System.Data.DataTable tbl = gridPlan.DataSource as System.Data.DataTable;
             System.Data.DataView dv = tbl.DefaultView;

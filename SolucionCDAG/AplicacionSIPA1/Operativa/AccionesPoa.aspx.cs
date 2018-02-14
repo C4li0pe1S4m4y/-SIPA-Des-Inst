@@ -74,7 +74,7 @@ namespace AplicacionSIPA1.Operativa
                 int idPlan = 0;
                 int anioIni = 0;
                 int anioFin = 0;
-
+                
                 if (ddlPlanes.Items.Count == 2)
                 {
                     ddlPlanes.SelectedIndex = 1;
@@ -115,7 +115,7 @@ namespace AplicacionSIPA1.Operativa
                     if (!ddlAnios.SelectedValue.Equals("0"))
                     {
                         validarPoa(int.Parse(ddlUnidades.SelectedValue), int.Parse(ddlAnios.SelectedValue));
-
+                        
                         planOperativoLN.DdlObjetivosB(ddlObjetivos, int.Parse(ddlAnios.SelectedValue), int.Parse(ddlUnidades.SelectedValue));
                         ddlObjetivos.Items[0].Text = "<< Elija un valor >>";
                     }
@@ -141,7 +141,7 @@ namespace AplicacionSIPA1.Operativa
             planAccionLN.DdlAcciones(ddlAcciones, 0);
             txtCodigo.Text = txtAccion.Text = string.Empty;
             txtCodigo.Enabled = false;
-            rfvCodigo.Enabled = rfvAccion.Enabled = false;
+            rfvCodigo.Enabled = rfvAccion.Enabled = false; 
         }
 
         protected void limpiarCPlanOperativo()
@@ -180,8 +180,7 @@ namespace AplicacionSIPA1.Operativa
             rfvMeta.Enabled = rfvMetaC1.Enabled = rfvMetaC2.Enabled = rfvMetaC3.Enabled = false;
             rfvPond1.Enabled = rfvPond2.Enabled = rfvPond3.Enabled = rfvPonderacion.Enabled = false;
             rvPond.Enabled = false;
-            /*rfvPresupuesto.Enabled = */
-            rfvResponsable.Enabled = false;
+            /*rfvPresupuesto.Enabled = */rfvResponsable.Enabled = false;
         }
 
         protected void limpiarNListado()
@@ -227,15 +226,15 @@ namespace AplicacionSIPA1.Operativa
 
                     decimal.TryParse(dt.Compute("SUM(MONTO)", "").ToString(), out pptoAccion);
                 }
-
-                lblPpto.Text = /*txtPpto.Text =*/ String.Format(CultureInfo.InvariantCulture, "Q.{0:0,0.00}", pptoAccion);
+                
+                lblPpto.Text = /*txtPpto.Text =*/ String.Format(CultureInfo.InvariantCulture, "Q.{0:0,0.00}", pptoAccion); 
             }
             else
             {
                 gridRenglon.DataSource = null;
                 gridRenglon.DataBind();
 
-                lblPpto.Text = /*txtPpto.Text =*/ String.Format(CultureInfo.InvariantCulture, "Q.{0:0,0.00}", 0);
+                lblPpto.Text = /*txtPpto.Text =*/ String.Format(CultureInfo.InvariantCulture, "Q.{0:0,0.00}", 0); 
             }
         }
 
@@ -263,13 +262,13 @@ namespace AplicacionSIPA1.Operativa
 
                 planAccionLN = new PlanAccionLN();
                 planAccionLN.DdlDependenciasUsuario(ddlDependencias, Session["usuario"].ToString(), idUnidad);
-
+                
                 if (idUnidad > 0)
                 {
                     planOperativoLN = new PlanOperativoLN();
                     planOperativoLN.DdlDependencias(ddlDependen, id_unidad);
                     ddlUnidades.SelectedValue = idUnidad.ToString();
-
+                    
                     if (anio > 0 && idUnidad > 0)
                         validarPoa(idUnidad, anio);
 
@@ -311,7 +310,7 @@ namespace AplicacionSIPA1.Operativa
 
                 if (anio > 0)
                 {
-                    ddlAnios.SelectedValue = anio.ToString();
+                    ddlAnios.SelectedValue = anio.ToString();                    
                     if (anio > 0 && idUnidad > 0)
                         validarPoa(idUnidad, anio);
                 }
@@ -340,7 +339,7 @@ namespace AplicacionSIPA1.Operativa
                 rfvCodigo.Enabled = rfvAccion.Enabled = false;
 
                 limpiarCPlanOperativo();
-                limpiarCNuevaMeta();
+                limpiarCNuevaMeta(); 
 
                 obtenerPresupuesto(int.Parse(lblIdPoa.Text), int.Parse(ddlDependencias.SelectedValue));
                 ddlDependencias.ClearSelection();
@@ -502,7 +501,7 @@ namespace AplicacionSIPA1.Operativa
             dv.RowFilter = filtro;
 
             gridPlanO.DataSource = dv;
-            gridPlanO.DataBind();
+            gridPlanO.DataBind() ;
 
             if (gridPlanO.Rows.Count == 1)
                 gridPlanO.SelectedIndex = 0;
@@ -565,7 +564,7 @@ namespace AplicacionSIPA1.Operativa
                     accionesEN.Id_Unidad = int.Parse(ddlUnidades.SelectedValue);
                     accionesEN.Usuario = Session["usuario"].ToString();
 
-                    dsResultado = planAccionLN.AlmacenarAccion(accionesEN, Session["usuario"].ToString());
+                    dsResultado = planAccionLN.AlmacenarAccion(accionesEN,Session["usuario"].ToString());
 
                     if (bool.Parse(dsResultado.Tables[0].Rows[0]["ERRORES"].ToString()))
                         throw new Exception("No se INSERTÓ/ACTUALIZÓ la acción: " + dsResultado.Tables[0].Rows[0]["MSG_ERROR"].ToString());
@@ -618,7 +617,7 @@ namespace AplicacionSIPA1.Operativa
                     metasEN.Noviembre = txtM11.Text.Equals(string.Empty) ? 0 : 1;
                     metasEN.Diciembre = txtM12.Text.Equals(string.Empty) ? 0 : 1;
                     metasEN.Anio = int.Parse(ddlAnios.SelectedValue);
-                    metasEN.Usuario = Session["usuario"].ToString();
+                    metasEN.Usuario = Session["usuario"].ToString();                    
 
                     dsResultado = planAccionLN.AlmacenarMeta(metasEN);
 
@@ -653,7 +652,7 @@ namespace AplicacionSIPA1.Operativa
                 ScriptManager.RegisterStartupScript(this, typeof(string), "Mensaje", "alert('" + mensaje + "');", true);
             }
         }
-
+        
         protected DataSet guardarDetalleAccion(int idPoa, int idDependencia, int idDetalle, int idAccion, string noRenglon, int idTipoFinanciamiento, decimal monto, string idInsumo, string usuario)
         {
             DataSet dsResultado = new DataSet();
@@ -669,12 +668,12 @@ namespace AplicacionSIPA1.Operativa
 
                 DataSet dsPptoRenglon = planAccionLN.PptoRenglonAccion(idDetalle);
                 decimal saldoDetalleAccion = 0;
-
-                if (idDetalle > 0)
+                
+                if(idDetalle > 0)
                     decimal.TryParse(dsPptoRenglon.Tables["BUSQUEDA"].Rows[0]["SALDO_POA"].ToString(), out saldoDetalleAccion);
 
                 decimal diferenciaNuevoMontoDetAccion = (disponible + saldoDetalleAccion) - monto;
-
+                
                 //AQUÍ FALTA
                 DataSet dsAccion = new DataSet();
                 if (diferenciaNuevoMontoDetAccion < 0)
@@ -723,7 +722,7 @@ namespace AplicacionSIPA1.Operativa
             btnModMonto.Visible = false;
             try
             {
-
+                
                 int idAccionDestino = 0;
                 idAccionDestino = int.Parse(ddlAccionDestino.SelectedValue);
 
@@ -761,7 +760,7 @@ namespace AplicacionSIPA1.Operativa
                 accionDetTransferenciasEN.vdestino_debito = "INT_A";
                 accionDetTransferenciasEN.vid_accion_destino = ddlAccionDestino.SelectedValue;
 
-                if (idDetalleAccionDestino == 0)
+                if(idDetalleAccionDestino == 0)
                     accionDetTransferenciasEN.vid_detalle_destino = "0";
                 else
                     accionDetTransferenciasEN.vid_detalle_destino = idDetalleAccionDestino.ToString();
@@ -773,7 +772,7 @@ namespace AplicacionSIPA1.Operativa
                 accionDetTransferenciasEN.vcredito = funciones.StringToDecimal(txtCredito.Text).ToString();
                 accionDetTransferenciasEN.vorigen_credito = "INT_A";
                 accionDetTransferenciasEN.vjustificacion = txtJustificacion.Text;
-                accionDetTransferenciasEN.vusuario = Session["usuario"].ToString();
+                accionDetTransferenciasEN.vusuario = Session["usuario"].ToString();                
 
                 planAccionLN = new PlanAccionLN();
                 dsResultado = planAccionLN.AlmacenarDetalleTransferencias(accionDetTransferenciasEN);
@@ -830,7 +829,7 @@ namespace AplicacionSIPA1.Operativa
 
             try
             {
-
+                
                 if (ddlAnios.SelectedValue.Equals("0") || ddlAnios.Items.Count == 0)
                 {
                     lblEAnio.Text = "*";
@@ -887,7 +886,7 @@ namespace AplicacionSIPA1.Operativa
                     rfvCodigo.Enabled = true;
                 rfvAccion.Enabled = rfvMeta.Enabled = rfvMetaC1.Enabled = rfvMetaC2.Enabled = rfvMetaC3.Enabled = true;
                 rfvResponsable.Enabled = true;
-
+                
                 rfvPond1.Enabled = rfvPond2.Enabled = rfvPond3.Enabled = rfvPonderacion.Enabled = /*rfvPresupuesto.Enabled = */true;
 
                 try
@@ -925,12 +924,12 @@ namespace AplicacionSIPA1.Operativa
                 double.TryParse(txtPonderacion1.Text, out pond1);
                 double.TryParse(txtPonderacion2.Text, out pond2);
                 double.TryParse(txtPonderacion3.Text, out pond3);
-                if ((pond1 + pond2 + pond3) > 100)
+                if ((pond1+pond2+pond3)>100)
                 {
                     controlesValidos = false;
                     rvPond.Visible = true;
                     rfvPonderacion.Visible = true;
-                    lblError.Text += "Poderacion de acciones debe ser Entre 1 y 100";
+                    lblError.Text += "Poderacion de acciones debe ser Entre 1 y 100"; 
                 }
                 else
                 {
@@ -938,7 +937,7 @@ namespace AplicacionSIPA1.Operativa
                 }
                 txtPonderacion.Text = double.Parse((pond1 + pond2 + pond3).ToString()).ToString();
 
-
+                
 
                 this.Page.Validate("grpDatos");
 
@@ -1004,7 +1003,7 @@ namespace AplicacionSIPA1.Operativa
                 decimal monto = 0;
                 idRenglon = idFuente = 0;
                 monto = 0;
-
+                
                 int.TryParse(ddlRenglones.SelectedValue, out idRenglon);
                 int.TryParse(ddlFuentes.SelectedValue, out idFuente);
 
@@ -1020,7 +1019,7 @@ namespace AplicacionSIPA1.Operativa
                 if (idRenglon <= 0)
                     lblError.Text += " Seleccione un renglón!. ";
 
-                if (idFuente < 0)
+                if(idFuente < 0)
                     lblError.Text += " Seleccione una fuente de financiamiento!. ";
 
                 if (monto <= 0)
@@ -1048,10 +1047,10 @@ namespace AplicacionSIPA1.Operativa
             try
             {
                 lblTechoD.Text = lblTechoU.Text = lblAsignado.Text = lblDisponibleD.Text = lblDisponibleU.Text = String.Format(CultureInfo.InvariantCulture, "Q.{0:0,0.00}", 0);
-
+                
                 planOperativoLN = new PlanOperativoLN();
                 DataSet dsPoa = planOperativoLN.DatosPoaUnidad(idUnidad, anio);
-
+                
                 if (dsPoa.Tables.Count == 0)
                     throw new Exception("Error al consultar el presupuesto.");
 
@@ -1068,10 +1067,10 @@ namespace AplicacionSIPA1.Operativa
                 if (estadoPoa.Equals("1"))
                 {
                     lblErrorPoa.Text = lblError.Text = string.Empty;
-
+                    
                     //btnGuardar.Visible = /*btnEliminarAccion.Visible = gridRenglon.Columns[0].Visible =*/ gridRenglon.Columns[1].Visible = true;
                     btnGuardar.Visible = btnEliminarAccion.Visible = gridRenglon.Columns[0].Visible = gridRenglon.Columns[1].Visible = btnAgregarDetalle.Visible = true;
-
+                    
                     gridRenglon.Columns[0].Visible = false;
                 }
                 //2	Revisión Subgerencia, 4	Revisión Analista POA, 7	Revisión Dirección
@@ -1139,7 +1138,7 @@ namespace AplicacionSIPA1.Operativa
         {
             try
             {
-                if (idPoa > 0)
+                if (idPoa>0)
                 {
                     planAccionLN = new PlanAccionLN();
                     DataSet dsPpto = planAccionLN.PptoPoa(idPoa);
@@ -1155,7 +1154,7 @@ namespace AplicacionSIPA1.Operativa
                     lblTechoD.Text = String.Format(CultureInfo.InvariantCulture, "Q.{0:0,0.00}", pptoPoaDependencia);
                     lblDisponibleD.Text = String.Format(CultureInfo.InvariantCulture, "Q.{0:0,0.00}", pptoDisponibleDep);
                 }
-
+                
             }
             catch (Exception ex)
             {
@@ -1241,7 +1240,7 @@ namespace AplicacionSIPA1.Operativa
                 planOperativoLN = new PlanOperativoLN();
 
                 DataSet dsDatos = planOperativoLN.BuscarId(idMeta.ToString());
-
+                
                 int idKpi = int.Parse(dsDatos.Tables["BUSQUEDA"].Rows[0]["ID_KPI_O"].ToString());
                 ListItem item = ddlIndicadores.Items.FindByValue(idKpi.ToString());
                 if (item != null)
@@ -1263,9 +1262,9 @@ namespace AplicacionSIPA1.Operativa
                 {
                     planAccionLN = new PlanAccionLN();
                     planAccionLN.DdlAcciones(ddlAcciones, idMeta);
-                }
+                }                
                 //filtrarGridPlanO(idMeta.ToString());
-
+                
             }
             catch (Exception ex)
             {
@@ -1307,7 +1306,7 @@ namespace AplicacionSIPA1.Operativa
                     txtPonderacion.Text = double.Parse(dsResultado.Tables["BUSQUEDA"].Rows[0]["PONDERACION_ACCION"].ToString().Split('.')[0]).ToString();
                     //txtPpto.Text = dsResultado.Tables["BUSQUEDA"].Rows[0]["PRESUPUESTO"].ToString();
                     txtResponsable.Text = dsResultado.Tables["BUSQUEDA"].Rows[0]["RESPONSABLE"].ToString();
-
+                    
                     string v = dsResultado.Tables["BUSQUEDA"].Rows[0]["ENE"].ToString();
                     txtM1.Text = v.Equals("0") ? string.Empty : "X";
 
@@ -1405,7 +1404,7 @@ namespace AplicacionSIPA1.Operativa
 
         protected void chkCronograma_CheckedChanged(object sender, EventArgs e)
         {
-            if (chkCronograma.Checked)
+            if(chkCronograma.Checked)
                 txtM1.Text = txtM2.Text = txtM3.Text = txtM4.Text = txtM5.Text = txtM6.Text = txtM7.Text = txtM8.Text = txtM9.Text = txtM10.Text = txtM11.Text = txtM12.Text = "X";
             else
                 txtM1.Text = txtM2.Text = txtM3.Text = txtM4.Text = txtM5.Text = txtM6.Text = txtM7.Text = txtM8.Text = txtM9.Text = txtM10.Text = txtM11.Text = txtM12.Text = string.Empty;
@@ -1433,31 +1432,31 @@ namespace AplicacionSIPA1.Operativa
 
         protected void gridRenglon_RowDataBound(object sender, GridViewRowEventArgs e)
         {
-            /* decimal sumaP, sumaC, sumaS = 0;
-             if (e.Row.RowType == DataControlRowType.DataRow)
-             {
-                 sumaP = decimal.Parse(e.Row.Cells[6].Text);
-                 e.Row.Cells[6].Text = String.Format(CultureInfo.InvariantCulture, "Q.{0:0,0.00}", sumaP);
-                 totalP += sumaP;
-                 sumaP = 0;
+           /* decimal sumaP, sumaC, sumaS = 0;
+            if (e.Row.RowType == DataControlRowType.DataRow)
+            {
+                sumaP = decimal.Parse(e.Row.Cells[6].Text);
+                e.Row.Cells[6].Text = String.Format(CultureInfo.InvariantCulture, "Q.{0:0,0.00}", sumaP);
+                totalP += sumaP;
+                sumaP = 0;
 
-                 sumaC = decimal.Parse(e.Row.Cells[7].Text);
-                 e.Row.Cells[7].Text = String.Format(CultureInfo.InvariantCulture, "Q.{0:0,0.00}", sumaC);
-                 totalC += sumaC;
-                 sumaC = 0;
+                sumaC = decimal.Parse(e.Row.Cells[7].Text);
+                e.Row.Cells[7].Text = String.Format(CultureInfo.InvariantCulture, "Q.{0:0,0.00}", sumaC);
+                totalC += sumaC;
+                sumaC = 0;
 
-                 sumaS = decimal.Parse(e.Row.Cells[8].Text);
-                 e.Row.Cells[8].Text = String.Format(CultureInfo.InvariantCulture, "Q.{0:0,0.00}", sumaS);
-                 totalS += sumaS;
-                 sumaS = 0;
-             }
-             else if (e.Row.RowType == DataControlRowType.Footer)
-             {
-                 e.Row.Cells[5].Text = "Total";
-                 e.Row.Cells[6].Text = String.Format(CultureInfo.InvariantCulture, "Q.{0:0,0.00}", totalP);
-                 e.Row.Cells[7].Text = String.Format(CultureInfo.InvariantCulture, "Q.{0:0,0.00}", totalC);
-                 e.Row.Cells[8].Text = String.Format(CultureInfo.InvariantCulture, "Q.{0:0,0.00}", totalS);
-             }*/
+                sumaS = decimal.Parse(e.Row.Cells[8].Text);
+                e.Row.Cells[8].Text = String.Format(CultureInfo.InvariantCulture, "Q.{0:0,0.00}", sumaS);
+                totalS += sumaS;
+                sumaS = 0;
+            }
+            else if (e.Row.RowType == DataControlRowType.Footer)
+            {
+                e.Row.Cells[5].Text = "Total";
+                e.Row.Cells[6].Text = String.Format(CultureInfo.InvariantCulture, "Q.{0:0,0.00}", totalP);
+                e.Row.Cells[7].Text = String.Format(CultureInfo.InvariantCulture, "Q.{0:0,0.00}", totalC);
+                e.Row.Cells[8].Text = String.Format(CultureInfo.InvariantCulture, "Q.{0:0,0.00}", totalS);
+            }*/
         }
 
         protected void gridRenglon_RowDeleting(object sender, GridViewDeleteEventArgs e)
@@ -1486,7 +1485,7 @@ namespace AplicacionSIPA1.Operativa
             catch (Exception ex)
             {
                 lblError.Text = "gridRenglon(). " + ex.Message;
-            }
+            } 
         }
 
         protected void gridRenglon_SelectedIndexChanged(object sender, EventArgs e)
@@ -1541,7 +1540,7 @@ namespace AplicacionSIPA1.Operativa
             catch (Exception ex)
             {
                 lblErrorModMonto.Text = "gridRenglon(). " + ex.Message;
-            }
+            } 
         }
 
         protected void chkAccion_CheckedChanged(object sender, EventArgs e)
@@ -1677,13 +1676,13 @@ namespace AplicacionSIPA1.Operativa
             try
             {
 
-                if (ddlAcciones.Items.Count == 0)
+                if(ddlAcciones.Items.Count == 0)
                     throw new Exception("Seleccione una acción");
 
                 int idAccion = 0;
                 int.TryParse(ddlAcciones.SelectedItem.Value, out idAccion);
 
-                if (idAccion <= 0)
+                if(idAccion <= 0)
                     throw new Exception("Seleccione una acción");
 
                 upBuscar.Visible = true;
@@ -1834,7 +1833,7 @@ namespace AplicacionSIPA1.Operativa
                     planAccionLN.DdlRenglones(ddlRenglones);
 
                     ListItem item = ddlRenglones.Items.FindByValue(noRenglon);
-
+                    
                     ddlRenglones.ClearSelection();
                     ddlRenglones.Items.Clear();
                     ddlRenglones.Items.Add(item);
@@ -1906,7 +1905,7 @@ namespace AplicacionSIPA1.Operativa
                     int idDetalleAccion;
                     int.TryParse(lblIdPoa.Text, out idPoa);
 
-                    if (ddlJefaturaUnidad.SelectedValue != "" && int.Parse(ddlJefaturaUnidad.SelectedValue) > 0)
+                    if(ddlJefaturaUnidad.SelectedValue != "" && int.Parse(ddlJefaturaUnidad.SelectedValue) > 0)
                     {
                         int.TryParse(ddlJefaturaUnidad.SelectedValue, out idDependencia);
                     }
@@ -1918,10 +1917,10 @@ namespace AplicacionSIPA1.Operativa
                     {
                         int.TryParse(ddlUnidades.SelectedValue, out idDependencia);
                     }
-
+                    
                     int.TryParse(ddlAcciones.SelectedValue, out idAccion);
                     idDetalleAccion = 0;
-
+                    
                     decimal.TryParse(txtMonto.Text, out montoRenglon);
 
                     DataSet dsResultado = new DataSet();
@@ -1981,7 +1980,7 @@ namespace AplicacionSIPA1.Operativa
 
             if (s.Equals(""))
                 return "00.00";
-
+            
             return s;
         }
 
@@ -2096,9 +2095,9 @@ namespace AplicacionSIPA1.Operativa
 
         }
 
+       
 
-
-        protected bool validarControlesModPpto()
+		protected bool validarControlesModPpto()
         {
             bool controlesValidos = false;
             limpiarControlesErrorModMonto();
@@ -2420,7 +2419,7 @@ namespace AplicacionSIPA1.Operativa
             catch (Exception ex)
             {
                 lblErrorModMonto.Text = "btnRevisarPlan(). " + ex.Message;
-            }
+            }   
         }
 
         protected void btnNuevoTraslado_Click(object sender, EventArgs e)

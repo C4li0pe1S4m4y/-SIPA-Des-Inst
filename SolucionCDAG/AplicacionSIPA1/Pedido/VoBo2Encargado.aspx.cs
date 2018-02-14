@@ -167,19 +167,18 @@ namespace AplicacionSIPA1.Pedido
                             if (!ddlAnios.SelectedValue.Equals("0"))
                                 filtro += " AND anio_solicitud = " + ddlAnios.SelectedValue;
 
-
                             if (!ddlUnidades.SelectedValue.Equals("0"))
                             {
                                 if (!ddlDependencia.SelectedValue.Equals("0") && ddlDependencia.SelectedValue != "")
                                 {
                                     filtro += " AND id_unidad = " + ddlDependencia.SelectedValue;
-                                }
-                                else
+                                }else
                                 {
                                     filtro += " AND id_unidad = " + ddlUnidades.SelectedValue;
                                 }
-
+                               
                             }
+                                
 
                             if (!rblTipoDocto.SelectedValue.Equals("0"))
                                 filtro += " AND id_tipo_documento = " + rblTipoDocto.SelectedValue;

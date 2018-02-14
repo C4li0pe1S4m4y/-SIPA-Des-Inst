@@ -9,7 +9,7 @@
     <div class="row">
         <div class="col-xs-5">
             <label>Año</label>
-            <asp:DropDownList ID="ddlAnios" runat="server" AutoPostBack="True" class="form-control" Width="90%"></asp:DropDownList>
+            <asp:DropDownList ID="ddlAnios" runat="server" AutoPostBack="True"  OnSelectedIndexChanged="ddlAnios_SelectedIndexChanged" class="form-control" Width="90%"></asp:DropDownList>
         </div>
         <div class="col-xs-6">
             <label>Unidad</label>
@@ -46,10 +46,14 @@
         </div>
     </div>
     <div class="row">
-        <div class="col-xs-11">
+        <div class="col-xs-9">
             <label>Estados</label>
             <br />
-            <asp:CheckBoxList ID="chkEstados" runat="server" OnSelectedIndexChanged="chkEstados_SelectedIndexChanged" RepeatDirection="Horizontal" AutoPostBack="True"></asp:CheckBoxList>
+            <asp:CheckBoxList ID="chkEstados" runat="server"  RepeatDirection="Horizontal" ></asp:CheckBoxList>
+        </div>
+        <div class="col-xs-3">
+            <br />
+            <asp:Button ID="btnBucarEstados" runat="server" Text="Buscar Estado" OnClick="btnBucarEstados_Click" CssClass="btn btn-info" />
         </div>
     </div>
     <br />

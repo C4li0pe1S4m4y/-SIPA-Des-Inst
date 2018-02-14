@@ -23,44 +23,43 @@ namespace AplicacionSIPA1
         }
 
         protected void btniniciar_Click(object sender, EventArgs e)
-
+        
         {
 
             Regex val = new Regex("^[a-zA-Z0-9ñÑáéíóúÁÉÍÓÚ]+$");
 
             if (val.IsMatch(this.TextUsuario.Text) && val.IsMatch(this.TextContraseña.Text))
             {
+                
 
 
+            try
+            {
+                   //VARIABLES DE SESIÓN           
+                this.Session["usuar"] = this.TextUsuario.Text;
+                this.Session["Usuario"] = this.TextUsuario.Text;
 
-                try
+                mstLogeo= new LogeoLN();
+
+                if (mstLogeo.Logearse(this.TextUsuario.Text,this.TextContraseña.Text)>0)
                 {
-                    //VARIABLES DE SESIÓN           
-                    this.Session["usuar"] = this.TextUsuario.Text;
-                    this.Session["Usuario"] = this.TextUsuario.Text;
-
-                    mstLogeo = new LogeoLN();
-
-                    if (mstLogeo.Logearse(this.TextUsuario.Text, this.TextContraseña.Text) > 0)
-                    {
-
-                        FormsAuthentication.RedirectFromLoginPage(this.TextUsuario.Text, false);
-                        Response.Redirect("~/Inicio.aspx");
-                    }
-                    else
-                    {
-                        this.resultado.Text = "Usuario no autorizado...";
-                    }
-
+                    
+                    FormsAuthentication.RedirectFromLoginPage(this.TextUsuario.Text,false);
+                    Response.Redirect("~/Inicio.aspx");
                 }
-                catch (Exception ex)
-                {
-                    Console.WriteLine(ex.Message + "Error en inicio de sesión");
-                    //Response.Redirect("~/Error.aspx");
-                    throw;
-                }
+                else
+            	{
+                    this.resultado.Text = "Usuario no autorizado...";
+	                }
 
             }
+            catch (Exception ex)
+            {
+                Console.WriteLine(ex.Message + "Error en inicio de sesión");
+                throw;
+            }
+
+                   }
             else
             {
                 this.resultado.Text = "Usuario no autorizado...";

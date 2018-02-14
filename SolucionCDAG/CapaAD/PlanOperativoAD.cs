@@ -232,6 +232,35 @@ namespace CapaAD
             return tabla;
         }
 
+        public DataTable GridPlanCompleto(int idUnidad, int idPoa, int anio)
+        {
+
+            conectar = new ConexionBD();
+            conectar.AbrirConexion();
+            string permiso = string.Format("SELECT 	 pu.id_Poa,u.id_unidad FROM sipa_poa pu right outer JOIN ccl_unidades u ON pu.id_Unidad = u.id_Unidad WHERE pu.anio = {1}" +
+                "   and u.codigo_unidad = (select codigo_unidad from ccl_unidades  where id_unidad = {0});", idUnidad, anio);
+            MySqlCommand cmd = new MySqlCommand(permiso, conectar.conectar);
+            List<string> id_poas = new List<string>();
+            MySqlDataReader dr = cmd.ExecuteReader();
+            while (dr.Read())
+            {
+                
+                id_poas.Add(dr.GetString("id_poa"));
+            }
+            dr.Close();
+            cmd.Dispose();
+            DataTable tabla = new DataTable();
+            for (int i = 0; i < id_poas.Count; i++ )
+            {
+                string query = string.Format("CALL sp_slctPoaCodificacion({0});", id_poas[i]);
+                MySqlDataAdapter consulta = new MySqlDataAdapter(query, conectar.conectar);
+                consulta.Fill(tabla);
+            }
+
+            conectar.CerrarConexion();
+            return tabla;
+        }
+
         public DataTable AlmacenarObjetivo(ObjOperativosEN ObjEN, string usuario,string ip,string mac,string pc)
         {
             DataTable tabla = new DataTable();
@@ -523,6 +552,38 @@ namespace CapaAD
             DataTable tabla = new DataTable();
             string query = String.Format("CALL sp_listadoPoaNulo({0}, {1});", anio, unidad);
             conectar.AbrirConexion();
+            MySqlDataAdapter consulta = new MySqlDataAdapter(query, conectar.conectar);
+            consulta.Fill(tabla);
+            conectar.CerrarConexion();
+            return tabla;
+        }
+
+        public string ProductoxUnidad(int unidad)
+        {
+            string producto = "";
+            conectar = new ConexionBD();
+            string permiso = string.Format("select p.producto from ccl_productos p inner join ccl_subproducto sub on sub.id_producto = p.id_producto where id_unidad ={0} "
+                , unidad);
+            conectar.AbrirConexion();
+            MySqlCommand cmd = new MySqlCommand(permiso, conectar.conectar);
+            MySqlDataReader dr = cmd.ExecuteReader();
+            while (dr.Read())
+            {
+                producto = dr.GetString("producto");
+                if (!string.IsNullOrEmpty(producto))
+                {
+                    return producto;
+                }
+            }
+            return producto = "Producto no encontrado";
+        }
+
+        public DataTable ddlSubproducto(int idUnidad)
+        {
+            conectar = new ConexionBD();
+            DataTable tabla = new DataTable();
+            conectar.AbrirConexion();
+            string query = string.Format("select id_subproducto,sub.subproducto from  ccl_subproducto sub  where id_unidad ={0};",idUnidad);
             MySqlDataAdapter consulta = new MySqlDataAdapter(query, conectar.conectar);
             consulta.Fill(tabla);
             conectar.CerrarConexion();

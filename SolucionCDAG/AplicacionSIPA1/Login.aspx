@@ -6,7 +6,7 @@
 <head runat="server">
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
      <title>Login</title>
-
+   <%--  <link href="Content/bootstrap.css" rel="stylesheet" type="text/css" media="screen" />--%>
     <link href="css/style.css" rel="stylesheet" type="text/css" media="screen" />
     <link href="css/utilities.css" rel="stylesheet" type="text/css" media="screen" />
  

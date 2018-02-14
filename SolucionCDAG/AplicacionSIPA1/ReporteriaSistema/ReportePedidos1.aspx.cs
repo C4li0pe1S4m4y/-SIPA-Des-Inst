@@ -228,7 +228,7 @@ namespace AplicacionSIPA1.ReporteriaSistema
                 
                 if (unidads>0)
                 {
-                    dsPpto = pAccionLN.CostoEstimado(unidads, 2018);
+                    dsPpto = pAccionLN.CostoEstimado(unidads);
                     decimal pptoPoaDependencia = decimal.Parse(dsPpto.Tables["BUSQUEDA"].Rows[0]["Gasto"].ToString());
                     decimal disponible = pptoPoaUnidad - pptoPoaDependencia;
                     lblTechoU.Text = String.Format(CultureInfo.InvariantCulture, "Q.{0:0,0.00}", pptoPoaUnidad);

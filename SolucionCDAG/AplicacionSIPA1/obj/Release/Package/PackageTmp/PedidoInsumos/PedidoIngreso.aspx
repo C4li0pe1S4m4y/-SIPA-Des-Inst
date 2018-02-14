@@ -72,6 +72,28 @@
                 </tr>
                 <tr>
                     <td>&nbsp;</td>
+                    <td colspan="9">Producto:<strong><asp:Label ID="Label1" runat="server" ForeColor="Red" style="font-size: medium">*</asp:Label>
+                        </strong></td>
+                    <td colspan="3">SubProducto:<strong><asp:Label ID="Label2" runat="server" ForeColor="Red" style="font-size: medium">*</asp:Label>
+                        </strong></td>
+                   
+                    <td style="width: 5%">&nbsp;</td>
+                </tr>
+                <tr>
+                    <td>
+                        &nbsp;</td>
+                    <td colspan="9">
+                        <asp:Label ID="lblProduto" runat="server" style="font-size: medium"></asp:Label>
+                        
+                    </td>
+                    <td colspan="9">
+                        <asp:DropDownList ID="ddlSubproducto" runat="server"  class="form-control" OnSelectedIndexChanged="ddlUnidades_SelectedIndexChanged" Width="100%">
+                        </asp:DropDownList>
+                    </td>
+                    <td style="width: 5%">&nbsp;</td>
+                </tr>
+                <tr>
+                    <td>&nbsp;</td>
                     <td colspan="6">Solicitante:<strong><asp:Label ID="lblErrorSolicitante" runat="server" ForeColor="Red" style="font-size: medium">*</asp:Label>
                         </strong></td>
                     <td colspan="6">Subgerente/Director:<strong><asp:Label ID="lblErrorJefe" runat="server" ForeColor="Red" style="font-size: medium">*</asp:Label>

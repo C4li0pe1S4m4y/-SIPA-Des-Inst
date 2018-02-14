@@ -94,11 +94,6 @@ namespace CapaLN
             presupuestoAD = new PresupuestoAD();
             return presupuestoAD.InsertarPresUnidad(presupuestoEN, usuario);
         }
-        public int ActualizarPresUnidad(PresupuestoEN presupuestoEN, string usuario)
-        {
-            presupuestoAD = new PresupuestoAD();
-            return presupuestoAD.ActualizarPresUnidad(presupuestoEN, usuario);
-        }
         public DataSet AlmacenarModificacionTechoPpto(PresupuestoEN presupuestoEN, string usuario,int op)
         {
             DataSet dsResultado = armarDsResultado();
@@ -190,6 +185,13 @@ namespace CapaLN
         {
             presupuestoAD = new PresupuestoAD();
             presupuestoAD.InsertarBitacora(usuario,unidad,ip,acc,decs,mInicial,mFinal);
+        }
+
+
+        public int ActualizarPresUnidad(PresupuestoEN presupuestoEN, string usuario)
+        {
+            presupuestoAD = new PresupuestoAD();
+            return presupuestoAD.ActualizarPresUnidad(presupuestoEN, usuario);
         }
     }
 }

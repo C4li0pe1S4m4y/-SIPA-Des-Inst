@@ -1734,5 +1734,85 @@ namespace CapaLN
             ds.Tables[0].Rows[0]["MSG_ERROR"] = string.Empty;
             return ds;
         }
+
+        public DataSet PedidoDetallePac(int idPedido)
+        {
+            
+            ObjAD = new PedidosAD();
+            try
+            {
+                return ObjAD.PedidoDetallePac(idPedido);
+            }
+            catch (Exception ex)
+            {
+                return null;
+            }
+
+           
+        }
+
+        public void DdlRenglonesxAccion(DropDownList drop, int idAccion)
+        {
+            drop.ClearSelection();
+            drop.Items.Clear();
+
+            drop.AppendDataBoundItems = true;
+            drop.Items.Add("<< Elija un valor >>");
+            drop.Items[0].Value = "0";
+
+            if (idAccion > 0)
+            {
+                ObjAD = new PedidosAD();
+                drop.DataSource = ObjAD.DdlPacsxAccion(idAccion);
+                drop.DataTextField = "texto";
+                drop.DataValueField = "id";
+            }
+            drop.DataBind();
+            /*
+            if (drop.Items.Count == 2)
+            {
+                drop.Items.RemoveAt(0);
+                drop.SelectedIndex = 0;
+            }*/
+        }
+
+        public DataSet BusquedaInsumo(string codigo)
+        {
+            DataSet dsResultado = armarDsResultado();
+            ObjAD = new PedidosAD();
+            try
+            {
+                DataTable dt = ObjAD.BusquedaInsumo(codigo);
+                dt.TableName = "BUSQUEDA";
+                dsResultado.Tables.Add(dt);
+                dsResultado.Tables[0].Rows[0]["ERRORES"] = false;
+            }
+            catch (Exception ex)
+            {
+                dsResultado.Tables[0].Rows[0]["MSG_ERROR"] = " CapaLN.InformacionInsumoPac(). " + ex.Message;
+            }
+
+            return dsResultado;
+        }
+
+        public DataSet BusquedaPresentacion(string codigo,string insumo)
+        {
+            DataSet dsResultado = armarDsResultado();
+            ObjAD = new PedidosAD();
+            try
+            {
+                DataTable dt = ObjAD.BusquedaPedido(codigo,insumo);
+                dt.TableName = "BUSQUEDA";
+                dsResultado.Tables.Add(dt);
+                dsResultado.Tables[0].Rows[0]["ERRORES"] = false;
+            }
+            catch (Exception ex)
+            {
+                dsResultado.Tables[0].Rows[0]["MSG_ERROR"] = " CapaLN.InformacionInsumoPac(). " + ex.Message;
+            }
+
+            return dsResultado;
+        }
+
     }
 }

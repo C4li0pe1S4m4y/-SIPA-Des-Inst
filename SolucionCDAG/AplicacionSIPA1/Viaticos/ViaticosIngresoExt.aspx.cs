@@ -1339,7 +1339,7 @@ namespace AplicacionSIPA1.Viaticos
             if (idPac > 0)
             {
                 //INFORMACIÓN DEL PLAN ANUAL DE COMPRAS
-                DataSet dsInformacionPac = pAnualLN.InformacionPac(idPac, int.Parse(ddlAnios.SelectedValue));
+                DataSet dsInformacionPac = pAnualLN.InformacionPac(idPac, 2018);
                 if (dsInformacionPac.Tables.Count == 0)
                     throw new Exception("Error al consultar la información del Plan: " + dsInformacionPac.Tables[0].Rows[0]["MSG_ERROR"].ToString());
 

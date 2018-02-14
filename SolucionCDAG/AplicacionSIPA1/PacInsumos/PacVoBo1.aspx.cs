@@ -87,11 +87,11 @@ namespace AplicacionSIPA1.PacInsumos
 
                 string usuario = Session["Usuario"].ToString().ToLower();
                 pOperativoLN.DdlUnidades(ddlUnidades, usuario);
-                pAccionLN.DdlDependencias(ddlDependencias, usuario);
+                pAccionLN.DdlDependencias(ddlDependencias, usuario, 0);
 
                 if (ddlUnidades.Items.Count == 1)
                 {
-                    pAccionLN.DdlDependencias(ddlDependencias, Session["usuario"].ToString());
+                    pAccionLN.DdlDependencias(ddlDependencias, Session["usuario"].ToString(), int.Parse(ddlUnidades.SelectedValue));
                     if (!ddlAnios.SelectedValue.Equals("0"))
                     {
                         validarPoaIngresoPac(int.Parse(ddlUnidades.SelectedValue), int.Parse(ddlAnios.SelectedValue));

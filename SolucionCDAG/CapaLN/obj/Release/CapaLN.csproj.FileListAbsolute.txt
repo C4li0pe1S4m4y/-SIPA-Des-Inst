@@ -57,3 +57,13 @@ C:\Users\Administrator\Desktop\PRODUCCION V2\SolucionCDAG\CapaLN\bin\Release\Cap
 C:\Users\Administrator\Desktop\PRODUCCION V2\SolucionCDAG\CapaLN\obj\Release\CapaLN.csprojResolveAssemblyReference.cache
 C:\Users\Administrator\Desktop\PRODUCCION V2\SolucionCDAG\CapaLN\obj\Release\CapaLN.dll
 C:\Users\Administrator\Desktop\PRODUCCION V2\SolucionCDAG\CapaLN\obj\Release\CapaLN.pdb
+C:\Users\user Dell\Documents\Trabajo\SIPA Archivos\PRODUCCION V2\SolucionCDAG\SIPA\CapaLN\bin\Release\CapaLN.dll
+C:\Users\user Dell\Documents\Trabajo\SIPA Archivos\PRODUCCION V2\SolucionCDAG\SIPA\CapaLN\bin\Release\CapaLN.pdb
+C:\Users\user Dell\Documents\Trabajo\SIPA Archivos\PRODUCCION V2\SolucionCDAG\SIPA\CapaLN\bin\Release\CapaAD.dll
+C:\Users\user Dell\Documents\Trabajo\SIPA Archivos\PRODUCCION V2\SolucionCDAG\SIPA\CapaLN\bin\Release\CapaEN.dll
+C:\Users\user Dell\Documents\Trabajo\SIPA Archivos\PRODUCCION V2\SolucionCDAG\SIPA\CapaLN\bin\Release\MySql.Data.dll
+C:\Users\user Dell\Documents\Trabajo\SIPA Archivos\PRODUCCION V2\SolucionCDAG\SIPA\CapaLN\bin\Release\CapaAD.pdb
+C:\Users\user Dell\Documents\Trabajo\SIPA Archivos\PRODUCCION V2\SolucionCDAG\SIPA\CapaLN\bin\Release\CapaEN.pdb
+C:\Users\user Dell\Documents\Trabajo\SIPA Archivos\PRODUCCION V2\SolucionCDAG\SIPA\CapaLN\obj\Release\CapaLN.csprojResolveAssemblyReference.cache
+C:\Users\user Dell\Documents\Trabajo\SIPA Archivos\PRODUCCION V2\SolucionCDAG\SIPA\CapaLN\obj\Release\CapaLN.dll
+C:\Users\user Dell\Documents\Trabajo\SIPA Archivos\PRODUCCION V2\SolucionCDAG\SIPA\CapaLN\obj\Release\CapaLN.pdb

@@ -96,7 +96,7 @@ namespace AplicacionSIPA1.PacInsumos
 
                 if (ddlUnidades.Items.Count == 1)
                 {
-                    pAccionLN.DdlDependencias(ddlDependencias, Session["usuario"].ToString() );
+                    pAccionLN.DdlDependencias(ddlDependencias, Session["usuario"].ToString(), int.Parse(ddlUnidades.SelectedValue));
                     if (!ddlAnios.SelectedValue.Equals("0"))
                     {
                         validarPoa(int.Parse(ddlUnidades.SelectedValue), int.Parse(ddlAnios.SelectedValue));

@@ -56,6 +56,28 @@
                 </tr>
                 <tr>
                     <td>&nbsp;</td>
+                    <td colspan="9">Dependencia:
+                        </td>
+                    <td colspan="3">Jefatura:
+                        </td>
+                    <td class="text-right" colspan="6">&nbsp;</td>
+                    <td style="width: 5%">&nbsp;</td>
+                </tr>
+                <tr>
+                    <td>
+                        &nbsp;</td>
+                    <td colspan="9">
+                        <asp:DropDownList ID="ddlDependencia" runat="server" AutoPostBack="True" class="form-control" OnSelectedIndexChanged="ddlDependencia_SelectedIndexChanged" Width="100%">
+                        </asp:DropDownList>
+                    </td>
+                    <td colspan="9">
+                        <asp:DropDownList ID="ddlJefatura" runat="server" AutoPostBack="True" class="form-control" OnSelectedIndexChanged="ddlJefaturaUnidad_SelectedIndexChanged" Width="100%">
+                        </asp:DropDownList>
+                    </td>
+                    <td style="width: 5%">&nbsp;</td>
+                </tr>
+                <tr>
+                    <td>&nbsp;</td>
                     <td colspan="18">Acciones:<strong><asp:Label ID="lblErrorAccion" runat="server" ForeColor="Red" style="font-size: medium">*</asp:Label>
                         </strong></td>
                     <td style="width: 5%">&nbsp;</td>
@@ -363,7 +385,7 @@
                                 <HeaderStyle BorderStyle="Inset" HorizontalAlign="Center" VerticalAlign="Middle" />
                                 <ItemStyle BorderStyle="Inset" HorizontalAlign="Center" VerticalAlign="Middle" />
                                 </asp:BoundField>
-                                <asp:BoundField DataField="descripcion" HeaderText="DESCRIPCIÓN DEL BIEN Y/O SERVICIO">
+                                <asp:BoundField DataField="descripcion_detalle" HeaderText="DESCRIPCIÓN DEL BIEN Y/O SERVICIO">
                                 <HeaderStyle BorderStyle="Inset" HorizontalAlign="Center" VerticalAlign="Middle" />
                                 <ItemStyle BorderStyle="Inset" HorizontalAlign="Center" VerticalAlign="Middle" />
                                 </asp:BoundField>

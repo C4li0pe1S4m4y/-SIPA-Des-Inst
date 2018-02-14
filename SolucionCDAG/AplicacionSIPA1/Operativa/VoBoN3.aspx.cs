@@ -216,10 +216,11 @@ namespace AplicacionSIPA1.Operativa
                     planOperativoLN.DdlDependencias(ddlDepend, id_unidad);
                     planAccionLN = new PlanAccionLN();
                     planAccionLN.DdlDependenciasUsuario(ddlDependencias, Session["usuario"].ToString(), int.Parse(ddlUnidades.SelectedValue));
-                    if (ddlJefaturaUnidad.Items.Count > 0)
+                    if (ddlJefaturaUnidad.Items.Count>0)
                     {
                         ddlJefaturaUnidad.SelectedIndex = 0;
                     }
+                    
                 }
 
                 if (anio > 0 && idUnidad > 0)

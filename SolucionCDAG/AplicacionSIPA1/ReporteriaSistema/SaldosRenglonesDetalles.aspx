@@ -9,7 +9,7 @@
     <div class="row">
         <div class="col-xs-5">
             <label>Año</label>
-            <asp:DropDownList ID="ddlAnios" OnSelectedIndexChanged="ddlAnios_SelectedIndexChanged" runat="server" AutoPostBack="True" class="form-control" Width="90%"></asp:DropDownList>
+            <asp:DropDownList ID="ddlAnios" runat="server" AutoPostBack="True"  OnSelectedIndexChanged="ddlAnios_SelectedIndexChanged" class="form-control" Width="90%"></asp:DropDownList>
         </div>
         <div class="col-xs-6">
             <label>Unidad</label>
@@ -45,7 +45,7 @@
             <asp:TextBox ID="txtFechaFinal" OnTextChanged="txtFechaFinal_TextChanged" AutoPostBack="true" runat="server" TextMode="Date"></asp:TextBox>
         </div>
     </div>
-     <div class="row">
+    <div class="row">
         <div class="col-xs-9">
             <label>Estados</label>
             <br />
