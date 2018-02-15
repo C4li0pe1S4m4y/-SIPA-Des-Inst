@@ -151,3 +151,13 @@ C:\Users\user Dell\Documents\Trabajo\SIPA Archivos\PRODUCCION V2\SolucionCDAG\SI
 C:\Users\user Dell\Documents\Trabajo\SIPA Archivos\PRODUCCION V2\SolucionCDAG\SIPA\CapaLN\obj\Debug\CapaLN.csprojResolveAssemblyReference.cache
 C:\Users\user Dell\Documents\Trabajo\SIPA Archivos\PRODUCCION V2\SolucionCDAG\SIPA\CapaLN\obj\Debug\CapaLN.dll
 C:\Users\user Dell\Documents\Trabajo\SIPA Archivos\PRODUCCION V2\SolucionCDAG\SIPA\CapaLN\obj\Debug\CapaLN.pdb
+C:\Users\Renato Ojeda\Documents\Projectos CDAG\-SIPA-Des-Inst\SolucionCDAG\CapaLN\bin\Debug\CapaLN.dll
+C:\Users\Renato Ojeda\Documents\Projectos CDAG\-SIPA-Des-Inst\SolucionCDAG\CapaLN\bin\Debug\CapaLN.pdb
+C:\Users\Renato Ojeda\Documents\Projectos CDAG\-SIPA-Des-Inst\SolucionCDAG\CapaLN\bin\Debug\CapaAD.dll
+C:\Users\Renato Ojeda\Documents\Projectos CDAG\-SIPA-Des-Inst\SolucionCDAG\CapaLN\bin\Debug\CapaEN.dll
+C:\Users\Renato Ojeda\Documents\Projectos CDAG\-SIPA-Des-Inst\SolucionCDAG\CapaLN\bin\Debug\MySql.Data.dll
+C:\Users\Renato Ojeda\Documents\Projectos CDAG\-SIPA-Des-Inst\SolucionCDAG\CapaLN\bin\Debug\CapaAD.pdb
+C:\Users\Renato Ojeda\Documents\Projectos CDAG\-SIPA-Des-Inst\SolucionCDAG\CapaLN\bin\Debug\CapaEN.pdb
+C:\Users\Renato Ojeda\Documents\Projectos CDAG\-SIPA-Des-Inst\SolucionCDAG\CapaLN\obj\Debug\CapaLN.csprojResolveAssemblyReference.cache
+C:\Users\Renato Ojeda\Documents\Projectos CDAG\-SIPA-Des-Inst\SolucionCDAG\CapaLN\obj\Debug\CapaLN.dll
+C:\Users\Renato Ojeda\Documents\Projectos CDAG\-SIPA-Des-Inst\SolucionCDAG\CapaLN\obj\Debug\CapaLN.pdb

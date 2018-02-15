@@ -149,3 +149,17 @@ C:\Users\user Dell\Documents\Trabajo\SIPA Archivos\PRODUCCION V2\SolucionCDAG\SI
 C:\Users\user Dell\Documents\Trabajo\SIPA Archivos\PRODUCCION V2\SolucionCDAG\SIPA\AplicacionSIPA1\obj\Debug\RdlCompile.compiled
 C:\Users\user Dell\Documents\Trabajo\SIPA Archivos\PRODUCCION V2\SolucionCDAG\SIPA\AplicacionSIPA1\obj\Debug\AplicacionSIPA1.dll
 C:\Users\user Dell\Documents\Trabajo\SIPA Archivos\PRODUCCION V2\SolucionCDAG\SIPA\AplicacionSIPA1\obj\Debug\AplicacionSIPA1.pdb
+C:\Users\Renato Ojeda\Documents\Projectos CDAG\-SIPA-Des-Inst\SolucionCDAG\AplicacionSIPA1\bin\AplicacionSIPA1.dll.config
+C:\Users\Renato Ojeda\Documents\Projectos CDAG\-SIPA-Des-Inst\SolucionCDAG\AplicacionSIPA1\bin\AplicacionSIPA1.dll
+C:\Users\Renato Ojeda\Documents\Projectos CDAG\-SIPA-Des-Inst\SolucionCDAG\AplicacionSIPA1\bin\AplicacionSIPA1.pdb
+C:\Users\Renato Ojeda\Documents\Projectos CDAG\-SIPA-Des-Inst\SolucionCDAG\AplicacionSIPA1\bin\CapaAD.dll
+C:\Users\Renato Ojeda\Documents\Projectos CDAG\-SIPA-Des-Inst\SolucionCDAG\AplicacionSIPA1\bin\CapaEN.dll
+C:\Users\Renato Ojeda\Documents\Projectos CDAG\-SIPA-Des-Inst\SolucionCDAG\AplicacionSIPA1\bin\CapaLN.dll
+C:\Users\Renato Ojeda\Documents\Projectos CDAG\-SIPA-Des-Inst\SolucionCDAG\AplicacionSIPA1\bin\NumeroaLetras.dll
+C:\Users\Renato Ojeda\Documents\Projectos CDAG\-SIPA-Des-Inst\SolucionCDAG\AplicacionSIPA1\bin\Microsoft.SqlServer.Types.dll
+C:\Users\Renato Ojeda\Documents\Projectos CDAG\-SIPA-Des-Inst\SolucionCDAG\AplicacionSIPA1\bin\CapaAD.pdb
+C:\Users\Renato Ojeda\Documents\Projectos CDAG\-SIPA-Des-Inst\SolucionCDAG\AplicacionSIPA1\bin\CapaEN.pdb
+C:\Users\Renato Ojeda\Documents\Projectos CDAG\-SIPA-Des-Inst\SolucionCDAG\AplicacionSIPA1\bin\CapaLN.pdb
+C:\Users\Renato Ojeda\Documents\Projectos CDAG\-SIPA-Des-Inst\SolucionCDAG\AplicacionSIPA1\obj\Debug\AplicacionSIPA1.csprojResolveAssemblyReference.cache
+C:\Users\Renato Ojeda\Documents\Projectos CDAG\-SIPA-Des-Inst\SolucionCDAG\AplicacionSIPA1\obj\Debug\AplicacionSIPA1.dll
+C:\Users\Renato Ojeda\Documents\Projectos CDAG\-SIPA-Des-Inst\SolucionCDAG\AplicacionSIPA1\obj\Debug\AplicacionSIPA1.pdb

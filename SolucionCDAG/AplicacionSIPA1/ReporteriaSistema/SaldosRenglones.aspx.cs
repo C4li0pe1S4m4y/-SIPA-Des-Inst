@@ -23,7 +23,8 @@ namespace AplicacionSIPA1.ReporteriaSistema
         private PlanOperativoLN pOperativoLN;
         private PlanAccionLN pAccionLN;
         private PlanAnualLN pAnualLN;
-        
+        //Se agrego PlanOperativoLN, para corregir la reporteria Unidad/Dependencia
+        private PlanOperativoLN planOperativoLN;
         private PedidosLN pInsumoLN;
 
         protected void Page_LoadComplete(object sender, EventArgs e)
@@ -52,7 +53,6 @@ namespace AplicacionSIPA1.ReporteriaSistema
                 pOperativoLN = new PlanOperativoLN();
                 pAccionLN = new PlanAccionLN();
                 pAnualLN = new PlanAnualLN();
-
                 pEstrategicoLN.DdlPlanes(ddlPlanes);
 
                 int idPlan = 0;
@@ -91,7 +91,7 @@ namespace AplicacionSIPA1.ReporteriaSistema
                 else
                     pOperativoLN.DdlUnidades(ddlUnidades, usuario);               
 
-                if (ddlUnidades.Items.Count == 1)
+                if (ddlDependencia.Items.Count == 1)
                 {
                     if (!ddlAnios.SelectedValue.Equals("0"))
                     {
@@ -156,8 +156,11 @@ namespace AplicacionSIPA1.ReporteriaSistema
                 if (ddlAnios.SelectedValue.Equals("0") == false)
                     stringBuilder.Append(" AND a.anio = " + ddlAnios.SelectedValue);
 
+                /*Se agrego lo siguiente: if (ddlDependencia.SelectedValue.Equals("0") == false)
+                para corregir la reporteria Unidad/Dependencia*/
                 if (ddlUnidades.SelectedValue.Equals("0") == false)
-                    stringBuilder.Append(" AND a.id_unidad = " + ddlUnidades.SelectedValue);
+                    stringBuilder.Append(" AND a.id_unidad = " + ddlDependencia.SelectedValue);
+
                 else
                 {
                     stringBuilder.Append(" AND a.id_unidad IN(");
@@ -331,6 +334,54 @@ namespace AplicacionSIPA1.ReporteriaSistema
             catch (Exception ex)
             {
                 throw new Exception("obtenerPresupuesto(). " + ex.Message);
+            }
+        }
+        /*Se agrego lo siguiente: protected void ddlUnidades_SelectedIndexChanged(object sender, EventArgs e)
+        para corregir la reporteria Unidad/Dependencia*/
+        protected void ddlUnidades_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            try
+            {
+                validarPoa(int.Parse(ddlUnidades.SelectedValue), int.Parse(ddlAnios.SelectedValue));
+
+                int idPoa = 0;
+                int.TryParse(lblIdPoa.Text, out idPoa);
+
+                obtenerPresupuesto(idPoa, 0);
+                planOperativoLN = new PlanOperativoLN();
+                planOperativoLN.DdlDependencias(ddlDependencia, ddlUnidades.SelectedValue);
+                pAccionLN = new PlanAccionLN();
+                pAccionLN.DdlAcciones(ddlAcciones, idPoa, 0, "", 3);
+                ddlAcciones.Items[0].Text = "<< TODAS >>";
+
+                busqueda(sender, e);
+            }
+            catch (Exception ex)
+            {
+                lblError.Text = "ddlUnidades(). " + ex.Message;
+            }
+        }
+        /*Se agrego lo siguiente: protected void ddlDependencia_SelectedIndexChanged(object sender, EventArgs e)
+        para corregir la reporteria Unidad/Dependencia*/
+        protected void ddlDependencia_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            try
+            {
+                validarPoa(int.Parse(ddlDependencia.SelectedValue), int.Parse(ddlAnios.SelectedValue));
+
+                int idPoa = 0;
+                int.TryParse(lblIdPoa.Text, out idPoa);
+
+                obtenerPresupuesto(idPoa, 0);
+                pAccionLN = new PlanAccionLN();
+                pAccionLN.DdlAcciones(ddlAcciones, idPoa, 0, "", 3);
+                ddlAcciones.Items[0].Text = "<< TODAS >>";
+
+                busqueda(sender, e);
+            }
+            catch (Exception ex)
+            {
+                lblError.Text = "ddlDependencia(). " + ex.Message;
             }
         }
     }

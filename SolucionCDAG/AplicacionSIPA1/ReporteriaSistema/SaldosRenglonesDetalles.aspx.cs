@@ -16,6 +16,8 @@ namespace AplicacionSIPA1.ReporteriaSistema
     {
         private PlanEstrategicoLN pEstrategicoLN;
         private PlanOperativoLN pOperativoLN;
+        //Se agrego PlanOperativoLN, para corregir la reporteria Unidad/Dependencia
+        private PlanOperativoLN planOperativoLN;
         private PlanAccionLN pAccionLN;
         private PlanAnualLN pAnualLN;
         public string thisConnectionString = ConfigurationManager.ConnectionStrings["dbcdagsipaConnectionString1"].ConnectionString;
@@ -79,10 +81,9 @@ namespace AplicacionSIPA1.ReporteriaSistema
                 ReportViewer1.LocalReport.Refresh();
             }
         }
-
-        protected void ddlUnidades_SelectedIndexChanged(object sender, EventArgs e)
+        protected void ddlAnios_SelectedIndexChanged(object sender, EventArgs e)
         {
-            validarPoa(int.Parse(ddlUnidades.SelectedValue), int.Parse(ddlAnios.SelectedValue));
+            validarPoa(int.Parse(ddlDependencia.SelectedValue), int.Parse(ddlAnios.SelectedValue));
             int idPoa = 0;
             int.TryParse(lblPoa.Text, out idPoa);
             pAccionLN = new PlanAccionLN();
@@ -90,7 +91,63 @@ namespace AplicacionSIPA1.ReporteriaSistema
             ddlAcciones.Items[0].Text = "<< TODAS >>";
             System.Text.StringBuilder stringBuilder = new System.Text.StringBuilder();
             stringBuilder.Append(consulta());
-            stringBuilder.Append(" AND id_unidad = " + ddlUnidades.SelectedValue);
+            stringBuilder.Append(" AND t.Año = " + ddlAnios.SelectedValue);
+            stringBuilder.Append(" AND id_unidad = " + ddlDependencia.SelectedValue);
+            string tiposSalida = "";
+            for (int i = 0; i < chkTiposSalida.Items.Count; i++)
+                if (chkTiposSalida.Items[i].Selected == true)
+                    tiposSalida += chkTiposSalida.Items[i].Value + ", ";
+
+            if (tiposSalida.Equals("") == false)
+                stringBuilder.Append(" AND t.id_tipo_documento IN(" + tiposSalida + "0)");
+            string estadosSalida = "";
+            for (int i = 0; i < chkEstados.Items.Count; i++)
+                if (chkEstados.Items[i].Selected == true)
+                    estadosSalida += chkEstados.Items[i].Value + ", ";
+
+            if (estadosSalida.Equals("") == false)
+                stringBuilder.Append(" AND t.id_estado_pedido IN(" + estadosSalida + "0)");
+            if (!string.IsNullOrEmpty(txtFechaInicio.Text) && !string.IsNullOrEmpty(txtFechaFinal.Text))
+            {
+                stringBuilder.Append("and t.fecha_pedido between '" + txtFechaInicio.Text + "' and '" + txtFechaFinal.Text + "'");
+            }
+            stringBuilder.Append(" Order by t.no_solicitud");
+            MySqlConnection thisConnection = new MySqlConnection(thisConnectionString);
+            DataSet thisDataSet = new System.Data.DataSet();
+
+            /* Put the stored procedure result into a dataset */
+            thisDataSet = MySqlHelper.ExecuteDataset(thisConnection, stringBuilder.ToString());
+
+            ReportDataSource datasource = new ReportDataSource("DataSet1", thisDataSet.Tables[0]);
+
+            ReportViewer1.LocalReport.DataSources.Clear();
+            ReportViewer1.LocalReport.DataSources.Add(datasource);
+            if (thisDataSet.Tables[0].Rows.Count == 0)
+            {
+
+            }
+
+            ReportViewer1.LocalReport.Refresh();
+        }
+        protected void ddlUnidades_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            /*Se agrego lo siguiente: planOperativoLN = new PlanOperativoLN();
+                                      planOperativoLN.DdlDependencias(ddlDependencia, ddlUnidades.SelectedValue);
+            para corregir la reporteria Unidad/Dependencia*/
+            planOperativoLN = new PlanOperativoLN();
+            planOperativoLN.DdlDependencias(ddlDependencia, ddlUnidades.SelectedValue);
+        }
+        //Se agrego la Función ddlDependencias_SelectedIndexChanged para la busqueda de Unidad/Dependencia
+        protected void ddlDependencia_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            validarPoa(int.Parse(ddlDependencia.SelectedValue), int.Parse(ddlAnios.SelectedValue));
+            int idPoa = 0;
+            int.TryParse(lblPoa.Text, out idPoa);
+            pAccionLN = new PlanAccionLN();
+            pAccionLN.DdlAcciones(ddlAcciones, idPoa, 0, "", 3);
+            System.Text.StringBuilder stringBuilder = new System.Text.StringBuilder();
+            stringBuilder.Append(consulta());
+            stringBuilder.Append(" AND id_unidad = " + ddlDependencia.SelectedValue);
             stringBuilder.Append(" AND t.Año = " + ddlAnios.SelectedValue);
             string tiposSalida = "";
             for (int i = 0; i < chkTiposSalida.Items.Count; i++)
@@ -128,7 +185,6 @@ namespace AplicacionSIPA1.ReporteriaSistema
 
             ReportViewer1.LocalReport.Refresh();
         }
-
         protected bool validarPoa(int idUnidad, int anio)
         {
             bool poaValido = false;
@@ -149,7 +205,7 @@ namespace AplicacionSIPA1.ReporteriaSistema
             }
             catch (Exception ex)
             {
-
+               // throw new Exception("validarPoa(). " + ex.Message);
             }
             return poaValido;
         }
@@ -222,7 +278,7 @@ namespace AplicacionSIPA1.ReporteriaSistema
             int.TryParse(lblPoa.Text, out idPoa);
             System.Text.StringBuilder stringBuilder = new System.Text.StringBuilder();
             stringBuilder.Append(consulta());
-            stringBuilder.Append(" AND id_unidad = " + ddlUnidades.SelectedValue);
+            stringBuilder.Append(" AND id_unidad = " + ddlDependencia.SelectedValue);
             stringBuilder.Append(" AND t.Año = " + ddlAnios.SelectedValue);
             stringBuilder.Append(" AND id_accion = " + ddlAcciones.SelectedValue);
             string tiposSalida = "";
@@ -266,11 +322,11 @@ namespace AplicacionSIPA1.ReporteriaSistema
         {
             System.Text.StringBuilder stringBuilder = new System.Text.StringBuilder();
             stringBuilder.Append(consulta());
-            if (ddlUnidades.SelectedIndex >= 0)
+            if (ddlDependencia.SelectedIndex >= 0)
             {
-                if (ddlUnidades.SelectedValue != "0")
+                if (ddlDependencia.SelectedValue != "0")
                 {
-                    stringBuilder.Append(" AND id_unidad = " + ddlUnidades.SelectedValue);
+                    stringBuilder.Append(" AND id_unidad = " + ddlDependencia.SelectedValue);
                     stringBuilder.Append(" AND t.Año = " + ddlAnios.SelectedValue);
                 }
                
@@ -319,11 +375,11 @@ namespace AplicacionSIPA1.ReporteriaSistema
         {
             System.Text.StringBuilder stringBuilder = new System.Text.StringBuilder();
             stringBuilder.Append(consulta());
-            if (ddlUnidades.SelectedIndex >= 0)
+            if (ddlDependencia.SelectedIndex >= 0)
             {
-                if (ddlUnidades.SelectedValue != "0")
+                if (ddlDependencia.SelectedValue != "0")
                 {
-                    stringBuilder.Append(" AND id_unidad = " + ddlUnidades.SelectedValue);
+                    stringBuilder.Append(" AND id_unidad = " + ddlDependencia.SelectedValue);
                     stringBuilder.Append(" AND t.Año = " + ddlAnios.SelectedValue);
                 }
 
@@ -371,11 +427,11 @@ namespace AplicacionSIPA1.ReporteriaSistema
         {
             System.Text.StringBuilder stringBuilder = new System.Text.StringBuilder();
             stringBuilder.Append(consulta());
-            if (ddlUnidades.SelectedIndex >= 0)
+            if (ddlDependencia.SelectedIndex >= 0)
             {
-                if (ddlUnidades.SelectedValue != "0")
+                if (ddlDependencia.SelectedValue != "0")
                 {
-                    stringBuilder.Append(" AND id_unidad = " + ddlUnidades.SelectedValue);
+                    stringBuilder.Append(" AND id_unidad = " + ddlDependencia.SelectedValue);
                     stringBuilder.Append(" AND t.Año = " + ddlAnios.SelectedValue);
                 }
 
@@ -423,11 +479,11 @@ namespace AplicacionSIPA1.ReporteriaSistema
         {
             System.Text.StringBuilder stringBuilder = new System.Text.StringBuilder();
             stringBuilder.Append(consulta());
-            if (ddlUnidades.SelectedIndex >= 0)
+            if (ddlDependencia.SelectedIndex >= 0)
             {
-                if (ddlUnidades.SelectedValue != "0")
+                if (ddlDependencia.SelectedValue != "0")
                 {
-                    stringBuilder.Append(" AND id_unidad = " + ddlUnidades.SelectedValue);
+                    stringBuilder.Append(" AND id_unidad = " + ddlDependencia.SelectedValue);
                 }
 
             }
@@ -468,55 +524,6 @@ namespace AplicacionSIPA1.ReporteriaSistema
             }
 
             ReportViewer1.LocalReport.Refresh();
-        }
-
-        protected void ddlAnios_SelectedIndexChanged(object sender, EventArgs e)
-        {
-            validarPoa(int.Parse(ddlUnidades.SelectedValue), int.Parse(ddlAnios.SelectedValue));
-            int idPoa = 0;
-            int.TryParse(lblPoa.Text, out idPoa);
-            pAccionLN = new PlanAccionLN();
-            pAccionLN.DdlAcciones(ddlAcciones, idPoa, 0, "", 3);
-            ddlAcciones.Items[0].Text = "<< TODAS >>";
-            System.Text.StringBuilder stringBuilder = new System.Text.StringBuilder();
-            stringBuilder.Append(consulta());
-            stringBuilder.Append(" AND t.Año = " + ddlAnios.SelectedValue);
-            stringBuilder.Append(" AND id_unidad = " + ddlUnidades.SelectedValue);
-            string tiposSalida = "";
-            for (int i = 0; i < chkTiposSalida.Items.Count; i++)
-                if (chkTiposSalida.Items[i].Selected == true)
-                    tiposSalida += chkTiposSalida.Items[i].Value + ", ";
-
-            if (tiposSalida.Equals("") == false)
-                stringBuilder.Append(" AND t.id_tipo_documento IN(" + tiposSalida + "0)");
-            string estadosSalida = "";
-            for (int i = 0; i < chkEstados.Items.Count; i++)
-                if (chkEstados.Items[i].Selected == true)
-                    estadosSalida += chkEstados.Items[i].Value + ", ";
-
-            if (estadosSalida.Equals("") == false)
-                stringBuilder.Append(" AND t.id_estado_pedido IN(" + estadosSalida + "0)");
-            if (!string.IsNullOrEmpty(txtFechaInicio.Text) && !string.IsNullOrEmpty(txtFechaFinal.Text))
-            {
-                stringBuilder.Append("and t.fecha_pedido between '" + txtFechaInicio.Text + "' and '" + txtFechaFinal.Text + "'");
-            }
-            stringBuilder.Append(" Order by t.no_solicitud");
-            MySqlConnection thisConnection = new MySqlConnection(thisConnectionString);
-            DataSet thisDataSet = new System.Data.DataSet();
-
-            /* Put the stored procedure result into a dataset */
-            thisDataSet = MySqlHelper.ExecuteDataset(thisConnection, stringBuilder.ToString());
-
-            ReportDataSource datasource = new ReportDataSource("DataSet1", thisDataSet.Tables[0]);
-
-            ReportViewer1.LocalReport.DataSources.Clear();
-            ReportViewer1.LocalReport.DataSources.Add(datasource);
-            if (thisDataSet.Tables[0].Rows.Count == 0)
-            {
-
-            }
-
-            ReportViewer1.LocalReport.Refresh();
-        }
+        }        
     }
 }
