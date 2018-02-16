@@ -34,7 +34,7 @@ namespace AplicacionSIPA1.ReporteriaSistema
                 pEstrategicoLN = new PlanEstrategicoLN();
                 pEstrategicoLN.DdlAniosPlan(ddlAnios, 2017, 2020);
                 ddlAnios.Items.RemoveAt(0);
-                ddlAnios.SelectedValue = "2018";
+                ddlAnios.SelectedValue = "2017";
 
                 string criterio = "AND c.id_tipo IN(48) AND a.usuario = ''" + usuario + "''";
                 pInsumoLN = new PedidosLN();
@@ -58,9 +58,9 @@ namespace AplicacionSIPA1.ReporteriaSistema
                 if (tiposSalida.Equals("") == false)
                     stringBuilder.Append(" AND t.id_tipo_documento IN(" + tiposSalida + "0)");
 
-                if ((ddlUnidades.Items.Count == 1) ||  (ddlUnidades.SelectedIndex > 0))
+                if ((ddlDependencias.Items.Count == 1) ||  (ddlDependencias.SelectedIndex > 0))
                 {
-                    stringBuilder.Append(" AND id_unidad = " + ddlUnidades.SelectedValue);
+                    stringBuilder.Append(" AND id_unidad = " + ddlDependencias.SelectedValue);
                     stringBuilder.Append(" AND anio_solicitud = " + ddlAnios.SelectedValue);
                 }
                 stringBuilder.Append(" Order by t.no_solicitud, t.documento, t.fecha_comparacion_anterior");
@@ -89,7 +89,7 @@ namespace AplicacionSIPA1.ReporteriaSistema
             pOperativoLN = new PlanOperativoLN();
             pOperativoLN.DdlDependencias(ddlDependencias, ddlUnidades.SelectedValue);
             stringBuilder.Append(consulta());
-            stringBuilder.Append(" AND id_unidad = " + ddlUnidades.SelectedValue);
+            stringBuilder.Append(" AND id_unidad = " + ddlDependencias.SelectedValue);
             stringBuilder.Append(" AND anio_solicitud = " + ddlAnios.SelectedValue);
             string tiposSalida = "";
             for (int i = 0; i < chkTiposSalida.Items.Count; i++)
@@ -186,9 +186,9 @@ namespace AplicacionSIPA1.ReporteriaSistema
             if (tiposSalida.Equals("") == false)
                 stringBuilder.Append(" AND t.id_tipo_documento IN(" + tiposSalida + "0)");
 
-            if (ddlUnidades.SelectedIndex>0)
+            if (ddlDependencias.SelectedIndex>0)
             {
-                stringBuilder.Append(" AND id_unidad = " + ddlUnidades.SelectedValue);
+                stringBuilder.Append(" AND id_unidad = " + ddlDependencias.SelectedValue);
                 stringBuilder.Append(" AND anio_solicitud = " + ddlAnios.SelectedValue);
             }
             stringBuilder.Append(" Order by t.no_solicitud, t.documento, t.fecha_comparacion_anterior");
@@ -214,8 +214,17 @@ namespace AplicacionSIPA1.ReporteriaSistema
         {
             System.Text.StringBuilder stringBuilder = new System.Text.StringBuilder();
             stringBuilder.Append(consulta());
-            stringBuilder.Append(" AND id_unidad = " + ddlUnidades.SelectedValue);
-            stringBuilder.Append(" AND anio_solicitud = " + ddlAnios.SelectedValue);
+
+            if (ddlUnidades.SelectedValue.Equals("0")== true) { 
+                stringBuilder.Append(" AND id_unidad = " + "0");
+                stringBuilder.Append(" AND anio_solicitud = " + ddlAnios.SelectedValue);
+            }
+            else
+            { 
+                stringBuilder.Append(" AND id_unidad = " + ddlDependencias.SelectedValue);
+                stringBuilder.Append(" AND anio_solicitud = " + ddlAnios.SelectedValue);
+            }
+
             string tiposSalida = "";
             for (int i = 0; i < chkTiposSalida.Items.Count; i++)
                 if (chkTiposSalida.Items[i].Selected == true)
