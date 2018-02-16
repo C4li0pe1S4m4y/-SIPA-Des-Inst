@@ -206,7 +206,7 @@ namespace AplicacionSIPA1.ReporteriaSistema
             {
                 stringBuilder.Append("Where aa.id_poa  = " + idPoa);
             }
-            
+
             pAccionLN = new PlanAccionLN();
             pAccionLN.DdlAcciones(ddlAcciones, idPoa, 0, "", 3);
             ddlAcciones.Items[0].Text = "<< TODAS >>";
@@ -223,7 +223,7 @@ namespace AplicacionSIPA1.ReporteriaSistema
             {
                 thisDataSet = MySqlHelper.ExecuteDataset(thisConnection, busqueda(1), SearchValue);
             }
-            
+
 
             ReportDataSource datasource = new ReportDataSource("DataSet1", thisDataSet.Tables[0]);
             System.Data.DataSet thisDataSet2 = new System.Data.DataSet();
