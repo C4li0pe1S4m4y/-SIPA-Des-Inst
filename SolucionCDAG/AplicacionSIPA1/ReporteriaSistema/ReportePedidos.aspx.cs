@@ -177,7 +177,15 @@ namespace AplicacionSIPA1.ReporteriaSistema
             obtenerPresupuesto(idPoa, 0);
             System.Text.StringBuilder stringBuilder = new System.Text.StringBuilder();
             stringBuilder.Append(querypoa());
-            stringBuilder.Append("Where aa.id_poa  = " + idPoa);
+            if (ddlUnidades.SelectedValue == "29")
+            {
+                stringBuilder.Append("Where aa.id_poa  in(29,68,69,70)");
+            }
+            else
+            {
+                stringBuilder.Append("Where aa.id_poa  = " + idPoa);
+            }
+            
             pAccionLN = new PlanAccionLN();
             pAccionLN.DdlAcciones(ddlAcciones, idPoa, 0, "", 3);
             ddlAcciones.Items[0].Text = "<< TODAS >>";
@@ -186,7 +194,15 @@ namespace AplicacionSIPA1.ReporteriaSistema
             SearchValue[0] = new MySqlParameter("@Unidad", ddlUnidades.SelectedValue);
             SearchValue[1] = new MySqlParameter("@Año", ddlAnios.SelectedValue);
             /* Put the stored procedure result into a dataset */
-            thisDataSet = MySqlHelper.ExecuteDataset(thisConnection, busqueda(1), SearchValue);
+            if (ddlUnidades.SelectedValue == "29")
+            {
+                thisDataSet = MySqlHelper.ExecuteDataset(thisConnection, busqueda(3), SearchValue);
+            }
+            else
+            {
+                thisDataSet = MySqlHelper.ExecuteDataset(thisConnection, busqueda(1), SearchValue);
+            }
+            
 
             ReportDataSource datasource = new ReportDataSource("DataSet1", thisDataSet.Tables[0]);
             System.Data.DataSet thisDataSet2 = new System.Data.DataSet();
