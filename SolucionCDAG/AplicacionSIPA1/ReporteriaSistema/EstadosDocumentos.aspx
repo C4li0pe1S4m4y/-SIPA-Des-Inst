@@ -5,13 +5,15 @@
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder2" runat="server">
     <h2>&nbsp;&nbsp;&nbsp;&nbsp; Listado de Tiempos Por documento </h2>
-    <div class="col-md-5">
+    <div class="col-md-2">
         <asp:Label ID="lblAnio" runat="server" Text="Año"></asp:Label>
         <asp:DropDownList ID="ddlAnios" runat="server" OnSelectedIndexChanged="ddlAnios_SelectedIndexChanged" AutoPostBack="True" class="form-control" Width="80%"></asp:DropDownList>
     </div>
     <div class="col-md-5">
         <asp:Label ID="lblUnidad" runat="server" Text="Unidad"></asp:Label>
         <asp:DropDownList ID="ddlUnidades" runat="server" OnSelectedIndexChanged="ddlUnidades_SelectedIndexChanged" AutoPostBack="True" class="form-control" Width="80%"></asp:DropDownList>
+        <asp:Label ID="Label2" runat="server" Text="Dependencia"></asp:Label>
+        <asp:DropDownList ID="ddlDependencias" runat="server" OnSelectedIndexChanged="ddlDependencias_SelectedIndexChanged" AutoPostBack="True" class="form-control" Width="80%"></asp:DropDownList>
     </div>
     <div class="col-md-5">
         <asp:Label ID="Label1" runat="server" Text="Tipo de Documento"></asp:Label>

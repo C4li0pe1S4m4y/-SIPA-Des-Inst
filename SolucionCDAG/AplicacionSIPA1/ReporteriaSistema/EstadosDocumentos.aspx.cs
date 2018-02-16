@@ -86,6 +86,8 @@ namespace AplicacionSIPA1.ReporteriaSistema
         protected void ddlUnidades_SelectedIndexChanged(object sender, EventArgs e)
         {
             System.Text.StringBuilder stringBuilder = new System.Text.StringBuilder();
+            pOperativoLN = new PlanOperativoLN();
+            pOperativoLN.DdlDependencias(ddlDependencias, ddlUnidades.SelectedValue);
             stringBuilder.Append(consulta());
             stringBuilder.Append(" AND id_unidad = " + ddlUnidades.SelectedValue);
             stringBuilder.Append(" AND anio_solicitud = " + ddlAnios.SelectedValue);
@@ -115,6 +117,37 @@ namespace AplicacionSIPA1.ReporteriaSistema
             ReportViewer1.LocalReport.Refresh();
         }
 
+        protected void ddlDependencias_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            System.Text.StringBuilder stringBuilder = new System.Text.StringBuilder();
+            stringBuilder.Append(consulta());
+            stringBuilder.Append(" AND id_unidad = " + ddlDependencias.SelectedValue);
+            stringBuilder.Append(" AND anio_solicitud = " + ddlAnios.SelectedValue);
+            string tiposSalida = "";
+            for (int i = 0; i < chkTiposSalida.Items.Count; i++)
+                if (chkTiposSalida.Items[i].Selected == true)
+                    tiposSalida += chkTiposSalida.Items[i].Value + ", ";
+
+            if (tiposSalida.Equals("") == false)
+                stringBuilder.Append(" AND t.id_tipo_documento IN(" + tiposSalida + "0)");
+            stringBuilder.Append(" Order by t.no_solicitud, t.documento, t.fecha_comparacion_anterior");
+            MySqlConnection thisConnection = new MySqlConnection(thisConnectionString);
+            System.Data.DataSet thisDataSet = new System.Data.DataSet();
+
+            /* Put the stored procedure result into a dataset */
+            thisDataSet = MySqlHelper.ExecuteDataset(thisConnection, stringBuilder.ToString());
+
+            ReportDataSource datasource = new ReportDataSource("DataSet1", thisDataSet.Tables[0]);
+
+            ReportViewer1.LocalReport.DataSources.Clear();
+            ReportViewer1.LocalReport.DataSources.Add(datasource);
+            if (thisDataSet.Tables[0].Rows.Count == 0)
+            {
+
+            }
+
+            ReportViewer1.LocalReport.Refresh();
+        }
 
         public string consulta()
         {
