@@ -130,6 +130,27 @@ namespace AplicacionSIPA1.ReporteriaSistema
                "a.id_pedido = c.id_viatico LEFT JOIN sipa_detalles_accion d ON d.id_detalle = c.id_detalle_accion INNER JOIN ccl_empleados se ON se.id_empleado = a.id_solicitante INNER JOIN sipa_tipos_viatico tv ON tv.id_tipo_viatico = c.id_tipo_viatico WHERE (a.id_tipo_documento = 4))" +
                " t WHERE (1 > 0) AND (id_estado_pedido IN (8, 10, 12)) and id_unidad = @Unidad and id_accion =@accion  ORDER BY id_unidad";
             }
+            if (opcion == 3)
+            {
+                valor = "SELECT no_solicitud, Año, Accion, Documento, fecha_pedido, Descripcion, Estado, unidad_administrativa, Pedido, costo_estimado, costo_real, no_renglon, no_pac, anio_solicitud, id_unidad," +
+               "id_accion, id_tipo_documento, id_estado_pedido, Solicitante FROM (SELECT a.no_solicitud, a.anio_solicitud AS Año, fn_codigo_accion(b.id_accion, 0, '', 1) AS Accion, a.Documento, a.fecha_pedido, c.Descripcion," +
+               " a.estado_salida AS Estado, a.unidad_administrativa, c.costo_pedido AS Pedido, c.costo_estimado, c.costo_real, d.no_renglon, p.id_pac AS no_pac, a.anio_solicitud, a.id_unidad, b.id_accion, a.id_tipo_documento, " +
+               "a.id_estado_pedido, CONCAT(se.id_empleado, ' - ', se.nombres) AS Solicitante FROM unionpedidocc a INNER JOIN sipa_acciones b ON a.id_accion = b.id_accion INNER JOIN sipa_pedido_detalle c ON a.id_pedido = c.id_pedido " +
+               "LEFT JOIN sipa_detalles_accion d ON d.id_detalle = c.id_detalle_accion INNER JOIN sipa_pac p ON p.id_pac = c.id_pac INNER JOIN ccl_empleados se ON se.id_empleado = a.id_solicitante WHERE (a.id_tipo_documento = 1) " +
+               "UNION ALL SELECT a.no_solicitud, a.anio_solicitud AS Año, fn_codigo_accion(b.id_accion, 0, '', 1) AS Accion, a.Documento, a.fecha_pedido, c.descripcion, a.estado_salida AS Estado, a.unidad_administrativa, c.costo_vale AS Pedido," +
+               " c.costo_estimado, c.costo_real, d.no_renglon, 'N/A' AS no_pac, a.anio_solicitud, a.id_unidad, b.id_accion, a.id_tipo_documento, a.id_estado_pedido, CONCAT(se.id_empleado, ' - ', se.nombres) AS Solicitante FROM unionpedidocc a " +
+               " INNER JOIN sipa_acciones b ON a.id_accion = b.id_accion INNER JOIN sipa_ccvale_detalle c ON a.id_pedido = c.id_ccvale LEFT JOIN sipa_detalles_accion d ON d.id_detalle = c.id_detalle_accion INNER JOIN ccl_empleados se ON se.id_empleado " +
+               "= a.id_solicitante WHERE (a.id_tipo_documento = 2) UNION ALL SELECT a.no_solicitud, a.anio_solicitud AS Año, fn_codigo_accion(b.id_accion, 0, '', 1) AS Accion, CONCAT(a.Documento, '/', tv.abreviatura) AS Expr1, a.fecha_pedido, c.justificacion," +
+               " a.estado_salida AS Estado, a.unidad_administrativa, c.costo_viatico + c.pasajes + c.kilometraje AS Pedido, c.costo_estimado + c.pasajes_estimado + c.kilometraje_estimado AS costo_estimado, c.costo_real + c.pasajes_real + c.kilometraje_real AS costo_real" +
+               ", d.no_renglon, 'N/A' AS no_pac, a.anio_solicitud, a.id_unidad, b.id_accion, a.id_tipo_documento, a.id_estado_pedido, CONCAT(se.id_empleado, ' - ', se.nombres) AS Solicitante FROM unionpedidocc a INNER JOIN sipa_acciones b ON a.id_accion = b.id_accion " +
+               " INNER JOIN sipa_viaticos c ON a.id_pedido = c.id_viatico LEFT JOIN sipa_detalles_accion d ON d.id_detalle = c.id_detalle_accion INNER JOIN ccl_empleados se ON se.id_empleado = a.id_solicitante INNER JOIN sipa_tipos_viatico tv ON tv.id_tipo_viatico = " +
+               "c.id_tipo_viatico WHERE (a.id_tipo_documento = 3) UNION ALL SELECT a.no_solicitud, a.anio_solicitud AS Año, fn_codigo_accion(b.id_accion, 0, '', 1) AS Accion, CONCAT(a.Documento, '/', tv.abreviatura) AS Expr1, a.fecha_pedido, c.justificacion, a.estado_salida " +
+               "AS Estado, a.unidad_administrativa, c.costo_viatico + c.pasajes + c.kilometraje AS Pedido, c.costo_estimado + c.pasajes_estimado + c.kilometraje_estimado AS costo_estimado, c.costo_real + c.pasajes_real + c.kilometraje_real AS costo_real, d.no_renglon, 'N/A' " +
+               "AS no_pac, a.anio_solicitud, a.id_unidad, b.id_accion, a.id_tipo_documento, a.id_estado_pedido, CONCAT(se.id_empleado, ' - ', se.nombres) AS Solicitante FROM unionpedidocc a INNER JOIN sipa_acciones b ON a.id_accion = b.id_accion INNER JOIN sipa_viaticos c ON " +
+               "a.id_pedido = c.id_viatico LEFT JOIN sipa_detalles_accion d ON d.id_detalle = c.id_detalle_accion INNER JOIN ccl_empleados se ON se.id_empleado = a.id_solicitante INNER JOIN sipa_tipos_viatico tv ON tv.id_tipo_viatico = c.id_tipo_viatico WHERE (a.id_tipo_documento = 4))" +
+               " t WHERE (1 > 0) AND (id_estado_pedido IN (8, 10, 12)) and id_unidad in (@Unidad,68,69,70) and Año=@Año  ORDER BY id_unidad";
+
+            }
 
             return valor;
         }
