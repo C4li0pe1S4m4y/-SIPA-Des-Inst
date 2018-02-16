@@ -33,12 +33,11 @@ namespace AplicacionSIPA1.ReporteriaSistema
             {
                 try
                 {
-
                     NuevoEncabezadoPoa();                    
                 }
                 catch (Exception ex)
                 {
-                    lblError.Text = "Page_LoadComplete(). " + ex.Message;
+                    lblError.Text = ("Escoger la Dependencia para Visualizar los Datos" + ex.Message) ;
                 }
             }
         }
@@ -83,36 +82,38 @@ namespace AplicacionSIPA1.ReporteriaSistema
                 pInsumoLN = new PedidosLN();
                 DataSet dsResultado = pInsumoLN.InformacionPermisos(0, 0, criterio, 12);
 
-                if (bool.Parse(dsResultado.Tables["RESULTADO"].Rows[0]["ERRORES"].ToString()))
+                if (bool.Parse(dsResultado.Tables["RESULTADO"].Rows[0]["ERRORES"].ToString())) { 
                     throw new Exception(dsResultado.Tables["RESULTADO"].Rows[0]["MSG_ERROR"].ToString());
-
-                if (dsResultado.Tables["BUSQUEDA"].Rows.Count > 0)
+                }
+                if (dsResultado.Tables["BUSQUEDA"].Rows.Count > 0) { 
                     pOperativoLN.DdlUnidades(ddlUnidades);
-                else
-                    pOperativoLN.DdlUnidades(ddlUnidades, usuario);               
-
-                if (ddlDependencia.Items.Count == 1)
+                    pOperativoLN.DdlDependencias(ddlDependencia, ddlUnidades.SelectedValue);
+                }
+                else { 
+                    pOperativoLN.DdlUnidades(ddlUnidades, usuario);
+                    pOperativoLN.DdlDependencias(ddlDependencia, ddlUnidades.SelectedValue);
+                }
+                if (ddlUnidades.Items.Count == 1)
                 {
                     if (!ddlAnios.SelectedValue.Equals("0"))
                     {
-                        validarPoa(int.Parse(ddlUnidades.SelectedValue), int.Parse(ddlAnios.SelectedValue));
-                        
+                        validarPoa(int.Parse(ddlUnidades.SelectedValue), int.Parse(ddlAnios.SelectedValue));                      
                     }
                 }
 
                 int idPoa = 0;
                 int.TryParse(lblIdPoa.Text, out idPoa);
 
-                obtenerPresupuesto(idPoa, 0);
                 pAccionLN = new PlanAccionLN();
-                pAccionLN.DdlAcciones(ddlAcciones, 0, 0, "", 3);
+                obtenerPresupuesto(idPoa, 0);
+                pAccionLN.DdlAcciones(ddlAcciones, idPoa, 0, "", 3);
                 ddlAcciones.Items[0].Text = "<< TODAS >>";
 
                 filtrarGrid();
             }
             catch (Exception ex)
             {
-                throw new Exception("NuevoEncabezadoPoa(). " + ex.Message);
+                throw new Exception("Escoger la Dependencia para Visualizar los Datos" + ex.Message);
             }
         }
 
@@ -136,8 +137,8 @@ namespace AplicacionSIPA1.ReporteriaSistema
                 lblIdPoa.Text = idPoa.ToString();
             }
             catch (Exception ex)
-            {
-                lblErrorPoa.Text = lblError.Text = "Error: " + ex.Message;
+            {           
+                lblErrorPoa.Text = lblError.Text = "Escoger la Dependencia para Visualizar los Datos " + ex.Message;
             }
             return poaValido;
         }
@@ -156,9 +157,7 @@ namespace AplicacionSIPA1.ReporteriaSistema
                 if (ddlAnios.SelectedValue.Equals("0") == false)
                     stringBuilder.Append(" AND a.anio = " + ddlAnios.SelectedValue);
 
-                /*Se agrego lo siguiente: if (ddlDependencia.SelectedValue.Equals("0") == false)
-                para corregir la reporteria Unidad/Dependencia*/
-                if (ddlUnidades.SelectedValue.Equals("0") == false)
+                if (ddlDependencia.SelectedValue.Equals("0") == false)
                     stringBuilder.Append(" AND a.id_unidad = " + ddlDependencia.SelectedValue);
 
                 else
@@ -185,7 +184,7 @@ namespace AplicacionSIPA1.ReporteriaSistema
                 int idPoa = 0;
 
                 int.TryParse(lblIdPoa.Text, out idPoa);
-                int.TryParse(ddlUnidades.SelectedValue, out idUnidad);
+                int.TryParse(ddlDependencia.SelectedValue, out idUnidad);
 
                 pAccionLN = new PlanAccionLN();
                 DataSet dsResultado = pAccionLN.InformacionAccionDetalles(0, 0, stringBuilder.ToString(), 3);
@@ -217,7 +216,7 @@ namespace AplicacionSIPA1.ReporteriaSistema
             }
             catch (Exception ex)
             {
-                throw new Exception("filtrarGrid(). " + ex.Message);
+               // throw new Exception("filtrarGrid(). " + ex.Message);
             }
         }
 
@@ -230,7 +229,7 @@ namespace AplicacionSIPA1.ReporteriaSistema
             }
             catch (Exception ex)
             {
-                lblError.Text = "busqueda(). " + ex.Message;
+              //  lblError.Text = "busqueda(). " + ex.Message;
             }
         }
 
@@ -261,7 +260,7 @@ namespace AplicacionSIPA1.ReporteriaSistema
             }
             catch (Exception ex)
             {
-                lblError.Text = "gridReportes_RowDataBound(). " + ex.Message;
+               // lblError.Text = "gridReportes_RowDataBound(). " + ex.Message;
             }
 
         }
@@ -289,7 +288,7 @@ namespace AplicacionSIPA1.ReporteriaSistema
             }
             catch (Exception ex)
             {
-                lblError.Text = "ddlAnios(). " + ex.Message;
+                //lblError.Text = "ddlAnios(). " + ex.Message;
             }
         }
 
@@ -310,7 +309,7 @@ namespace AplicacionSIPA1.ReporteriaSistema
             }
             catch (Exception ex)
             {
-                lblError.Text = "btnNuevo(). " + ex.Message;
+                //lblError.Text = "btnNuevo(). " + ex.Message;
             }
 
         }
@@ -333,7 +332,7 @@ namespace AplicacionSIPA1.ReporteriaSistema
             }
             catch (Exception ex)
             {
-                throw new Exception("obtenerPresupuesto(). " + ex.Message);
+                //throw new Exception("obtenerPresupuesto(). " + ex.Message);
             }
         }
         /*Se agrego lo siguiente: protected void ddlUnidades_SelectedIndexChanged(object sender, EventArgs e)
@@ -344,12 +343,13 @@ namespace AplicacionSIPA1.ReporteriaSistema
             {
                 validarPoa(int.Parse(ddlUnidades.SelectedValue), int.Parse(ddlAnios.SelectedValue));
 
+                planOperativoLN = new PlanOperativoLN();
+                planOperativoLN.DdlDependencias(ddlDependencia, ddlUnidades.SelectedValue);
+
                 int idPoa = 0;
                 int.TryParse(lblIdPoa.Text, out idPoa);
 
                 obtenerPresupuesto(idPoa, 0);
-                planOperativoLN = new PlanOperativoLN();
-                planOperativoLN.DdlDependencias(ddlDependencia, ddlUnidades.SelectedValue);
                 pAccionLN = new PlanAccionLN();
                 pAccionLN.DdlAcciones(ddlAcciones, idPoa, 0, "", 3);
                 ddlAcciones.Items[0].Text = "<< TODAS >>";
@@ -381,7 +381,7 @@ namespace AplicacionSIPA1.ReporteriaSistema
             }
             catch (Exception ex)
             {
-                lblError.Text = "ddlDependencia(). " + ex.Message;
+               // lblError.Text = "ddlDependencia(). " + ex.Message;
             }
         }
     }
