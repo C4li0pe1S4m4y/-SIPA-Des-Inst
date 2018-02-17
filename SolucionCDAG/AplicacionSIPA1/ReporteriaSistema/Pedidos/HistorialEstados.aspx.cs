@@ -85,14 +85,17 @@ namespace AplicacionSIPA1.ReporteriaSistema.Pedidos
                 pInsumoLN = new PedidosLN();
                 DataSet dsResultado = pInsumoLN.InformacionPermisos(0, 0, criterio, 12);
 
-                if (bool.Parse(dsResultado.Tables["RESULTADO"].Rows[0]["ERRORES"].ToString()))
+                if (bool.Parse(dsResultado.Tables["RESULTADO"].Rows[0]["ERRORES"].ToString())) { 
                     throw new Exception(dsResultado.Tables["RESULTADO"].Rows[0]["MSG_ERROR"].ToString());
-
-                if (dsResultado.Tables["BUSQUEDA"].Rows.Count > 0)
+                }
+                if (dsResultado.Tables["BUSQUEDA"].Rows.Count > 0) { 
                     pOperativoLN.DdlUnidades(ddlUnidades);
-                else
+                    pOperativoLN.DdlDependencias(ddlDependencias, ddlUnidades.SelectedValue);
+                }
+                else { 
                     pOperativoLN.DdlUnidades(ddlUnidades, usuario);
-
+                    pOperativoLN.DdlDependencias(ddlDependencias, ddlUnidades.SelectedValue);
+                }
                 if (ddlUnidades.Items.Count == 1)
                 {
                     if (!ddlAnios.SelectedValue.Equals("0"))
@@ -170,8 +173,8 @@ namespace AplicacionSIPA1.ReporteriaSistema.Pedidos
                 if (ddlAnios.SelectedValue.Equals("0") == false)
                     stringBuilder.Append(" AND t.anio_solicitud = " + ddlAnios.SelectedValue);
 
-                if (ddlUnidades.SelectedValue.Equals("0") == false)
-                    stringBuilder.Append(" AND t.id_unidad = " + ddlUnidades.SelectedValue);
+                if (ddlDependencias.SelectedValue.Equals("0") == false)
+                    stringBuilder.Append(" AND t.id_unidad = " + ddlDependencias.SelectedValue);
                 else
                 {
                     stringBuilder.Append(" AND t.id_unidad IN(");
@@ -289,7 +292,7 @@ namespace AplicacionSIPA1.ReporteriaSistema.Pedidos
         {
             try
             {
-                validarPoa(int.Parse(ddlUnidades.SelectedValue), int.Parse(ddlAnios.SelectedValue));
+                validarPoa(int.Parse(ddlDependencias.SelectedValue), int.Parse(ddlAnios.SelectedValue));
 
                 int idPoa = 0;
                 int.TryParse(lblIdPoa.Text, out idPoa);
@@ -305,7 +308,54 @@ namespace AplicacionSIPA1.ReporteriaSistema.Pedidos
             {
                 lblError.Text = "ddlAnios(). " + ex.Message;
             }
-        }        
+        }
+
+        protected void ddlUnidades_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            try
+            {
+                validarPoa(int.Parse(ddlDependencias.SelectedValue), int.Parse(ddlAnios.SelectedValue));
+
+                pOperativoLN = new PlanOperativoLN();
+                pOperativoLN.DdlDependencias(ddlDependencias, ddlUnidades.SelectedValue);
+
+                int idPoa = 0;
+                int.TryParse(lblIdPoa.Text, out idPoa);
+
+                obtenerPresupuesto(idPoa, 0);
+                pAccionLN = new PlanAccionLN();
+                pAccionLN.DdlAcciones(ddlAcciones, idPoa, 0, "", 3);
+                ddlAcciones.Items[0].Text = "<< TODAS >>";
+
+                busqueda(sender, e);
+            }
+            catch (Exception ex)
+            {
+                lblError.Text = "ddlUnidades(). " + ex.Message;
+            }
+        }
+
+        protected void ddlDependencias_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            try
+            {
+                validarPoa(int.Parse(ddlDependencias.SelectedValue), int.Parse(ddlAnios.SelectedValue));
+
+                int idPoa = 0;
+                int.TryParse(lblIdPoa.Text, out idPoa);
+
+                obtenerPresupuesto(idPoa, 0);
+                pAccionLN = new PlanAccionLN();
+                pAccionLN.DdlAcciones(ddlAcciones, idPoa, 0, "", 3);
+                ddlAcciones.Items[0].Text = "<< TODAS >>";
+
+                busqueda(sender, e);
+            }
+            catch (Exception ex)
+            {
+                lblError.Text = "ddlDependencias(). " + ex.Message;
+            }
+        }
 
         protected void obtenerPresupuesto(int idPoa, int idDependencia)
         {

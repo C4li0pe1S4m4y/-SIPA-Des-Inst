@@ -62,20 +62,25 @@
                 <tr>
                     <td style="width: 5%">&nbsp;</td>
                     <td style="width: 5%">&nbsp;</td>
-                    <td colspan="8">Año:</td>
-                    <td colspan="8">Unidad:</td>
+                    <td colspan="2">Año:</td>
+                    <td colspan="6">Unidad:</td>
+                    <td colspan="6">Dependencia:</td>
                     <td style="width: 5%">&nbsp;</td>
                     <td style="width: 5%">&nbsp;</td>
                 </tr>
                 <tr>
                     <td style="width: 5%">&nbsp;</td>
                     <td style="width: 5%">&nbsp;</td>
-                    <td colspan="8">
-                        <asp:DropDownList ID="ddlAnios" runat="server" AutoPostBack="True" class="form-control" OnSelectedIndexChanged="ddlAnios_SelectedIndexChanged" Width="100%">
+                    <td colspan="2">
+                        <asp:DropDownList ID="ddlAnios" runat="server" AutoPostBack="True" class="form-control" OnSelectedIndexChanged="ddlAnios_SelectedIndexChanged" Width="75%">
                         </asp:DropDownList>
                     </td>
-                    <td colspan="8">
-                        <asp:DropDownList ID="ddlUnidades" runat="server" AutoPostBack="True" class="form-control" OnSelectedIndexChanged="ddlAnios_SelectedIndexChanged" Width="100%">
+                    <td colspan="6">
+                        <asp:DropDownList ID="ddlUnidades" runat="server" AutoPostBack="True" class="form-control" OnSelectedIndexChanged="ddlUnidades_SelectedIndexChanged" Width="100%">
+                        </asp:DropDownList>
+                    </td>
+                    <td colspan="6">
+                        <asp:DropDownList ID="ddlDependencias" runat="server" AutoPostBack="True" class="form-control" OnSelectedIndexChanged="ddlDependencias_SelectedIndexChanged" Width="100%">
                         </asp:DropDownList>
                     </td>
                     <td style="width: 5%">&nbsp;</td>
@@ -120,14 +125,14 @@
                 <tr>
                     <td style="width: 5%">&nbsp;</td>
                     <td style="width: 5%">&nbsp;</td>
-                    <td colspan="16">Acciones:</td>
+                    <td colspan="10">Acciones:</td>
                     <td style="width: 5%">&nbsp;</td>
                     <td style="width: 5%">&nbsp;</td>
                 </tr>
                 <tr>
                     <td style="width: 5%">&nbsp;</td>
                     <td style="width: 5%">&nbsp;</td>
-                    <td colspan="16">
+                    <td colspan="10">
                         <asp:DropDownList ID="ddlAcciones" runat="server" AutoPostBack="True" BackColor="#003366" class="form-control" ForeColor="White" OnSelectedIndexChanged="busqueda" Width="100%">
                         </asp:DropDownList>
                     </td>
@@ -257,7 +262,7 @@
                 <tr>
                     <td style="width: 5%">&nbsp;</td>
                     <td style="width: 5%">&nbsp;</td>
-                    <td colspan="8">Números de documento:</td>
+                    <td colspan="4">Números de documento:</td>
                     <td colspan="8">&nbsp;</td>
                     <td style="width: 5%">&nbsp;</td>
                     <td style="width: 5%">&nbsp;</td>
@@ -265,7 +270,7 @@
                 <tr>
                     <td style="width: 5%">&nbsp;</td>
                     <td style="width: 5%">&nbsp;</td>
-                    <td colspan="8">
+                    <td colspan="4">
                         <asp:DropDownList ID="ddlNumeroDocumento" runat="server" AutoPostBack="True" class="form-control" OnSelectedIndexChanged="ddlNumeroDocumento_SelectedIndexChanged" Width="100%">
                         </asp:DropDownList>
                     </td>
