@@ -39,7 +39,7 @@ namespace AplicacionSIPA1.ReporteriaSistema.Pedidos
                 }
                 catch (Exception ex)
                 {
-                    lblError.Text = "Page_LoadComplete(). " + ex.Message;
+                    lblError.Text =  ("Escoger la Dependencia para Visualizar los Datos" + ex.Message);
                 }
             }
         }
@@ -96,20 +96,20 @@ namespace AplicacionSIPA1.ReporteriaSistema.Pedidos
                     pOperativoLN.DdlUnidades(ddlUnidades, usuario);
                     pOperativoLN.DdlDependencias(ddlDependencias, ddlUnidades.SelectedValue);
                 }
-                if (ddlUnidades.Items.Count == 1)
+                if (ddlDependencias.Items.Count == 1)
                 {
                     if (!ddlAnios.SelectedValue.Equals("0"))
                     {
-                        validarPoa(int.Parse(ddlUnidades.SelectedValue), int.Parse(ddlAnios.SelectedValue));                        
+                        validarPoa(int.Parse(ddlDependencias.SelectedValue), int.Parse(ddlAnios.SelectedValue));
                     }
                 }
 
                 int idPoa = 0;
                 int.TryParse(lblIdPoa.Text, out idPoa);
 
-                obtenerPresupuesto(idPoa, 0);
                 pAccionLN = new PlanAccionLN();
-                pAccionLN.DdlAcciones(ddlAcciones, 0, 0, "", 3);
+                obtenerPresupuesto(idPoa, 0);
+                pAccionLN.DdlAcciones(ddlAcciones, idPoa, 0, "", 3);
                 ddlAcciones.Items[0].Text = "<< TODAS >>";
 
                 pInsumoLN = new PedidosLN();
@@ -170,11 +170,25 @@ namespace AplicacionSIPA1.ReporteriaSistema.Pedidos
                 System.Text.StringBuilder stringBuilder = new System.Text.StringBuilder();
 
 
-                if (ddlAnios.SelectedValue.Equals("0") == false)
+                if (ddlAnios.SelectedValue.Equals("0") == false) { 
                     stringBuilder.Append(" AND t.anio_solicitud = " + ddlAnios.SelectedValue);
-
-                if (ddlDependencias.SelectedValue.Equals("0") == false)
+                }
+                if (ddlUnidades.SelectedValue.Equals("0") == false) { 
                     stringBuilder.Append(" AND t.id_unidad = " + ddlDependencias.SelectedValue);
+                    stringBuilder.Append(" AND t.id_unidad IN(");
+
+                    int cantidad = (ddlDependencias.Items.Count - 1);
+
+                    for (int i = 1; i <= cantidad; i++)
+                    {
+                        stringBuilder.Append(ddlDependencias.Items[i].Value.ToString());
+
+                        if (i < cantidad)
+                            stringBuilder.Append(", ");
+                    }
+
+                    stringBuilder.Append(")");
+                }
                 else
                 {
                     stringBuilder.Append(" AND t.id_unidad IN(");
