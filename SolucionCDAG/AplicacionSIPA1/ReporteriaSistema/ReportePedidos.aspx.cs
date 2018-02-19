@@ -192,6 +192,8 @@ namespace AplicacionSIPA1.ReporteriaSistema
 
         protected void ddlUnidades_SelectedIndexChanged(object sender, EventArgs e)
         {
+            pOperativoLN = new PlanOperativoLN();
+            pOperativoLN.DdlDependencias(ddlDependencias, ddlUnidades.SelectedValue);
             validarPoa(int.Parse(ddlUnidades.SelectedValue), int.Parse(ddlAnios.SelectedValue));
             int idPoa = 0;
             int.TryParse(lblIdPoa.Text, out idPoa);
@@ -317,6 +319,57 @@ namespace AplicacionSIPA1.ReporteriaSistema
             SearchValue[1] = new MySqlParameter("@Año", ddlAnios.SelectedValue);
             /* Put the stored procedure result into a dataset */
             thisDataSet = MySqlHelper.ExecuteDataset(thisConnection, busqueda(1), SearchValue);
+
+            ReportDataSource datasource = new ReportDataSource("DataSet1", thisDataSet.Tables[0]);
+            System.Data.DataSet thisDataSet2 = new System.Data.DataSet();
+            thisDataSet2 = MySqlHelper.ExecuteDataset(thisConnection, stringBuilder.ToString());
+            ReportDataSource datasource1 = new ReportDataSource("DataSet2", thisDataSet2.Tables[0]);
+            ReportViewer1.LocalReport.DataSources.Clear();
+            ReportViewer1.LocalReport.DataSources.Add(datasource);
+            ReportViewer1.LocalReport.DataSources.Add(datasource1);
+            if (thisDataSet.Tables[0].Rows.Count == 0)
+            {
+
+            }
+
+            ReportViewer1.LocalReport.Refresh();
+        }
+
+        protected void ddlDependencias_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            validarPoa(int.Parse(ddlDependencias.SelectedValue), int.Parse(ddlAnios.SelectedValue));
+            int idPoa = 0;
+            int.TryParse(lblIdPoa.Text, out idPoa);
+            obtenerPresupuesto(idPoa, 0);
+            System.Text.StringBuilder stringBuilder = new System.Text.StringBuilder();
+            stringBuilder.Append(querypoa());
+            if (ddlUnidades.SelectedValue == "29")
+            {
+                stringBuilder = new System.Text.StringBuilder();
+                stringBuilder.Append(" SELECT Monto_global as monto from sipa_poa where id_unidad = 29 and anio=2018;");
+            }
+            else
+            {
+                stringBuilder.Append("Where aa.id_poa  = " + idPoa);
+            }
+
+            pAccionLN = new PlanAccionLN();
+            pAccionLN.DdlAcciones(ddlAcciones, idPoa, 0, "", 3);
+            ddlAcciones.Items[0].Text = "<< TODAS >>";
+            MySqlConnection thisConnection = new MySqlConnection(thisConnectionString);
+            System.Data.DataSet thisDataSet = new System.Data.DataSet();
+            SearchValue[0] = new MySqlParameter("@Unidad", ddlDependencias.SelectedValue);
+            SearchValue[1] = new MySqlParameter("@Año", ddlAnios.SelectedValue);
+            /* Put the stored procedure result into a dataset */
+            if (ddlUnidades.SelectedValue == "29")
+            {
+                thisDataSet = MySqlHelper.ExecuteDataset(thisConnection, busqueda(3), SearchValue);
+            }
+            else
+            {
+                thisDataSet = MySqlHelper.ExecuteDataset(thisConnection, busqueda(1), SearchValue);
+            }
+
 
             ReportDataSource datasource = new ReportDataSource("DataSet1", thisDataSet.Tables[0]);
             System.Data.DataSet thisDataSet2 = new System.Data.DataSet();

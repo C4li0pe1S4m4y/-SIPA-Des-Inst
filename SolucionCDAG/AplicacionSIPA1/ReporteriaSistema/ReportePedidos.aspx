@@ -18,7 +18,10 @@
         <asp:DropDownList ID="ddlUnidades" runat="server" OnSelectedIndexChanged="ddlUnidades_SelectedIndexChanged" AutoPostBack="True" class="form-control"  Width="80%">
                         </asp:DropDownList>
     </div>
-    
+    <div class="col-xs-4">
+            <label>Dependencia</label>
+            <asp:DropDownList ID="ddlDependencias" runat="server" class="form-control" AutoPostBack="True" OnSelectedIndexChanged="ddlDependencias_SelectedIndexChanged"  Width="100%"></asp:DropDownList>
+        </div> 
    
     <div class="col-md-8">
          <asp:Label ID="lblAccion" runat="server" Text="Accion"></asp:Label>
