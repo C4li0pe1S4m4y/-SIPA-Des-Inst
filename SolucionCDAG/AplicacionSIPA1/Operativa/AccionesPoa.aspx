@@ -1338,7 +1338,7 @@
                     <td style="width: 5%">&nbsp;</td>
                     <td style="width: 5%">&nbsp;</td>
                     <td colspan="8">
-                        <asp:DropDownList ID="ddlAccionOrigen" runat="server" AutoPostBack="True" class="form-control" Width="100%" OnSelectedIndexChanged="ddlAccionOrigen_SelectedIndexChanged">
+                        <asp:DropDownList ID="ddlAccionOrigen" runat="server" AutoPostBack="True" Enabled="false" class="form-control" Width="100%" OnSelectedIndexChanged="ddlAccionOrigen_SelectedIndexChanged">
                         </asp:DropDownList>
                     </td>
                     <td colspan="8">

@@ -200,7 +200,8 @@ namespace AplicacionSIPA1.ReporteriaSistema
             stringBuilder.Append(querypoa());
             if (ddlUnidades.SelectedValue == "29")
             {
-                stringBuilder.Append("Where aa.id_poa  in(29,68,69,70)");
+                stringBuilder = new System.Text.StringBuilder();
+                stringBuilder.Append( " SELECT Monto_global as monto from sipa_poa where id_unidad = 29 and anio=2018;");
             }
             else
             {
