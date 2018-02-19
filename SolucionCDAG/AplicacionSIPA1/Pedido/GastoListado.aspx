@@ -124,7 +124,7 @@
                     <td style="width: 5%">&nbsp;</td>
                     <td colspan="16" style="text-align: center">
                         <asp:Button ID="btnConsultar" runat="server" class="btn btn-info" Text="Consultar" Width="120px" OnClick="btnConsultar_Click" />
-                        <asp:Button ID="btnImprimir" runat="server" class="btn btn-default" Text="Imprimir" Width="120px" OnClick="btnImprimir_Click" />
+                        <asp:Button ID="btnImprimir" runat="server" Enabled="false" class="btn btn-default" Text="Imprimir" Width="120px" OnClick="btnImprimir_Click" />
                     </td>
                     <td style="width: 5%">&nbsp;</td>
                     <td style="width: 5%">&nbsp;</td>

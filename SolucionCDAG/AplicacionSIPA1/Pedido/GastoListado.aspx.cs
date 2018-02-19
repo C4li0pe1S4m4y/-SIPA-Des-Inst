@@ -309,78 +309,78 @@ namespace AplicacionSIPA1.Pedido
 
         protected void generarReporte(int idEncabezado)
         {
-            try
-            {
-                if (idEncabezado > 0)
-                {
+            //try
+            //{
+            //    if (idEncabezado > 0)
+            //    {
 
-                    Warning[] warnings;
-                    string[] streamids;
-                    string mimeType;
-                    string encoding;
-                    string extension;
+            //        Warning[] warnings;
+            //        string[] streamids;
+            //        string mimeType;
+            //        string encoding;
+            //        string extension;
 
-                    ReportViewer rViewer = new ReportViewer();
+            //        ReportViewer rViewer = new ReportViewer();
 
-                    DataTable dt = new DataTable();
-                    GridView gridPlan = new GridView();
+            //        DataTable dt = new DataTable();
+            //        GridView gridPlan = new GridView();
 
-                    ReportesLN reportes = new ReportesLN();
-                    DataSet dsResultado = reportes.ReportesSipa(idEncabezado, 0, "GASTOS", 1);
+            //        ReportesLN reportes = new ReportesLN();
+            //        DataSet dsResultado = reportes.ReportesSipa(idEncabezado, 0, "GASTOS", 1);
 
-                    if (bool.Parse(dsResultado.Tables[0].Rows[0]["ERRORES"].ToString()))
-                        throw new Exception("No se CONSULTÓ la información del gasto (encabezado): " + dsResultado.Tables[0].Rows[0]["MSG_ERROR"].ToString());
-
-
-                    ReportDataSource RD = new ReportDataSource();
-                    RD.Value = dsResultado.Tables[1];
-                    RD.Name = "DataSet1";
-
-                    dsResultado = reportes.ReportesSipa(idEncabezado, 0, "GASTOS", 2);
-
-                    if (bool.Parse(dsResultado.Tables[0].Rows[0]["ERRORES"].ToString()))
-                        throw new Exception("No se CONSULTÓ la información del gasto (detalles): " + dsResultado.Tables[0].Rows[0]["MSG_ERROR"].ToString());
-
-                    ReportDataSource RD2 = new ReportDataSource();
-                    RD2.Value = dsResultado.Tables[1];
-                    RD2.Name = "DataSet2";
-
-                    rViewer.LocalReport.DataSources.Clear();
-                    rViewer.LocalReport.DataSources.Add(RD);
-                    rViewer.LocalReport.DataSources.Add(RD2);
-                    rViewer.LocalReport.ReportEmbeddedResource = "\\Reportes/rptGasto.rdlc";
-                    rViewer.LocalReport.ReportPath = @"Reportes\\rptGasto.rdlc";
-                    rViewer.LocalReport.Refresh();
+            //        if (bool.Parse(dsResultado.Tables[0].Rows[0]["ERRORES"].ToString()))
+            //            throw new Exception("No se CONSULTÓ la información del gasto (encabezado): " + dsResultado.Tables[0].Rows[0]["MSG_ERROR"].ToString());
 
 
-                    byte[] bytes = rViewer.LocalReport.Render(
-                       "PDF", null, out mimeType, out encoding,
-                        out extension,
-                       out streamids, out warnings);
+            //        ReportDataSource RD = new ReportDataSource();
+            //        RD.Value = dsResultado.Tables[1];
+            //        RD.Name = "DataSet1";
 
-                    string nombreReporte = "Req. No. " + idEncabezado + " - " + ddlUnidades.SelectedItem.Text;
+            //        dsResultado = reportes.ReportesSipa(idEncabezado, 0, "GASTOS", 2);
 
-                    string direccion = Server.MapPath("ArchivoPdf");
-                    direccion = (direccion + ("\\\\" + (""
-                                + (nombreReporte + ".pdf"))));
+            //        if (bool.Parse(dsResultado.Tables[0].Rows[0]["ERRORES"].ToString()))
+            //            throw new Exception("No se CONSULTÓ la información del gasto (detalles): " + dsResultado.Tables[0].Rows[0]["MSG_ERROR"].ToString());
 
-                    FileStream fs = new FileStream(direccion,
-                       FileMode.Create);
-                    fs.Write(bytes, 0, bytes.Length);
-                    fs.Close();
+            //        ReportDataSource RD2 = new ReportDataSource();
+            //        RD2.Value = dsResultado.Tables[1];
+            //        RD2.Name = "DataSet2";
 
-                    String reDireccion = "\\ArchivoPDF/";
-                    reDireccion += "\\" + "" + nombreReporte + ".pdf";
+            //        rViewer.LocalReport.DataSources.Clear();
+            //        rViewer.LocalReport.DataSources.Add(RD);
+            //        rViewer.LocalReport.DataSources.Add(RD2);
+            //        rViewer.LocalReport.ReportEmbeddedResource = "\\Reportes/rptGasto.rdlc";
+            //        rViewer.LocalReport.ReportPath = @"Reportes\\rptGasto.rdlc";
+            //        rViewer.LocalReport.Refresh();
 
 
-                    string jScript = "javascript:window.open('" + reDireccion + "','REQUISICIONES'," + "'directories=no, location=no, menubar=no, scrollbars=yes, statusbar=no, tittlebar=no, width=750, height=400');";
-                    btnImprimir.Attributes.Add("onclick", jScript);
-                }
-            }
-            catch (Exception ex)
-            {
-                lblError.Text = "btnVerReporte(). " + ex.Message;
-            }
+            //        byte[] bytes = rViewer.LocalReport.Render(
+            //           "PDF", null, out mimeType, out encoding,
+            //            out extension,
+            //           out streamids, out warnings);
+
+            //        string nombreReporte = "Req. No. " + idEncabezado + " - " + ddlUnidades.SelectedItem.Text;
+
+            //        string direccion = Server.MapPath("ArchivoPdf");
+            //        direccion = (direccion + ("\\\\" + (""
+            //                    + (nombreReporte + ".pdf"))));
+
+            //        FileStream fs = new FileStream(direccion,
+            //           FileMode.Create);
+            //        fs.Write(bytes, 0, bytes.Length);
+            //        fs.Close();
+
+            //        String reDireccion = "\\ArchivoPDF/";
+            //        reDireccion += "\\" + "" + nombreReporte + ".pdf";
+
+
+            //        string jScript = "javascript:window.open('" + reDireccion + "','REQUISICIONES'," + "'directories=no, location=no, menubar=no, scrollbars=yes, statusbar=no, tittlebar=no, width=750, height=400');";
+            //        btnImprimir.Attributes.Add("onclick", jScript);
+            //    }
+            //}
+            //catch (Exception ex)
+            //{
+            //    lblError.Text = "btnVerReporte(). " + ex.Message;
+            //}
         }
 
         protected bool ValidarPpto(int idDetalleAccion, int idPac, decimal totalPac)
@@ -481,38 +481,7 @@ namespace AplicacionSIPA1.Pedido
 
         protected void btnImprimir_Click(object sender, EventArgs e)
         {
-            /*try
-            {
-                limpiarControlesError();
-                int idEncabezado = 0;
-                int.TryParse(lblNoPedido.Text, out idEncabezado);
-
-                if (idEncabezado == 0)
-                    throw new Exception("No existe Bien/Servicio para eliminar");
-
-                pInsumoLN = new PedidosLN();
-                DataSet dsResultado = pInsumoLN.EliminarEncabezado(idEncabezado);
-
-                if (bool.Parse(dsResultado.Tables["RESULTADO"].Rows[0]["ERRORES"].ToString()))
-                    throw new Exception(dsResultado.Tables["RESULTADO"].Rows[0]["MSG_ERROR"].ToString());
-
-                int idPac = 0;
-                int.TryParse(ddlPac.SelectedValue, out idPac);
-
-                NuevoPedidoDet();
-                ListItem item = ddlPac.Items.FindByValue(idPac.ToString());
-                if (item != null)
-                {
-                    ddlPac.SelectedValue = idPac.ToString();
-                    ddlPac_SelectedIndexChanged(new Object(), new EventArgs());
-                }
-
-                lblSuccess.Text = "Pedido eliminado correctamente!";
-            }
-            catch (Exception ex)
-            {
-                lblError.Text = "btnEliminar(). " + ex.Message;
-            }*/
+            lblError.Text = "Los Gastos no se imprimen solo la partida presupuestaria";
         }
 
         protected void ddlDependencia_SelectedIndexChanged(object sender, EventArgs e)
