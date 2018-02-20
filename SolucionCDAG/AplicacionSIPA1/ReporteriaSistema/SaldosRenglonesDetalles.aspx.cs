@@ -136,6 +136,50 @@ namespace AplicacionSIPA1.ReporteriaSistema
             para corregir la reporteria Unidad/Dependencia*/
             planOperativoLN = new PlanOperativoLN();
             planOperativoLN.DdlDependencias(ddlDependencia, ddlUnidades.SelectedValue);
+            validarPoa(int.Parse(ddlDependencia.SelectedValue), int.Parse(ddlAnios.SelectedValue));
+            int idPoa = 0;
+            int.TryParse(lblPoa.Text, out idPoa);
+            pAccionLN = new PlanAccionLN();
+            pAccionLN.DdlAcciones(ddlAcciones, idPoa, 0, "", 3);
+            System.Text.StringBuilder stringBuilder = new System.Text.StringBuilder();
+            stringBuilder.Append(consulta());
+            stringBuilder.Append(" AND id_unidad = " + ddlUnidades.SelectedValue);
+            stringBuilder.Append(" AND t.Año = " + ddlAnios.SelectedValue);
+            string tiposSalida = "";
+            for (int i = 0; i < chkTiposSalida.Items.Count; i++)
+                if (chkTiposSalida.Items[i].Selected == true)
+                    tiposSalida += chkTiposSalida.Items[i].Value + ", ";
+
+            if (tiposSalida.Equals("") == false)
+                stringBuilder.Append(" AND t.id_tipo_documento IN(" + tiposSalida + "0)");
+            string estadosSalida = "";
+            for (int i = 0; i < chkEstados.Items.Count; i++)
+                if (chkEstados.Items[i].Selected == true)
+                    estadosSalida += chkEstados.Items[i].Value + ", ";
+
+            if (estadosSalida.Equals("") == false)
+                stringBuilder.Append(" AND t.id_estado_pedido IN(" + estadosSalida + "0)");
+            if (!string.IsNullOrEmpty(txtFechaInicio.Text) && !string.IsNullOrEmpty(txtFechaFinal.Text))
+            {
+                stringBuilder.Append("and t.fecha_pedido between '" + txtFechaInicio.Text + "' and '" + txtFechaFinal.Text + "'");
+            }
+            stringBuilder.Append(" Order by t.no_solicitud");
+            MySqlConnection thisConnection = new MySqlConnection(thisConnectionString);
+            DataSet thisDataSet = new System.Data.DataSet();
+
+            /* Put the stored procedure result into a dataset */
+            thisDataSet = MySqlHelper.ExecuteDataset(thisConnection, stringBuilder.ToString());
+
+            ReportDataSource datasource = new ReportDataSource("DataSet1", thisDataSet.Tables[0]);
+
+            ReportViewer1.LocalReport.DataSources.Clear();
+            ReportViewer1.LocalReport.DataSources.Add(datasource);
+            if (thisDataSet.Tables[0].Rows.Count == 0)
+            {
+
+            }
+
+            ReportViewer1.LocalReport.Refresh();
         }
         //Se agrego la Función ddlDependencias_SelectedIndexChanged para la busqueda de Unidad/Dependencia
         protected void ddlDependencia_SelectedIndexChanged(object sender, EventArgs e)
@@ -226,7 +270,7 @@ namespace AplicacionSIPA1.ReporteriaSistema
                                     "ccl_empleados sep ON sep.id_empleado = a.id_direc_financiera LEFT OUTER JOIN " +
                                     "ccl_empleados sec ON sec.id_empleado = a.id_tecnico INNER JOIN " +
                                     "sipa_detalles_accion da ON p.id_detalle = da.id_detalle " +
-                      "WHERE(a.id_tipo_documento = 1) " +
+                      "WHERE(a.id_tipo_documento = 1 and p.anio = 2018) " +
                       "UNION ALL " +
                       "SELECT a.no_solicitud, a.anio_solicitud AS Año, fn_codigo_accion(b.id_accion, 0, '', 1) AS Accion, a.Documento, a.fecha_pedido, c.descripcion, a.estado_salida AS Estado, a.unidad_administrativa, c.costo_vale AS Pedido, c.costo_estimado, " +
                                         "c.costo_real, d.no_renglon, 'N/A' AS no_pac, 'N/A' AS renglon_pac, a.anio_solicitud, a.id_unidad, b.id_accion, a.id_tipo_documento, a.id_estado_pedido, CONCAT(se.id_empleado, ' - ', se.nombres) AS Solicitante, " +
@@ -267,7 +311,7 @@ namespace AplicacionSIPA1.ReporteriaSistema
                                         "ccl_empleados sep ON sep.id_empleado = a.id_direc_financiera LEFT OUTER JOIN " +
                                         "ccl_empleados sec ON sec.id_empleado = a.id_tecnico " +
                       "WHERE(a.id_tipo_documento = 4)) t " +
-                "WHERE(id_estado_pedido > 0) ";
+                "WHERE(id_estado_pedido > 0 ) ";
             return query;
         }
 
