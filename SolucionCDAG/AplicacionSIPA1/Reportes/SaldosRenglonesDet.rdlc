@@ -6,52 +6,68 @@
         <TablixBody>
           <TablixColumns>
             <TablixColumn>
+              <!--No Solicitud-->
+              <Width>0.55in</Width>
+            </TablixColumn>
+            <TablixColumn>
+              <!--A;o-->
+              <Width>0.42in</Width>
+            </TablixColumn>
+            <TablixColumn>
+              <!--Documento-->
+              <Width>0.81in</Width>
+            </TablixColumn>
+            <TablixColumn>
+              <!--Fecha Pedido-->            
+              <Width>0.80in</Width>
+            </TablixColumn>
+            <TablixColumn>
+              <!--Accion-->
+              <Width>0.73in</Width>
+            </TablixColumn>
+            <TablixColumn>
+              <!--Estado-->
               <Width>0.75in</Width>
             </TablixColumn>
             <TablixColumn>
-              <Width>0.375in</Width>
+              <!--Unidad-->
+              <Width>0.60in</Width>
+            </TablixColumn>             
+            <TablixColumn>
+              <!--Descripcion-->
+              <Width>1.66in</Width>
             </TablixColumn>
             <TablixColumn>
-              <Width>0.78333in</Width>
+              <!--Pedido-->
+              <Width>0.90in</Width>
             </TablixColumn>
             <TablixColumn>
-              <Width>1in</Width>
+              <!--Costo Estimado-->
+              <Width>0.90in</Width>
             </TablixColumn>
             <TablixColumn>
-              <Width>1in</Width>
+              <!--Costo Real-->
+              <Width>0.90in</Width>
             </TablixColumn>
             <TablixColumn>
-              <Width>1in</Width>
+              <!--No Renglon-->
+              <Width>0.60in</Width>
             </TablixColumn>
             <TablixColumn>
-              <Width>0.58333in</Width>
+              <!--No Pac-->
+              <Width>0.45in</Width>
             </TablixColumn>
             <TablixColumn>
-              <Width>1.125in</Width>
+              <!--Renglon Pac-->
+              <Width>0.62in</Width>
             </TablixColumn>
             <TablixColumn>
-              <Width>0.68333in</Width>
+              <!--Analista PPTO-->
+              <Width>1.50in</Width>
             </TablixColumn>
             <TablixColumn>
-              <Width>1in</Width>
-            </TablixColumn>
-            <TablixColumn>
-              <Width>0.825in</Width>
-            </TablixColumn>
-            <TablixColumn>
-              <Width>0.71667in</Width>
-            </TablixColumn>
-            <TablixColumn>
-              <Width>0.54167in</Width>
-            </TablixColumn>
-            <TablixColumn>
-              <Width>0.79167in</Width>
-            </TablixColumn>
-            <TablixColumn>
-              <Width>1.36667in</Width>
-            </TablixColumn>
-            <TablixColumn>
-              <Width>1.31111in</Width>
+              <!--Tecnico Compra-->
+              <Width>1.50in</Width>
             </TablixColumn>
           </TablixColumns>
           <TablixRows>
@@ -67,8 +83,7 @@
                         <Paragraph>
                           <TextRuns>
                             <TextRun>
-                              <Value>no solicitud</Value>
-                              <Style />
+                              <Value>No Solicitud</Value>
                             </TextRun>
                           </TextRuns>
                           <Style />
@@ -217,7 +232,7 @@
                         <Paragraph>
                           <TextRuns>
                             <TextRun>
-                              <Value>Fecha pedido</Value>
+                              <Value>Fecha Pedido</Value>
                               <Style />
                             </TextRun>
                           </TextRuns>
@@ -367,7 +382,7 @@
                         <Paragraph>
                           <TextRuns>
                             <TextRun>
-                              <Value>Unidad </Value>
+                              <Value>Unidad</Value>
                               <Style />
                             </TextRun>
                           </TextRuns>
@@ -517,7 +532,7 @@
                         <Paragraph>
                           <TextRuns>
                             <TextRun>
-                              <Value>costo estimado</Value>
+                              <Value>Costo Estimado</Value>
                               <Style />
                             </TextRun>
                           </TextRuns>
@@ -567,7 +582,7 @@
                         <Paragraph>
                           <TextRuns>
                             <TextRun>
-                              <Value>costo real</Value>
+                              <Value>Costo Real</Value>
                               <Style />
                             </TextRun>
                           </TextRuns>
@@ -617,7 +632,7 @@
                         <Paragraph>
                           <TextRuns>
                             <TextRun>
-                              <Value>no renglon</Value>
+                              <Value>No. Renglon</Value>
                               <Style />
                             </TextRun>
                           </TextRuns>
@@ -667,7 +682,7 @@
                         <Paragraph>
                           <TextRuns>
                             <TextRun>
-                              <Value>no pac</Value>
+                              <Value>No. PAC</Value>
                               <Style />
                             </TextRun>
                           </TextRuns>
@@ -717,7 +732,7 @@
                         <Paragraph>
                           <TextRuns>
                             <TextRun>
-                              <Value>renglon pac</Value>
+                              <Value>Renglon PAC</Value>
                               <Style />
                             </TextRun>
                           </TextRuns>
@@ -767,7 +782,7 @@
                         <Paragraph>
                           <TextRuns>
                             <TextRun>
-                              <Value>Analista Ppto</Value>
+                              <Value>Analista PPTO</Value>
                               <Style />
                             </TextRun>
                           </TextRuns>
@@ -861,7 +876,7 @@
               </TablixCells>
             </TablixRow>
             <TablixRow>
-              <Height>0.25in</Height>
+              <Height>0in</Height>
               <TablixCells>
                 <TablixCell>
                   <CellContents>
@@ -1716,7 +1731,7 @@
   <Width>16.61667in</Width>
   <Page>
     <PageHeader>
-      <Height>0.575in</Height>
+      <Height>0.25in</Height>
       <PrintOnFirstPage>true</PrintOnFirstPage>
       <PrintOnLastPage>true</PrintOnLastPage>
       <ReportItems>
@@ -1727,17 +1742,15 @@
             <Paragraph>
               <TextRuns>
                 <TextRun>
-                  <Value>no solicitud</Value>
-                  <Style />
+                  <Value>No. Solicitud</Value>
                 </TextRun>
               </TextRuns>
-              <Style />
             </Paragraph>
           </Paragraphs>
           <rd:DefaultName>Textbox1</rd:DefaultName>
           <Left>0.07723in</Left>
           <Height>0.575in</Height>
-          <Width>0.75in</Width>
+          <Width>0.60in</Width>
           <Style>
             <Border>
               <Style>Solid</Style>
@@ -1777,21 +1790,20 @@
               <TextRuns>
                 <TextRun>
                   <Value>Año</Value>
-                  <Style />
                 </TextRun>
               </TextRuns>
               <Style />
             </Paragraph>
           </Paragraphs>
           <rd:DefaultName>Textbox3</rd:DefaultName>
-          <Left>0.82723in</Left>
+          <Left>0.56in</Left>
           <Height>0.575in</Height>
-          <Width>0.40278in</Width>
+          <Width>0.40in</Width>
           <ZIndex>1</ZIndex>
           <Style>
             <Border>
               <Style>Solid</Style>
-            </Border>
+            </Border>           
             <TopBorder>
               <Color>Black</Color>
               <Style>Solid</Style>
@@ -1834,9 +1846,9 @@
             </Paragraph>
           </Paragraphs>
           <rd:DefaultName>Textbox5</rd:DefaultName>
-          <Left>1.23in</Left>
+          <Left>0.57in</Left>
           <Height>0.575in</Height>
-          <Width>0.79722in</Width>
+          <Width>0.79in</Width>
           <ZIndex>2</ZIndex>
           <Style>
             <Border>
@@ -1876,7 +1888,7 @@
             <Paragraph>
               <TextRuns>
                 <TextRun>
-                  <Value>Fecha pedido</Value>
+                  <Value>Fecha Pedido</Value>
                   <Style />
                 </TextRun>
               </TextRuns>
@@ -1884,9 +1896,9 @@
             </Paragraph>
           </Paragraphs>
           <rd:DefaultName>Textbox7</rd:DefaultName>
-          <Left>2.02722in</Left>
+          <Left>1.25in</Left>
           <Height>0.575in</Height>
-          <Width>0.98611in</Width>
+          <Width>0.78in</Width>
           <ZIndex>3</ZIndex>
           <Style>
             <Border>
@@ -1934,9 +1946,9 @@
             </Paragraph>
           </Paragraphs>
           <rd:DefaultName>Textbox9</rd:DefaultName>
-          <Left>3.01333in</Left>
+          <Left>2.00in</Left>
           <Height>0.575in</Height>
-          <Width>0.98611in</Width>
+          <Width>0.71in</Width>
           <ZIndex>4</ZIndex>
           <Style>
             <Border>
@@ -1984,9 +1996,9 @@
             </Paragraph>
           </Paragraphs>
           <rd:DefaultName>Textbox11</rd:DefaultName>
-          <Left>3.99944in</Left>
+          <Left>2.60in</Left>
           <Height>0.575in</Height>
-          <Width>0.925in</Width>
+          <Width>0.74in</Width>
           <ZIndex>5</ZIndex>
           <Style>
             <Border>
@@ -2034,9 +2046,9 @@
             </Paragraph>
           </Paragraphs>
           <rd:DefaultName>Textbox13</rd:DefaultName>
-          <Left>4.92444in</Left>
+          <Left>3in</Left>
           <Height>0.575in</Height>
-          <Width>0.58333in</Width>
+          <Width>0.58in</Width>
           <ZIndex>6</ZIndex>
           <Style>
             <Border>
@@ -2084,9 +2096,9 @@
             </Paragraph>
           </Paragraphs>
           <rd:DefaultName>Textbox15</rd:DefaultName>
-          <Left>5.50777in</Left>
+          <Left>3.45in</Left>
           <Height>0.575in</Height>
-          <Width>1.46667in</Width>
+          <Width>1.62in</Width>
           <ZIndex>7</ZIndex>
           <Style>
             <Border>
@@ -2134,9 +2146,9 @@
             </Paragraph>
           </Paragraphs>
           <rd:DefaultName>Textbox17</rd:DefaultName>
-          <Left>6.97444in</Left>
+          <Left>4.72in</Left>
           <Height>0.575in</Height>
-          <Width>0.68333in</Width>
+          <Width>0.89in</Width>
           <ZIndex>8</ZIndex>
           <Style>
             <Border>
@@ -2176,7 +2188,7 @@
             <Paragraph>
               <TextRuns>
                 <TextRun>
-                  <Value>costo estimado</Value>
+                  <Value>Costo Estimado</Value>
                   <Style />
                 </TextRun>
               </TextRuns>
@@ -2184,9 +2196,9 @@
             </Paragraph>
           </Paragraphs>
           <rd:DefaultName>Textbox19</rd:DefaultName>
-          <Left>7.65777in</Left>
+          <Left>5.46in</Left>
           <Height>0.575in</Height>
-          <Width>1in</Width>
+          <Width>0.88in</Width>
           <ZIndex>9</ZIndex>
           <Style>
             <Border>
@@ -2226,7 +2238,7 @@
             <Paragraph>
               <TextRuns>
                 <TextRun>
-                  <Value>costo real</Value>
+                  <Value>Costo Real</Value>
                   <Style />
                 </TextRun>
               </TextRuns>
@@ -2234,9 +2246,9 @@
             </Paragraph>
           </Paragraphs>
           <rd:DefaultName>Textbox21</rd:DefaultName>
-          <Left>8.65777in</Left>
+          <Left>6in</Left>
           <Height>0.575in</Height>
-          <Width>0.825in</Width>
+          <Width>0.88in</Width>
           <ZIndex>10</ZIndex>
           <Style>
             <Border>
@@ -2276,7 +2288,7 @@
             <Paragraph>
               <TextRuns>
                 <TextRun>
-                  <Value>no renglon</Value>
+                  <Value>No. Renglon</Value>
                   <Style />
                 </TextRun>
               </TextRuns>
@@ -2284,9 +2296,9 @@
             </Paragraph>
           </Paragraphs>
           <rd:DefaultName>Textbox23</rd:DefaultName>
-          <Left>9.48277in</Left>
+          <Left>6.74in</Left>
           <Height>0.575in</Height>
-          <Width>0.68889in</Width>
+          <Width>0.58in</Width>
           <ZIndex>11</ZIndex>
           <Style>
             <Border>
@@ -2326,7 +2338,7 @@
             <Paragraph>
               <TextRuns>
                 <TextRun>
-                  <Value>no pac</Value>
+                  <Value>No. PAC</Value>
                   <Style />
                 </TextRun>
               </TextRuns>
@@ -2334,9 +2346,9 @@
             </Paragraph>
           </Paragraphs>
           <rd:DefaultName>Textbox25</rd:DefaultName>
-          <Left>10.17167in</Left>
+          <Left>6.95in</Left>
           <Height>0.575in</Height>
-          <Width>0.50834in</Width>
+          <Width>0.43in</Width>
           <ZIndex>12</ZIndex>
           <Style>
             <Border>
@@ -2376,7 +2388,7 @@
             <Paragraph>
               <TextRuns>
                 <TextRun>
-                  <Value>renglon pac</Value>
+                  <Value>Renglon PAC</Value>
                   <Style />
                 </TextRun>
               </TextRuns>
@@ -2384,9 +2396,9 @@
             </Paragraph>
           </Paragraphs>
           <rd:DefaultName>Textbox27</rd:DefaultName>
-          <Left>10.68in</Left>
+          <Left>6.98in</Left>
           <Height>0.575in</Height>
-          <Width>0.79167in</Width>
+          <Width>0.59in</Width>
           <ZIndex>13</ZIndex>
           <Style>
             <Border>
@@ -2426,7 +2438,7 @@
             <Paragraph>
               <TextRuns>
                 <TextRun>
-                  <Value>Analista Ppto</Value>
+                  <Value>Analista PPTO</Value>
                   <Style />
                 </TextRun>
               </TextRuns>
@@ -2434,9 +2446,9 @@
             </Paragraph>
           </Paragraphs>
           <rd:DefaultName>Textbox29</rd:DefaultName>
-          <Left>11.47167in</Left>
+          <Left>7.50in</Left>
           <Height>0.575in</Height>
-          <Width>1.31111in</Width>
+          <Width>1.48in</Width>
           <ZIndex>14</ZIndex>
           <Style>
             <Border>
@@ -2484,9 +2496,9 @@
             </Paragraph>
           </Paragraphs>
           <rd:DefaultName>Textbox31</rd:DefaultName>
-          <Left>12.78278in</Left>
+          <Left>8.54in</Left>
           <Height>0.575in</Height>
-          <Width>1.33611in</Width>
+          <Width>1.48in</Width>
           <ZIndex>15</ZIndex>
           <Style>
             <Border>
