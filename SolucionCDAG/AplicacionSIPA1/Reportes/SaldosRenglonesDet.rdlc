@@ -27,7 +27,7 @@
               <Width>0.58333in</Width>
             </TablixColumn>
             <TablixColumn>
-              <Width>1.125in</Width>
+              <Width>1.47778in</Width>
             </TablixColumn>
             <TablixColumn>
               <Width>0.68333in</Width>
@@ -1682,7 +1682,7 @@
         <DataSetName>DataSet1</DataSetName>
         <Left>0.105in</Left>
         <Height>0.5in</Height>
-        <Width>13.85278in</Width>
+        <Width>14.20556in</Width>
         <Style>
           <Border>
             <Style>Solid</Style>
