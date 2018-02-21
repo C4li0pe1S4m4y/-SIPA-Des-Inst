@@ -34,8 +34,12 @@
               <Width>0.60in</Width>
             </TablixColumn>             
             <TablixColumn>
+<<<<<<< HEAD
+              <Width>1.47778in</Width>
+=======
               <!--Descripcion-->
               <Width>1.66in</Width>
+>>>>>>> 32a9626a12a3b17047a19f38abc357a5933d0d08
             </TablixColumn>
             <TablixColumn>
               <!--Pedido-->
@@ -1697,7 +1701,7 @@
         <DataSetName>DataSet1</DataSetName>
         <Left>0.105in</Left>
         <Height>0.5in</Height>
-        <Width>13.85278in</Width>
+        <Width>14.20556in</Width>
         <Style>
           <Border>
             <Style>Solid</Style>
