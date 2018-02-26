@@ -200,5 +200,7 @@ namespace CapaAD
             query[5] = string.Format("SELECT g.no_solicitud, p.nombre_estado, u.Unidad FROM     sipa_gastos g INNER JOIN sipa_estados_pedido p ON p.id_estado_pedido = g.id_estado_gasto INNER JOIN ccl_unidades u ON u.id_unidad = g.id_unidad where anio_solicitud = {0} ", anio);
             return query;
         }
+
+       
     }
 }

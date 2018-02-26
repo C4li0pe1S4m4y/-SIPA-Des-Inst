@@ -1420,7 +1420,7 @@ namespace CapaAD
                             vno_orden_compra = "null";
                             vfecha_orden_compra = "null";
                         }
-                        query = "CALL sp_iue_pedido_detalles(" + vid_pedido_detalle + ", " + vid_pedido + ", 0, " + vcantidad_compra + ", 0, '', 0, " + vid_tipo_documento + ", " + vid_proveedor + ", " + vno_orden_compra + ", " + vcosto_real + ", '" + vfecha_orden_compra + "', " + viva + ", " + vliquidaciones_parciales + ", " + vcosto_unitario_compra + ", " + vid_tipo_documento_compra + ", '" + vusuario + "', 6);";
+                        query = "CALL sp_iue_pedido_detalles(" + vid_pedido_detalle + ", " + vid_pedido + ", 0, " + vcantidad_compra + ", 0, '', 0, " + vid_tipo_documento + ", " + vid_proveedor + ", " + vno_orden_compra + ", " + vcosto_real + ", '" + vfecha_orden_compra + "', " + viva + ", " + vliquidaciones_parciales + ", " + vcosto_unitario_compra + ", " + vid_tipo_documento_compra + ", '" + vusuario + "', 0,0,6);";
                         query = query.Replace("'null'", "null");
 
                         dt = new DataTable();
@@ -1541,7 +1541,7 @@ namespace CapaAD
                             vno_orden_compra = "null";
                             vfecha_orden_compra = "null";
                         }
-                        query = "CALL sp_iue_pedido_detalles(" + vid_pedido_detalle + ", " + vid_pedido + ", 0, " + vcantidad_compra + ", 0, '', 0, " + vid_tipo_documento + ", " + vid_proveedor + ", " + vno_orden_compra + ", " + vcosto_real + ", '" + vfecha_orden_compra + "', " + viva + ", " + vliquidaciones_parciales + ", " + vcosto_unitario_compra + ", " + vid_tipo_documento_compra + ", '" + vusuario + "', 3);";
+                        query = "CALL sp_iue_pedido_detalles(" + vid_pedido_detalle + ", " + vid_pedido + ", 0, " + vcantidad_compra + ", 0, '', 0, " + vid_tipo_documento + ", " + vid_proveedor + ", " + vno_orden_compra + ", " + vcosto_real + ", '" + vfecha_orden_compra + "', " + viva + ", " + vliquidaciones_parciales + ", " + vcosto_unitario_compra + ", " + vid_tipo_documento_compra + ", '" + vusuario + "',0,0 ,3);";
                         query = query.Replace("'null'", "null");
 
                         dt = new DataTable();
@@ -1585,7 +1585,7 @@ namespace CapaAD
 
             conectar = new ConexionBD();
             DataTable dt = new DataTable();
-            string query = "CALL sp_iue_pedido_detalles(0, " + idPedido + ", 0, 0, 0, '', 0, " + idTipoSalida + ", 0, 0, 0, null, 0, 0, 0, 0, '', 7);";
+            string query = "CALL sp_iue_pedido_detalles(0, " + idPedido + ", 0, 0, 0, '', 0, " + idTipoSalida + ", 0, 0, 0, null, 0, 0, 0, 0, '',0,0, 7);";
             conectar.AbrirConexion();
             MySqlDataAdapter consulta = new MySqlDataAdapter(query, conectar.conectar);
             consulta.Fill(dt);
@@ -1975,6 +1975,15 @@ namespace CapaAD
             return tabla;
         }
 
+        public string BusquedaCatalgoInsumo(string busqueda)
+        {
+            conectar = new ConexionBD();
+           
+            string query = String.Format(" select renglon,codigo_insumo,Nombre,Caracteristicas,Presentacion,Cantidad_Unidad,Codigo_presentacion from ccl_catalogo where renglon > 0 {0}",
+                busqueda);
+           
+            return query;
+        }
 
     }
 }

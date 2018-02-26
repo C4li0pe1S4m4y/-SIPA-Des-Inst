@@ -674,13 +674,13 @@ namespace AplicacionSIPA1.Compras
                     if (idTipoSalida == 1)
                     {
                         //VALIDACIÓN DEL SALDO DEL PAC AL QUE PERTENECE CADA DETALLE DEL PEDIDO
-                        dsResultado = pInsumoLN.PptoCodificarSalida(idSalida, 0, "", 5);
+                        //dsResultado = pInsumoLN.PptoCodificarSalida(idSalida, 0, "", 5);
+                        
+                        //if (bool.Parse(dsResultado.Tables["RESULTADO"].Rows[0]["ERRORES"].ToString()))
+                        //    throw new Exception(dsResultado.Tables["RESULTADO"].Rows[0]["MSG_ERROR"].ToString());
 
-                        if (bool.Parse(dsResultado.Tables["RESULTADO"].Rows[0]["ERRORES"].ToString()))
-                            throw new Exception(dsResultado.Tables["RESULTADO"].Rows[0]["MSG_ERROR"].ToString());
-
-                        if (dsResultado.Tables["BUSQUEDA"].Rows.Count > 0)
-                            lblError.Text = lblErrorCalculo.Text += dsResultado.Tables["BUSQUEDA"].Rows[0]["MENSAJE_SALDO"].ToString();
+                        //if (dsResultado.Tables["BUSQUEDA"].Rows.Count > 0)
+                        //    lblError.Text = lblErrorCalculo.Text += dsResultado.Tables["BUSQUEDA"].Rows[0]["MENSAJE_SALDO"].ToString();
                     }
 
                     dsResultado = pInsumoLN.PptoCodificarSalida(idSalida, 0, "", idTipoSalida);
