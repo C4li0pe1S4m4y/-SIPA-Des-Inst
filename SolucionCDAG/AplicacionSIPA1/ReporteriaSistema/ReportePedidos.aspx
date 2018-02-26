@@ -5,27 +5,26 @@
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder2" runat="server">
     <h2>&nbsp;&nbsp;&nbsp;&nbsp; Listado Documentos Por Acciones </h2>
-     
-                    
+              
    <asp:Label runat="server" ID="lblIdPoa"  Visible="false"/>
-    <div class="col-md-4">
+    <div class="col-md-2">
         <asp:Label ID="lblAnio" runat="server" Text="Año"></asp:Label>
-        <asp:DropDownList ID="ddlAnios" runat="server" OnSelectedIndexChanged="ddlAnios_SelectedIndexChanged"  AutoPostBack="True" class="form-control"  Width="80%">
+        <asp:DropDownList ID="ddlAnios" runat="server" OnSelectedIndexChanged="ddlAnios_SelectedIndexChanged"  AutoPostBack="True" class="form-control"  Width="100%">
                         </asp:DropDownList>
     </div>
     <div class="col-md-5">
         <asp:Label ID="lblUnidad" runat="server" Text="Unidad"></asp:Label>
-        <asp:DropDownList ID="ddlUnidades" runat="server" OnSelectedIndexChanged="ddlUnidades_SelectedIndexChanged" AutoPostBack="True" class="form-control"  Width="80%">
+        <asp:DropDownList ID="ddlUnidades" runat="server" OnSelectedIndexChanged="ddlUnidades_SelectedIndexChanged" AutoPostBack="True" class="form-control"  Width="90%">
                         </asp:DropDownList>
     </div>
     <div class="col-xs-4">
             <label>Dependencia</label>
-            <asp:DropDownList ID="ddlDependencias" runat="server" class="form-control" AutoPostBack="True" OnSelectedIndexChanged="ddlDependencias_SelectedIndexChanged"  Width="100%"></asp:DropDownList>
+            <asp:DropDownList ID="ddlDependencias" runat="server" class="form-control" AutoPostBack="True" OnSelectedIndexChanged="ddlDependencias_SelectedIndexChanged"  Width="80%"></asp:DropDownList>
         </div> 
    
-    <div class="col-md-8">
+    <div class="col-md-10">
          <asp:Label ID="lblAccion" runat="server" Text="Accion"></asp:Label>
-        <asp:DropDownList ID="ddlAcciones" runat="server" AutoPostBack="True" OnSelectedIndexChanged="ddlAcciones_SelectedIndexChanged" BackColor="#003366" class="form-control" ForeColor="White"  Width="80%">
+        <asp:DropDownList ID="ddlAcciones" runat="server" AutoPostBack="True" OnSelectedIndexChanged="ddlAcciones_SelectedIndexChanged" BackColor="#003366" class="form-control" ForeColor="White"  Width="103%">
         </asp:DropDownList>
     </div>
    

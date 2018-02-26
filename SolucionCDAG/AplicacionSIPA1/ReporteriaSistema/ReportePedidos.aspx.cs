@@ -194,53 +194,8 @@ namespace AplicacionSIPA1.ReporteriaSistema
         {
             pOperativoLN = new PlanOperativoLN();
             pOperativoLN.DdlDependencias(ddlDependencias, ddlUnidades.SelectedValue);
-            validarPoa(int.Parse(ddlUnidades.SelectedValue), int.Parse(ddlAnios.SelectedValue));
-            int idPoa = 0;
-            int.TryParse(lblIdPoa.Text, out idPoa);
-            obtenerPresupuesto(idPoa, 0);
-            System.Text.StringBuilder stringBuilder = new System.Text.StringBuilder();
-            stringBuilder.Append(querypoa());
-            if (ddlUnidades.SelectedValue == "29")
-            {
-                stringBuilder = new System.Text.StringBuilder();
-                stringBuilder.Append( " SELECT Monto_global as monto from sipa_poa where id_unidad = 29 and anio=2018;");
-            }
-            else
-            {
-                stringBuilder.Append("Where aa.id_poa  = " + idPoa);
-            }
 
-            pAccionLN = new PlanAccionLN();
-            pAccionLN.DdlAcciones(ddlAcciones, idPoa, 0, "", 3);
-            ddlAcciones.Items[0].Text = "<< TODAS >>";
-            MySqlConnection thisConnection = new MySqlConnection(thisConnectionString);
-            System.Data.DataSet thisDataSet = new System.Data.DataSet();
-            SearchValue[0] = new MySqlParameter("@Unidad", ddlUnidades.SelectedValue);
-            SearchValue[1] = new MySqlParameter("@Año", ddlAnios.SelectedValue);
-            /* Put the stored procedure result into a dataset */
-            if (ddlUnidades.SelectedValue == "29")
-            {
-                thisDataSet = MySqlHelper.ExecuteDataset(thisConnection, busqueda(3), SearchValue);
-            }
-            else
-            {
-                thisDataSet = MySqlHelper.ExecuteDataset(thisConnection, busqueda(1), SearchValue);
-            }
-
-
-            ReportDataSource datasource = new ReportDataSource("DataSet1", thisDataSet.Tables[0]);
-            System.Data.DataSet thisDataSet2 = new System.Data.DataSet();
-            thisDataSet2 = MySqlHelper.ExecuteDataset(thisConnection, stringBuilder.ToString());
-            ReportDataSource datasource1 = new ReportDataSource("DataSet2", thisDataSet2.Tables[0]);
             ReportViewer1.LocalReport.DataSources.Clear();
-            ReportViewer1.LocalReport.DataSources.Add(datasource);
-            ReportViewer1.LocalReport.DataSources.Add(datasource1);
-            if (thisDataSet.Tables[0].Rows.Count == 0)
-            {
-
-            }
-
-            ReportViewer1.LocalReport.Refresh();
         }
 
         protected void obtenerPresupuesto(int idPoa, int idDependencia)
@@ -253,17 +208,12 @@ namespace AplicacionSIPA1.ReporteriaSistema
                 int.TryParse(ddlUnidades.SelectedValue, out unidads);
                 decimal pptoPoaUnidad = decimal.Parse(dsPpto.Tables["BUSQUEDA"].Rows[0]["PPTO_POA_UNIDAD"].ToString());
 
-
                 if (unidads > 0)
                 {
                     dsPpto = pAccionLN.CostoEstimado(unidads, int.Parse(ddlAnios.SelectedValue));
                     decimal pptoPoaDependencia = decimal.Parse(dsPpto.Tables["BUSQUEDA"].Rows[0]["Gasto"].ToString());
                     decimal disponible = pptoPoaUnidad - pptoPoaDependencia;
-
                 }
-
-
-
             }
             catch (Exception ex)
             {
@@ -273,7 +223,7 @@ namespace AplicacionSIPA1.ReporteriaSistema
 
         protected void ddlAcciones_SelectedIndexChanged(object sender, EventArgs e)
         {
-            validarPoa(int.Parse(ddlUnidades.SelectedValue), 2017);
+            validarPoa(int.Parse(ddlDependencias.SelectedValue), 2017);
             int idPoa = 0;
             int.TryParse(lblIdPoa.Text, out idPoa);
             System.Text.StringBuilder stringBuilder = new System.Text.StringBuilder();
@@ -281,7 +231,7 @@ namespace AplicacionSIPA1.ReporteriaSistema
             stringBuilder.Append("Where id_accion  = " + ddlAcciones.SelectedValue);
             MySqlConnection thisConnection = new MySqlConnection(thisConnectionString);
             System.Data.DataSet thisDataSet = new System.Data.DataSet();
-            SearchValue2[0] = new MySqlParameter("@Unidad", ddlUnidades.SelectedValue);
+            SearchValue2[0] = new MySqlParameter("@Unidad", ddlDependencias.SelectedValue);
             SearchValue2[1] = new MySqlParameter("@Accion", ddlAcciones.SelectedValue);
             /* Put the stored procedure result into a dataset */
             thisDataSet = MySqlHelper.ExecuteDataset(thisConnection, busqueda(2), SearchValue2);
@@ -303,7 +253,7 @@ namespace AplicacionSIPA1.ReporteriaSistema
 
         protected void ddlAnios_SelectedIndexChanged(object sender, EventArgs e)
         {
-            validarPoa(int.Parse(ddlUnidades.SelectedValue), int.Parse(ddlAnios.SelectedValue));
+            validarPoa(int.Parse(ddlDependencias.SelectedValue), int.Parse(ddlAnios.SelectedValue));
             int idPoa = 0;
             int.TryParse(lblIdPoa.Text, out idPoa);
             obtenerPresupuesto(idPoa, 0);
@@ -315,7 +265,7 @@ namespace AplicacionSIPA1.ReporteriaSistema
             ddlAcciones.Items[0].Text = "<< TODAS >>";
             MySqlConnection thisConnection = new MySqlConnection(thisConnectionString);
             System.Data.DataSet thisDataSet = new System.Data.DataSet();
-            SearchValue[0] = new MySqlParameter("@Unidad", ddlUnidades.SelectedValue);
+            SearchValue[0] = new MySqlParameter("@Unidad", ddlDependencias.SelectedValue);
             SearchValue[1] = new MySqlParameter("@Año", ddlAnios.SelectedValue);
             /* Put the stored procedure result into a dataset */
             thisDataSet = MySqlHelper.ExecuteDataset(thisConnection, busqueda(1), SearchValue);
@@ -343,7 +293,7 @@ namespace AplicacionSIPA1.ReporteriaSistema
             obtenerPresupuesto(idPoa, 0);
             System.Text.StringBuilder stringBuilder = new System.Text.StringBuilder();
             stringBuilder.Append(querypoa());
-            if (ddlUnidades.SelectedValue == "29")
+            if (ddlDependencias.SelectedValue == "29")
             {
                 stringBuilder = new System.Text.StringBuilder();
                 stringBuilder.Append(" SELECT Monto_global as monto from sipa_poa where id_unidad = 29 and anio=2018;");
@@ -361,7 +311,7 @@ namespace AplicacionSIPA1.ReporteriaSistema
             SearchValue[0] = new MySqlParameter("@Unidad", ddlDependencias.SelectedValue);
             SearchValue[1] = new MySqlParameter("@Año", ddlAnios.SelectedValue);
             /* Put the stored procedure result into a dataset */
-            if (ddlUnidades.SelectedValue == "29")
+            if (ddlDependencias.SelectedValue == "29")
             {
                 thisDataSet = MySqlHelper.ExecuteDataset(thisConnection, busqueda(3), SearchValue);
             }
@@ -382,7 +332,6 @@ namespace AplicacionSIPA1.ReporteriaSistema
             {
 
             }
-
             ReportViewer1.LocalReport.Refresh();
         }
     }
