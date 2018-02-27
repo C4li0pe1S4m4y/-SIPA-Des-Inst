@@ -33,7 +33,7 @@ namespace AplicacionSIPA1
                     ddlAnios.SelectedValue = anioActual.ToString();
                 string usuario = Session["Usuario"].ToString().ToLower();
                 pOperativoLN.DdlUnidades(ddlUnidades, usuario);
-                if (ddlUnidades.Items.Count<1)
+                if (ddlUnidades.Items.Count<=1)
                 {
                     ddlUnidades_SelectedIndexChanged(sender, e);
                 }
@@ -132,7 +132,7 @@ namespace AplicacionSIPA1
                 System.Data.DataSet thisDataSet4 = new System.Data.DataSet();
                 System.Data.DataSet thisDataSet5 = new System.Data.DataSet();
                 System.Data.DataSet thisDataSet6 = new System.Data.DataSet();
-                string[] consutlas = pReportesAD.DashboardConsulta(ddlUnidades.SelectedValue, ddlAnios.SelectedValue);
+                string[] consutlas = pReportesAD.DashboardConsulta_Padre(ddlUnidades.SelectedValue, ddlAnios.SelectedValue);
                 /* Put the stored procedure result into a dataset */
                 thisDataSet = MySqlHelper.ExecuteDataset(thisConnection, consutlas[0]);
                 thisDataSet2 = MySqlHelper.ExecuteDataset(thisConnection, consutlas[1]);
@@ -171,7 +171,13 @@ namespace AplicacionSIPA1
             System.Data.DataSet thisDataSet4 = new System.Data.DataSet();
             System.Data.DataSet thisDataSet5 = new System.Data.DataSet();
             System.Data.DataSet thisDataSet6 = new System.Data.DataSet();
-            string[] consutlas = pReportesAD.DashboardConsulta(ddlDependencias.SelectedValue, ddlAnios.SelectedValue);
+            string[] consutlas;
+            if (ddlDependencias.SelectedValue == "0")
+                 consutlas = pReportesAD.DashboardConsulta_Padre(ddlUnidades.SelectedValue, ddlAnios.SelectedValue);
+            else
+                consutlas = pReportesAD.DashboardConsulta(ddlDependencias.SelectedValue, ddlAnios.SelectedValue);
+
+
             /* Put the stored procedure result into a dataset */
             thisDataSet = MySqlHelper.ExecuteDataset(thisConnection, consutlas[0]);
             thisDataSet2 = MySqlHelper.ExecuteDataset(thisConnection, consutlas[1]);

@@ -185,7 +185,20 @@ namespace CapaAD
             query[5] = string.Format("SELECT g.no_solicitud, p.nombre_estado, u.Unidad FROM     sipa_gastos g INNER JOIN sipa_estados_pedido p ON p.id_estado_pedido = g.id_estado_gasto INNER JOIN ccl_unidades u ON u.id_unidad = g.id_unidad  where u.id_unidad ={0} and g.anio_solicitud = {1}", idUnidad, anio);
             return query;
         }
-
+        public string[] DashboardConsulta_Padre(string idUnidad, string anio)
+        {
+            string[] query = new string[6];
+            query[0] = string.Format("SELECT p.no_solicitud, ep.nombre_estado, u.Unidad FROM sipa_pedidos p INNER JOIN sipa_estados_pedido ep ON ep.id_estado_pedido = p.id_estado_pedido INNER JOIN ccl_unidades u ON u.id_unidad = p.id_unidad where u.id_padre ={0} and p.anio_solicitud = {1}", idUnidad, anio);
+            query[1] = string.Format("SELECT v.no_solicitud, ev.nombre_estado, u.id_unidad, u.Unidad FROM sipa_viaticos v INNER JOIN sipa_estados_viaticos ev ON ev.id_estado_viatico = v.id_estado_viatico INNER JOIN ccl_unidades u ON u.id_unidad = v.id_unidad  where u.id_padre ={0} and v.anio_solicitud = {1}", idUnidad, anio);
+            query[2] = string.Format("SELECT SUM(d.monto) AS monto FROM     sipa_detalles_accion d INNER JOIN sipa_acciones aa ON aa.id_accion = d.id_accion INNER JOIN sipa_renglones r ON d.no_renglon = r.No_Renglon " +
+                                     "INNER JOIN sipa_tipos_financiamiento f ON d.id_tipo_financiamiento = f.id_tipo inner join sipa_poa poa on poa.id_poa = aa.id_poa inner join ccl_unidades u on u.id_unidad = poa.id_unidad WHERE  u.id_padre = {0} and poa.anio = {1} ", idUnidad, anio);
+            query[3] = string.Format("SELECT SUM(up.gasto) AS Gasto FROM unionpedido up INNER JOIN sipa_detalles_accion d ON up.id_detalle_accion = d.id_detalle INNER JOIN sipa_acciones aa" +
+                                    " ON aa.id_accion = d.id_accion  inner join sipa_poa poa on poa.id_poa = aa.id_poa  inner join ccl_unidades u on u.id_unidad = poa.id_unidad " +
+                                     "WHERE(up.estado_financiero = 1) AND u.id_padre = {0} and poa.anio = {1} ", idUnidad, anio);
+            query[4] = string.Format("SELECT p.no_solicitud, ep.nombre_estado, u.Unidad FROM sipa_ccvale p INNER JOIN sipa_estados_pedido ep ON ep.id_estado_pedido = p.id_estado_vale INNER JOIN ccl_unidades u ON u.id_unidad = p.id_unidad  where u.id_padre ={0} and p.anio_solicitud = {1}", idUnidad, anio);
+            query[5] = string.Format("SELECT g.no_solicitud, p.nombre_estado, u.Unidad FROM     sipa_gastos g INNER JOIN sipa_estados_pedido p ON p.id_estado_pedido = g.id_estado_gasto INNER JOIN ccl_unidades u ON u.id_unidad = g.id_unidad  where u.id_padre ={0} and g.anio_solicitud = {1}", idUnidad, anio);
+            return query;
+        }
         public string[] DashboardConsulta_anio(string anio)
         {
             string[] query = new string[6];
