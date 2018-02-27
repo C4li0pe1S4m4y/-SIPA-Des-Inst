@@ -49,36 +49,40 @@ namespace AplicacionSIPA1.ReporteriaSistema
                 else
                     pOperativoLN.DdlUnidades(ddlUnidades, usuario);
 
-                validarPoa(int.Parse(ddlUnidades.SelectedValue), int.Parse(ddlAnios.SelectedValue));
-                int idPoa = 0;
-                int.TryParse(lblPoa.Text, out idPoa);
-                pAccionLN = new PlanAccionLN();
-                pAccionLN.DdlAcciones(ddlAcciones, idPoa, 0, "", 3);
-                ddlAcciones.Items[0].Text = "<< TODAS >>";
-                System.Text.StringBuilder stringBuilder = new System.Text.StringBuilder();
-                stringBuilder.Append(consulta());
-                if (ddlUnidades.Items.Count==1)
+                if (ddlUnidades.Items.Count == 1)
                 {
-                    stringBuilder.Append(" AND id_unidad = " + ddlUnidades.SelectedValue);
-                    stringBuilder.Append(" AND t.Año = " + ddlAnios.SelectedValue);
+                    ddlUnidades_SelectedIndexChanged(sender, e);
                 }
-                stringBuilder.Append(" Order by t.no_solicitud");
-                MySqlConnection thisConnection = new MySqlConnection(thisConnectionString);
-                DataSet thisDataSet = new System.Data.DataSet();
-
-                /* Put the stored procedure result into a dataset */
-                thisDataSet = MySqlHelper.ExecuteDataset(thisConnection, stringBuilder.ToString());
-
-                ReportDataSource datasource = new ReportDataSource("DataSet1", thisDataSet.Tables[0]);
-
-                ReportViewer1.LocalReport.DataSources.Clear();
-                ReportViewer1.LocalReport.DataSources.Add(datasource);
-                if (thisDataSet.Tables[0].Rows.Count == 0)
+                else
                 {
+                    validarPoa(int.Parse(ddlUnidades.SelectedValue), int.Parse(ddlAnios.SelectedValue));
+                    int idPoa = 0;
+                    int.TryParse(lblPoa.Text, out idPoa);
+                    pAccionLN = new PlanAccionLN();
+                    pAccionLN.DdlAcciones(ddlAcciones, idPoa, 0, "", 3);
+                    ddlAcciones.Items[0].Text = "<< TODAS >>";
+                    System.Text.StringBuilder stringBuilder = new System.Text.StringBuilder();
+                    stringBuilder.Append(consulta());
 
+                    stringBuilder.Append(" Order by t.no_solicitud");
+                    MySqlConnection thisConnection = new MySqlConnection(thisConnectionString);
+                    DataSet thisDataSet = new System.Data.DataSet();
+
+                    /* Put the stored procedure result into a dataset */
+                    thisDataSet = MySqlHelper.ExecuteDataset(thisConnection, stringBuilder.ToString());
+
+                    ReportDataSource datasource = new ReportDataSource("DataSet1", thisDataSet.Tables[0]);
+
+                    ReportViewer1.LocalReport.DataSources.Clear();
+                    ReportViewer1.LocalReport.DataSources.Add(datasource);
+                    if (thisDataSet.Tables[0].Rows.Count == 0)
+                    {
+
+                    }
+
+                    ReportViewer1.LocalReport.Refresh();
                 }
-
-                ReportViewer1.LocalReport.Refresh();
+               
             }
         }
         protected void ddlAnios_SelectedIndexChanged(object sender, EventArgs e)
@@ -143,7 +147,7 @@ namespace AplicacionSIPA1.ReporteriaSistema
             pAccionLN.DdlAcciones(ddlAcciones, idPoa, 0, "", 3);
             System.Text.StringBuilder stringBuilder = new System.Text.StringBuilder();
             stringBuilder.Append(consulta());
-            stringBuilder.Append(" AND id_unidad = " + ddlUnidades.SelectedValue);
+            stringBuilder.Append(" AND id_padre = " + ddlUnidades.SelectedValue);
             stringBuilder.Append(" AND t.Año = " + ddlAnios.SelectedValue);
             string tiposSalida = "";
             for (int i = 0; i < chkTiposSalida.Items.Count; i++)
@@ -191,7 +195,10 @@ namespace AplicacionSIPA1.ReporteriaSistema
             pAccionLN.DdlAcciones(ddlAcciones, idPoa, 0, "", 3);
             System.Text.StringBuilder stringBuilder = new System.Text.StringBuilder();
             stringBuilder.Append(consulta());
-            stringBuilder.Append(" AND id_unidad = " + ddlDependencia.SelectedValue);
+            if(ddlDependencia.SelectedValue == "0")
+                stringBuilder.Append(" AND id_padre = " + ddlUnidades.SelectedValue);
+            else
+                stringBuilder.Append(" AND id_unidad = " + ddlDependencia.SelectedValue);
             stringBuilder.Append(" AND t.Año = " + ddlAnios.SelectedValue);
             string tiposSalida = "";
             for (int i = 0; i < chkTiposSalida.Items.Count; i++)
@@ -260,7 +267,7 @@ namespace AplicacionSIPA1.ReporteriaSistema
             query = " SELECT t.*" +
                     "FROM(SELECT a.no_solicitud, a.anio_solicitud AS Año, fn_codigo_accion(b.id_accion, 0, '', 1) AS Accion, a.Documento, a.fecha_pedido, c.Descripcion, a.estado_salida AS Estado, a.unidad_administrativa, c.costo_pedido AS Pedido, " +
                                     "c.costo_estimado, c.costo_real, d.no_renglon, p.id_pac AS no_pac, da.no_renglon AS renglon_pac, a.anio_solicitud, a.id_unidad, b.id_accion, a.id_tipo_documento, a.id_estado_pedido, CONCAT(se.id_empleado, ' - ', se.nombres) " +
-                                    "AS Solicitante, CONCAT(sep.id_empleado, ' - ', sep.nombres) AS AnalistaPpto, CONCAT(sec.id_empleado, ' - ', sec.nombres) AS TecnicoCompras " +
+                                    "AS Solicitante, CONCAT(sep.id_empleado, ' - ', sep.nombres) AS AnalistaPpto, CONCAT(sec.id_empleado, ' - ', sec.nombres) AS TecnicoCompras,u.id_padre " +
                     "FROM      unionpedidocc a INNER JOIN " +
                                     "sipa_acciones b ON a.id_accion = b.id_accion INNER JOIN " +
                                     "sipa_pedido_detalle c ON a.id_pedido = c.id_pedido LEFT OUTER JOIN " +
@@ -269,39 +276,40 @@ namespace AplicacionSIPA1.ReporteriaSistema
                                     "ccl_empleados se ON se.id_empleado = a.id_solicitante LEFT OUTER JOIN " +
                                     "ccl_empleados sep ON sep.id_empleado = a.id_direc_financiera LEFT OUTER JOIN " +
                                     "ccl_empleados sec ON sec.id_empleado = a.id_tecnico INNER JOIN " +
-                                    "sipa_detalles_accion da ON p.id_detalle = da.id_detalle " +
+                                    "sipa_detalles_accion da ON p.id_detalle = da.id_detalle INNER JOIN " +
+                                    "ccl_unidades u on u.id_unidad = a.id_unidad " +
                       "WHERE(a.id_tipo_documento = 1 and p.anio = 2018) " +
                       "UNION ALL " +
                       "SELECT a.no_solicitud, a.anio_solicitud AS Año, fn_codigo_accion(b.id_accion, 0, '', 1) AS Accion, a.Documento, a.fecha_pedido, c.descripcion, a.estado_salida AS Estado, a.unidad_administrativa, c.costo_vale AS Pedido, c.costo_estimado, " +
                                         "c.costo_real, d.no_renglon, 'N/A' AS no_pac, 'N/A' AS renglon_pac, a.anio_solicitud, a.id_unidad, b.id_accion, a.id_tipo_documento, a.id_estado_pedido, CONCAT(se.id_empleado, ' - ', se.nombres) AS Solicitante, " +
-                                        "CONCAT(sep.id_empleado, ' - ', sep.nombres) AS AnalistaPpto, CONCAT(sec.id_empleado, ' - ', sec.nombres) AS TecnicoCompras " +
+                                        "CONCAT(sep.id_empleado, ' - ', sep.nombres) AS AnalistaPpto, CONCAT(sec.id_empleado, ' - ', sec.nombres) AS TecnicoCompras,u.id_padre " +
                       "FROM     unionpedidocc a INNER JOIN " +
                                         "sipa_acciones b ON a.id_accion = b.id_accion INNER JOIN " +
                                         "sipa_ccvale_detalle c ON a.id_pedido = c.id_ccvale LEFT OUTER JOIN " +
                                         "sipa_detalles_accion d ON d.id_detalle = c.id_detalle_accion INNER JOIN " +
                                         "ccl_empleados se ON se.id_empleado = a.id_solicitante LEFT OUTER JOIN " +
                                         "ccl_empleados sep ON sep.id_empleado = a.id_direc_financiera LEFT OUTER JOIN " +
-                                        "ccl_empleados sec ON sec.id_empleado = a.id_tecnico " +
+                                        "ccl_empleados sec ON sec.id_empleado = a.id_tecnico INNER JOIN " +
+                                        "ccl_unidades u on u.id_unidad = a.id_unidad " +
                       "WHERE(a.id_tipo_documento = 2) " +
                       "UNION ALL " +
-                      "SELECT a.no_solicitud, a.anio_solicitud AS Año, fn_codigo_accion(b.id_accion, 0, '', 1) AS Accion, CONCAT(a.Documento, '/', tv.abreviatura) AS Expr1, a.fecha_pedido, c.justificacion, a.estado_salida AS Estado, a.unidad_administrativa, " +
-                                        "c.costo_viatico + c.pasajes + c.kilometraje AS Pedido, c.costo_estimado + c.pasajes_estimado + c.kilometraje_estimado AS costo_estimado, c.costo_real + c.pasajes_real + c.kilometraje_real AS costo_real, d.no_renglon, " +
-                                        "'N/A' AS no_pac, 'N/A' AS renglon_pac, a.anio_solicitud, a.id_unidad, b.id_accion, a.id_tipo_documento, a.id_estado_pedido, CONCAT(se.id_empleado, ' - ', se.nombres) AS Solicitante, CONCAT(sep.id_empleado, ' - ', sep.nombres) " +
-                                        "AS AnalistaPpto, CONCAT(sec.id_empleado, ' - ', sec.nombres) AS TecnicoCompras " +
+                      "SELECT a.no_solicitud, a.anio_solicitud AS Año, fn_codigo_accion(b.id_accion, 0, '', 1) AS Accion, a.Documento, a.fecha_pedido, c.descripcion, a.estado_salida AS Estado, a.unidad_administrativa, c.costo_gasto AS Pedido, c.costo_estimado, " +
+                                        "c.costo_real, d.no_renglon, 'N/A' AS no_pac, 'N/A' AS renglon_pac, a.anio_solicitud, a.id_unidad, b.id_accion, a.id_tipo_documento, a.id_estado_pedido, CONCAT(se.id_empleado, ' - ', se.nombres) AS Solicitante, " +
+                                        "CONCAT(sep.id_empleado, ' - ', sep.nombres) AS AnalistaPpto, CONCAT(sec.id_empleado, ' - ', sec.nombres) AS TecnicoCompras,u.id_padre " +
                       "FROM     unionpedidocc a INNER JOIN " +
                                         "sipa_acciones b ON a.id_accion = b.id_accion INNER JOIN " +
-                                        "sipa_viaticos c ON a.id_pedido = c.id_viatico LEFT OUTER JOIN " +
+                                        "sipa_gasto_detalle c ON a.id_pedido = c.id_gasto LEFT OUTER JOIN " +
                                         "sipa_detalles_accion d ON d.id_detalle = c.id_detalle_accion INNER JOIN " +
-                                        "ccl_empleados se ON se.id_empleado = a.id_solicitante INNER JOIN " +
-                                        "sipa_tipos_viatico tv ON tv.id_tipo_viatico = c.id_tipo_viatico LEFT OUTER JOIN " +
+                                        "ccl_empleados se ON se.id_empleado = a.id_solicitante LEFT OUTER JOIN " +
                                         "ccl_empleados sep ON sep.id_empleado = a.id_direc_financiera LEFT OUTER JOIN " +
-                                        "ccl_empleados sec ON sec.id_empleado = a.id_tecnico " +
+                                        "ccl_empleados sec ON sec.id_empleado = a.id_tecnico INNER JOIN " +
+                                        "ccl_unidades u on u.id_unidad = a.id_unidad " +
                       "WHERE(a.id_tipo_documento = 3) " +
                       "UNION ALL " +
                       " SELECT a.no_solicitud, a.anio_solicitud AS Año, fn_codigo_accion(b.id_accion, 0, '', 1) AS Accion, CONCAT(a.Documento, '/', tv.abreviatura) AS Expr1, a.fecha_pedido, c.justificacion, a.estado_salida AS Estado, a.unidad_administrativa," +
                                         "c.costo_viatico + c.pasajes + c.kilometraje AS Pedido, c.costo_estimado + c.pasajes_estimado + c.kilometraje_estimado AS costo_estimado, c.costo_real + c.pasajes_real + c.kilometraje_real AS costo_real, d.no_renglon," +
                                         "'N/A' AS no_pac, 'N/A' AS renglon_pac, a.anio_solicitud, a.id_unidad, b.id_accion, a.id_tipo_documento, a.id_estado_pedido, CONCAT(se.id_empleado, ' - ', se.nombres) AS Solicitante, CONCAT(sep.id_empleado, ' - ', sep.nombres) " +
-                                        "AS AnalistaPpto, CONCAT(sec.id_empleado, ' - ', sec.nombres) AS TecnicoCompras " +
+                                        "AS AnalistaPpto, CONCAT(sec.id_empleado, ' - ', sec.nombres) AS TecnicoCompras,u.id_padre " +
                       "FROM     unionpedidocc a INNER JOIN " +
                                         "sipa_acciones b ON a.id_accion = b.id_accion INNER JOIN " +
                                         "sipa_viaticos c ON a.id_pedido = c.id_viatico LEFT OUTER JOIN " +
@@ -309,7 +317,8 @@ namespace AplicacionSIPA1.ReporteriaSistema
                                         "ccl_empleados se ON se.id_empleado = a.id_solicitante INNER JOIN " +
                                         "sipa_tipos_viatico tv ON tv.id_tipo_viatico = c.id_tipo_viatico LEFT OUTER JOIN " +
                                         "ccl_empleados sep ON sep.id_empleado = a.id_direc_financiera LEFT OUTER JOIN " +
-                                        "ccl_empleados sec ON sec.id_empleado = a.id_tecnico " +
+                                        "ccl_empleados sec ON sec.id_empleado = a.id_tecnico INNER JOIN " +
+                                        "ccl_unidades u on u.id_unidad = a.id_unidad " +
                       "WHERE(a.id_tipo_documento = 4)) t " +
                 "WHERE(id_estado_pedido > 0 ) ";
             return query;
@@ -373,6 +382,11 @@ namespace AplicacionSIPA1.ReporteriaSistema
                     stringBuilder.Append(" AND id_unidad = " + ddlDependencia.SelectedValue);
                     stringBuilder.Append(" AND t.Año = " + ddlAnios.SelectedValue);
                 }
+                else
+                {
+                    stringBuilder.Append(" AND id_padre = " + ddlUnidades.SelectedValue);
+                    stringBuilder.Append(" AND t.Año = " + ddlAnios.SelectedValue);
+                }
                
             }
                
@@ -424,6 +438,11 @@ namespace AplicacionSIPA1.ReporteriaSistema
                 if (ddlDependencia.SelectedValue != "0")
                 {
                     stringBuilder.Append(" AND id_unidad = " + ddlDependencia.SelectedValue);
+                    stringBuilder.Append(" AND t.Año = " + ddlAnios.SelectedValue);
+                }
+                else
+                {
+                    stringBuilder.Append(" AND id_padre = " + ddlUnidades.SelectedValue);
                     stringBuilder.Append(" AND t.Año = " + ddlAnios.SelectedValue);
                 }
 
@@ -478,6 +497,11 @@ namespace AplicacionSIPA1.ReporteriaSistema
                     stringBuilder.Append(" AND id_unidad = " + ddlDependencia.SelectedValue);
                     stringBuilder.Append(" AND t.Año = " + ddlAnios.SelectedValue);
                 }
+                else
+                {
+                    stringBuilder.Append(" AND id_padre = " + ddlUnidades.SelectedValue);
+                    stringBuilder.Append(" AND t.Año = " + ddlAnios.SelectedValue);
+                }
 
             }
             if (ddlAcciones.SelectedIndex > 0)
@@ -529,7 +553,12 @@ namespace AplicacionSIPA1.ReporteriaSistema
                 {
                     stringBuilder.Append(" AND id_unidad = " + ddlDependencia.SelectedValue);
                 }
-
+                else
+                {
+                    stringBuilder.Append(" AND id_padre = " + ddlUnidades.SelectedValue);
+                   
+                }
+                stringBuilder.Append(" AND t.Año = " + ddlAnios.SelectedValue);
             }
             if (ddlAcciones.SelectedIndex > 0)
                 stringBuilder.Append(" AND id_accion = " + ddlAcciones.SelectedValue);
