@@ -23,7 +23,7 @@ namespace AplicacionSIPA1.Viaticos
         private PlanAnualLN pAnualLN;
         private bool bDepencia = false;
         private ViaticosLN pViaticosLN;
-        
+
         protected void Page_LoadComplete(object sender, EventArgs e)
         {
             if (IsPostBack == false)
@@ -47,7 +47,7 @@ namespace AplicacionSIPA1.Viaticos
             try
             {
                 limpiarControlesError();
-                NuevoEncabezadoPoa();            
+                NuevoEncabezadoPoa();
             }
             catch (Exception ex)
             {
@@ -90,13 +90,10 @@ namespace AplicacionSIPA1.Viaticos
 
                 string usuario = Session["Usuario"].ToString().ToLower();
                 pOperativoLN.DdlUnidades(ddlUnidades, usuario);
-
-                if (ddlUnidades.Items.Count == 1)
+                ddlUnidades.SelectedValue = Convert.ToString(Request.QueryString["unidad"]);
+                if (!ddlAnios.SelectedValue.Equals("0"))
                 {
-                    if (!ddlAnios.SelectedValue.Equals("0"))
-                    {
-                        validarPoaListadoPedido(int.Parse(ddlUnidades.SelectedValue), int.Parse(ddlAnios.SelectedValue));
-                    }
+                    validarPoaListadoPedido(int.Parse(ddlUnidades.SelectedValue), int.Parse(ddlAnios.SelectedValue));
                 }
 
                 int idPoa = 0;
@@ -105,7 +102,7 @@ namespace AplicacionSIPA1.Viaticos
                 pAccionLN = new PlanAccionLN();
                 pAccionLN.DdlAccionesPoa(ddlAcciones, idPoa);
                 ddlAcciones.Items[0].Text = "<< Elija un valor >>";
-                ddlUnidades.SelectedValue = Convert.ToString(Request.QueryString["unidad"]);
+
                 filtrarGridDetalles(idPoa);
             }
             catch (Exception ex)
@@ -173,7 +170,7 @@ namespace AplicacionSIPA1.Viaticos
 
                 if (anio > 0 && idUnidad > 0)
                     validarPoaListadoPedido(idUnidad, anio);
-                
+
 
                 int idPoa = 0;
                 int.TryParse(lblIdPoa.Text, out idPoa);
@@ -232,7 +229,7 @@ namespace AplicacionSIPA1.Viaticos
             try
             {
                 limpiarControlesError();
-                
+
                 int idPoa = 0;
                 int.TryParse(lblIdPoa.Text, out idPoa);
 
@@ -262,7 +259,7 @@ namespace AplicacionSIPA1.Viaticos
         {
             //lblErrorPoa.Text = string.Empty;
             lblErrorPlan.Text = string.Empty;
-            lblErrorAnio.Text = lblErrorUnidad.Text = string.Empty;           
+            lblErrorAnio.Text = lblErrorUnidad.Text = string.Empty;
             lblError.Text = lblSuccess.Text = string.Empty;
 
         }
@@ -274,9 +271,9 @@ namespace AplicacionSIPA1.Viaticos
             {
                 lblIdPoa.Text = "0";
 
-                pOperativoLN = new PlanOperativoLN();                
+                pOperativoLN = new PlanOperativoLN();
                 DataSet dsPoa = pOperativoLN.DatosPoaUnidad(idUnidad, anio);
-                
+
                 if (dsPoa.Tables.Count == 0)
                     throw new Exception("Error al consultar el presupuesto.");
 
@@ -291,7 +288,7 @@ namespace AplicacionSIPA1.Viaticos
             {
                 lblErrorPoa.Text = lblError.Text = "Error: " + ex.Message;
             }
-            return poaValido;            
+            return poaValido;
         }
 
         protected void ddlPlanes_SelectedIndexChanged(object sender, EventArgs e)
@@ -339,7 +336,7 @@ namespace AplicacionSIPA1.Viaticos
                     GridView gridPlan = new GridView();
 
                     ViaticosLN reportes = new ViaticosLN();
-                    DataSet dsResultado = reportes.InformacionViatico(idEncabezado, 0,  12);
+                    DataSet dsResultado = reportes.InformacionViatico(idEncabezado, 0, 12);
 
                     if (bool.Parse(dsResultado.Tables[0].Rows[0]["ERRORES"].ToString()))
                         throw new Exception("No se CONSULTÓ la información del viático (encabezado): " + dsResultado.Tables[0].Rows[0]["MSG_ERROR"].ToString());
@@ -381,7 +378,7 @@ namespace AplicacionSIPA1.Viaticos
                         nombreReporte = "ViaticosExt";
                     }
 
-                    
+
                     rViewer.LocalReport.Refresh();
 
                     byte[] bytes = rViewer.LocalReport.Render(
@@ -467,7 +464,7 @@ namespace AplicacionSIPA1.Viaticos
 
                 if (dsResultado.Tables["BUSQUEDA"].Rows.Count > 0 && dsResultado.Tables["BUSQUEDA"].Rows[0]["ID"].ToString() != "")
                 {
-                    if(dsResultado.Tables["BUSQUEDA"].Rows[0]["ID_TIPO_VIATICO"].ToString().Equals("1"))
+                    if (dsResultado.Tables["BUSQUEDA"].Rows[0]["ID_TIPO_VIATICO"].ToString().Equals("1"))
                         Response.Redirect("ViaticosIngreso.aspx?No=" + Convert.ToString(idEncabezado));
                     else
                         Response.Redirect("ViaticosIngresoExt.aspx?No=" + Convert.ToString(idEncabezado));
@@ -567,7 +564,7 @@ namespace AplicacionSIPA1.Viaticos
 
                 int.TryParse(ddlAnios.SelectedValue, out anio);
                 int.TryParse(ddlJefatura.SelectedValue, out idUnidad);
-                
+
                 if (anio > 0 && idUnidad > 0)
                     validarPoaListadoPedido(idUnidad, anio);
 

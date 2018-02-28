@@ -24,7 +24,7 @@ namespace AplicacionSIPA1.Pedido
         private PlanAnualLN pAnualLN;
         private bool bDepencia = false;
         private PedidosLN pInsumoLN;
-        
+
         protected void Page_LoadComplete(object sender, EventArgs e)
         {
             if (IsPostBack == false)
@@ -48,7 +48,7 @@ namespace AplicacionSIPA1.Pedido
             try
             {
                 limpiarControlesError();
-                NuevoEncabezadoPoa();            
+                NuevoEncabezadoPoa();
             }
             catch (Exception ex)
             {
@@ -91,15 +91,12 @@ namespace AplicacionSIPA1.Pedido
 
                 string usuario = Session["Usuario"].ToString().ToLower();
                 pOperativoLN.DdlUnidades(ddlUnidades, usuario);
+                ddlUnidades.SelectedValue = Convert.ToString(Request.QueryString["unidad"]);
 
-                if (ddlUnidades.Items.Count == 1)
+                if (!ddlAnios.SelectedValue.Equals("0"))
                 {
-                    if (!ddlAnios.SelectedValue.Equals("0"))
-                    {
-                        validarPoaListadoPedido(int.Parse(ddlUnidades.SelectedValue), int.Parse(ddlAnios.SelectedValue));
-                    }
+                    validarPoaListadoPedido(int.Parse(ddlUnidades.SelectedValue), int.Parse(ddlAnios.SelectedValue));
                 }
-
                 int idPoa = 0;
                 int.TryParse(lblIdPoa.Text, out idPoa);
 
@@ -107,7 +104,7 @@ namespace AplicacionSIPA1.Pedido
                 //pAccionLN.DdlAccionesPoa(ddlAcciones, idPoa);
                 pAccionLN.DdlAcciones(ddlAcciones, idPoa, 0, "", 3);
                 ddlAcciones.Items[0].Text = "<< Elija un valor >>";
-                ddlUnidades.SelectedValue = Convert.ToString(Request.QueryString["unidad"]);
+
                 filtrarGridDetalles(idPoa);
             }
             catch (Exception ex)
@@ -177,7 +174,7 @@ namespace AplicacionSIPA1.Pedido
                     validarPoaListadoPedido(idUnidad, anio);
                 else
                     lblIdPoa.Text = "0";
-                
+
 
                 int idPoa = 0;
                 int.TryParse(lblIdPoa.Text, out idPoa);
@@ -240,7 +237,7 @@ namespace AplicacionSIPA1.Pedido
             try
             {
                 limpiarControlesError();
-                
+
                 int idPoa = 0;
                 int.TryParse(lblIdPoa.Text, out idPoa);
 
@@ -270,7 +267,7 @@ namespace AplicacionSIPA1.Pedido
         {
             //lblErrorPoa.Text = string.Empty;
             lblErrorPlan.Text = string.Empty;
-            lblErrorAnio.Text = lblErrorUnidad.Text = string.Empty;           
+            lblErrorAnio.Text = lblErrorUnidad.Text = string.Empty;
             lblError.Text = lblSuccess.Text = string.Empty;
 
         }
@@ -282,9 +279,9 @@ namespace AplicacionSIPA1.Pedido
             {
                 lblIdPoa.Text = "0";
 
-                pOperativoLN = new PlanOperativoLN();                
+                pOperativoLN = new PlanOperativoLN();
                 DataSet dsPoa = pOperativoLN.DatosPoaUnidad(idUnidad, anio);
-                
+
                 if (dsPoa.Tables.Count == 0)
                     throw new Exception("Error al consultar el presupuesto.");
 
@@ -299,7 +296,7 @@ namespace AplicacionSIPA1.Pedido
             {
                 lblErrorPoa.Text = lblError.Text = "Error: " + ex.Message;
             }
-            return poaValido;            
+            return poaValido;
         }
 
         protected void ddlPlanes_SelectedIndexChanged(object sender, EventArgs e)
@@ -390,7 +387,7 @@ namespace AplicacionSIPA1.Pedido
             bool pptoValido = false;
 
             DataSet dsPptoRenglon = pAnualLN.InformacionRenglonAccion(idDetalleAccion, int.Parse(ddlAnios.SelectedValue));
-            DataSet dsPptoPac = pAnualLN.InformacionPac(idPac,2018);
+            DataSet dsPptoPac = pAnualLN.InformacionPac(idPac, 2018);
 
             if (bool.Parse(dsPptoRenglon.Tables[0].Rows[0]["ERRORES"].ToString()))
                 throw new Exception("No se consultó el presupuesto del Renglón: " + dsPptoRenglon.Tables[0].Rows[0]["MSG_ERROR"].ToString());
@@ -406,15 +403,15 @@ namespace AplicacionSIPA1.Pedido
             decimal.TryParse(dsPptoPac.Tables["ENCABEZADO"].Rows[0]["MONTO"].ToString(), out montoActualPac);
 
             decimal diferenciaRenglonMontoN = (saldoRenglon + montoActualPac) - totalPac;
-            if(diferenciaRenglonMontoN < 0)
+            if (diferenciaRenglonMontoN < 0)
                 throw new Exception("El monto máximo debe ser igual o menor al monto disponible: " + String.Format(CultureInfo.InvariantCulture, "Q.{0:0,0.00}", (saldoRenglon + montoActualPac)));
 
 
             decimal.TryParse(dsPptoPac.Tables["ENCABEZADO"].Rows[0]["CODIFICADO"].ToString(), out codificadoPac);
-            decimal diferenciaCodificadoMontoN = totalPac - codificadoPac; 
+            decimal diferenciaCodificadoMontoN = totalPac - codificadoPac;
             if (diferenciaCodificadoMontoN < 0)
                 throw new Exception("El monto mínimo debe ser igual o mayor al monto codificado/comprometido: " + String.Format(CultureInfo.InvariantCulture, "Q.{0:0,0.00}", codificadoPac));
-                
+
             pptoValido = true;
             return pptoValido;
         }
@@ -467,11 +464,12 @@ namespace AplicacionSIPA1.Pedido
                 if (ddlDependencia.SelectedIndex > 0)
                 {
                     Response.Redirect("GastoIngreso.aspx?No=" + Convert.ToString(idEncabezado) + "&dep=" + ddlDependencia.SelectedValue);
-                }else
+                }
+                else
                 {
                     Response.Redirect("GastoIngreso.aspx?No=" + Convert.ToString(idEncabezado));
                 }
-               
+
             }
             catch (Exception ex)
             {
@@ -513,7 +511,7 @@ namespace AplicacionSIPA1.Pedido
                 pAccionLN.DdlAcciones(ddlAcciones, idPoa, 0, "", 3);
                 ddlAcciones.Items[0].Text = "<< Elija un valor >>";
                 bDepencia = true;
-                
+
 
                 filtrarGridDetalles(idPoa);
 
@@ -552,7 +550,7 @@ namespace AplicacionSIPA1.Pedido
                 pAccionLN.DdlAcciones(ddlAcciones, idPoa, 0, "", 3);
                 ddlAcciones.Items[0].Text = "<< Elija un valor >>";
 
-               
+
 
                 filtrarGridDetalles(idPoa);
 

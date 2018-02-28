@@ -23,7 +23,7 @@ namespace AplicacionSIPA1.Pedido
         private PlanAnualLN pAnualLN;
         private bool bDepencia = false;
         private PedidosLN pInsumoLN;
-        
+
         protected void Page_LoadComplete(object sender, EventArgs e)
         {
             if (IsPostBack == false)
@@ -46,7 +46,7 @@ namespace AplicacionSIPA1.Pedido
             try
             {
                 limpiarControlesError();
-                NuevoEncabezadoPoa();            
+                NuevoEncabezadoPoa();
             }
             catch (Exception ex)
             {
@@ -89,13 +89,10 @@ namespace AplicacionSIPA1.Pedido
 
                 string usuario = Session["Usuario"].ToString().ToLower();
                 pOperativoLN.DdlUnidades(ddlUnidades, usuario);
-
-                if (ddlUnidades.Items.Count == 1)
+                ddlUnidades.SelectedValue = Convert.ToString(Request.QueryString["unidad"]);
+                if (!ddlAnios.SelectedValue.Equals("0"))
                 {
-                    if (!ddlAnios.SelectedValue.Equals("0"))
-                    {
-                        validarPoaListadoPedido(int.Parse(ddlUnidades.SelectedValue), int.Parse(ddlAnios.SelectedValue));
-                    }
+                    validarPoaListadoPedido(int.Parse(ddlUnidades.SelectedValue), int.Parse(ddlAnios.SelectedValue));
                 }
 
                 int idPoa = 0;
@@ -105,7 +102,7 @@ namespace AplicacionSIPA1.Pedido
                 //pAccionLN.DdlAccionesPoa(ddlAcciones, idPoa);
                 pAccionLN.DdlAcciones(ddlAcciones, idPoa, 0, "", 3);
                 ddlAcciones.Items[0].Text = "<< Elija un valor >>";
-                ddlUnidades.SelectedValue = Convert.ToString(Request.QueryString["unidad"]);
+
                 filtrarGridDetalles(idPoa);
             }
             catch (Exception ex)
@@ -175,7 +172,7 @@ namespace AplicacionSIPA1.Pedido
                     validarPoaListadoPedido(idUnidad, anio);
                 else
                     lblIdPoa.Text = "0";
-                
+
 
                 int idPoa = 0;
                 int.TryParse(lblIdPoa.Text, out idPoa);
@@ -238,7 +235,7 @@ namespace AplicacionSIPA1.Pedido
             try
             {
                 limpiarControlesError();
-                
+
                 int idPoa = 0;
                 int.TryParse(lblIdPoa.Text, out idPoa);
 
@@ -268,7 +265,7 @@ namespace AplicacionSIPA1.Pedido
         {
             //lblErrorPoa.Text = string.Empty;
             lblErrorPlan.Text = string.Empty;
-            lblErrorAnio.Text = lblErrorUnidad.Text = string.Empty;           
+            lblErrorAnio.Text = lblErrorUnidad.Text = string.Empty;
             lblError.Text = lblSuccess.Text = string.Empty;
 
         }
@@ -280,9 +277,9 @@ namespace AplicacionSIPA1.Pedido
             {
                 lblIdPoa.Text = "0";
 
-                pOperativoLN = new PlanOperativoLN();                
+                pOperativoLN = new PlanOperativoLN();
                 DataSet dsPoa = pOperativoLN.DatosPoaUnidad(idUnidad, anio);
-                
+
                 if (dsPoa.Tables.Count == 0)
                     throw new Exception("Error al consultar el presupuesto.");
 
@@ -297,7 +294,7 @@ namespace AplicacionSIPA1.Pedido
             {
                 lblErrorPoa.Text = lblError.Text = "Error: " + ex.Message;
             }
-            return poaValido;            
+            return poaValido;
         }
 
         protected void ddlPlanes_SelectedIndexChanged(object sender, EventArgs e)
@@ -328,15 +325,15 @@ namespace AplicacionSIPA1.Pedido
             decimal.TryParse(dsPptoPac.Tables["ENCABEZADO"].Rows[0]["MONTO"].ToString(), out montoActualPac);
 
             decimal diferenciaRenglonMontoN = (saldoRenglon + montoActualPac) - totalPac;
-            if(diferenciaRenglonMontoN < 0)
+            if (diferenciaRenglonMontoN < 0)
                 throw new Exception("El monto máximo debe ser igual o menor al monto disponible: " + String.Format(CultureInfo.InvariantCulture, "Q.{0:0,0.00}", (saldoRenglon + montoActualPac)));
 
 
             decimal.TryParse(dsPptoPac.Tables["ENCABEZADO"].Rows[0]["CODIFICADO"].ToString(), out codificadoPac);
-            decimal diferenciaCodificadoMontoN = totalPac - codificadoPac; 
+            decimal diferenciaCodificadoMontoN = totalPac - codificadoPac;
             if (diferenciaCodificadoMontoN < 0)
                 throw new Exception("El monto mínimo debe ser igual o mayor al monto codificado/comprometido: " + String.Format(CultureInfo.InvariantCulture, "Q.{0:0,0.00}", codificadoPac));
-                
+
             pptoValido = true;
             return pptoValido;
         }
@@ -385,7 +382,7 @@ namespace AplicacionSIPA1.Pedido
                     rViewer.LocalReport.ReportEmbeddedResource = "\\Reportes/rptVale.rdlc";
                     rViewer.LocalReport.ReportPath = @"Reportes\\rptVale.rdlc";
                     rViewer.LocalReport.Refresh();
-                    
+
 
                     byte[] bytes = rViewer.LocalReport.Render(
                        "PDF", null, out mimeType, out encoding,
@@ -518,7 +515,7 @@ namespace AplicacionSIPA1.Pedido
             linkB = (LinkButton)gridDet.Rows[indice].FindControl("LinkButton1");
 
             if (linkB.Text.Equals("Especificaciones"))
-                Response.Redirect("EspecificacionesIngreso.aspx?No=" + gridDet.SelectedValue.ToString() + "&TipoD=V");            
+                Response.Redirect("EspecificacionesIngreso.aspx?No=" + gridDet.SelectedValue.ToString() + "&TipoD=V");
         }
 
         protected void ddlDependencia_SelectedIndexChanged(object sender, EventArgs e)
@@ -576,7 +573,7 @@ namespace AplicacionSIPA1.Pedido
                 int idUnidad = 0;
 
                 int.TryParse(ddlAnios.SelectedValue, out anio);
-                int.TryParse(ddlJefatura.SelectedValue, out idUnidad);             
+                int.TryParse(ddlJefatura.SelectedValue, out idUnidad);
                 if (anio > 0 && idUnidad > 0)
                     validarPoaListadoPedido(idUnidad, anio);
                 else

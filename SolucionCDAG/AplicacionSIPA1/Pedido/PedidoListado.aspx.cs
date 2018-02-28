@@ -92,15 +92,18 @@ namespace AplicacionSIPA1.Pedido
 
                 string usuario = Session["Usuario"].ToString().ToLower();
                 pOperativoLN.DdlUnidades(ddlUnidades, usuario);
-
-                if (ddlUnidades.Items.Count == 1)
+                ddlUnidades.SelectedValue = Convert.ToString(Request.QueryString["unidad"]);
+                //if (ddlUnidades.Items.Count == 1)
+                //{
+                //    if (!ddlAnios.SelectedValue.Equals("0"))
+                //    {
+                //        validarPoaListadoPedido(int.Parse(ddlUnidades.SelectedValue), int.Parse(ddlAnios.SelectedValue));
+                //    }
+                //}
+                if (!ddlAnios.SelectedValue.Equals("0"))
                 {
-                    if (!ddlAnios.SelectedValue.Equals("0"))
-                    {
-                        validarPoaListadoPedido(int.Parse(ddlUnidades.SelectedValue), int.Parse(ddlAnios.SelectedValue));
-                    }
+                    validarPoaListadoPedido(int.Parse(ddlUnidades.SelectedValue), int.Parse(ddlAnios.SelectedValue));
                 }
-
                 int idPoa = 0;
                 int.TryParse(lblIdPoa.Text, out idPoa);
 
@@ -108,7 +111,7 @@ namespace AplicacionSIPA1.Pedido
                 //pAccionLN.DdlAccionesPoa(ddlAcciones, idPoa);
                 pAccionLN.DdlAcciones(ddlAcciones, idPoa, 0, "", 3);
                 ddlAcciones.Items[0].Text = "<< Elija un valor >>";
-                ddlUnidades.SelectedValue = Convert.ToString(Request.QueryString["unidad"]);
+                
                 filtrarGridDetalles(idPoa);
             }
             catch (Exception ex)
