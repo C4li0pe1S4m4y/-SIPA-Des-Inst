@@ -123,7 +123,6 @@
                     <td style="width: 5%">&nbsp;</td>
                     <td style="width: 5%">&nbsp;</td>
                     <td colspan="16" style="text-align: center">
-                        <asp:Button ID="btnConsultar" runat="server" class="btn btn-info" Text="Consultar" Width="120px" OnClick="btnConsultar_Click" />
                         <asp:Button ID="btnImprimir" runat="server" class="btn btn-default" Text="Imprimir" Width="120px" OnClick="btnImprimir_Click" />
                     </td>
                     <td style="width: 5%">&nbsp;</td>
@@ -136,10 +135,13 @@
                             CssClass="table table-hover table-responsive">
                             <AlternatingRowStyle BackColor="#CEEFFF" ForeColor="#333333" />
                             <Columns>
-                                <asp:CommandField ButtonType="Image" SelectImageUrl="~/img/24_bits/accept.png" ShowSelectButton="True">
-                                <HeaderStyle BorderStyle="Inset" HorizontalAlign="Center" VerticalAlign="Middle" />
-                                <ItemStyle BorderStyle="Inset" HorizontalAlign="Center" VerticalAlign="Middle" />
-                                </asp:CommandField>
+                                <asp:TemplateField HeaderText="Opciones">
+                                    <ItemTemplate>                                   
+                                    <asp:LinkButton ID="Button1" runat="server" class="btn btn-info" NavigateUrl="" Text='Consultar' Width="100px" OnClick="btnConsultar_Click"></asp:LinkButton>
+                                    </ItemTemplate>
+                                    <HeaderStyle BorderStyle="Inset" HorizontalAlign="Center" VerticalAlign="Middle" />
+                                    <ItemStyle BorderStyle="Inset" HorizontalAlign="Center" VerticalAlign="Middle" />
+                                </asp:TemplateField>
                                 <asp:BoundField DataField="ID" HeaderText="ID" Visible="False">
                                 <HeaderStyle BorderStyle="Inset" HorizontalAlign="Center" VerticalAlign="Middle" />
                                 <ItemStyle BorderStyle="Inset" HorizontalAlign="Center" VerticalAlign="Middle" />

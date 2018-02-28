@@ -451,7 +451,17 @@ namespace AplicacionSIPA1.Pedido
         {
             try
             {
-                limpiarControlesError();
+                GridViewRow grid = (GridViewRow)((Control)sender).Parent.Parent;
+                int indice = grid.RowIndex;
+
+                gridDet.SelectedIndex = grid.RowIndex;
+
+                LinkButton linkB = new LinkButton();
+                linkB = (LinkButton)gridDet.Rows[indice].FindControl("Button1");
+
+                if (linkB.Text.Equals("Consultar"))
+
+                    limpiarControlesError();
 
                 if (gridDet.SelectedValue == null)
                     throw new Exception("Seleccione un pedido!");
