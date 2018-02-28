@@ -375,13 +375,8 @@ namespace AplicacionSIPA1.Pedido
             {
                 GridViewRow grid = (GridViewRow)((Control)sender).Parent.Parent;
                 int indice = grid.RowIndex;
-<<<<<<< HEAD
-
-
-=======
                 gridDet.SelectedIndex = grid.RowIndex;
          
->>>>>>> ddcce1a286c7c9510cbcac07420028daaa4ce843
                 Button linkB = new Button();
                 linkB = (Button)gridDet.Rows[indice].FindControl("btnImprimirr");
 
