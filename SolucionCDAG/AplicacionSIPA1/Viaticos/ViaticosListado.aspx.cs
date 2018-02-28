@@ -314,138 +314,20 @@ namespace AplicacionSIPA1.Viaticos
             }
         }
 
-        protected void generarReporte(int idEncabezado)
-        {
-
-            //using Microsoft.Reporting.WebForms;
-            //using System.IO;
-            try
-            {
-                if (idEncabezado > 0)
-                {
-
-                    Warning[] warnings;
-                    string[] streamids;
-                    string mimeType;
-                    string encoding;
-                    string extension;
-
-                    ReportViewer rViewer = new ReportViewer();
-
-                    DataTable dt = new DataTable();
-                    GridView gridPlan = new GridView();
-
-                    ViaticosLN reportes = new ViaticosLN();
-                    DataSet dsResultado = reportes.InformacionViatico(idEncabezado, 0, 12);
-
-                    if (bool.Parse(dsResultado.Tables[0].Rows[0]["ERRORES"].ToString()))
-                        throw new Exception("No se CONSULTÓ la información del viático (encabezado): " + dsResultado.Tables[0].Rows[0]["MSG_ERROR"].ToString());
-
-                    int idTipoViatico = 0;
-                    int.TryParse(dsResultado.Tables["BUSQUEDA"].Rows[0]["ID_TIPO_VIATICO"].ToString(), out idTipoViatico);
-
-                    ReportDataSource RD = new ReportDataSource();
-                    RD.Value = dsResultado.Tables[1];
-                    RD.Name = "DataSet1";
-
-                    dsResultado = reportes.InformacionViatico(idEncabezado, 0, 3);
-
-                    if (bool.Parse(dsResultado.Tables[0].Rows[0]["ERRORES"].ToString()))
-                        throw new Exception("No se CONSULTÓ la información del viático (detalles): " + dsResultado.Tables[0].Rows[0]["MSG_ERROR"].ToString());
-
-                    ReportDataSource RD2 = new ReportDataSource();
-                    RD2.Value = dsResultado.Tables[1];
-                    RD2.Name = "DataSet2";
-
-                    rViewer.LocalReport.DataSources.Clear();
-                    rViewer.LocalReport.DataSources.Add(RD);
-                    rViewer.LocalReport.DataSources.Add(RD2);
-
-                    string nombreReporte = "ViaticosInt";
-
-                    if (idTipoViatico == 1)
-                    {
-                        rViewer.LocalReport.ReportEmbeddedResource = "\\Reportes/rptViaticosInt.rdlc";
-                        rViewer.LocalReport.ReportPath = @"Reportes\\rptViaticosInt.rdlc";
-
-                        nombreReporte = "ViaticosInt";
-                    }
-                    else if (idTipoViatico == 2)
-                    {
-                        rViewer.LocalReport.ReportEmbeddedResource = "\\Reportes/rptViaticosExt.rdlc";
-                        rViewer.LocalReport.ReportPath = @"Reportes\\rptViaticosExt.rdlc";
-
-                        nombreReporte = "ViaticosExt";
-                    }
-
-
-                    rViewer.LocalReport.Refresh();
-
-                    byte[] bytes = rViewer.LocalReport.Render(
-                       "PDF", null, out mimeType, out encoding,
-                        out extension,
-                       out streamids, out warnings);
-
-                    string direccion = Server.MapPath("ArchivoPdf");
-                    direccion = (direccion + ("\\\\" + (""
-                                + (nombreReporte + ".pdf"))));
-
-                    FileStream fs = new FileStream(direccion,
-                       FileMode.Create);
-                    fs.Write(bytes, 0, bytes.Length);
-                    fs.Close();
-
-                    String reDireccion = "\\ArchivoPDF/";
-                    reDireccion += "\\" + "" + nombreReporte + ".pdf";
-
-
-                    string jScript = "javascript:window.open('" + reDireccion + "','VIÁTICOS'," + "'directories=no, location=no, menubar=no, scrollbars=yes, statusbar=no, tittlebar=no, width=750, height=400');";
-                    btnImprimir.Attributes.Add("onclick", jScript);
-                }
-            }
-            catch (Exception ex)
-            {
-                lblError.Text = "btnVerReporte(). " + ex.Message;
-            }
-        }
-
-        protected void gridDet_SelectedIndexChanged(object sender, EventArgs e)
-        {
-            try
-            {
-                limpiarControlesError();
-
-                int idDetalle = 0;
-                int.TryParse(gridDet.SelectedValue.ToString(), out idDetalle);
-
-                pViaticosLN = new ViaticosLN();
-
-                DataSet dsResultado = pViaticosLN.InformacionViatico(idDetalle, 0, 2);
-
-                if (bool.Parse(dsResultado.Tables["RESULTADO"].Rows[0]["ERRORES"].ToString()))
-                    throw new Exception(dsResultado.Tables["RESULTADO"].Rows[0]["MSG_ERROR"].ToString());
-
-                int idEstado = 0;
-                int.TryParse(dsResultado.Tables["BUSQUEDA"].Rows[0]["ID_ESTADO_VIATICO"].ToString(), out idEstado);
-
-                if (idEstado == 6)
-                    generarReporte(idDetalle);
-                else
-                    btnImprimir.Attributes.Clear();
-
-                //generarReporte(idDetalle);
-            }
-            catch (Exception ex)
-            {
-                lblError.Text = "gridDet(). " + ex.Message;
-            }
-        }
-
         protected void btnConsultar_Click(object sender, EventArgs e)
         {
             try
             {
-                limpiarControlesError();
+                GridViewRow grid = (GridViewRow)((Control)sender).Parent.Parent;
+                int indice = grid.RowIndex;
+
+                gridDet.SelectedIndex = grid.RowIndex;
+
+                LinkButton linkB = new LinkButton();
+                linkB = (LinkButton)gridDet.Rows[indice].FindControl("btnConsultar");
+
+                if (linkB.Text.Equals("Consultar"))
+                    limpiarControlesError();
 
                 if (gridDet.SelectedValue == null)
                     throw new Exception("Seleccione un viático!");
@@ -478,38 +360,115 @@ namespace AplicacionSIPA1.Viaticos
 
         protected void btnImprimir_Click(object sender, EventArgs e)
         {
-            /*try
+            try
             {
-                limpiarControlesError();
-                int idEncabezado = 0;
-                int.TryParse(lblNoPedido.Text, out idEncabezado);
+                GridViewRow grid = (GridViewRow)((Control)sender).Parent.Parent;
+                int indice = grid.RowIndex;
+                gridDet.SelectedIndex = grid.RowIndex;
 
-                if (idEncabezado == 0)
-                    throw new Exception("No existe Bien/Servicio para eliminar");
+                LinkButton linkB = new LinkButton();
+                linkB = (LinkButton)gridDet.Rows[indice].FindControl("btnImprimirr");
+                if (linkB.Text.Equals("Imprimir"))
+                    limpiarControlesError();
 
-                pInsumoLN = new PedidosLN();
-                DataSet dsResultado = pInsumoLN.EliminarEncabezado(idEncabezado);
+                int idDetalle = 0;
+                int.TryParse(gridDet.SelectedValue.ToString(), out idDetalle);
+
+                pViaticosLN = new ViaticosLN();
+
+                DataSet dsResultado = pViaticosLN.InformacionViatico(idDetalle, 0, 2);
 
                 if (bool.Parse(dsResultado.Tables["RESULTADO"].Rows[0]["ERRORES"].ToString()))
                     throw new Exception(dsResultado.Tables["RESULTADO"].Rows[0]["MSG_ERROR"].ToString());
 
-                int idPac = 0;
-                int.TryParse(ddlPac.SelectedValue, out idPac);
+                int idEstado = 0;
+                int.TryParse(dsResultado.Tables["BUSQUEDA"].Rows[0]["ID_ESTADO_VIATICO"].ToString(), out idEstado);
 
-                NuevoPedidoDet();
-                ListItem item = ddlPac.Items.FindByValue(idPac.ToString());
-                if (item != null)
-                {
-                    ddlPac.SelectedValue = idPac.ToString();
-                    ddlPac_SelectedIndexChanged(new Object(), new EventArgs());
-                }
+                if (idEstado == 6)
+                    if (idDetalle > 0)
+                    {
 
-                lblSuccess.Text = "Pedido eliminado correctamente!";
+                        Warning[] warnings;
+                        string[] streamids;
+                        string mimeType;
+                        string encoding;
+                        string extension;
+
+                        ReportViewer rViewer = new ReportViewer();
+
+                        DataTable dt = new DataTable();
+                        GridView gridPlan = new GridView();
+
+                        ViaticosLN reportes = new ViaticosLN();
+                        DataSet dResultado = reportes.InformacionViatico(idDetalle, 0, 12);
+
+                        if (bool.Parse(dResultado.Tables[0].Rows[0]["ERRORES"].ToString()))
+                            throw new Exception("No se CONSULTÓ la información del viático (encabezado): " + dResultado.Tables[0].Rows[0]["MSG_ERROR"].ToString());
+
+                        int idTipoViatico = 0;
+                        int.TryParse(dResultado.Tables["BUSQUEDA"].Rows[0]["ID_TIPO_VIATICO"].ToString(), out idTipoViatico);
+
+                        ReportDataSource RD = new ReportDataSource();
+                        RD.Value = dResultado.Tables[1];
+                        RD.Name = "DataSet1";
+
+                        dResultado = reportes.InformacionViatico(idDetalle, 0, 3);
+
+                        if (bool.Parse(dResultado.Tables[0].Rows[0]["ERRORES"].ToString()))
+                            throw new Exception("No se CONSULTÓ la información del viático (detalles): " + dResultado.Tables[0].Rows[0]["MSG_ERROR"].ToString());
+
+                        ReportDataSource RD2 = new ReportDataSource();
+                        RD2.Value = dResultado.Tables[1];
+                        RD2.Name = "DataSet2";
+
+                        rViewer.LocalReport.DataSources.Clear();
+                        rViewer.LocalReport.DataSources.Add(RD);
+                        rViewer.LocalReport.DataSources.Add(RD2);
+
+                        string nombreReporte = "ViaticosInt";
+
+                        if (idTipoViatico == 1)
+                        {
+                            rViewer.LocalReport.ReportEmbeddedResource = "\\Reportes/rptViaticosInt.rdlc";
+                            rViewer.LocalReport.ReportPath = @"Reportes\\rptViaticosInt.rdlc";
+                            nombreReporte = "ViaticosInt";
+                        }
+                        else if (idTipoViatico == 2)
+                        {
+                            rViewer.LocalReport.ReportEmbeddedResource = "\\Reportes/rptViaticosExt.rdlc";
+                            rViewer.LocalReport.ReportPath = @"Reportes\\rptViaticosExt.rdlc";
+                            nombreReporte = "ViaticosExt";
+                        }
+
+                        rViewer.LocalReport.Refresh();
+
+                        byte[] bytes = rViewer.LocalReport.Render(
+                           "PDF", null, out mimeType, out encoding,
+                            out extension,
+                           out streamids, out warnings);
+
+                        string direccion = Server.MapPath("ArchivoPdf");
+                        direccion = (direccion + ("\\\\" + (""
+                                    + (nombreReporte + ".pdf"))));
+
+                        FileStream fs = new FileStream(direccion,
+                           FileMode.Create);
+                        fs.Write(bytes, 0, bytes.Length);
+                        fs.Close();
+
+                        String reDireccion = "\\ArchivoPDF/";
+                        reDireccion += "\\" + "" + nombreReporte + ".pdf";
+
+                        string jScript = "javascript:window.open('" + reDireccion + "','VIÁTICOS'," + "'directories=no, location=no, menubar=no, scrollbars=yes, statusbar=no, tittlebar=no, width=750, height=400');";
+                        linkB.Attributes.Add("onclick", jScript);
+                    }
+                    else
+                        linkB.Attributes.Clear();
             }
             catch (Exception ex)
             {
-                lblError.Text = "btnEliminar(). " + ex.Message;
-            }*/
+                lblError.Text = "btnImprimirr(). " + ex.Message;
+            }
         }
 
         protected void ddlDepencia_SelectedIndexChanged(object sender, EventArgs e)

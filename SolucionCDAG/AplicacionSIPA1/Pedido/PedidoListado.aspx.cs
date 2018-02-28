@@ -419,8 +419,8 @@ namespace AplicacionSIPA1.Pedido
 
                 gridDet.SelectedIndex = grid.RowIndex;
 
-                Button linkB = new Button();
-                linkB = (Button)gridDet.Rows[indice].FindControl("btnImprimirr");
+                LinkButton linkB = new LinkButton();
+                linkB = (LinkButton)gridDet.Rows[indice].FindControl("btnImprimirr");
 
                 limpiarControlesError();
 
@@ -552,7 +552,6 @@ namespace AplicacionSIPA1.Pedido
                 int.TryParse(lblIdPoa.Text, out idPoa);
 
                 pAccionLN = new PlanAccionLN();
-                //pAccionLN.DdlAccionesPoa(ddlAcciones, idPoa);
                 pAccionLN.DdlAcciones(ddlAcciones, idPoa, 0, "", 3);
                 ddlAcciones.Items[0].Text = "<< Elija un valor >>";
                 bDepencia = true;
@@ -591,7 +590,6 @@ namespace AplicacionSIPA1.Pedido
                 int.TryParse(lblIdPoa.Text, out idPoa);
 
                 pAccionLN = new PlanAccionLN();
-                //pAccionLN.DdlAccionesPoa(ddlAcciones, idPoa);
                 pAccionLN.DdlAcciones(ddlAcciones, idPoa, 0, "", 3);
                 ddlAcciones.Items[0].Text = "<< Elija un valor >>";
 

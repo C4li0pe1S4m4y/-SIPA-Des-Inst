@@ -376,10 +376,10 @@ namespace AplicacionSIPA1.Pedido
                 GridViewRow grid = (GridViewRow)((Control)sender).Parent.Parent;
                 int indice = grid.RowIndex;
                 gridDet.SelectedIndex = grid.RowIndex;
-         
-                Button linkB = new Button();
-                linkB = (Button)gridDet.Rows[indice].FindControl("btnImprimirr");
 
+                LinkButton linkB = new LinkButton();
+                linkB = (LinkButton)gridDet.Rows[indice].FindControl("btnImprimirr");
+                if (linkB.Text.Equals("Imprimir"))
                     limpiarControlesError();
 
                     int idEncabezado = 0;

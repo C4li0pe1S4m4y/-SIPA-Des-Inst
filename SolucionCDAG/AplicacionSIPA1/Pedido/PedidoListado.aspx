@@ -123,10 +123,12 @@
                                     CssClass="table table-hover table-responsive">
                                     <AlternatingRowStyle BackColor="#CEEFFF" ForeColor="#333333" />
                                     <Columns>
-                                        <asp:TemplateField HeaderText="Opciones">
-                                            <ItemTemplate>                                   
-                                            <asp:LinkButton ID="btnConsultar" runat="server" class="btn btn-info" NavigateUrl="" Text='Consultar' Width="100px" OnClick="btnConsultar_Click"></asp:LinkButton>
-                                            <asp:Button ID="btnImprimirr" runat="server" class="btn btn-default" Text="Imprimir" Width="100px" OnClick="btnImprimir_Click"></asp:Button>
+                                        <asp:TemplateField HeaderText="Opciones" ControlStyle-Width="25px" >
+                                            <ItemTemplate>                                             
+                                            <asp:LinkButton ID="btnConsultar" runat="server" OnClick="btnConsultar_Click"><asp:Image ImageUrl="~/img/24_bits/accept.png" runat="server" /></asp:LinkButton>
+                                            &nbsp;
+                                            &nbsp;
+                                            <asp:LinkButton ID="btnImprimirr" runat="server" OnClick="btnImprimir_Click"><asp:Image ImageUrl="~/img/24_bits/download_page.png" runat="server" /></asp:LinkButton>                   
                                             </ItemTemplate>
                                             <HeaderStyle BorderStyle="Inset" HorizontalAlign="Center" VerticalAlign="Middle" />
                                             <ItemStyle BorderStyle="Inset" HorizontalAlign="Center" VerticalAlign="Middle" />
