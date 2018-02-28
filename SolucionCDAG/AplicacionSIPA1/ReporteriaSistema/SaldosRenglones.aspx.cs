@@ -157,8 +157,11 @@ namespace AplicacionSIPA1.ReporteriaSistema
                 if (ddlAnios.SelectedValue.Equals("0") == false)
                     stringBuilder.Append(" AND a.anio = " + ddlAnios.SelectedValue);
 
-                if (ddlDependencia.SelectedValue.Equals("0") == false)
+                if (ddlUnidades.SelectedValue.Equals("0") == false && ddlDependencia.SelectedValue.Equals("0") == false)
                     stringBuilder.Append(" AND a.id_unidad = " + ddlDependencia.SelectedValue);
+
+                if (ddlUnidades.SelectedValue.Equals("0") == false && ddlDependencia.SelectedValue.Equals("0") == true)
+                    stringBuilder.Append(" AND a.id_unidad = " + ddlUnidades.SelectedValue);
 
                 else
                 {
