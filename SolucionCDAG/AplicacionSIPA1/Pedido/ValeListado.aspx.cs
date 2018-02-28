@@ -380,17 +380,6 @@ namespace AplicacionSIPA1.Pedido
                 GridViewRow grid = (GridViewRow)((Control)sender).Parent.Parent;
                 int indice = grid.RowIndex;
 
-<<<<<<< HEAD
-                    rViewer.LocalReport.DataSources.Clear();
-                    rViewer.LocalReport.DataSources.Add(RD);
-                    rViewer.LocalReport.DataSources.Add(RD2);
-                    rViewer.LocalReport.ReportEmbeddedResource = "\\Reportes/rptVale.rdlc";
-                    rViewer.LocalReport.ReportPath = @"Reportes\\rptVale.rdlc";
-                    rViewer.LocalReport.Refresh();
-
-=======
-                gridDet.SelectedIndex = grid.RowIndex;
->>>>>>> 44501ba4a0cacfe8c13ae9c7183f2ead4b60f583
 
                 Button linkB = new Button();
                 linkB = (Button)gridDet.Rows[indice].FindControl("btnImprimirr");
