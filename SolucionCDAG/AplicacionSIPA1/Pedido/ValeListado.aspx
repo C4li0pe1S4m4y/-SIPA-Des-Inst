@@ -121,23 +121,15 @@
                 </tr>
                 <tr>
                     <td style="width: 5%">&nbsp;</td>
-                    <td style="width: 5%">&nbsp;</td>
-                    <td colspan="16" style="text-align: center">
-                        <asp:Button ID="btnImprimir" runat="server" class="btn btn-default" Text="Imprimir" Width="120px" OnClick="btnImprimir_Click" />
-                    </td>
-                    <td style="width: 5%">&nbsp;</td>
-                    <td style="width: 5%">&nbsp;</td>
-                </tr>
-                <tr>
-                    <td style="width: 5%">&nbsp;</td>
                     <td colspan="18">
-                        <asp:GridView ID="gridDet" runat="server" AutoGenerateColumns="False" BackColor="White" BorderColor="#CCCCCC" BorderStyle="Solid" BorderWidth="1px" CellPadding="5" CellSpacing="1" DataKeyNames="ID" ForeColor="Black" GridLines="Vertical" HorizontalAlign="Center" OnSelectedIndexChanged="gridDet_SelectedIndexChanged" PageSize="12" Width="100%" Font-Size="X-Small"
+                        <asp:GridView ID="gridDet" runat="server" AutoGenerateColumns="False" BackColor="White" BorderColor="#CCCCCC" BorderStyle="Solid" BorderWidth="1px" CellPadding="5" CellSpacing="1" DataKeyNames="ID" ForeColor="Black" GridLines="Vertical" HorizontalAlign="Center" PageSize="12" Width="100%" Font-Size="X-Small"
                             CssClass="table table-hover table-responsive">
                             <AlternatingRowStyle BackColor="#CEEFFF" ForeColor="#333333" />
                             <Columns>
                                 <asp:TemplateField HeaderText="Opciones">
                                     <ItemTemplate>                                   
-                                    <asp:LinkButton ID="Button1" runat="server" class="btn btn-info" NavigateUrl="" Text='Consultar' Width="100px" OnClick="btnConsultar_Click"></asp:LinkButton>
+                                    <asp:LinkButton ID="btnConsultar" runat="server" class="btn btn-info" NavigateUrl="" Text='Consultar' Width="100px" OnClick="btnConsultar_Click"></asp:LinkButton>
+                                    <asp:Button ID="btnImprimirr" runat="server" class="btn btn-default" Text="Imprimir" Width="100px" OnClick="btnImprimir_Click"></asp:Button>
                                     </ItemTemplate>
                                     <HeaderStyle BorderStyle="Inset" HorizontalAlign="Center" VerticalAlign="Middle" />
                                     <ItemStyle BorderStyle="Inset" HorizontalAlign="Center" VerticalAlign="Middle" />
