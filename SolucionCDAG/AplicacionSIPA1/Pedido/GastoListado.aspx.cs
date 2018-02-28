@@ -304,82 +304,6 @@ namespace AplicacionSIPA1.Pedido
             limpiarControlesError();
         }
 
-        protected void generarReporte(int idEncabezado)
-        {
-            //try
-            //{
-            //    if (idEncabezado > 0)
-            //    {
-
-            //        Warning[] warnings;
-            //        string[] streamids;
-            //        string mimeType;
-            //        string encoding;
-            //        string extension;
-
-            //        ReportViewer rViewer = new ReportViewer();
-
-            //        DataTable dt = new DataTable();
-            //        GridView gridPlan = new GridView();
-
-            //        ReportesLN reportes = new ReportesLN();
-            //        DataSet dsResultado = reportes.ReportesSipa(idEncabezado, 0, "GASTOS", 1);
-
-            //        if (bool.Parse(dsResultado.Tables[0].Rows[0]["ERRORES"].ToString()))
-            //            throw new Exception("No se CONSULTÓ la información del gasto (encabezado): " + dsResultado.Tables[0].Rows[0]["MSG_ERROR"].ToString());
-
-
-            //        ReportDataSource RD = new ReportDataSource();
-            //        RD.Value = dsResultado.Tables[1];
-            //        RD.Name = "DataSet1";
-
-            //        dsResultado = reportes.ReportesSipa(idEncabezado, 0, "GASTOS", 2);
-
-            //        if (bool.Parse(dsResultado.Tables[0].Rows[0]["ERRORES"].ToString()))
-            //            throw new Exception("No se CONSULTÓ la información del gasto (detalles): " + dsResultado.Tables[0].Rows[0]["MSG_ERROR"].ToString());
-
-            //        ReportDataSource RD2 = new ReportDataSource();
-            //        RD2.Value = dsResultado.Tables[1];
-            //        RD2.Name = "DataSet2";
-
-            //        rViewer.LocalReport.DataSources.Clear();
-            //        rViewer.LocalReport.DataSources.Add(RD);
-            //        rViewer.LocalReport.DataSources.Add(RD2);
-            //        rViewer.LocalReport.ReportEmbeddedResource = "\\Reportes/rptGasto.rdlc";
-            //        rViewer.LocalReport.ReportPath = @"Reportes\\rptGasto.rdlc";
-            //        rViewer.LocalReport.Refresh();
-
-
-            //        byte[] bytes = rViewer.LocalReport.Render(
-            //           "PDF", null, out mimeType, out encoding,
-            //            out extension,
-            //           out streamids, out warnings);
-
-            //        string nombreReporte = "Req. No. " + idEncabezado + " - " + ddlUnidades.SelectedItem.Text;
-
-            //        string direccion = Server.MapPath("ArchivoPdf");
-            //        direccion = (direccion + ("\\\\" + (""
-            //                    + (nombreReporte + ".pdf"))));
-
-            //        FileStream fs = new FileStream(direccion,
-            //           FileMode.Create);
-            //        fs.Write(bytes, 0, bytes.Length);
-            //        fs.Close();
-
-            //        String reDireccion = "\\ArchivoPDF/";
-            //        reDireccion += "\\" + "" + nombreReporte + ".pdf";
-
-
-            //        string jScript = "javascript:window.open('" + reDireccion + "','REQUISICIONES'," + "'directories=no, location=no, menubar=no, scrollbars=yes, statusbar=no, tittlebar=no, width=750, height=400');";
-            //        btnImprimir.Attributes.Add("onclick", jScript);
-            //    }
-            //}
-            //catch (Exception ex)
-            //{
-            //    lblError.Text = "btnVerReporte(). " + ex.Message;
-            //}
-        }
-
         protected bool ValidarPpto(int idDetalleAccion, int idPac, decimal totalPac)
         {
             pAccionLN = new PlanAccionLN();
@@ -416,70 +340,42 @@ namespace AplicacionSIPA1.Pedido
             return pptoValido;
         }
 
-        protected void gridDet_SelectedIndexChanged(object sender, EventArgs e)
-        {
-            try
-            {
-                limpiarControlesError();
-
-                int idEncabezado = 0;
-                int.TryParse(gridDet.SelectedValue.ToString(), out idEncabezado);
-
-                pInsumoLN = new PedidosLN();
-
-                DataSet dsResultado = pInsumoLN.InformacionGasto(idEncabezado, 0, 2);
-
-                if (bool.Parse(dsResultado.Tables["RESULTADO"].Rows[0]["ERRORES"].ToString()))
-                    throw new Exception(dsResultado.Tables["RESULTADO"].Rows[0]["MSG_ERROR"].ToString());
-
-                int idEstado = 0;
-                int.TryParse(dsResultado.Tables["BUSQUEDA"].Rows[0]["ID_ESTADO_GASTO"].ToString(), out idEstado);
-
-                if (idEstado == 8)
-                    generarReporte(idEncabezado);
-                else
-                    btnImprimir.Attributes.Clear();
-
-            }
-            catch (Exception ex)
-            {
-                lblError.Text = "gridDet(). " + ex.Message;
-            }
-        }
-
         protected void btnConsultar_Click(object sender, EventArgs e)
         {
             try
             {
-                limpiarControlesError();
+                GridViewRow grid = (GridViewRow)((Control)sender).Parent.Parent;
+                int indice = grid.RowIndex;
 
-                if (gridDet.SelectedValue == null)
-                    throw new Exception("Seleccione un pedido!");
+                gridDet.SelectedIndex = grid.RowIndex;
 
-                int idEncabezado = 0;
-                int.TryParse(gridDet.SelectedValue.ToString(), out idEncabezado);
+                LinkButton linkB = new LinkButton();
+                linkB = (LinkButton)gridDet.Rows[indice].FindControl("btnConsultar");
 
-                if (idEncabezado == 0)
-                    throw new Exception("Seleccione un pedido!");
-                if (ddlDependencia.SelectedIndex > 0)
-                {
-                    Response.Redirect("GastoIngreso.aspx?No=" + Convert.ToString(idEncabezado) + "&dep=" + ddlDependencia.SelectedValue);
-                }
-                else
-                {
-                    Response.Redirect("GastoIngreso.aspx?No=" + Convert.ToString(idEncabezado));
-                }
+                if (linkB.Text.Equals("Consultar"))
+                    limpiarControlesError();
 
+                    if (gridDet.SelectedValue == null)
+                        throw new Exception("Seleccione un pedido!");
+
+                    int idEncabezado = 0;
+                    int.TryParse(gridDet.SelectedValue.ToString(), out idEncabezado);
+
+                    if (idEncabezado == 0)
+                        throw new Exception("Seleccione un pedido!");
+                    if (ddlDependencia.SelectedIndex > 0)
+                    {
+                        Response.Redirect("GastoIngreso.aspx?No=" + Convert.ToString(idEncabezado) + "&dep=" + ddlDependencia.SelectedValue);
+                    }
+                    else
+                    {
+                        Response.Redirect("GastoIngreso.aspx?No=" + Convert.ToString(idEncabezado));
+                    }
             }
             catch (Exception ex)
             {
                 lblError.Text = "btnConsultar(). " + ex.Message;
             }
-        }
-
-        protected void btnImprimir_Click(object sender, EventArgs e)
-        {
-            lblError.Text = "Los Gastos no se imprimen solo la partida presupuestaria";
         }
 
         protected void ddlDependencia_SelectedIndexChanged(object sender, EventArgs e)
@@ -507,7 +403,6 @@ namespace AplicacionSIPA1.Pedido
                 int.TryParse(lblIdPoa.Text, out idPoa);
 
                 pAccionLN = new PlanAccionLN();
-                //pAccionLN.DdlAccionesPoa(ddlAcciones, idPoa);
                 pAccionLN.DdlAcciones(ddlAcciones, idPoa, 0, "", 3);
                 ddlAcciones.Items[0].Text = "<< Elija un valor >>";
                 bDepencia = true;
@@ -528,17 +423,14 @@ namespace AplicacionSIPA1.Pedido
             {
                 limpiarControlesError();
 
-
                 int anio = 0;
                 int idUnidad = 0;
                 string id_unidad = ddlJefaturaUnidad.SelectedItem.Value;
                 int.TryParse(ddlAnios.SelectedValue, out anio);
                 int.TryParse(ddlJefaturaUnidad.SelectedValue, out idUnidad);
 
-
                 if (anio > 0 && idUnidad > 0)
                 {
-
                     validarPoaListadoPedido(idUnidad, anio);
                 }
 
@@ -546,14 +438,10 @@ namespace AplicacionSIPA1.Pedido
                 int.TryParse(lblIdPoa.Text, out idPoa);
 
                 pAccionLN = new PlanAccionLN();
-                //pAccionLN.DdlAccionesPoa(ddlAcciones, idPoa);
                 pAccionLN.DdlAcciones(ddlAcciones, idPoa, 0, "", 3);
                 ddlAcciones.Items[0].Text = "<< Elija un valor >>";
 
-
-
                 filtrarGridDetalles(idPoa);
-
             }
             catch (Exception ex)
             {

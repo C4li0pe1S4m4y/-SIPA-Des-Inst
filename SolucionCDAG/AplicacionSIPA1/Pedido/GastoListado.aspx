@@ -121,25 +121,18 @@
                 </tr>
                 <tr>
                     <td style="width: 5%">&nbsp;</td>
-                    <td style="width: 5%">&nbsp;</td>
-                    <td colspan="16" style="text-align: center">
-                        <asp:Button ID="btnConsultar" runat="server" class="btn btn-info" Text="Consultar" Width="120px" OnClick="btnConsultar_Click" />
-                        <asp:Button ID="btnImprimir" runat="server" Enabled="false" class="btn btn-default" Text="Imprimir" Width="120px" OnClick="btnImprimir_Click" />
-                    </td>
-                    <td style="width: 5%">&nbsp;</td>
-                    <td style="width: 5%">&nbsp;</td>
-                </tr>
-                <tr>
-                    <td style="width: 5%">&nbsp;</td>
                     <td colspan="18">
-                        <asp:GridView ID="gridDet" runat="server" AutoGenerateColumns="False" BackColor="White" BorderColor="#CCCCCC" BorderStyle="Solid" BorderWidth="1px" CellPadding="5" CellSpacing="1" DataKeyNames="ID" ForeColor="Black" GridLines="Vertical" HorizontalAlign="Center" OnSelectedIndexChanged="gridDet_SelectedIndexChanged" PageSize="12" Width="100%" Font-Size="X-Small"
+                        <asp:GridView ID="gridDet" runat="server" AutoGenerateColumns="False" BackColor="White" BorderColor="#CCCCCC" BorderStyle="Solid" BorderWidth="1px" CellPadding="5" CellSpacing="1" DataKeyNames="ID" ForeColor="Black" GridLines="Vertical" HorizontalAlign="Center" PageSize="12" Width="100%" Font-Size="X-Small"
                             CssClass="table table-hover table-responsive">
                             <AlternatingRowStyle BackColor="#CEEFFF" ForeColor="#333333" />
                             <Columns>
-                                <asp:CommandField ButtonType="Image" SelectImageUrl="~/img/24_bits/accept.png" ShowSelectButton="True">
-                                <HeaderStyle BorderStyle="Inset" HorizontalAlign="Center" VerticalAlign="Middle" />
-                                <ItemStyle BorderStyle="Inset" HorizontalAlign="Center" VerticalAlign="Middle" />
-                                </asp:CommandField>
+                                <asp:TemplateField HeaderText="Opciones" ControlStyle-Width="25px" >
+                                    <ItemTemplate>                                             
+                                    <asp:LinkButton ID="btnConsultar" runat="server" OnClick="btnConsultar_Click"><asp:Image ImageUrl="~/img/24_bits/accept.png" runat="server" /></asp:LinkButton>
+                                    </ItemTemplate>
+                                    <HeaderStyle BorderStyle="Inset" HorizontalAlign="Center" VerticalAlign="Middle" />
+                                    <ItemStyle BorderStyle="Inset" HorizontalAlign="Center" VerticalAlign="Middle" />
+                                </asp:TemplateField>
                                 <asp:BoundField DataField="ID" HeaderText="ID" Visible="False">
                                 <HeaderStyle BorderStyle="Inset" HorizontalAlign="Center" VerticalAlign="Middle" />
                                 <ItemStyle BorderStyle="Inset" HorizontalAlign="Center" VerticalAlign="Middle" />
