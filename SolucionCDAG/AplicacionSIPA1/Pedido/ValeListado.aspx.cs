@@ -99,7 +99,6 @@ namespace AplicacionSIPA1.Pedido
                 int.TryParse(lblIdPoa.Text, out idPoa);
 
                 pAccionLN = new PlanAccionLN();
-                //pAccionLN.DdlAccionesPoa(ddlAcciones, idPoa);
                 pAccionLN.DdlAcciones(ddlAcciones, idPoa, 0, "", 3);
                 ddlAcciones.Items[0].Text = "<< Elija un valor >>";
 
@@ -178,7 +177,6 @@ namespace AplicacionSIPA1.Pedido
                 int.TryParse(lblIdPoa.Text, out idPoa);
 
                 pAccionLN = new PlanAccionLN();
-                //pAccionLN.DdlAccionesPoa(ddlAcciones, idPoa);
                 pAccionLN.DdlAcciones(ddlAcciones, idPoa, 0, "", 3);
                 ddlAcciones.Items[0].Text = "<< Elija un valor >>";
 
@@ -216,7 +214,6 @@ namespace AplicacionSIPA1.Pedido
                 int.TryParse(lblIdPoa.Text, out idPoa);
 
                 pAccionLN = new PlanAccionLN();
-                //pAccionLN.DdlAccionesPoa(ddlAcciones, idPoa);
                 pAccionLN.DdlAcciones(ddlAcciones, idPoa, 0, "", 3);
                 ddlAcciones.Items[0].Text = "<< Elija un valor >>";
 
@@ -263,7 +260,6 @@ namespace AplicacionSIPA1.Pedido
 
         protected void limpiarControlesError()
         {
-            //lblErrorPoa.Text = string.Empty;
             lblErrorPlan.Text = string.Empty;
             lblErrorAnio.Text = lblErrorUnidad.Text = string.Empty;
             lblError.Text = lblSuccess.Text = string.Empty;
@@ -379,8 +375,13 @@ namespace AplicacionSIPA1.Pedido
             {
                 GridViewRow grid = (GridViewRow)((Control)sender).Parent.Parent;
                 int indice = grid.RowIndex;
+<<<<<<< HEAD
 
 
+=======
+                gridDet.SelectedIndex = grid.RowIndex;
+         
+>>>>>>> ddcce1a286c7c9510cbcac07420028daaa4ce843
                 Button linkB = new Button();
                 linkB = (Button)gridDet.Rows[indice].FindControl("btnImprimirr");
 
@@ -440,7 +441,6 @@ namespace AplicacionSIPA1.Pedido
                         rViewer.LocalReport.ReportEmbeddedResource = "\\Reportes/rptVale.rdlc";
                         rViewer.LocalReport.ReportPath = @"Reportes\\rptVale.rdlc";
                         rViewer.LocalReport.Refresh();
-
 
                         byte[] bytes = rViewer.LocalReport.Render(
                            "PDF", null, out mimeType, out encoding,
@@ -518,7 +518,6 @@ namespace AplicacionSIPA1.Pedido
                 int.TryParse(lblIdPoa.Text, out idPoa);
 
                 pAccionLN = new PlanAccionLN();
-                //pAccionLN.DdlAccionesPoa(ddlAcciones, idPoa);
                 pAccionLN.DdlAcciones(ddlAcciones, idPoa, 0, "", 3);
                 ddlAcciones.Items[0].Text = "<< Elija un valor >>";
 
@@ -552,7 +551,6 @@ namespace AplicacionSIPA1.Pedido
                 int.TryParse(lblIdPoa.Text, out idPoa);
 
                 pAccionLN = new PlanAccionLN();
-                //pAccionLN.DdlAccionesPoa(ddlAcciones, idPoa);
                 pAccionLN.DdlAcciones(ddlAcciones, idPoa, 0, "", 3);
                 ddlAcciones.Items[0].Text = "<< Elija un valor >>";
 
