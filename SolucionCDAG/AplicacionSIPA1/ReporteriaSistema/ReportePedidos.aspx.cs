@@ -273,8 +273,7 @@ namespace AplicacionSIPA1.ReporteriaSistema
         }
 
         protected void ddlAcciones_SelectedIndexChanged(object sender, EventArgs e)
-        {
-            
+        {          
             int idPoa = 0;
             int.TryParse(lblIdPoa.Text, out idPoa);
             System.Text.StringBuilder stringBuilder = new System.Text.StringBuilder();
@@ -368,7 +367,6 @@ namespace AplicacionSIPA1.ReporteriaSistema
             obtenerPresupuesto(idPoa, 0);
             System.Text.StringBuilder stringBuilder = new System.Text.StringBuilder();
             stringBuilder.Append(querypoa());
-            stringBuilder.Append("Where aa.id_poa  = " + idPoa);
             pAccionLN = new PlanAccionLN();
             pAccionLN.DdlAcciones(ddlAcciones, idPoa, 0, "", 3);
 
@@ -381,15 +379,10 @@ namespace AplicacionSIPA1.ReporteriaSistema
             {
                 stringBuilder.Append("Where aa.id_poa  = " + idPoa);
             }
-  
+
             MySqlConnection thisConnection = new MySqlConnection(thisConnectionString);
             System.Data.DataSet thisDataSet = new System.Data.DataSet();
-
-            if (ddlDependencias.SelectedValue == "0")
-                SearchValue[0] = new MySqlParameter("@Unidad", ddlUnidades.SelectedValue);
-            else
-                SearchValue[0] = new MySqlParameter("@Unidad", ddlDependencias.SelectedValue);
-
+            SearchValue[0] = new MySqlParameter("@Unidad", ddlDependencias.SelectedValue);
             SearchValue[1] = new MySqlParameter("@Año", ddlAnios.SelectedValue);
             /* Put the stored procedure result into a dataset */
             if (ddlDependencias.SelectedValue == "29")
@@ -400,6 +393,7 @@ namespace AplicacionSIPA1.ReporteriaSistema
             {
                 thisDataSet = MySqlHelper.ExecuteDataset(thisConnection, busqueda(1), SearchValue);
             }
+
 
             ReportDataSource datasource = new ReportDataSource("DataSet1", thisDataSet.Tables[0]);
             System.Data.DataSet thisDataSet2 = new System.Data.DataSet();
