@@ -123,12 +123,12 @@
                                     CssClass="table table-hover table-responsive">
                                     <AlternatingRowStyle BackColor="#CEEFFF" ForeColor="#333333" />
                                     <Columns>
-                                        <asp:TemplateField HeaderText="Opciones" ControlStyle-Width="25px" >
-                                            <ItemTemplate>                                             
-                                            <asp:LinkButton ID="btnConsultar" runat="server" OnClick="btnConsultar_Click"><asp:Image ImageUrl="~/img/24_bits/accept.png" runat="server" /></asp:LinkButton>
+                                        <asp:TemplateField HeaderText="Opciones" ControlStyle-Width="25px">
+                                            <ItemTemplate>
+                                                <asp:LinkButton ID="btnConsultar" runat="server" OnClick="btnConsultar_Click"><asp:Image ImageUrl="~/img/24_bits/accept.png" runat="server" /></asp:LinkButton>
+                                                &nbsp;
                                             &nbsp;
-                                            &nbsp;
-                                            <asp:LinkButton ID="btnImprimirr" runat="server" OnClick="btnImprimir_Click"><asp:Image ImageUrl="~/img/24_bits/download_page.png" runat="server" /></asp:LinkButton>                   
+                                            <asp:LinkButton ID="btnImprimirr" runat="server" OnClick="btnImprimir_Click"><asp:Image ImageUrl="~/img/24_bits/download_page.png" runat="server" /></asp:LinkButton>
                                             </ItemTemplate>
                                             <HeaderStyle BorderStyle="Inset" HorizontalAlign="Center" VerticalAlign="Middle" />
                                             <ItemStyle BorderStyle="Inset" HorizontalAlign="Center" VerticalAlign="Middle" />
@@ -157,6 +157,18 @@
                                             <HeaderStyle BorderStyle="Inset" HorizontalAlign="Center" VerticalAlign="Middle" />
                                             <ItemStyle BorderStyle="Inset" HorizontalAlign="Center" VerticalAlign="Middle" />
                                         </asp:BoundField>
+                                        <asp:TemplateField HeaderText="Total Pedido">
+                                            <EditItemTemplate>
+                                                <asp:TextBox ID="TextBox4" runat="server" Text='<%# Bind("total") %>'></asp:TextBox>
+                                            </EditItemTemplate>
+                                            <ItemTemplate>
+                                                <div class="text-right">
+                                                    <asp:Label ID="Label4" runat="server" Font-Bold="True" Font-Size="Medium" Text='<%# Bind("total", "Q.{0:0,0.00}") %>'></asp:Label>
+                                                </div>
+                                            </ItemTemplate>
+                                            <HeaderStyle BorderStyle="Inset" HorizontalAlign="Center" VerticalAlign="Middle" />
+                                            <ItemStyle BorderStyle="Inset" HorizontalAlign="Center" VerticalAlign="Middle" />
+                                        </asp:TemplateField>
                                         <asp:BoundField DataField="observaciones" HeaderText="Observaciones">
                                             <HeaderStyle BorderStyle="Inset" HorizontalAlign="Center" VerticalAlign="Middle" />
                                             <ItemStyle BorderStyle="Inset" HorizontalAlign="Center" VerticalAlign="Middle" />
