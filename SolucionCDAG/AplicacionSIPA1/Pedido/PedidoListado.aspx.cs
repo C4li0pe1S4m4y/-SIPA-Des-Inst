@@ -151,6 +151,15 @@ namespace AplicacionSIPA1.Pedido
                     dv.RowFilter = filtro;
                     gridDet.DataSource = dv;
                     gridDet.DataBind();
+                    decimal tMonto = 0;
+                    DataRow[] drArray = tbl.Select(filtro);
+
+                    foreach (DataRow drDatos in drArray)
+                    {
+                        tMonto += decimal.Parse(stringToDecimalString(drDatos["total"].ToString()));
+                      
+                    }
+                    gridDet.FooterRow.Cells[7].Text = String.Format(CultureInfo.InvariantCulture, "Q.{0:0,0.00}", tMonto);
                 }
                 else
                 {
@@ -163,7 +172,19 @@ namespace AplicacionSIPA1.Pedido
                 throw new Exception("filtrarGridDetalles(). " + ex.Message);
             }
         }
+        protected string stringToDecimalString(string s)
+        {
+            s = s.Replace("Q. ", "");
+            s = s.Replace("Q.", "");
+            s = s.Replace("Q", "");
+            s = s.Replace(" ", "");
+            s = s.Replace(",", "");
 
+            if (s.Equals(""))
+                return "00.00";
+
+            return s;
+        }
         protected void InformacionPublica_TribunalHonor()
         {
             try
