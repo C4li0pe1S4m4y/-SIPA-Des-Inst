@@ -70,7 +70,7 @@
                     <td>
                         &nbsp;</td>
                     <td colspan="9">
-                        <asp:DropDownList ID="ddlDependencias" runat="server" AutoPostBack="True" class="form-control" OnSelectedIndexChanged="ddlAnios_SelectedIndexChanged" Width="100%">
+                        <asp:DropDownList ID="ddlDependencias" runat="server" AutoPostBack="True" class="form-control" OnSelectedIndexChanged="ddlDependencias_SelectedIndexChanged" Width="100%">
                         </asp:DropDownList>
                     </td>
                     <td colspan="9">

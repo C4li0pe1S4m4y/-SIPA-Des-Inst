@@ -326,7 +326,8 @@ namespace AplicacionSIPA1.Viaticos
 
                 int.TryParse(ddlAnios.SelectedValue, out anio);
                 int.TryParse(ddlUnidades.SelectedValue, out idUnidad);
-
+                pOperativoLN = new PlanOperativoLN();
+                pOperativoLN.DdlDependencias(ddlDependencias, idUnidad.ToString());
                 lblErrorPoa.Text = string.Empty;
                 if (anio > 0 && idUnidad > 0)
                     validarPoaAprobacionPedido(idUnidad, anio);
@@ -817,6 +818,35 @@ namespace AplicacionSIPA1.Viaticos
         protected void ddlRenglonesC_SelectedIndexChanged(object sender, EventArgs e)
         {
 
+        }
+
+        protected void ddlDependencias_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            try
+            {
+                limpiarControlesError();
+                int anio = 0;
+                int idUnidad = 0;
+
+                int.TryParse(ddlAnios.SelectedValue, out anio);
+                int.TryParse(ddlDependencias.SelectedValue, out idUnidad);
+                
+                lblErrorPoa.Text = string.Empty;
+                if (anio > 0 && idUnidad > 0)
+                    validarPoaAprobacionPedido(idUnidad, anio);
+
+                int idPoa = 0;
+                int.TryParse(lblIdPoa.Text, out idPoa);
+
+                pAccionLN = new PlanAccionLN();
+                pAccionLN.DdlAccionesPoa(ddlAcciones, idPoa);
+                ddlAcciones.Items[0].Text = "<< Todas las acciones >>";
+                NuevaAprobacion();
+            }
+            catch (Exception ex)
+            {
+                lblError.Text = "ddlUnidades_SelectedIndexChanged(). " + ex.Message;
+            }
         }
     }
 }

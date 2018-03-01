@@ -35,6 +35,7 @@ namespace AplicacionSIPA1.Pedido
                     if (!bDepencia)
                         pOperativoLN.DdlDependencias(ddldepencia, ddlUnidades.SelectedValue);
                     string s = Convert.ToString(Request.QueryString["No"]);
+                    string dep = Convert.ToString(Request.QueryString["dep"]);
 
                     if (s != null)
                     {
@@ -44,23 +45,47 @@ namespace AplicacionSIPA1.Pedido
                         string noSolicitud = "";
 
                         pInsumoLN = new PedidosLN();
-                        DataSet dsResultado = pInsumoLN.InformacionVale(idEncabezado, 0, 2);
+                        DataSet dsResultado = new DataSet();
+                        int idUnidad, dependencia = 0;
+                        if (dep != null)
+                        {
+                            dsResultado = pInsumoLN.InformacionVale(idEncabezado, 0, 5);
+                            if (bool.Parse(dsResultado.Tables["RESULTADO"].Rows[0]["ERRORES"].ToString()))
+                                throw new Exception(dsResultado.Tables["RESULTADO"].Rows[0]["MSG_ERROR"].ToString());
 
-                        if (bool.Parse(dsResultado.Tables["RESULTADO"].Rows[0]["ERRORES"].ToString()))
-                            throw new Exception(dsResultado.Tables["RESULTADO"].Rows[0]["MSG_ERROR"].ToString());
+                            if (dsResultado.Tables.Count == 0)
+                                throw new Exception("Error al consultar la información del vale.");
+
+                            if (dsResultado.Tables[0].Rows.Count == 0)
+                                throw new Exception("No existe información del vale");
+
+                            int.TryParse(dsResultado.Tables["BUSQUEDA"].Rows[0]["ID_UNIDAD"].ToString(), out dependencia);
+                            int.TryParse(dsResultado.Tables["BUSQUEDA"].Rows[0]["dunidad"].ToString(), out idUnidad);
+                        }
+                        else
+                        {
+                            dsResultado = pInsumoLN.InformacionVale(idEncabezado, 0, 2);
+                            if (bool.Parse(dsResultado.Tables["RESULTADO"].Rows[0]["ERRORES"].ToString()))
+                                throw new Exception(dsResultado.Tables["RESULTADO"].Rows[0]["MSG_ERROR"].ToString());
 
                         if (dsResultado.Tables.Count == 0)
                             throw new Exception("Error al consultar la información del vale.");
 
-                        if (dsResultado.Tables[0].Rows.Count == 0)
-                            throw new Exception("No existe información del vale");
+                            if (dsResultado.Tables[0].Rows.Count == 0)
+                                throw new Exception("No existe información del vale");
+
+                            int.TryParse(dsResultado.Tables["BUSQUEDA"].Rows[0]["ID_UNIDAD"].ToString(), out idUnidad);
+                        }
+
+                       
 
                         noSolicitud = dsResultado.Tables["BUSQUEDA"].Rows[0]["NO_ANIO_SOLICITUD"].ToString();
 
-                        int anio, idUnidad, idAccion, idTipoPedido, idSolicitante, idJefe, idFand, idTipoAnexo = 0;
+                        int anio, idAccion, idTipoPedido, idSolicitante, idJefe, idFand, idTipoAnexo = 0;
+
 
                         int.TryParse(dsResultado.Tables["BUSQUEDA"].Rows[0]["ANIO"].ToString(), out anio);
-                        int.TryParse(dsResultado.Tables["BUSQUEDA"].Rows[0]["ID_UNIDAD"].ToString(), out idUnidad);
+                        
                         int.TryParse(dsResultado.Tables["BUSQUEDA"].Rows[0]["ID_ACCION"].ToString(), out idAccion);
                         int.TryParse(dsResultado.Tables["BUSQUEDA"].Rows[0]["ID_TIPO_PEDIDO"].ToString(), out idTipoPedido);
                         int.TryParse(dsResultado.Tables["BUSQUEDA"].Rows[0]["ID_SOLICITANTE"].ToString(), out idSolicitante);
@@ -81,7 +106,12 @@ namespace AplicacionSIPA1.Pedido
                             ddlUnidades.SelectedValue = idUnidad.ToString();
                             ddlUnidades_SelectedIndexChanged(sender, e);
                         }
-
+                        item = ddldepencia.Items.FindByValue(dependencia.ToString());
+                        if (item != null)
+                        {
+                            ddldepencia.SelectedValue = dependencia.ToString();
+                            ddldepencia_SelectedIndexChanged(sender, e);
+                        }
                         item = ddlAcciones.Items.FindByValue(idAccion.ToString());
                         if (item != null)
                         {

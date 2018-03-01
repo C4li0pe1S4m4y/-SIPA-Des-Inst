@@ -361,6 +361,10 @@ namespace AplicacionSIPA1.Pedido
                     throw new Exception("Seleccione un pedido!");
 
 
+                if (ddlDependencia.SelectedIndex > 0)
+                {
+                    Response.Redirect("ValeIngreso.aspx?No=" + Convert.ToString(idEncabezado) + "&dep=" + ddlDependencia.SelectedValue);
+                }
                 Response.Redirect("ValeIngreso.aspx?No=" + Convert.ToString(idEncabezado));
             }
             catch (Exception ex)

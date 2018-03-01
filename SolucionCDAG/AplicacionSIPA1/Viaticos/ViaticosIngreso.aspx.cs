@@ -66,29 +66,51 @@ namespace AplicacionSIPA1.Viaticos
                     if (!bDepencia)
                         pOperativoLN.DdlDependencias(ddlDependencia, ddlUnidades.SelectedValue);
                     string s = Convert.ToString(Request.QueryString["No"]);
-
+                    string dep = Convert.ToString(Request.QueryString["dep"]);
                     if (s != null)
                     {
                         int idEncabezado = 0;
                         int.TryParse(s, out idEncabezado);
-
+                        DataSet dsResultado;
                         pViaticosLN = new ViaticosLN();
-                        DataSet dsResultado = pViaticosLN.InformacionViatico(idEncabezado, 0, 2);
+                        int idUnidad, dependencia = 0;
+                        if (dep != null)
+                        {
+                            dsResultado = pViaticosLN.InformacionViatico(idEncabezado, 0, 14);
 
-                        if (bool.Parse(dsResultado.Tables["RESULTADO"].Rows[0]["ERRORES"].ToString()))
-                            throw new Exception(dsResultado.Tables["RESULTADO"].Rows[0]["MSG_ERROR"].ToString());
+                            if (bool.Parse(dsResultado.Tables["RESULTADO"].Rows[0]["ERRORES"].ToString()))
+                                throw new Exception(dsResultado.Tables["RESULTADO"].Rows[0]["MSG_ERROR"].ToString());
 
-                        if (dsResultado.Tables.Count == 0)
-                            throw new Exception("Error al consultar la información del viático.");
+                            if (dsResultado.Tables.Count == 0)
+                                throw new Exception("Error al consultar la información del viático.");
 
-                        if (dsResultado.Tables[0].Rows.Count == 0)
-                            throw new Exception("No existe información del viático");
+                            if (dsResultado.Tables[0].Rows.Count == 0)
+                                throw new Exception("No existe información del viático");
+                            int.TryParse(dsResultado.Tables["BUSQUEDA"].Rows[0]["ID_UNIDAD_POA"].ToString(), out dependencia);
+                            int.TryParse(dsResultado.Tables["BUSQUEDA"].Rows[0]["dunidad"].ToString(), out idUnidad);
+                        }
+                        else
+                        {
+                            dsResultado = pViaticosLN.InformacionViatico(idEncabezado, 0, 2);
 
-                        int idPlan, anio, idUnidad, idAccion, idJefeDirector, idSubgerente, idTipoPersona, idSolicitante, idPuesto, vehiculoCDAG, idCategoria = 0;
+                            if (bool.Parse(dsResultado.Tables["RESULTADO"].Rows[0]["ERRORES"].ToString()))
+                                throw new Exception(dsResultado.Tables["RESULTADO"].Rows[0]["MSG_ERROR"].ToString());
+
+                            if (dsResultado.Tables.Count == 0)
+                                throw new Exception("Error al consultar la información del viático.");
+
+                            if (dsResultado.Tables[0].Rows.Count == 0)
+                                throw new Exception("No existe información del viático");
+                            int.TryParse(dsResultado.Tables["BUSQUEDA"].Rows[0]["ID_UNIDAD_POA"].ToString(), out idUnidad);
+                        }
+
+                       
+
+                        int idPlan, anio, idAccion, idJefeDirector, idSubgerente, idTipoPersona, idSolicitante, idPuesto, vehiculoCDAG, idCategoria = 0;
 
                         int.TryParse(dsResultado.Tables["BUSQUEDA"].Rows[0]["ID_PLAN"].ToString(), out idPlan);
                         int.TryParse(dsResultado.Tables["BUSQUEDA"].Rows[0]["ANIO_POA"].ToString(), out anio);
-                        int.TryParse(dsResultado.Tables["BUSQUEDA"].Rows[0]["ID_UNIDAD_POA"].ToString(), out idUnidad);
+                        
                         int.TryParse(dsResultado.Tables["BUSQUEDA"].Rows[0]["ID_ACCION"].ToString(), out idAccion);
                         int.TryParse(dsResultado.Tables["BUSQUEDA"].Rows[0]["ID_JEFE_DIRECTOR"].ToString(), out idJefeDirector);
                         int.TryParse(dsResultado.Tables["BUSQUEDA"].Rows[0]["ID_SUBGERENTE"].ToString(), out idSubgerente);
@@ -117,6 +139,12 @@ namespace AplicacionSIPA1.Viaticos
                         {
                             ddlUnidades.SelectedValue = idUnidad.ToString();
                             ddlUnidades_SelectedIndexChanged(sender, e);
+                        }
+                        item = ddlDependencia.Items.FindByValue(dependencia.ToString());
+                        if (item != null)
+                        {
+                            ddlDependencia.SelectedValue = dependencia.ToString();
+                            ddlDependencia_SelectedIndexChanged(sender, e);
                         }
 
                         item = ddlAcciones.Items.FindByValue(idAccion.ToString());
@@ -2145,7 +2173,7 @@ namespace AplicacionSIPA1.Viaticos
                 pAccionLN = new PlanAccionLN();
                 //pAccionLN.DdlAccionesPoa(ddlAcciones, idPoa);
                
-                pOperativoLN.DdlDependencias(ddlJefaturaUnidad, idUnidad.ToString());
+                
                 pAccionLN.DdlAcciones(ddlAcciones, idPoa, 0, "", 4);
                 ddlAcciones.Items[0].Text = "<< Elija un valor >>";
 

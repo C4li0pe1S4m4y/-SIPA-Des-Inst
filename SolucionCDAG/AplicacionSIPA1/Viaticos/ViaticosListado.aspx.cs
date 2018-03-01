@@ -347,7 +347,13 @@ namespace AplicacionSIPA1.Viaticos
                 if (dsResultado.Tables["BUSQUEDA"].Rows.Count > 0 && dsResultado.Tables["BUSQUEDA"].Rows[0]["ID"].ToString() != "")
                 {
                     if (dsResultado.Tables["BUSQUEDA"].Rows[0]["ID_TIPO_VIATICO"].ToString().Equals("1"))
-                        Response.Redirect("ViaticosIngreso.aspx?No=" + Convert.ToString(idEncabezado));
+                    {
+                        if (ddlDepencia.SelectedIndex > 0)
+                            Response.Redirect("ViaticosIngreso.aspx?No=" + Convert.ToString(idEncabezado) + "&dep=" + ddlDepencia.SelectedValue);
+                        else
+                            Response.Redirect("ViaticosIngreso.aspx?No=" + Convert.ToString(idEncabezado));
+                    }
+                        
                     else
                         Response.Redirect("ViaticosIngresoExt.aspx?No=" + Convert.ToString(idEncabezado));
                 }
