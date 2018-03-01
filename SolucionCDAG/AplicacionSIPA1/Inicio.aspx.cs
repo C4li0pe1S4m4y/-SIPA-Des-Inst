@@ -32,7 +32,8 @@ namespace AplicacionSIPA1
                 if (item != null)
                     ddlAnios.SelectedValue = anioActual.ToString();
                 string usuario = Session["Usuario"].ToString().ToLower();
-                pOperativoLN.DdlUnidades(ddlUnidades, usuario);
+                    pOperativoLN.DdlUnidades(ddlUnidades, usuario);
+                    pOperativoLN.DdlDependencias(ddlDependencias, ddlUnidades.SelectedValue);
                 if (ddlUnidades.Items.Count<=1)
                 {
                     ddlUnidades_SelectedIndexChanged(sender, e);
@@ -91,12 +92,18 @@ namespace AplicacionSIPA1
             System.Data.DataSet thisDataSet6 = new System.Data.DataSet();
             string[] consutlas;
 
-            if (ddlUnidades.SelectedValue != "0" && ddlDependencias.SelectedValue == "0")
+            if (ddlAnios.SelectedValue != "0" && ddlUnidades.SelectedValue != "0" && ddlDependencias.SelectedValue == "0")
+            {
                 consutlas = pReportesAD.DashboardConsulta_Padre(ddlUnidades.SelectedValue, ddlAnios.SelectedValue);
-            if (ddlUnidades.SelectedValue != "0" && ddlDependencias.SelectedValue != "0")
-                consutlas = pReportesAD.DashboardConsulta(ddlUnidades.SelectedValue, ddlAnios.SelectedValue);
+            }
+            if (ddlAnios.SelectedValue != "0" && ddlUnidades.SelectedValue != "0" && ddlDependencias.SelectedValue != "0")
+            {
+                consutlas = pReportesAD.DashboardConsulta(ddlDependencias.SelectedValue, ddlAnios.SelectedValue);
+            }
             else 
+            {
                 consutlas = pReportesAD.DashboardConsulta_All(ddlAnios.SelectedValue);
+            }
             /* Put the stored procedure result into a dataset */
             thisDataSet = MySqlHelper.ExecuteDataset(thisConnection, consutlas[0]);
             thisDataSet2 = MySqlHelper.ExecuteDataset(thisConnection, consutlas[1]);
@@ -140,17 +147,16 @@ namespace AplicacionSIPA1
                 System.Data.DataSet thisDataSet4 = new System.Data.DataSet();
                 System.Data.DataSet thisDataSet5 = new System.Data.DataSet();
                 System.Data.DataSet thisDataSet6 = new System.Data.DataSet();
-                string[] consutlas;
 
-                if (ddlDependencias.SelectedValue == "0")
-                    consutlas = pReportesAD.DashboardConsulta_Padre(ddlUnidades.SelectedValue, ddlAnios.SelectedValue);
-                if (ddlUnidades.SelectedValue == "0" && ddlDependencias.SelectedValue == "0")
-                    consutlas = pReportesAD.DashboardConsulta_All(ddlAnios.SelectedValue);
-                else
-                    consutlas = pReportesAD.DashboardConsulta(ddlDependencias.SelectedValue, ddlAnios.SelectedValue);
+            string[] consutlas;
 
-                    /* Put the stored procedure result into a dataset */
-                    thisDataSet = MySqlHelper.ExecuteDataset(thisConnection, consutlas[0]);
+            if(ddlDependencias.SelectedValue == "0")
+                consutlas = pReportesAD.DashboardConsulta_Padre(ddlUnidades.SelectedValue, ddlAnios.SelectedValue);
+            else
+                consutlas = pReportesAD.DashboardConsulta(ddlDependencias.SelectedValue, ddlAnios.SelectedValue);
+
+            /* Put the stored procedure result into a dataset */
+            thisDataSet = MySqlHelper.ExecuteDataset(thisConnection, consutlas[0]);
                     thisDataSet2 = MySqlHelper.ExecuteDataset(thisConnection, consutlas[1]);
                     thisDataSet3 = MySqlHelper.ExecuteDataset(thisConnection, consutlas[2]);
                     thisDataSet4 = MySqlHelper.ExecuteDataset(thisConnection, consutlas[3]);
@@ -188,13 +194,13 @@ namespace AplicacionSIPA1
             System.Data.DataSet thisDataSet4 = new System.Data.DataSet();
             System.Data.DataSet thisDataSet5 = new System.Data.DataSet();
             System.Data.DataSet thisDataSet6 = new System.Data.DataSet();
+
             string[] consutlas;
 
-            if (ddlUnidades.SelectedValue == "0" && ddlDependencias.SelectedValue != "0")
+            if (ddlDependencias.SelectedValue == "0")
                 consutlas = pReportesAD.DashboardConsulta_Padre(ddlUnidades.SelectedValue, ddlAnios.SelectedValue);
             else
-                 consutlas = pReportesAD.DashboardConsulta(ddlDependencias.SelectedValue, ddlAnios.SelectedValue);
-
+                consutlas = pReportesAD.DashboardConsulta(ddlDependencias.SelectedValue, ddlAnios.SelectedValue);
 
             /* Put the stored procedure result into a dataset */
             thisDataSet = MySqlHelper.ExecuteDataset(thisConnection, consutlas[0]);
