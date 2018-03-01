@@ -63,6 +63,12 @@
         </div>
     </div>
     <br />
+    <div class="row">
+        <div style="text-align: center;"><span>
+            <asp:Label ID="lblError" runat="server" Font-Bold="True" Font-Size="Medium" ForeColor="Red"></asp:Label>
+            <asp:Label ID="lblSuccess" runat="server" Font-Bold="True" Font-Size="Medium" ForeColor="Green"></asp:Label>
+        </span></div>
+    </div>
     <div class="col-xs-12" style="width: 100%; height: 100%; left: 23px; top: 3px;">
         <rsweb:ReportViewer ID="ReportViewer1" runat="server" Font-Names="Verdana" Font-Size="8pt" WaitMessageFont-Names="Verdana" WaitMessageFont-Size="14pt" Width="1473px">
             <LocalReport ReportPath="Reportes\SaldosRenglonesDet.rdlc">

@@ -45,58 +45,70 @@ namespace AplicacionSIPA1.ReporteriaSistema
                     throw new Exception(dsResultado.Tables["RESULTADO"].Rows[0]["MSG_ERROR"].ToString());
 
                 if (dsResultado.Tables["BUSQUEDA"].Rows.Count > 0)
+                { 
                     pOperativoLN.DdlUnidades(ddlUnidades);
+                    pOperativoLN.DdlDependencias(ddlDependencia, ddlUnidades.SelectedValue);
+                }
                 else
+                {
                     pOperativoLN.DdlUnidades(ddlUnidades, usuario);
-
+                    pOperativoLN.DdlDependencias(ddlDependencia, ddlUnidades.SelectedValue);
+                }
                 if (ddlUnidades.Items.Count == 1)
                 {
                     ddlUnidades_SelectedIndexChanged(sender, e);
                 }
                 else
                 {
-                    validarPoa(int.Parse(ddlUnidades.SelectedValue), int.Parse(ddlAnios.SelectedValue));
-                    int idPoa = 0;
-                    int.TryParse(lblPoa.Text, out idPoa);
-                    pAccionLN = new PlanAccionLN();
-                    pAccionLN.DdlAcciones(ddlAcciones, idPoa, 0, "", 3);
-                    ddlAcciones.Items[0].Text = "<< TODAS >>";
-                    System.Text.StringBuilder stringBuilder = new System.Text.StringBuilder();
-                    stringBuilder.Append(consulta());
-
-                    stringBuilder.Append(" Order by t.no_solicitud");
-                    MySqlConnection thisConnection = new MySqlConnection(thisConnectionString);
-                    DataSet thisDataSet = new System.Data.DataSet();
-
-                    /* Put the stored procedure result into a dataset */
-                    thisDataSet = MySqlHelper.ExecuteDataset(thisConnection, stringBuilder.ToString());
-
-                    ReportDataSource datasource = new ReportDataSource("DataSet1", thisDataSet.Tables[0]);
-
-                    ReportViewer1.LocalReport.DataSources.Clear();
-                    ReportViewer1.LocalReport.DataSources.Add(datasource);
-                    if (thisDataSet.Tables[0].Rows.Count == 0)
+                    if (ddlUnidades.SelectedValue != "0")
                     {
+                        validarPoa(int.Parse(ddlUnidades.SelectedValue), int.Parse(ddlAnios.SelectedValue));
 
+                        int idPoa = 0;
+                        int.TryParse(lblPoa.Text, out idPoa);
+                        pAccionLN = new PlanAccionLN();
+                        pAccionLN.DdlAcciones(ddlAcciones, idPoa, 0, "", 3);
+                        ddlAcciones.Items[0].Text = "<< TODAS >>";
+
+                        System.Text.StringBuilder stringBuilder = new System.Text.StringBuilder();
+                        stringBuilder.Append(consulta());
+                        stringBuilder.Append(" Order by t.no_solicitud");
+                        MySqlConnection thisConnection = new MySqlConnection(thisConnectionString);
+                        DataSet thisDataSet = new System.Data.DataSet();
+
+                        /* Put the stored procedure result into a dataset */
+                        thisDataSet = MySqlHelper.ExecuteDataset(thisConnection, stringBuilder.ToString());
+
+                        ReportDataSource datasource = new ReportDataSource("DataSet1", thisDataSet.Tables[0]);
+
+                        ReportViewer1.LocalReport.DataSources.Clear();
+                        ReportViewer1.LocalReport.DataSources.Add(datasource);
+                        if (thisDataSet.Tables[0].Rows.Count == 0)
+                        {
+
+                        }
+                        ReportViewer1.LocalReport.Refresh();
                     }
-
-                    ReportViewer1.LocalReport.Refresh();
                 }
                
             }
         }
         protected void ddlAnios_SelectedIndexChanged(object sender, EventArgs e)
         {
-            validarPoa(int.Parse(ddlDependencia.SelectedValue), int.Parse(ddlAnios.SelectedValue));
-            int idPoa = 0;
-            int.TryParse(lblPoa.Text, out idPoa);
-            pAccionLN = new PlanAccionLN();
-            pAccionLN.DdlAcciones(ddlAcciones, idPoa, 0, "", 3);
-            ddlAcciones.Items[0].Text = "<< TODAS >>";
+            if(ddlUnidades.SelectedValue != "0")
+                validarPoa(int.Parse(ddlUnidades.SelectedValue), int.Parse(ddlAnios.SelectedValue));
+            if(ddlDependencia.SelectedValue != "0")
+                validarPoa(int.Parse(ddlDependencia.SelectedValue), int.Parse(ddlAnios.SelectedValue));
+            else if (ddlUnidades.SelectedValue == "0" && ddlDependencia.SelectedValue == "0")
+                lblError.Text = "Escoger la Dependencia para Visualizar los Datos";
+
             System.Text.StringBuilder stringBuilder = new System.Text.StringBuilder();
             stringBuilder.Append(consulta());
             stringBuilder.Append(" AND t.Año = " + ddlAnios.SelectedValue);
-            stringBuilder.Append(" AND id_unidad = " + ddlDependencia.SelectedValue);
+            if (ddlDependencia.SelectedValue == "0")
+                stringBuilder.Append(" AND id_padre = " + ddlUnidades.SelectedValue);
+            else
+                stringBuilder.Append(" AND id_unidad = " + ddlDependencia.SelectedValue);
             string tiposSalida = "";
             for (int i = 0; i < chkTiposSalida.Items.Count; i++)
                 if (chkTiposSalida.Items[i].Selected == true)
@@ -135,16 +147,18 @@ namespace AplicacionSIPA1.ReporteriaSistema
         }
         protected void ddlUnidades_SelectedIndexChanged(object sender, EventArgs e)
         {
-            /*Se agrego lo siguiente: planOperativoLN = new PlanOperativoLN();
-                                      planOperativoLN.DdlDependencias(ddlDependencia, ddlUnidades.SelectedValue);
-            para corregir la reporteria Unidad/Dependencia*/
+            lblError.Text = "";
+
             planOperativoLN = new PlanOperativoLN();
             planOperativoLN.DdlDependencias(ddlDependencia, ddlUnidades.SelectedValue);
-            validarPoa(int.Parse(ddlDependencia.SelectedValue), int.Parse(ddlAnios.SelectedValue));
-            int idPoa = 0;
-            int.TryParse(lblPoa.Text, out idPoa);
-            pAccionLN = new PlanAccionLN();
-            pAccionLN.DdlAcciones(ddlAcciones, idPoa, 0, "", 3);
+
+            validarPoa(int.Parse(ddlUnidades.SelectedValue), int.Parse(ddlAnios.SelectedValue));
+
+                int idPoa = 0;
+                int.TryParse(lblPoa.Text, out idPoa);
+                pAccionLN = new PlanAccionLN();
+                pAccionLN.DdlAcciones(ddlAcciones, idPoa, 0, "", 3);
+
             System.Text.StringBuilder stringBuilder = new System.Text.StringBuilder();
             stringBuilder.Append(consulta());
             stringBuilder.Append(" AND id_padre = " + ddlUnidades.SelectedValue);
@@ -189,10 +203,7 @@ namespace AplicacionSIPA1.ReporteriaSistema
         protected void ddlDependencia_SelectedIndexChanged(object sender, EventArgs e)
         {
             validarPoa(int.Parse(ddlDependencia.SelectedValue), int.Parse(ddlAnios.SelectedValue));
-            int idPoa = 0;
-            int.TryParse(lblPoa.Text, out idPoa);
-            pAccionLN = new PlanAccionLN();
-            pAccionLN.DdlAcciones(ddlAcciones, idPoa, 0, "", 3);
+
             System.Text.StringBuilder stringBuilder = new System.Text.StringBuilder();
             stringBuilder.Append(consulta());
             if(ddlDependencia.SelectedValue == "0")
@@ -326,12 +337,21 @@ namespace AplicacionSIPA1.ReporteriaSistema
 
         protected void ddlAcciones_SelectedIndexChanged(object sender, EventArgs e)
         {
-            validarPoa(int.Parse(ddlUnidades.SelectedValue), int.Parse(ddlAnios.SelectedValue));
+            if (ddlUnidades.SelectedValue != "0")
+                validarPoa(int.Parse(ddlUnidades.SelectedValue), int.Parse(ddlAnios.SelectedValue));
+            if (ddlDependencia.SelectedValue != "0")
+                validarPoa(int.Parse(ddlDependencia.SelectedValue), int.Parse(ddlAnios.SelectedValue));
+            else if (ddlUnidades.SelectedValue == "0" && ddlDependencia.SelectedValue == "0")
+                lblError.Text = "Escoger la Dependencia para Visualizar los Datos";
+
             int idPoa = 0;
             int.TryParse(lblPoa.Text, out idPoa);
             System.Text.StringBuilder stringBuilder = new System.Text.StringBuilder();
             stringBuilder.Append(consulta());
-            stringBuilder.Append(" AND id_unidad = " + ddlDependencia.SelectedValue);
+            if (ddlDependencia.SelectedValue == "0")
+                stringBuilder.Append(" AND id_padre = " + ddlUnidades.SelectedValue);
+            else
+                stringBuilder.Append(" AND id_unidad = " + ddlDependencia.SelectedValue);
             stringBuilder.Append(" AND t.Año = " + ddlAnios.SelectedValue);
             stringBuilder.Append(" AND id_accion = " + ddlAcciones.SelectedValue);
             string tiposSalida = "";
