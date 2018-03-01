@@ -93,10 +93,10 @@ namespace AplicacionSIPA1
 
             if (ddlUnidades.SelectedValue != "0" && ddlDependencias.SelectedValue == "0")
                 consutlas = pReportesAD.DashboardConsulta_Padre(ddlUnidades.SelectedValue, ddlAnios.SelectedValue);
-            if (ddlUnidades.SelectedValue == "0" && ddlDependencias.SelectedValue != "0")
+            if (ddlUnidades.SelectedValue != "0" && ddlDependencias.SelectedValue != "0")
                 consutlas = pReportesAD.DashboardConsulta(ddlUnidades.SelectedValue, ddlAnios.SelectedValue);
-            else
-                consutlas = pReportesAD.DashboardConsulta(ddlDependencias.SelectedValue, ddlAnios.SelectedValue);
+            else 
+                consutlas = pReportesAD.DashboardConsulta_All(ddlAnios.SelectedValue);
             /* Put the stored procedure result into a dataset */
             thisDataSet = MySqlHelper.ExecuteDataset(thisConnection, consutlas[0]);
             thisDataSet2 = MySqlHelper.ExecuteDataset(thisConnection, consutlas[1]);
@@ -144,6 +144,8 @@ namespace AplicacionSIPA1
 
                 if (ddlDependencias.SelectedValue == "0")
                     consutlas = pReportesAD.DashboardConsulta_Padre(ddlUnidades.SelectedValue, ddlAnios.SelectedValue);
+                if (ddlUnidades.SelectedValue == "0" && ddlDependencias.SelectedValue == "0")
+                    consutlas = pReportesAD.DashboardConsulta_All(ddlAnios.SelectedValue);
                 else
                     consutlas = pReportesAD.DashboardConsulta(ddlDependencias.SelectedValue, ddlAnios.SelectedValue);
 
