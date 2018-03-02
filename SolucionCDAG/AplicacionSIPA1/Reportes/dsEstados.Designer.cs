@@ -303,6 +303,8 @@ namespace AplicacionSIPA1.Reportes {
             
             private global::System.Data.DataColumn columniniciales;
             
+            private global::System.Data.DataColumn columnIP;
+            
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
             public EstadosDataTable() {
@@ -434,6 +436,14 @@ namespace AplicacionSIPA1.Reportes {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public global::System.Data.DataColumn IPColumn {
+                get {
+                    return this.columnIP;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
             [global::System.ComponentModel.Browsable(false)]
             public int Count {
                 get {
@@ -469,7 +479,7 @@ namespace AplicacionSIPA1.Reportes {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public EstadosRow AddEstadosRow(string documento, string EstadoNuevo, System.DateTime fecha_comparacion_anterior, int dias, int horas, int minutos, int segundos, string usuario_ing, string observaciones, int no_solicitud, string estadoAnterior, string iniciales) {
+            public EstadosRow AddEstadosRow(string documento, string EstadoNuevo, System.DateTime fecha_comparacion_anterior, int dias, int horas, int minutos, int segundos, string usuario_ing, string observaciones, int no_solicitud, string estadoAnterior, string iniciales, string IP) {
                 EstadosRow rowEstadosRow = ((EstadosRow)(this.NewRow()));
                 object[] columnValuesArray = new object[] {
                         documento,
@@ -483,7 +493,8 @@ namespace AplicacionSIPA1.Reportes {
                         observaciones,
                         no_solicitud,
                         estadoAnterior,
-                        iniciales};
+                        iniciales,
+                        IP};
                 rowEstadosRow.ItemArray = columnValuesArray;
                 this.Rows.Add(rowEstadosRow);
                 return rowEstadosRow;
@@ -518,6 +529,7 @@ namespace AplicacionSIPA1.Reportes {
                 this.columnno_solicitud = base.Columns["no_solicitud"];
                 this.columnestadoAnterior = base.Columns["estadoAnterior"];
                 this.columniniciales = base.Columns["iniciales"];
+                this.columnIP = base.Columns["IP"];
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
@@ -547,6 +559,8 @@ namespace AplicacionSIPA1.Reportes {
                 base.Columns.Add(this.columnestadoAnterior);
                 this.columniniciales = new global::System.Data.DataColumn("iniciales", typeof(string), null, global::System.Data.MappingType.Element);
                 base.Columns.Add(this.columniniciales);
+                this.columnIP = new global::System.Data.DataColumn("IP", typeof(string), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnIP);
                 this.columndocumento.MaxLength = 100;
                 this.columnEstadoNuevo.AllowDBNull = false;
                 this.columnEstadoNuevo.MaxLength = 250;
@@ -555,6 +569,7 @@ namespace AplicacionSIPA1.Reportes {
                 this.columnestadoAnterior.AllowDBNull = false;
                 this.columnestadoAnterior.MaxLength = 250;
                 this.columniniciales.MaxLength = 10;
+                this.columnIP.MaxLength = 90;
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
@@ -879,6 +894,22 @@ namespace AplicacionSIPA1.Reportes {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public string IP {
+                get {
+                    try {
+                        return ((string)(this[this.tableEstados.IPColumn]));
+                    }
+                    catch (global::System.InvalidCastException e) {
+                        throw new global::System.Data.StrongTypingException("The value for column \'IP\' in table \'Estados\' is DBNull.", e);
+                    }
+                }
+                set {
+                    this[this.tableEstados.IPColumn] = value;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
             public bool IsdocumentoNull() {
                 return this.IsNull(this.tableEstados.documentoColumn);
             }
@@ -995,6 +1026,18 @@ namespace AplicacionSIPA1.Reportes {
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
             public void SetinicialesNull() {
                 this[this.tableEstados.inicialesColumn] = global::System.Convert.DBNull;
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public bool IsIPNull() {
+                return this.IsNull(this.tableEstados.IPColumn);
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public void SetIPNull() {
+                this[this.tableEstados.IPColumn] = global::System.Convert.DBNull;
             }
         }
         
@@ -1169,6 +1212,7 @@ namespace AplicacionSIPA1.Reportes.dsEstadosTableAdapters {
             tableMapping.ColumnMappings.Add("no_solicitud", "no_solicitud");
             tableMapping.ColumnMappings.Add("estadoAnterior", "estadoAnterior");
             tableMapping.ColumnMappings.Add("iniciales", "iniciales");
+            tableMapping.ColumnMappings.Add("IP", "IP");
             this._adapter.TableMappings.Add(tableMapping);
         }
         
@@ -1186,36 +1230,51 @@ namespace AplicacionSIPA1.Reportes.dsEstadosTableAdapters {
             this._commandCollection[0] = new global::MySql.Data.MySqlClient.MySqlCommand();
             this._commandCollection[0].Connection = this.Connection;
             this._commandCollection[0].CommandText = "SELECT no_solicitud, documento, estadoAnterior, EstadoNuevo, iniciales, fecha_com" +
-                "paracion_anterior, dias, horas, minutos, segundos, usuario_ing, observaciones FR" +
-                "OM (SELECT p.no_solicitud, d.documento, ep.nombre_estado AS estadoAnterior, ep2." +
-                "nombre_estado AS EstadoNuevo, u.iniciales, d.fecha_comparacion_anterior, d.dias," +
-                " d.horas, d.minutos, d.segundos, d.usuario_ing, d.observaciones FROM sipa_docume" +
-                "ntos_wkf d INNER JOIN sipa_estados_pedido ep ON ep.id_estado_pedido = d.id_estad" +
-                "o_anterior INNER JOIN sipa_estados_pedido ep2 ON ep2.id_estado_pedido = d.id_est" +
-                "ado_nuevo INNER JOIN sipa_pedidos p ON p.id_pedido = d.id_documento INNER JOIN c" +
-                "cl_unidades u ON u.id_unidad = p.id_unidad WHERE (d.id_tipo_documento = 1) UNION" +
-                " ALL SELECT p.no_solicitud, d.documento, ep.nombre_estado AS estadoAnterior, ep2" +
-                ".nombre_estado AS EstadoNuevo, u.iniciales, d.fecha_comparacion_anterior, d.dias" +
-                ", d.horas, d.minutos, d.segundos, d.usuario_ing, d.observaciones FROM sipa_docum" +
-                "entos_wkf d INNER JOIN sipa_estados_pedido ep ON ep.id_estado_pedido = d.id_esta" +
-                "do_anterior INNER JOIN sipa_estados_pedido ep2 ON ep2.id_estado_pedido = d.id_es" +
-                "tado_nuevo INNER JOIN sipa_ccvale p ON p.id_ccvale = d.id_documento INNER JOIN c" +
-                "cl_unidades u ON u.id_unidad = p.id_unidad WHERE (d.id_tipo_documento = 2) UNION" +
-                " ALL SELECT p.no_solicitud, d.documento, ep.nombre_estado AS estadoAnterior, ep2" +
-                ".nombre_estado AS EstadoNuevo, u.iniciales, d.fecha_comparacion_anterior, d.dias" +
-                ", d.horas, d.minutos, d.segundos, d.usuario_ing, d.observaciones FROM sipa_docum" +
-                "entos_wkf d INNER JOIN sipa_estados_pedido ep ON ep.id_estado_pedido = d.id_esta" +
-                "do_anterior INNER JOIN sipa_estados_pedido ep2 ON ep2.id_estado_pedido = d.id_es" +
-                "tado_nuevo INNER JOIN sipa_gastos p ON p.id_gasto = d.id_documento INNER JOIN cc" +
-                "l_unidades u ON u.id_unidad = p.id_unidad WHERE (d.id_tipo_documento = 3) UNION " +
-                "ALL SELECT p.no_solicitud, d.documento, ep.nombre_estado AS estadoAnterior, ep2." +
-                "nombre_estado AS EstadoNuevo, u.iniciales, d.fecha_comparacion_anterior, d.dias," +
-                " d.horas, d.minutos, d.segundos, d.usuario_ing, d.observaciones FROM sipa_docume" +
-                "ntos_wkf d INNER JOIN sipa_estados_pedido ep ON ep.id_estado_pedido = d.id_estad" +
-                "o_anterior INNER JOIN sipa_estados_pedido ep2 ON ep2.id_estado_pedido = d.id_est" +
-                "ado_nuevo INNER JOIN sipa_viaticos p ON p.id_viatico = d.id_documento INNER JOIN" +
-                " ccl_unidades u ON u.id_unidad = p.id_unidad WHERE (d.id_tipo_documento = 4)) t " +
-                "ORDER BY no_solicitud, documento, fecha_comparacion_anterior";
+                "paracion_anterior, dias, horas, minutos, segundos, usuario_ing, observaciones, I" +
+                "P\r\nFROM     (SELECT p.no_solicitud, d.documento, ep.nombre_estado AS estadoAnter" +
+                "ior, ep2.nombre_estado AS EstadoNuevo, u.iniciales, d.fecha_comparacion_anterior" +
+                ", d.dias, d.horas, d.minutos, d.segundos, d.usuario_ing, d.observaciones, \r\n    " +
+                "                                CONCAT(d.ip, d.mac_address) AS IP\r\n             " +
+                "     FROM      sipa_documentos_wkf d INNER JOIN\r\n                               " +
+                "     sipa_estados_pedido ep ON ep.id_estado_pedido = d.id_estado_anterior INNER " +
+                "JOIN\r\n                                    sipa_estados_pedido ep2 ON ep2.id_esta" +
+                "do_pedido = d.id_estado_nuevo INNER JOIN\r\n                                    si" +
+                "pa_pedidos p ON p.id_pedido = d.id_documento INNER JOIN\r\n                       " +
+                "             ccl_unidades u ON u.id_unidad = p.id_unidad\r\n                  WHER" +
+                "E   (d.id_tipo_documento = 1)\r\n                  UNION ALL\r\n                  SE" +
+                "LECT p.no_solicitud, d.documento, ep.nombre_estado AS estadoAnterior, ep2.nombre" +
+                "_estado AS EstadoNuevo, u.iniciales, d.fecha_comparacion_anterior, d.dias, d.hor" +
+                "as, d.minutos, d.segundos, d.usuario_ing, d.observaciones, \r\n                   " +
+                "                 CONCAT(d.ip, d.mac_address) AS IP\r\n                  FROM     s" +
+                "ipa_documentos_wkf d INNER JOIN\r\n                                    sipa_estado" +
+                "s_pedido ep ON ep.id_estado_pedido = d.id_estado_anterior INNER JOIN\r\n          " +
+                "                          sipa_estados_pedido ep2 ON ep2.id_estado_pedido = d.id" +
+                "_estado_nuevo INNER JOIN\r\n                                    sipa_ccvale p ON p" +
+                ".id_ccvale = d.id_documento INNER JOIN\r\n                                    ccl_" +
+                "unidades u ON u.id_unidad = p.id_unidad\r\n                  WHERE  (d.id_tipo_doc" +
+                "umento = 2)\r\n                  UNION ALL\r\n                  SELECT p.no_solicitu" +
+                "d, d.documento, ep.nombre_estado AS estadoAnterior, ep2.nombre_estado AS EstadoN" +
+                "uevo, u.iniciales, d.fecha_comparacion_anterior, d.dias, d.horas, d.minutos, d.s" +
+                "egundos, d.usuario_ing, d.observaciones, \r\n                                    C" +
+                "ONCAT(d.ip, d.mac_address) AS IP\r\n                  FROM     sipa_documentos_wkf" +
+                " d INNER JOIN\r\n                                    sipa_estados_pedido ep ON ep." +
+                "id_estado_pedido = d.id_estado_anterior INNER JOIN\r\n                            " +
+                "        sipa_estados_pedido ep2 ON ep2.id_estado_pedido = d.id_estado_nuevo INNE" +
+                "R JOIN\r\n                                    sipa_gastos p ON p.id_gasto = d.id_d" +
+                "ocumento INNER JOIN\r\n                                    ccl_unidades u ON u.id_" +
+                "unidad = p.id_unidad\r\n                  WHERE  (d.id_tipo_documento = 3)\r\n      " +
+                "            UNION ALL\r\n                  SELECT p.no_solicitud, d.documento, ep." +
+                "nombre_estado AS estadoAnterior, ep2.nombre_estado AS EstadoNuevo, u.iniciales, " +
+                "d.fecha_comparacion_anterior, d.dias, d.horas, d.minutos, d.segundos, d.usuario_" +
+                "ing, d.observaciones, \r\n                                    CONCAT(d.ip, d.mac_a" +
+                "ddress) AS IP\r\n                  FROM     sipa_documentos_wkf d INNER JOIN\r\n    " +
+                "                                sipa_estados_pedido ep ON ep.id_estado_pedido = " +
+                "d.id_estado_anterior INNER JOIN\r\n                                    sipa_estado" +
+                "s_pedido ep2 ON ep2.id_estado_pedido = d.id_estado_nuevo INNER JOIN\r\n           " +
+                "                         sipa_viaticos p ON p.id_viatico = d.id_documento INNER " +
+                "JOIN\r\n                                    ccl_unidades u ON u.id_unidad = p.id_u" +
+                "nidad\r\n                  WHERE  (d.id_tipo_documento = 4)) t\r\nORDER BY no_solici" +
+                "tud, documento, fecha_comparacion_anterior";
             this._commandCollection[0].CommandType = global::System.Data.CommandType.Text;
         }
         

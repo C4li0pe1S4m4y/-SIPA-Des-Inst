@@ -9,10 +9,46 @@
         <Tables>
           <TableAdapter BaseClass="System.ComponentModel.Component" DataAccessorModifier="AutoLayout, AnsiClass, Class, Public" DataAccessorName="EstadosTableAdapter" GeneratorDataComponentClassName="EstadosTableAdapter" Name="Estados" UserDataComponentName="EstadosTableAdapter">
             <MainSource>
-              <DbSource ConnectionRef="dbcdagsipaConnectionString1 (Web.config)" DbObjectName="SELECT p.no_solicitud, d.documento, ep.nombre_estado AS estadoAnterior, ep2.nombre_estado AS EstadoNuevo, u.iniciales, d.fecha_comparacion_anterior, d.dias, d.horas, d.minutos, d.segundos, d.usuario_ing, d.observaciones FROM sipa_documentos_wkf d INNER JOIN sipa_estados_pedido ep ON ep.id_estado_pedido = d.id_estado_anterior INNER JOIN sipa_estados_pedido ep2 ON ep2.id_estado_pedido = d.id_estado_nuevo INNER JOIN sipa_pedidos p ON p.id_pedido = d.id_documento INNER JOIN ccl_unidades u ON u.id_unidad = p.id_unidad WHERE (d.id_tipo_documento = 1) UNION ALL SELECT p.no_solicitud, d.documento, ep.nombre_estado AS estadoAnterior, ep2.nombre_estado AS EstadoNuevo, u.iniciales, d.fecha_comparacion_anterior, d.dias, d.horas, d.minutos, d.segundos, d.usuario_ing, d.observaciones FROM sipa_documentos_wkf d INNER JOIN sipa_estados_pedido ep ON ep.id_estado_pedido = d.id_estado_anterior INNER JOIN sipa_estados_pedido ep2 ON ep2.id_estado_pedido = d.id_estado_nuevo INNER JOIN sipa_ccvale p ON p.id_ccvale = d.id_documento INNER JOIN ccl_unidades u ON u.id_unidad = p.id_unidad WHERE (d.id_tipo_documento = 2) UNION ALL SELECT p.no_solicitud, d.documento, ep.nombre_estado AS estadoAnterior, ep2.nombre_estado AS EstadoNuevo, u.iniciales, d.fecha_comparacion_anterior, d.dias, d.horas, d.minutos, d.segundos, d.usuario_ing, d.observaciones FROM sipa_documentos_wkf d INNER JOIN sipa_estados_pedido ep ON ep.id_estado_pedido = d.id_estado_anterior INNER JOIN sipa_estados_pedido ep2 ON ep2.id_estado_pedido = d.id_estado_nuevo INNER JOIN sipa_gastos p ON p.id_gasto = d.id_documento INNER JOIN ccl_unidades u ON u.id_unidad = p.id_unidad WHERE (d.id_tipo_documento = 3) UNION ALL SELECT p.no_solicitud, d.documento, ep.nombre_estado AS estadoAnterior, ep2.nombre_estado AS EstadoNuevo, u.iniciales, d.fecha_comparacion_anterior, d.dias, d.horas, d.minutos, d.segundos, d.usuario_ing, d.observaciones FROM sipa_documentos_wkf d INNER JOIN sipa_estados_pedido ep ON ep.id_estado_pedido = d.id_estado_anterior INNER JOIN sipa_estados_pedido ep2 ON ep2.id_estado_pedido = d.id_estado_nuevo INNER JOIN sipa_viaticos p ON p.id_viatico = d.id_documento INNER JOIN ccl_unidades u ON u.id_unidad = p.id_unidad WHERE (d.id_tipo_documento = 4)" DbObjectType="Unknown" FillMethodModifier="Public" FillMethodName="Fill" GenerateMethods="Both" GenerateShortCommands="false" GeneratorGetMethodName="GetData" GeneratorSourceName="Fill" GetMethodModifier="Public" GetMethodName="GetData" QueryType="Rowset" ScalarCallRetval="System.Object, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" UseOptimisticConcurrency="false" UserGetMethodName="GetData" UserSourceName="Fill">
+              <DbSource ConnectionRef="dbcdagsipaConnectionString1 (Web.config)" DbObjectName="SELECT p.no_solicitud, d.documento, ep.nombre_estado AS estadoAnterior, ep2.nombre_estado AS EstadoNuevo, u.iniciales, d.fecha_comparacion_anterior, d.dias, d.horas, d.minutos, d.segundos, d.usuario_ing, d.observaciones, CONCAT(d.ip, d.mac_address) AS IP FROM sipa_documentos_wkf d INNER JOIN sipa_estados_pedido ep ON ep.id_estado_pedido = d.id_estado_anterior INNER JOIN sipa_estados_pedido ep2 ON ep2.id_estado_pedido = d.id_estado_nuevo INNER JOIN sipa_pedidos p ON p.id_pedido = d.id_documento INNER JOIN ccl_unidades u ON u.id_unidad = p.id_unidad WHERE (d.id_tipo_documento = 1) UNION ALL SELECT p.no_solicitud, d.documento, ep.nombre_estado AS estadoAnterior, ep2.nombre_estado AS EstadoNuevo, u.iniciales, d.fecha_comparacion_anterior, d.dias, d.horas, d.minutos, d.segundos, d.usuario_ing, d.observaciones, CONCAT(d.ip, d.mac_address) AS IP FROM sipa_documentos_wkf d INNER JOIN sipa_estados_pedido ep ON ep.id_estado_pedido = d.id_estado_anterior INNER JOIN sipa_estados_pedido ep2 ON ep2.id_estado_pedido = d.id_estado_nuevo INNER JOIN sipa_ccvale p ON p.id_ccvale = d.id_documento INNER JOIN ccl_unidades u ON u.id_unidad = p.id_unidad WHERE (d.id_tipo_documento = 2) UNION ALL SELECT p.no_solicitud, d.documento, ep.nombre_estado AS estadoAnterior, ep2.nombre_estado AS EstadoNuevo, u.iniciales, d.fecha_comparacion_anterior, d.dias, d.horas, d.minutos, d.segundos, d.usuario_ing, d.observaciones, CONCAT(d.ip, d.mac_address) AS IP FROM sipa_documentos_wkf d INNER JOIN sipa_estados_pedido ep ON ep.id_estado_pedido = d.id_estado_anterior INNER JOIN sipa_estados_pedido ep2 ON ep2.id_estado_pedido = d.id_estado_nuevo INNER JOIN sipa_gastos p ON p.id_gasto = d.id_documento INNER JOIN ccl_unidades u ON u.id_unidad = p.id_unidad WHERE (d.id_tipo_documento = 3) UNION ALL SELECT p.no_solicitud, d.documento, ep.nombre_estado AS estadoAnterior, ep2.nombre_estado AS EstadoNuevo, u.iniciales, d.fecha_comparacion_anterior, d.dias, d.horas, d.minutos, d.segundos, d.usuario_ing, d.observaciones, CONCAT(d.ip, d.mac_address) AS IP FROM sipa_documentos_wkf d INNER JOIN sipa_estados_pedido ep ON ep.id_estado_pedido = d.id_estado_anterior INNER JOIN sipa_estados_pedido ep2 ON ep2.id_estado_pedido = d.id_estado_nuevo INNER JOIN sipa_viaticos p ON p.id_viatico = d.id_documento INNER JOIN ccl_unidades u ON u.id_unidad = p.id_unidad WHERE (d.id_tipo_documento = 4)" DbObjectType="Unknown" FillMethodModifier="Public" FillMethodName="Fill" GenerateMethods="Both" GenerateShortCommands="false" GeneratorGetMethodName="GetData" GeneratorSourceName="Fill" GetMethodModifier="Public" GetMethodName="GetData" QueryType="Rowset" ScalarCallRetval="System.Object, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" UseOptimisticConcurrency="false" UserGetMethodName="GetData" UserSourceName="Fill">
                 <SelectCommand>
                   <DbCommand CommandType="Text" ModifiedByUser="true">
-                    <CommandText>SELECT no_solicitud, documento, estadoAnterior, EstadoNuevo, iniciales, fecha_comparacion_anterior, dias, horas, minutos, segundos, usuario_ing, observaciones FROM (SELECT p.no_solicitud, d.documento, ep.nombre_estado AS estadoAnterior, ep2.nombre_estado AS EstadoNuevo, u.iniciales, d.fecha_comparacion_anterior, d.dias, d.horas, d.minutos, d.segundos, d.usuario_ing, d.observaciones FROM sipa_documentos_wkf d INNER JOIN sipa_estados_pedido ep ON ep.id_estado_pedido = d.id_estado_anterior INNER JOIN sipa_estados_pedido ep2 ON ep2.id_estado_pedido = d.id_estado_nuevo INNER JOIN sipa_pedidos p ON p.id_pedido = d.id_documento INNER JOIN ccl_unidades u ON u.id_unidad = p.id_unidad WHERE (d.id_tipo_documento = 1) UNION ALL SELECT p.no_solicitud, d.documento, ep.nombre_estado AS estadoAnterior, ep2.nombre_estado AS EstadoNuevo, u.iniciales, d.fecha_comparacion_anterior, d.dias, d.horas, d.minutos, d.segundos, d.usuario_ing, d.observaciones FROM sipa_documentos_wkf d INNER JOIN sipa_estados_pedido ep ON ep.id_estado_pedido = d.id_estado_anterior INNER JOIN sipa_estados_pedido ep2 ON ep2.id_estado_pedido = d.id_estado_nuevo INNER JOIN sipa_ccvale p ON p.id_ccvale = d.id_documento INNER JOIN ccl_unidades u ON u.id_unidad = p.id_unidad WHERE (d.id_tipo_documento = 2) UNION ALL SELECT p.no_solicitud, d.documento, ep.nombre_estado AS estadoAnterior, ep2.nombre_estado AS EstadoNuevo, u.iniciales, d.fecha_comparacion_anterior, d.dias, d.horas, d.minutos, d.segundos, d.usuario_ing, d.observaciones FROM sipa_documentos_wkf d INNER JOIN sipa_estados_pedido ep ON ep.id_estado_pedido = d.id_estado_anterior INNER JOIN sipa_estados_pedido ep2 ON ep2.id_estado_pedido = d.id_estado_nuevo INNER JOIN sipa_gastos p ON p.id_gasto = d.id_documento INNER JOIN ccl_unidades u ON u.id_unidad = p.id_unidad WHERE (d.id_tipo_documento = 3) UNION ALL SELECT p.no_solicitud, d.documento, ep.nombre_estado AS estadoAnterior, ep2.nombre_estado AS EstadoNuevo, u.iniciales, d.fecha_comparacion_anterior, d.dias, d.horas, d.minutos, d.segundos, d.usuario_ing, d.observaciones FROM sipa_documentos_wkf d INNER JOIN sipa_estados_pedido ep ON ep.id_estado_pedido = d.id_estado_anterior INNER JOIN sipa_estados_pedido ep2 ON ep2.id_estado_pedido = d.id_estado_nuevo INNER JOIN sipa_viaticos p ON p.id_viatico = d.id_documento INNER JOIN ccl_unidades u ON u.id_unidad = p.id_unidad WHERE (d.id_tipo_documento = 4)) t ORDER BY no_solicitud, documento, fecha_comparacion_anterior</CommandText>
+                    <CommandText>SELECT no_solicitud, documento, estadoAnterior, EstadoNuevo, iniciales, fecha_comparacion_anterior, dias, horas, minutos, segundos, usuario_ing, observaciones, IP
+FROM     (SELECT p.no_solicitud, d.documento, ep.nombre_estado AS estadoAnterior, ep2.nombre_estado AS EstadoNuevo, u.iniciales, d.fecha_comparacion_anterior, d.dias, d.horas, d.minutos, d.segundos, d.usuario_ing, d.observaciones, 
+                                    CONCAT(d.ip, d.mac_address) AS IP
+                  FROM      sipa_documentos_wkf d INNER JOIN
+                                    sipa_estados_pedido ep ON ep.id_estado_pedido = d.id_estado_anterior INNER JOIN
+                                    sipa_estados_pedido ep2 ON ep2.id_estado_pedido = d.id_estado_nuevo INNER JOIN
+                                    sipa_pedidos p ON p.id_pedido = d.id_documento INNER JOIN
+                                    ccl_unidades u ON u.id_unidad = p.id_unidad
+                  WHERE   (d.id_tipo_documento = 1)
+                  UNION ALL
+                  SELECT p.no_solicitud, d.documento, ep.nombre_estado AS estadoAnterior, ep2.nombre_estado AS EstadoNuevo, u.iniciales, d.fecha_comparacion_anterior, d.dias, d.horas, d.minutos, d.segundos, d.usuario_ing, d.observaciones, 
+                                    CONCAT(d.ip, d.mac_address) AS IP
+                  FROM     sipa_documentos_wkf d INNER JOIN
+                                    sipa_estados_pedido ep ON ep.id_estado_pedido = d.id_estado_anterior INNER JOIN
+                                    sipa_estados_pedido ep2 ON ep2.id_estado_pedido = d.id_estado_nuevo INNER JOIN
+                                    sipa_ccvale p ON p.id_ccvale = d.id_documento INNER JOIN
+                                    ccl_unidades u ON u.id_unidad = p.id_unidad
+                  WHERE  (d.id_tipo_documento = 2)
+                  UNION ALL
+                  SELECT p.no_solicitud, d.documento, ep.nombre_estado AS estadoAnterior, ep2.nombre_estado AS EstadoNuevo, u.iniciales, d.fecha_comparacion_anterior, d.dias, d.horas, d.minutos, d.segundos, d.usuario_ing, d.observaciones, 
+                                    CONCAT(d.ip, d.mac_address) AS IP
+                  FROM     sipa_documentos_wkf d INNER JOIN
+                                    sipa_estados_pedido ep ON ep.id_estado_pedido = d.id_estado_anterior INNER JOIN
+                                    sipa_estados_pedido ep2 ON ep2.id_estado_pedido = d.id_estado_nuevo INNER JOIN
+                                    sipa_gastos p ON p.id_gasto = d.id_documento INNER JOIN
+                                    ccl_unidades u ON u.id_unidad = p.id_unidad
+                  WHERE  (d.id_tipo_documento = 3)
+                  UNION ALL
+                  SELECT p.no_solicitud, d.documento, ep.nombre_estado AS estadoAnterior, ep2.nombre_estado AS EstadoNuevo, u.iniciales, d.fecha_comparacion_anterior, d.dias, d.horas, d.minutos, d.segundos, d.usuario_ing, d.observaciones, 
+                                    CONCAT(d.ip, d.mac_address) AS IP
+                  FROM     sipa_documentos_wkf d INNER JOIN
+                                    sipa_estados_pedido ep ON ep.id_estado_pedido = d.id_estado_anterior INNER JOIN
+                                    sipa_estados_pedido ep2 ON ep2.id_estado_pedido = d.id_estado_nuevo INNER JOIN
+                                    sipa_viaticos p ON p.id_viatico = d.id_documento INNER JOIN
+                                    ccl_unidades u ON u.id_unidad = p.id_unidad
+                  WHERE  (d.id_tipo_documento = 4)) t
+ORDER BY no_solicitud, documento, fecha_comparacion_anterior</CommandText>
                     <Parameters />
                   </DbCommand>
                 </SelectCommand>
@@ -31,6 +67,7 @@
               <Mapping SourceColumn="no_solicitud" DataSetColumn="no_solicitud" />
               <Mapping SourceColumn="estadoAnterior" DataSetColumn="estadoAnterior" />
               <Mapping SourceColumn="iniciales" DataSetColumn="iniciales" />
+              <Mapping SourceColumn="IP" DataSetColumn="IP" />
             </Mappings>
             <Sources />
           </TableAdapter>
@@ -42,7 +79,7 @@
   <xs:element name="dsEstados" msdata:IsDataSet="true" msdata:UseCurrentLocale="true" msprop:EnableTableAdapterManager="true" msprop:Generator_DataSetName="dsEstados" msprop:Generator_UserDSName="dsEstados">
     <xs:complexType>
       <xs:choice minOccurs="0" maxOccurs="unbounded">
-        <xs:element name="Estados" msprop:Generator_TableClassName="EstadosDataTable" msprop:Generator_TableVarName="tableEstados" msprop:Generator_RowChangedName="EstadosRowChanged" msprop:Generator_TablePropName="Estados" msprop:Generator_RowDeletingName="EstadosRowDeleting" msprop:Generator_RowChangingName="EstadosRowChanging" msprop:Generator_RowEvHandlerName="EstadosRowChangeEventHandler" msprop:Generator_RowDeletedName="EstadosRowDeleted" msprop:Generator_RowClassName="EstadosRow" msprop:Generator_UserTableName="Estados" msprop:Generator_RowEvArgName="EstadosRowChangeEvent">
+        <xs:element name="Estados" msprop:Generator_TableClassName="EstadosDataTable" msprop:Generator_TableVarName="tableEstados" msprop:Generator_TablePropName="Estados" msprop:Generator_RowDeletingName="EstadosRowDeleting" msprop:Generator_RowChangingName="EstadosRowChanging" msprop:Generator_RowEvHandlerName="EstadosRowChangeEventHandler" msprop:Generator_RowDeletedName="EstadosRowDeleted" msprop:Generator_UserTableName="Estados" msprop:Generator_RowChangedName="EstadosRowChanged" msprop:Generator_RowEvArgName="EstadosRowChangeEvent" msprop:Generator_RowClassName="EstadosRow">
           <xs:complexType>
             <xs:sequence>
               <xs:element name="documento" msprop:Generator_ColumnVarNameInTable="columndocumento" msprop:Generator_ColumnPropNameInRow="documento" msprop:Generator_ColumnPropNameInTable="documentoColumn" msprop:Generator_UserColumnName="documento" minOccurs="0">
@@ -90,6 +127,13 @@
                 <xs:simpleType>
                   <xs:restriction base="xs:string">
                     <xs:maxLength value="10" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="IP" msprop:Generator_ColumnVarNameInTable="columnIP" msprop:Generator_ColumnPropNameInRow="IP" msprop:Generator_ColumnPropNameInTable="IPColumn" msprop:Generator_UserColumnName="IP" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="90" />
                   </xs:restriction>
                 </xs:simpleType>
               </xs:element>
