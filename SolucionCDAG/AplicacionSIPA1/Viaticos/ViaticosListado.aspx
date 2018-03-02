@@ -167,6 +167,18 @@
                                 <HeaderStyle BorderStyle="Inset" HorizontalAlign="Center" VerticalAlign="Middle" />
                                 <ItemStyle BorderStyle="Inset" HorizontalAlign="Center" VerticalAlign="Middle" />
                                 </asp:BoundField>
+                                <asp:TemplateField HeaderText="Total Viatico">
+                                            <EditItemTemplate>
+                                                <asp:TextBox ID="TextBox4" runat="server" Text='<%# Bind("Costo_Viatico") %>'></asp:TextBox>
+                                            </EditItemTemplate>
+                                            <ItemTemplate>
+                                                <div class="text-right">
+                                                    <asp:Label ID="Label4" runat="server" Font-Bold="True" Font-Size="Medium" Text='<%# Bind("Costo_Viatico", "Q.{0:0,0.00}") %>'></asp:Label>
+                                                </div>
+                                            </ItemTemplate>
+                                            <HeaderStyle BorderStyle="Inset" HorizontalAlign="Center" VerticalAlign="Middle" />
+                                            <ItemStyle BorderStyle="Inset" HorizontalAlign="Center" VerticalAlign="Middle" />
+                                        </asp:TemplateField>
                                 <asp:BoundField DataField="observaciones_rechazo" HeaderText="Observaciones">
                                 <HeaderStyle BorderStyle="Inset" HorizontalAlign="Center" VerticalAlign="Middle" />
                                 <ItemStyle BorderStyle="Inset" HorizontalAlign="Center" VerticalAlign="Middle" />
