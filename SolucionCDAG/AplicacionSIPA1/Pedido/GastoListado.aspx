@@ -27,9 +27,7 @@
                 <tr>
                     <td>
                         &nbsp;</td>
-                    <td colspan="18" style="text-align: center;"><strong>
-                        <asp:Label ID="lblErrorPoa" runat="server" ForeColor="Red" style="font-size: medium"></asp:Label>
-                        </strong></td>
+                    <td colspan="18" style="text-align: center;">&nbsp;</td>
                     <td style="width: 5%">&nbsp;</td>
                 </tr>
                 <tr>
@@ -113,6 +111,9 @@
                     <td>&nbsp;</td>
                     <td>&nbsp;</td>
                     <td colspan="16" style="text-align: center"><span>
+                        <strong>
+                        <asp:Label ID="lblErrorPoa" runat="server" ForeColor="OrangeRed" style="font-size:small"></asp:Label>
+                        </strong>
                         <asp:Label ID="lblError" runat="server" Font-Bold="True" Font-Size="Medium" ForeColor="Red"></asp:Label>
                         <asp:Label ID="lblSuccess" runat="server" Font-Bold="True" Font-Size="Medium" ForeColor="Green"></asp:Label>
                         </span></td>

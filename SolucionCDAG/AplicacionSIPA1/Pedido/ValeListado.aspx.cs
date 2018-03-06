@@ -263,7 +263,7 @@ namespace AplicacionSIPA1.Pedido
             lblErrorPlan.Text = string.Empty;
             lblErrorAnio.Text = lblErrorUnidad.Text = string.Empty;
             lblError.Text = lblSuccess.Text = string.Empty;
-
+            lblErrorPoa.Text = string.Empty;
         }
 
         protected bool validarPoaListadoPedido(int idUnidad, int anio)

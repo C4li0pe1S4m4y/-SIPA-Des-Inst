@@ -281,8 +281,11 @@ namespace AplicacionSIPA1.Pedido
                         gridDetalle.FooterRow.Cells[7].Text = String.Format(CultureInfo.InvariantCulture, "Q.{0:0,0.00}", totalPedido);
 
                         decimal totalPedidoAnual = 0;
-                        decimal.TryParse(dsResultado.Tables["BUSQUEDA"].Rows[0]["TOTAL_COSTO_PEDIDO_MULTIANUAL"].ToString(), out totalPedidoAnual);
-                        gridDetalle.FooterRow.Cells[8].Text = String.Format(CultureInfo.InvariantCulture, "Q.{0:0,0.00}", totalPedidoAnual);
+                        if (idTipoDocto ==1)
+                        {
+                            decimal.TryParse(dsResultado.Tables["BUSQUEDA"].Rows[0]["TOTAL_COSTO_PEDIDO_MULTIANUAL"].ToString(), out totalPedidoAnual);
+                            gridDetalle.FooterRow.Cells[8].Text = String.Format(CultureInfo.InvariantCulture, "Q.{0:0,0.00}", totalPedidoAnual);
+                        }
 
                     }
                     else

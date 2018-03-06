@@ -1261,7 +1261,7 @@ namespace AplicacionSIPA1.Pedido
 
                             idEstadoPedido = int.Parse(dsResultado.Tables["BUSQUEDA"].Rows[0]["ID_ESTADO_PEDIDO"].ToString());
                             estadoActual = dsResultado.Tables["BUSQUEDA"].Rows[0]["ESTADO_PEDIDO"].ToString();
-
+                            estadoActual = estadoActual.Replace('\n', ' ');
                             mensaje = " finalizado correctamente!. El vale fue enviado al estado: " + estadoActual + ". ";
 
                             if (idEstadoPedido == 6)
@@ -1269,7 +1269,7 @@ namespace AplicacionSIPA1.Pedido
 
                             lblSuccess.Text = "Vale finalizado correctamente!. El vale fue enviado al estado: " + estadoActual + " ";
 
-                            Response.Redirect("NoPedido.aspx?No=" + lblNoVale.Text + "&msg=VALE" + "&acc=" + mensaje);
+                            //Response.Redirect("NoPedido.aspx?No=" + lblNoVale.Text + "&msg=VALE" + "&acc=" + mensaje);
                         }
                     }
                 }

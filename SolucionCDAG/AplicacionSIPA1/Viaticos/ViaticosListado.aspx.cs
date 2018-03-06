@@ -257,7 +257,7 @@ namespace AplicacionSIPA1.Viaticos
 
         protected void limpiarControlesError()
         {
-            //lblErrorPoa.Text = string.Empty;
+            lblErrorPoa.Text = string.Empty;
             lblErrorPlan.Text = string.Empty;
             lblErrorAnio.Text = lblErrorUnidad.Text = string.Empty;
             lblError.Text = lblSuccess.Text = string.Empty;

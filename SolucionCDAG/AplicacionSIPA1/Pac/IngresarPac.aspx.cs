@@ -304,7 +304,7 @@ namespace AplicacionSIPA1.Pac
                 //pAccionLN.DdlAccionesPoa(ddlAcciones, idPoa);
                 pAccionLN.DdlAcciones(ddlAcciones, idPoa, 0, "", 3);
                 ddlAcciones.Items[0].Text = "<< Elija un valor >>";
-
+                generarReporte();
             }
             catch (Exception ex)
             {
@@ -1085,7 +1085,7 @@ namespace AplicacionSIPA1.Pac
                 ddlRenglones.Items[0].Text = "<< TODOS >>";
 
                 filtrarGrid();
-                //generarReporte();
+                generarReporte();
             }
             catch (Exception ex)
             {

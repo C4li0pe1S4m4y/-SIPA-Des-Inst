@@ -275,6 +275,15 @@
                             <td style="width: 5%">&nbsp;</td>
                         </tr>
                         <tr>
+                            <td colspan="16" style="text-align: center">
+                                <asp:UpdateProgress ID="UpdateProgress1" runat="server">
+                                    <ProgressTemplate>
+                                        <img alt="Cargando" class="auto-style20" longdesc="Imagen de Cargando" src="../img/cargar.gif" />
+                                    </ProgressTemplate>
+                                </asp:UpdateProgress>
+                            </td>
+                        </tr>
+                        <tr>
                             <td style="width: 5%">&nbsp;</td>
                             <td style="width: 5%">&nbsp;</td>
                             <td style="width: 5%">&nbsp;</td>

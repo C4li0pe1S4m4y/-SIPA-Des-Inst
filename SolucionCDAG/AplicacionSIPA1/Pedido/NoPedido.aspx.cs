@@ -5,6 +5,8 @@ using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
 using CapaLN;
+using System.ComponentModel;
+
 namespace AplicacionSIPA1.Pedido
 {
     public partial class NoPedido : System.Web.UI.Page
@@ -13,49 +15,36 @@ namespace AplicacionSIPA1.Pedido
         {
             try
             {
-                Context.Request.Browser.Adapters.Clear();
-                this.lblUsuario.Text = this.Session["Usuario"].ToString();
-
-                if (!Page.IsPostBack)
+                string pedido = this.Request.QueryString["No"];
+                if (pedido != null)
                 {
-                    LogeoLN llenarMenu = new LogeoLN();
-                    llenarMenu.LlenarMenu(this.Menu1, this.Session["Usuario"].ToString());
-                    lblNoPedido.Text = Convert.ToString(Request.QueryString["No"]);
-                    lblMensaje.Text = Convert.ToString(Request.QueryString["msg"]);
-                    lblAccion.Text = Convert.ToString(Request.QueryString["acc"]);
+                    lblNoPedido.Text = pedido;
+                    lblMensaje.Text = this.Request.QueryString["msg"];
+                    lblAccion.Text = this.Request.QueryString["acc"];
 
                     if (lblMensaje.Text == "VALE")
                     {
-
-                        HyperLink1.NavigateUrl = "~/Pedido/ValeIngreso.aspx";
-                        HyperLink3.Text = "Listado de VALES";
-                        HyperLink3.NavigateUrl = "~/Pedido/ValeListado.aspx";
+                        btnPedido.Text = "Nuevo Vale";
+                        btnPedido.PostBackUrl = "~/Pedido/ValeIngreso.aspx";
+                        btnListado.Text = "Listado de VALES";
+                        btnListado.PostBackUrl = "~/Pedido/ValeListado.aspx";
                     }
                     if (lblMensaje.Text == "REQUISICION")
                     {
-                        HyperLink1.NavigateUrl = "~/Pedido/PedidoIngreso.aspx";
-                        HyperLink3.Text = "Listado de PEDIDOS";
-                        HyperLink3.NavigateUrl = "~/Pedido/PedidoListado.aspx";
+                        btnPedido.Text = "Nueva Requisicion";
+                        btnPedido.PostBackUrl = "~/Pedido/PedidoIngreso.aspx";
+                        btnListado.Text = "Listado de PEDIDOS";
+                        btnListado.PostBackUrl = "~/Pedido/PedidoListado.aspx";
                     }
 
                     if (lblMensaje.Text == "GASTO")
                     {
-                        HyperLink1.NavigateUrl = "~/Pedido/GastoIngreso.aspx";
-                        HyperLink3.Text = "Listado de GASTOS";
-                        HyperLink3.NavigateUrl = "~/Pedido/GastoListado.aspx";
+                        btnPedido.Text = "Nuevo Gasto";
+                        btnPedido.PostBackUrl = "~/Pedido/GastoIngreso.aspx";
+                        btnListado.Text = "Listado de GASTOS";
+                        btnListado.PostBackUrl = "~/Pedido/GastoListado.aspx";
                     }
-
-                    //~/Pedido/PedidoListado.aspx
-                    
                 }
-
-
-                if (Request.Url.Segments[Request.Url.Segments.Length - 1].ToString() != "~/Inicio.aspx")
-                {
-
-
-                }
-
 
 
 
@@ -65,6 +54,26 @@ namespace AplicacionSIPA1.Pedido
                 Console.WriteLine(ex.Message + "     error");
 
             }
+        }
+
+
+        protected void btnPedido_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        protected void btnListado_Click(object sender, EventArgs e)
+        {
+
+        }
+        private static void SendCompletedCallback(object sender, AsyncCompletedEventArgs e)
+        {
+
+        }
+        protected void btnEnvio_Click(object sender, EventArgs e)
+        {
+
+
         }
     }
 }

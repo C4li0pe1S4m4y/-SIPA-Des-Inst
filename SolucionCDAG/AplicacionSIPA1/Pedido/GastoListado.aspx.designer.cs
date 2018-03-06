@@ -67,15 +67,6 @@ namespace AplicacionSIPA1.Pedido {
         protected global::System.Web.UI.WebControls.Label lblIdPoa;
         
         /// <summary>
-        /// Control lblErrorPoa.
-        /// </summary>
-        /// <remarks>
-        /// Campo generado automáticamente.
-        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Label lblErrorPoa;
-        
-        /// <summary>
         /// Control lblErrorAnio.
         /// </summary>
         /// <remarks>
@@ -137,6 +128,15 @@ namespace AplicacionSIPA1.Pedido {
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
         protected global::System.Web.UI.WebControls.DropDownList ddlAcciones;
+        
+        /// <summary>
+        /// Control lblErrorPoa.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label lblErrorPoa;
         
         /// <summary>
         /// Control lblError.

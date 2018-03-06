@@ -1195,9 +1195,10 @@ namespace AplicacionSIPA1.Pedido
                 txtCosto.Text = String.Format(CultureInfo.InvariantCulture, "Q.{0:0,0.00}", costo);
 
                 //Codigo de insumo
-
-                //txtCodigoInsumo.Text = dsResultado.Tables["BUSQUEDA"].Rows[0].[]
-
+                txtCodigoInsumo.Text = dsResultado.Tables["BUSQUEDA"].Rows[0]["CODIGO_INSUMO"].ToString();
+                //Codigo de Presentacion 
+                txtCodigoPresentacion.Text = dsResultado.Tables["BUSQUEDA"].Rows[0]["CODIGO_PRESENTACION"].ToString();
+                btnCodigoPresentacion_Click(sender, e);
             }
             catch (Exception ex)
             {
@@ -1350,8 +1351,8 @@ namespace AplicacionSIPA1.Pedido
                             int registros = 0;
                             int.TryParse(dsResultado.Tables["BUSQUEDA"].Rows[0]["REGISTROS"].ToString(), out registros);
 
-                            if (registros > 0)
-                                throw new Exception("Las unidades me medida de los artículos de la requisición deben coincidir con el tipo de pedido (BIENES/SERVICIOS)");
+                            //if (registros > 0)
+                            //    throw new Exception("Las unidades me medida de los artículos de la requisición deben coincidir con el tipo de pedido (BIENES/SERVICIOS)");
 
                             //AGREGADO ENVIAR EL PEDIDO A CODIFICACIÓN DE PRESUPUESTO CUANDO SEA RECHAZADO POR PPTO, COMPRAS Y EVITAR QUE VUELVA A RECORRER EL CICLO COMPLETO
                             pInsumoLN = new PedidosLN();
@@ -1412,23 +1413,25 @@ namespace AplicacionSIPA1.Pedido
 
                             idEstadoPedido = int.Parse(dsResultado.Tables["BUSQUEDA"].Rows[0]["ID_ESTADO_PEDIDO"].ToString());
                             estadoActual = dsResultado.Tables["BUSQUEDA"].Rows[0]["ESTADO_PEDIDO"].ToString();
+                            estadoActual = estadoActual.Replace('\n', ' ');
                             string tempo = ddlJefes.SelectedItem.Text.ToString();
                             string[] datostecnico = tempo.Split('-');
 
                             mensaje = " finalizada correctamente!. El pedido fue enviado al estado: " + estadoActual + ". ";
                             EnvioDeCorreos objEC = new EnvioDeCorreos();
-                            objEC.EnvioCorreo(planOperativoLN.ObtenerCorreoxUsuario(datostecnico[1].ToString().Trim()), "Nueva Requiscion Ingresada", " Requisicion No.  " + idPedido + ", " + mensaje, ddlSolicitantes.SelectedItem.ToString());
+                            //Quitar comentario para enviar correos 
+                            //objEC.EnvioCorreo(planOperativoLN.ObtenerCorreoxUsuario(datostecnico[1].ToString().Trim()), "Nueva Requiscion Ingresada", " Requisicion No.  " + idPedido + ", " + mensaje, ddlSolicitantes.SelectedItem.ToString());
                             
 
 
                             if (idEstadoPedido == 6)
-                                mensaje += " Comuníquese a la unidad de presupuesto para la codificación de la requisición, extensión: 2409";
+                                mensaje += " Comuniquese a la unidad de presupuesto para la codificación de la requisicion, extension: 2409";
 
                             lblSuccess.Text = "Pedido finalizado correctamente!. El pedido fue enviado al estado: " + estadoActual + " ";
                             //EnvioDeCorreos envio = new EnvioDeCorreos();
                             //envio.EnvioCorreo("alfredo.ochoa@cdag.com.gt", "Nueva Requisicion: "+lblNoPedido.Text,mensaje," ");
 
-                            Response.Redirect("~/Pedido/PedidoGuardado.aspx?No=" + lblNoPedido.Text + "&msg=REQUISICION" + "&acc=" + mensaje);
+                            //Response.Redirect("~/Pedido/NoPedido.aspx?No=" + lblNoPedido.Text + "&msg=REQUISICION" + "&acc=" + mensaje);
                         }
                     }
                 }

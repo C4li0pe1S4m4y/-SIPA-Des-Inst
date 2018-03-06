@@ -288,7 +288,7 @@ namespace AplicacionSIPA1.Pedido
 
         protected void limpiarControlesError()
         {
-            //lblErrorPoa.Text = string.Empty;
+            lblErrorPoa.Text = "Los Gastos no se Imprimen en el Sistema.";
             lblErrorPlan.Text = string.Empty;
             lblErrorAnio.Text = lblErrorUnidad.Text = string.Empty;
             lblError.Text = lblSuccess.Text = string.Empty;

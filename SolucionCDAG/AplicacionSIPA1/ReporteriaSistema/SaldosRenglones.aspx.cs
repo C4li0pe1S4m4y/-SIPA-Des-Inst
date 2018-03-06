@@ -161,12 +161,12 @@ namespace AplicacionSIPA1.ReporteriaSistema
                     stringBuilder.Append(" AND a.anio = " + ddlAnios.SelectedValue);
 
                 if (ddlUnidades.SelectedValue != "0")
-                    stringBuilder.Append(" AND a.id_unidad = " + ddlUnidades.SelectedValue);
+                    stringBuilder.Append(" AND u.id_padre = " + ddlUnidades.SelectedValue);
 
                 if (ddlDependencia.SelectedValue != "0")
-                    stringBuilder.Append(" AND a.id_unidad = " + ddlDependencia.SelectedValue);
+                    stringBuilder.Append(" AND u.id_unidad = " + ddlDependencia.SelectedValue);
 
-                else
+                if (ddlUnidades.SelectedValue == "0"  && ddlDependencia.SelectedValue == "0")
                 {
                     stringBuilder.Append(" AND a.id_unidad IN(");
 
@@ -376,7 +376,12 @@ namespace AplicacionSIPA1.ReporteriaSistema
             try
             {
                 validarPoa(int.Parse(ddlDependencia.SelectedValue), int.Parse(ddlAnios.SelectedValue));
-
+                int idPoa = 0;
+                int.TryParse(lblIdPoa.Text, out idPoa);
+                obtenerPresupuesto(idPoa, 0);
+                pAccionLN = new PlanAccionLN();
+                pAccionLN.DdlAcciones(ddlAcciones, idPoa, 0, "", 3);
+                ddlAcciones.Items[0].Text = "<< TODAS >>";
                 busqueda(sender, e);
             }
             catch (Exception ex)
