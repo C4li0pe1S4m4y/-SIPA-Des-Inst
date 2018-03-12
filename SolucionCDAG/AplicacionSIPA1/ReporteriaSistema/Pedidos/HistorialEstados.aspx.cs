@@ -174,7 +174,7 @@ namespace AplicacionSIPA1.ReporteriaSistema.Pedidos
                     stringBuilder.Append(" AND t.anio_solicitud = " + ddlAnios.SelectedValue);
                 }
                 if (ddlUnidades.SelectedValue.Equals("0") == false) { 
-                    stringBuilder.Append(" AND t.id_padre = " + ddlUnidades.SelectedValue);
+                    stringBuilder.Append(" AND t.id_unidad = " + ddlUnidades.SelectedValue);
                 }
                 if (ddlDependencias.SelectedValue.Equals("0") == false)
                 {

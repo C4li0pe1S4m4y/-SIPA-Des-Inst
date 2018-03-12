@@ -292,9 +292,15 @@ namespace AplicacionSIPA1.Pedido
                     RD2.Value = dsResultado.Tables[1];
                     RD2.Name = "DataSet2";
 
+                    dsResultado = pInsumoLN.InforamcionPresentacion(idEncabezado);
+                    ReportDataSource RD3 = new ReportDataSource();
+                    RD3.Value = dsResultado.Tables[1];
+                    RD3.Name = "DataSet3";
+
                     rViewer.LocalReport.DataSources.Clear();
                     rViewer.LocalReport.DataSources.Add(RD);
                     rViewer.LocalReport.DataSources.Add(RD2);
+                    rViewer.LocalReport.DataSources.Add(RD3);
                     rViewer.LocalReport.ReportEmbeddedResource = "\\Reportes/rptCOMFOR06.rdlc";
                     rViewer.LocalReport.ReportPath = @"Reportes\\rptCOMFOR06.rdlc";
                     rViewer.LocalReport.Refresh();

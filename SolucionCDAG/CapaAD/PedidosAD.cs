@@ -128,7 +128,7 @@ namespace CapaAD
             conectar = new ConexionBD();
             DataTable tabla = new DataTable();
             conectar.AbrirConexion();
-            string query = string.Format("select pd.id_detalle,CONCAT(r.No_Renglon, ' - ',  r.descripcion) texto "+
+            string query = string.Format("select pd.id_detalle,CONCAT(r.No_Renglon, ' - ',  r.descripcion) texto " +
                                  " from sipa_detalles_accion pd inner join sipa_renglones r on r.no_renglon = pd.no_renglon where id_accion = {0}; ", idAccion);
             MySqlDataAdapter consulta = new MySqlDataAdapter(query, conectar.conectar);
             consulta.Fill(tabla);
@@ -197,7 +197,7 @@ namespace CapaAD
             idFand = ObjEN.ID_FAND.ToString();
             idTipoAnexo = ObjEN.ID_TIPO_ANEXO.ToString();
             usuario = ObjEN.USUARIO;
-            
+
 
             if (destino.Equals("1"))
                 idFand = "null";
@@ -245,14 +245,14 @@ namespace CapaAD
                 {
                     string idPedidoDetalle, idPac, cantidad, idUnidadMedida, descripcion, costoEstimado;
                     idPedidoDetalle = ObjEN.ID_PEDIDO_DETALLE.ToString();
-                    
+
                     cantidad = ObjEN.CANTIDAD_ESTIMADA.ToString();
                     idUnidadMedida = ObjEN.ID_UNIDAD_MEDIDA.ToString();
                     descripcion = ObjEN.DESCRIPCION;
                     costoEstimado = ObjEN.COSTO_ESTIMADO.ToString();
                     idPac = ObjEN.ID_PAC.ToString();
 
-                    query = "CALL sp_iue_pedido_detalles(" + idPedidoDetalle + ", " + idEncabezado + ","+idPac+", "  + cantidad + ", " + idUnidadMedida + ", '" + descripcion + "', " + costoEstimado + ", 0, 0, 0, 0, '', 0, 0, 0, 0, '" + usuario + "',"+ ObjEN .Codigo_Insumo +","+ ObjEN .Codigo_Presentacion+ ", 1);";
+                    query = "CALL sp_iue_pedido_detalles(" + idPedidoDetalle + ", " + idEncabezado + "," + idPac + ", " + cantidad + ", " + idUnidadMedida + ", '" + descripcion + "', " + costoEstimado + ", 0, 0, 0, 0, '', 0, 0, 0, 0, '" + usuario + "'," + ObjEN.Codigo_Insumo + "," + ObjEN.Codigo_Presentacion + ", 1);";
 
                     dt = new DataTable();
                     sqlAdapter = new MySqlDataAdapter(query, conectar.conectar);
@@ -1862,11 +1862,11 @@ namespace CapaAD
             return tabla;
         }
 
-        public DataTable DetallesPedidoAprobacion(int id, int id2, string criterio, int opcion,int anio)
+        public DataTable DetallesPedidoAprobacion(int id, int id2, string criterio, int opcion, int anio)
         {
             conectar = new ConexionBD();
             DataTable tabla = new DataTable();
-            string query = String.Format("CALL sp_slctSalidasDetalles({0}, {1}, '{2}', {3},{4});", id, id2, criterio, opcion,anio);
+            string query = String.Format("CALL sp_slctSalidasDetalles({0}, {1}, '{2}', {3},{4});", id, id2, criterio, opcion, anio);
             conectar.AbrirConexion();
             MySqlDataAdapter consulta = new MySqlDataAdapter(query, conectar.conectar);
             consulta.Fill(tabla);
@@ -1942,8 +1942,8 @@ namespace CapaAD
             DataSet tabla = new DataSet();
             string query = String.Format("select pd.id_pedido_detalle id, p.no_solicitud Solicitud, pd.Descripcion, pd.costo_pedido Monto, pd.id_pac PAC, acp.no_renglon as 'Renglon PAC', da.no_renglon as 'Renglon Ppto' from sipa_pedido_detalle pd inner " +
                                             "join sipa_pedidos p on pd.id_pedido = p.id_pedido inner join sipa_pac pac on pac.id_pac = pd.id_pac inner " +
-                                            "join sipa_detalles_accion acp on acp.id_detalle = pac.id_detalle inner join sipa_detalles_accion da on da.id_detalle = pd.id_detalle_accion "+
-                                            "where p.no_solicitud = {0}  ; ",idPedido);
+                                            "join sipa_detalles_accion acp on acp.id_detalle = pac.id_detalle inner join sipa_detalles_accion da on da.id_detalle = pd.id_detalle_accion " +
+                                            "where p.no_solicitud = {0}  ; ", idPedido);
             conectar.AbrirConexion();
             MySqlDataAdapter consulta = new MySqlDataAdapter(query, conectar.conectar);
             consulta.Fill(tabla);
@@ -1963,11 +1963,11 @@ namespace CapaAD
             return tabla;
         }
 
-        public DataTable BusquedaPedido(string codigo,string insumo)
+        public DataTable BusquedaPedido(string codigo, string insumo)
         {
             conectar = new ConexionBD();
             DataTable tabla = new DataTable();
-            string query = String.Format("select presentacion,cantidad_unidad from ccl_catalogo where codigo_presentacion = {0} and codigo_insumo = {1}", codigo,insumo);
+            string query = String.Format("select presentacion,cantidad_unidad from ccl_catalogo where codigo_presentacion = {0} and codigo_insumo = {1}", codigo, insumo);
             conectar.AbrirConexion();
             MySqlDataAdapter consulta = new MySqlDataAdapter(query, conectar.conectar);
             consulta.Fill(tabla);
@@ -1978,11 +1978,34 @@ namespace CapaAD
         public string BusquedaCatalgoInsumo(string busqueda)
         {
             conectar = new ConexionBD();
-           
+
             string query = String.Format(" select renglon,codigo_insumo,Nombre,Caracteristicas,Presentacion,Cantidad_Unidad,Codigo_presentacion from ccl_catalogo where renglon > 0 {0}",
                 busqueda);
-           
+
             return query;
+        }
+
+        public DataTable InforamcionPresentacion(int id)
+        {
+            conectar = new ConexionBD();
+            DataTable tabla = new DataTable();
+            string query = String.Format(" select p.descripcion_especifica,pd.descripcion ,pd.cantidad,c.Presentacion,c.cantidad_unidad from ccl_catalogo c inner join sipa_pedido_detalle pd on c.codigo_presentacion = pd.codigo_presentacion " +
+                      "inner join sipa_especificaciones_detalle p on p.id_pedido_detalle = pd.id_pedido_detalle " +
+                     "where pd.id_pedido = {0} ; ", id);
+            conectar.AbrirConexion();
+            MySqlDataAdapter consulta = new MySqlDataAdapter(query, conectar.conectar);
+            consulta.Fill(tabla);
+            if (tabla.Rows.Count == 0)
+            {
+                query = String.Format(" select p.descripcion_especifica,pd.descripcion ,pd.cantidad,' ' as Presentacion ,' ' as cantidad_unidad  from sipa_pedido_detalle pd   " +
+                     "inner join sipa_especificaciones_detalle p on p.id_pedido_detalle = pd.id_pedido_detalle  " +
+                    "where pd.id_pedido = {0} ; ", id);
+                conectar.AbrirConexion();
+                consulta = new MySqlDataAdapter(query, conectar.conectar);
+                consulta.Fill(tabla);
+            }
+            conectar.CerrarConexion();
+            return tabla;
         }
 
     }

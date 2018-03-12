@@ -181,8 +181,7 @@ namespace CapaAD
            return tabla;
        }
        public bool ModificaPass (UsuariosEN Usuarios, string usuario) {
-            if (validarPermiso(usuario))
-            {
+            
                 conectar = new ConexionBD();
                 conectar.AbrirConexion();
                 MySqlCommand procedimiento = new MySqlCommand("Modificar_Pass");
@@ -195,8 +194,7 @@ namespace CapaAD
                 procedimiento.Connection = conectar.conectar;
                 procedimiento.ExecuteNonQuery();
                 return true;
-            }
-            return false;
+          
         }
        public int IngresarUsuario(UsuariosEN usuarioE,string usuario)
        {

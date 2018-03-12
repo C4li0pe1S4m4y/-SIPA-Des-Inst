@@ -1814,6 +1814,25 @@ namespace CapaLN
             return dsResultado;
         }
 
-        
+        public DataSet InforamcionPresentacion(int id)
+        {
+            DataSet dsResultado = armarDsResultado();
+            ObjAD = new PedidosAD();
+
+            try
+            {
+                DataTable dt = ObjAD.InforamcionPresentacion(id);
+                dt.TableName = "BUSQUEDA";
+                dsResultado.Tables.Add(dt);
+                dsResultado.Tables[0].Rows[0]["ERRORES"] = false;
+            }
+            catch (Exception ex)
+            {
+                dsResultado.Tables[0].Rows[0]["MSG_ERROR"] = " CapaLN.InformacionVale(). " + ex.Message;
+            }
+
+            return dsResultado;
+        }
+
     }
 }

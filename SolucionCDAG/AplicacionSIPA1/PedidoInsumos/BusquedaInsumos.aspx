@@ -15,7 +15,7 @@
             padding-right: 15px;
         }
         .auto-style15 {
-            font-size: small;
+            font-size: x-small;
         }
     </style>
 </asp:Content>
@@ -25,13 +25,13 @@
     <div class="row">
         <div class="col-xs-1">
             <label>Renglon</label>
-            <asp:TextBox ID="txtRenglon" runat="server" CssClass="form-control" TextMode="Number"></asp:TextBox>
+            <asp:TextBox ID="txtRenglon" runat="server" CssClass="form-control" Width="90%" TextMode="Number"></asp:TextBox>
            
         </div>
         
         <div class="col-xs-1">
             <label><span class="auto-style15">Codigo Insumo</span></label>
-            <asp:TextBox ID="txtCodigoInsumo" runat="server" CssClass="form-control" TextMode="Number"></asp:TextBox>
+            <asp:TextBox ID="txtCodigoInsumo" runat="server" CssClass="form-control" Width="100%" TextMode="Number"></asp:TextBox>
            
         </div>
         <div class="col-xs-1">

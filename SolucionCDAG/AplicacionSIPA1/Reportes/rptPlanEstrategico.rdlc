@@ -2077,36 +2077,56 @@
                       </TablixHeader>
                       <TablixMembers>
                         <TablixMember>
-                          <Group Name="codigo_accion">
-                            <GroupExpressions>
-                              <GroupExpression>=Fields!codigo_accion.Value</GroupExpression>
-                            </GroupExpressions>
-                          </Group>
-                          <SortExpressions>
-                            <SortExpression>
-                              <Value>=Fields!codigo_accion.Value</Value>
-                            </SortExpression>
-                          </SortExpressions>
+                          <TablixHeader>
+                            <Size>4.42617cm</Size>
+                            <CellContents>
+                              <Textbox Name="objetivo_estrategico">
+                                <CanGrow>true</CanGrow>
+                                <KeepTogether>true</KeepTogether>
+                                <Paragraphs>
+                                  <Paragraph>
+                                    <TextRuns>
+                                      <TextRun>
+                                        <Value>=Fields!objetivo_estrategico.Value</Value>
+                                        <Style />
+                                      </TextRun>
+                                    </TextRuns>
+                                    <Style />
+                                  </Paragraph>
+                                </Paragraphs>
+                                <rd:DefaultName>objetivo_estrategico</rd:DefaultName>
+                                <Style>
+                                  <Border>
+                                    <Style>Solid</Style>
+                                  </Border>
+                                  <PaddingLeft>2pt</PaddingLeft>
+                                  <PaddingRight>2pt</PaddingRight>
+                                  <PaddingTop>2pt</PaddingTop>
+                                  <PaddingBottom>2pt</PaddingBottom>
+                                </Style>
+                              </Textbox>
+                            </CellContents>
+                          </TablixHeader>
                           <TablixMembers>
                             <TablixMember>
                               <TablixHeader>
-                                <Size>4.42617cm</Size>
+                                <Size>3.9605cm</Size>
                                 <CellContents>
-                                  <Textbox Name="objetivo_estrategico">
+                                  <Textbox Name="indicador_e">
                                     <CanGrow>true</CanGrow>
                                     <KeepTogether>true</KeepTogether>
                                     <Paragraphs>
                                       <Paragraph>
                                         <TextRuns>
                                           <TextRun>
-                                            <Value>=Fields!objetivo_estrategico.Value</Value>
+                                            <Value>=Fields!indicador_e.Value</Value>
                                             <Style />
                                           </TextRun>
                                         </TextRuns>
                                         <Style />
                                       </Paragraph>
                                     </Paragraphs>
-                                    <rd:DefaultName>objetivo_estrategico</rd:DefaultName>
+                                    <rd:DefaultName>indicador_e</rd:DefaultName>
                                     <Style>
                                       <Border>
                                         <Style>Solid</Style>
@@ -2122,23 +2142,23 @@
                               <TablixMembers>
                                 <TablixMember>
                                   <TablixHeader>
-                                    <Size>3.9605cm</Size>
+                                    <Size>4.40967cm</Size>
                                     <CellContents>
-                                      <Textbox Name="indicador_e">
+                                      <Textbox Name="meta_e">
                                         <CanGrow>true</CanGrow>
                                         <KeepTogether>true</KeepTogether>
                                         <Paragraphs>
                                           <Paragraph>
                                             <TextRuns>
                                               <TextRun>
-                                                <Value>=Fields!indicador_e.Value</Value>
+                                                <Value>=Fields!meta_e.Value</Value>
                                                 <Style />
                                               </TextRun>
                                             </TextRuns>
                                             <Style />
                                           </Paragraph>
                                         </Paragraphs>
-                                        <rd:DefaultName>indicador_e</rd:DefaultName>
+                                        <rd:DefaultName>meta_e</rd:DefaultName>
                                         <Style>
                                           <Border>
                                             <Style>Solid</Style>
@@ -2153,80 +2173,80 @@
                                   </TablixHeader>
                                   <TablixMembers>
                                     <TablixMember>
-                                      <TablixHeader>
-                                        <Size>4.40967cm</Size>
-                                        <CellContents>
-                                          <Textbox Name="meta_e">
-                                            <CanGrow>true</CanGrow>
-                                            <KeepTogether>true</KeepTogether>
-                                            <Paragraphs>
-                                              <Paragraph>
-                                                <TextRuns>
-                                                  <TextRun>
-                                                    <Value>=Fields!meta_e.Value</Value>
-                                                    <Style />
-                                                  </TextRun>
-                                                </TextRuns>
-                                                <Style />
-                                              </Paragraph>
-                                            </Paragraphs>
-                                            <rd:DefaultName>meta_e</rd:DefaultName>
-                                            <Style>
-                                              <Border>
-                                                <Style>Solid</Style>
-                                              </Border>
-                                              <PaddingLeft>2pt</PaddingLeft>
-                                              <PaddingRight>2pt</PaddingRight>
-                                              <PaddingTop>2pt</PaddingTop>
-                                              <PaddingBottom>2pt</PaddingBottom>
-                                            </Style>
-                                          </Textbox>
-                                        </CellContents>
-                                      </TablixHeader>
+                                      <Group Name="cod_oo">
+                                        <GroupExpressions>
+                                          <GroupExpression>=Fields!cod_oo.Value</GroupExpression>
+                                        </GroupExpressions>
+                                      </Group>
+                                      <SortExpressions>
+                                        <SortExpression>
+                                          <Value>=Fields!cod_oo.Value</Value>
+                                        </SortExpression>
+                                      </SortExpressions>
                                       <TablixMembers>
                                         <TablixMember>
-                                          <Group Name="cod_oo">
-                                            <GroupExpressions>
-                                              <GroupExpression>=Fields!cod_oo.Value</GroupExpression>
-                                            </GroupExpressions>
-                                          </Group>
-                                          <SortExpressions>
-                                            <SortExpression>
-                                              <Value>=Fields!cod_oo.Value</Value>
-                                            </SortExpression>
-                                          </SortExpressions>
+                                          <TablixHeader>
+                                            <Size>1.6745cm</Size>
+                                            <CellContents>
+                                              <Textbox Name="cod_oo1">
+                                                <CanGrow>true</CanGrow>
+                                                <KeepTogether>true</KeepTogether>
+                                                <Paragraphs>
+                                                  <Paragraph>
+                                                    <TextRuns>
+                                                      <TextRun>
+                                                        <Value>=Fields!cod_oo.Value</Value>
+                                                        <Style>
+                                                          <FontSize>16pt</FontSize>
+                                                          <FontWeight>Bold</FontWeight>
+                                                          <Color>White</Color>
+                                                        </Style>
+                                                      </TextRun>
+                                                    </TextRuns>
+                                                    <Style>
+                                                      <TextAlign>Center</TextAlign>
+                                                    </Style>
+                                                  </Paragraph>
+                                                </Paragraphs>
+                                                <rd:DefaultName>cod_oo1</rd:DefaultName>
+                                                <Style>
+                                                  <Border>
+                                                    <Style>Solid</Style>
+                                                  </Border>
+                                                  <BackgroundColor>Red</BackgroundColor>
+                                                  <VerticalAlign>Middle</VerticalAlign>
+                                                  <PaddingLeft>2pt</PaddingLeft>
+                                                  <PaddingRight>2pt</PaddingRight>
+                                                  <PaddingTop>2pt</PaddingTop>
+                                                  <PaddingBottom>2pt</PaddingBottom>
+                                                </Style>
+                                              </Textbox>
+                                            </CellContents>
+                                          </TablixHeader>
                                           <TablixMembers>
                                             <TablixMember>
                                               <TablixHeader>
-                                                <Size>1.6745cm</Size>
+                                                <Size>5.12467cm</Size>
                                                 <CellContents>
-                                                  <Textbox Name="cod_oo1">
+                                                  <Textbox Name="objetivo_operativo">
                                                     <CanGrow>true</CanGrow>
                                                     <KeepTogether>true</KeepTogether>
                                                     <Paragraphs>
                                                       <Paragraph>
                                                         <TextRuns>
                                                           <TextRun>
-                                                            <Value>=Fields!cod_oo.Value</Value>
-                                                            <Style>
-                                                              <FontSize>16pt</FontSize>
-                                                              <FontWeight>Bold</FontWeight>
-                                                              <Color>White</Color>
-                                                            </Style>
+                                                            <Value>=Fields!objetivo_operativo.Value</Value>
+                                                            <Style />
                                                           </TextRun>
                                                         </TextRuns>
-                                                        <Style>
-                                                          <TextAlign>Center</TextAlign>
-                                                        </Style>
+                                                        <Style />
                                                       </Paragraph>
                                                     </Paragraphs>
-                                                    <rd:DefaultName>cod_oo1</rd:DefaultName>
+                                                    <rd:DefaultName>objetivo_operativo</rd:DefaultName>
                                                     <Style>
                                                       <Border>
                                                         <Style>Solid</Style>
                                                       </Border>
-                                                      <BackgroundColor>Red</BackgroundColor>
-                                                      <VerticalAlign>Middle</VerticalAlign>
                                                       <PaddingLeft>2pt</PaddingLeft>
                                                       <PaddingRight>2pt</PaddingRight>
                                                       <PaddingTop>2pt</PaddingTop>
@@ -2238,23 +2258,23 @@
                                               <TablixMembers>
                                                 <TablixMember>
                                                   <TablixHeader>
-                                                    <Size>5.12467cm</Size>
+                                                    <Size>3.62183cm</Size>
                                                     <CellContents>
-                                                      <Textbox Name="objetivo_operativo">
+                                                      <Textbox Name="indicador_o">
                                                         <CanGrow>true</CanGrow>
                                                         <KeepTogether>true</KeepTogether>
                                                         <Paragraphs>
                                                           <Paragraph>
                                                             <TextRuns>
                                                               <TextRun>
-                                                                <Value>=Fields!objetivo_operativo.Value</Value>
+                                                                <Value>=Fields!indicador_o.Value</Value>
                                                                 <Style />
                                                               </TextRun>
                                                             </TextRuns>
                                                             <Style />
                                                           </Paragraph>
                                                         </Paragraphs>
-                                                        <rd:DefaultName>objetivo_operativo</rd:DefaultName>
+                                                        <rd:DefaultName>indicador_o</rd:DefaultName>
                                                         <Style>
                                                           <Border>
                                                             <Style>Solid</Style>
@@ -2270,23 +2290,23 @@
                                                   <TablixMembers>
                                                     <TablixMember>
                                                       <TablixHeader>
-                                                        <Size>3.62183cm</Size>
+                                                        <Size>4.06633cm</Size>
                                                         <CellContents>
-                                                          <Textbox Name="indicador_o">
+                                                          <Textbox Name="meta_o">
                                                             <CanGrow>true</CanGrow>
                                                             <KeepTogether>true</KeepTogether>
                                                             <Paragraphs>
                                                               <Paragraph>
                                                                 <TextRuns>
                                                                   <TextRun>
-                                                                    <Value>=Fields!indicador_o.Value</Value>
+                                                                    <Value>=Fields!meta_o.Value</Value>
                                                                     <Style />
                                                                   </TextRun>
                                                                 </TextRuns>
                                                                 <Style />
                                                               </Paragraph>
                                                             </Paragraphs>
-                                                            <rd:DefaultName>indicador_o</rd:DefaultName>
+                                                            <rd:DefaultName>meta_o</rd:DefaultName>
                                                             <Style>
                                                               <Border>
                                                                 <Style>Solid</Style>
@@ -2302,23 +2322,23 @@
                                                       <TablixMembers>
                                                         <TablixMember>
                                                           <TablixHeader>
-                                                            <Size>4.06633cm</Size>
+                                                            <Size>4.68016cm</Size>
                                                             <CellContents>
-                                                              <Textbox Name="meta_o">
+                                                              <Textbox Name="responsable">
                                                                 <CanGrow>true</CanGrow>
                                                                 <KeepTogether>true</KeepTogether>
                                                                 <Paragraphs>
                                                                   <Paragraph>
                                                                     <TextRuns>
                                                                       <TextRun>
-                                                                        <Value>=Fields!meta_o.Value</Value>
+                                                                        <Value>=Fields!responsable.Value</Value>
                                                                         <Style />
                                                                       </TextRun>
                                                                     </TextRuns>
                                                                     <Style />
                                                                   </Paragraph>
                                                                 </Paragraphs>
-                                                                <rd:DefaultName>meta_o</rd:DefaultName>
+                                                                <rd:DefaultName>responsable</rd:DefaultName>
                                                                 <Style>
                                                                   <Border>
                                                                     <Style>Solid</Style>
@@ -2333,41 +2353,7 @@
                                                           </TablixHeader>
                                                           <TablixMembers>
                                                             <TablixMember>
-                                                              <TablixHeader>
-                                                                <Size>4.68016cm</Size>
-                                                                <CellContents>
-                                                                  <Textbox Name="responsable">
-                                                                    <CanGrow>true</CanGrow>
-                                                                    <KeepTogether>true</KeepTogether>
-                                                                    <Paragraphs>
-                                                                      <Paragraph>
-                                                                        <TextRuns>
-                                                                          <TextRun>
-                                                                            <Value>=Fields!responsable.Value</Value>
-                                                                            <Style />
-                                                                          </TextRun>
-                                                                        </TextRuns>
-                                                                        <Style />
-                                                                      </Paragraph>
-                                                                    </Paragraphs>
-                                                                    <rd:DefaultName>responsable</rd:DefaultName>
-                                                                    <Style>
-                                                                      <Border>
-                                                                        <Style>Solid</Style>
-                                                                      </Border>
-                                                                      <PaddingLeft>2pt</PaddingLeft>
-                                                                      <PaddingRight>2pt</PaddingRight>
-                                                                      <PaddingTop>2pt</PaddingTop>
-                                                                      <PaddingBottom>2pt</PaddingBottom>
-                                                                    </Style>
-                                                                  </Textbox>
-                                                                </CellContents>
-                                                              </TablixHeader>
-                                                              <TablixMembers>
-                                                                <TablixMember>
-                                                                  <Group Name="Detalles" />
-                                                                </TablixMember>
-                                                              </TablixMembers>
+                                                              <Group Name="Detalles" />
                                                             </TablixMember>
                                                           </TablixMembers>
                                                         </TablixMember>
@@ -2535,7 +2521,7 @@
         <Top>4.2387cm</Top>
         <Left>0.55245cm</Left>
         <Height>0.6cm</Height>
-        <Width>25.29229cm</Width>
+        <Width>24.94487cm</Width>
         <ZIndex>4</ZIndex>
         <Style>
           <Border>
@@ -2572,9 +2558,9 @@
         </Paragraphs>
         <rd:DefaultName>Textbox100</rd:DefaultName>
         <Top>4.2387cm</Top>
-        <Left>27.31287cm</Left>
+        <Left>25.49732cm</Left>
         <Height>0.6cm</Height>
-        <Width>23.91708cm</Width>
+        <Width>18.96112cm</Width>
         <ZIndex>5</ZIndex>
         <Style>
           <Border>
@@ -2625,8 +2611,8 @@
           </Paragraph>
         </Paragraphs>
         <rd:DefaultName>Textbox101</rd:DefaultName>
-        <Top>4.2387cm</Top>
-        <Left>52.83037cm</Left>
+        <Top>4.30926cm</Top>
+        <Left>44.45844cm</Left>
         <Height>0.6cm</Height>
         <Width>49.93104cm</Width>
         <ZIndex>6</ZIndex>

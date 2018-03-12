@@ -2,9 +2,10 @@
 <xs:schema id="dsSipa" targetNamespace="http://tempuri.org/dsSipa.xsd" xmlns:mstns="http://tempuri.org/dsSipa.xsd" xmlns="http://tempuri.org/dsSipa.xsd" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata" xmlns:msprop="urn:schemas-microsoft-com:xml-msprop" attributeFormDefault="qualified" elementFormDefault="qualified">
   <xs:annotation>
     <xs:appinfo source="urn:schemas-microsoft-com:xml-msdatasource">
-      <DataSource DefaultConnectionIndex="0" FunctionsComponentName="QueriesTableAdapter" Modifier="AutoLayout, AnsiClass, Class, Public" SchemaSerializationMode="IncludeSchema" xmlns="urn:schemas-microsoft-com:xml-msdatasource">
+      <DataSource DefaultConnectionIndex="1" FunctionsComponentName="QueriesTableAdapter" Modifier="AutoLayout, AnsiClass, Class, Public" SchemaSerializationMode="IncludeSchema" xmlns="urn:schemas-microsoft-com:xml-msdatasource">
         <Connections>
           <Connection AppSettingsObjectName="Web.config" AppSettingsPropertyName="dbcdagsipaConnectionString2" ConnectionStringObject="" IsAppSettingsProperty="true" Modifier="Assembly" Name="dbcdagsipaConnectionString2 (Web.config)" ParameterPrefix="@" PropertyReference="AppConfig.System.Configuration.ConfigurationManager.0.ConnectionStrings.dbcdagsipaConnectionString2.ConnectionString" Provider="MySql.Data.MySqlClient" />
+          <Connection AppSettingsObjectName="Web.config" AppSettingsPropertyName="dbcdagsipaConnectionString1" ConnectionStringObject="" IsAppSettingsProperty="true" Modifier="Assembly" Name="dbcdagsipaConnectionString1 (Web.config)" ParameterPrefix="@" PropertyReference="AppConfig.System.Configuration.ConfigurationManager.0.ConnectionStrings.dbcdagsipaConnectionString1.ConnectionString" Provider="MySql.Data.MySqlClient" />
         </Connections>
         <Tables>
           <TableAdapter BaseClass="System.ComponentModel.Component" DataAccessorModifier="AutoLayout, AnsiClass, Class, Public" DataAccessorName="ccl_catalogoTableAdapter" GeneratorDataComponentClassName="ccl_catalogoTableAdapter" Name="ccl_catalogo" UserDataComponentName="ccl_catalogoTableAdapter">
@@ -66,6 +67,29 @@ FROM     ccl_catalogo</CommandText>
               <Mapping SourceColumn="Presentacion" DataSetColumn="Presentacion" />
               <Mapping SourceColumn="cantidad_unidad" DataSetColumn="cantidad_unidad" />
               <Mapping SourceColumn="codigo_presentacion" DataSetColumn="codigo_presentacion" />
+            </Mappings>
+            <Sources />
+          </TableAdapter>
+          <TableAdapter BaseClass="System.ComponentModel.Component" DataAccessorModifier="AutoLayout, AnsiClass, Class, Public" DataAccessorName="ccl_catalogo1TableAdapter" GeneratorDataComponentClassName="ccl_catalogo1TableAdapter" Name="ccl_catalogo1" UserDataComponentName="ccl_catalogo1TableAdapter">
+            <MainSource>
+              <DbSource ConnectionRef="dbcdagsipaConnectionString1 (Web.config)" DbObjectType="Unknown" FillMethodModifier="Public" FillMethodName="Fill" GenerateMethods="Both" GenerateShortCommands="false" GeneratorGetMethodName="GetData" GeneratorSourceName="Fill" GetMethodModifier="Public" GetMethodName="GetData" QueryType="Rowset" ScalarCallRetval="System.Object, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" UseOptimisticConcurrency="false" UserGetMethodName="GetData" UserSourceName="Fill">
+                <SelectCommand>
+                  <DbCommand CommandType="Text" ModifiedByUser="true">
+                    <CommandText>SELECT p.descripcion_especifica, pd.Descripcion, pd.cantidad, c.Presentacion, c.cantidad_unidad
+FROM     ccl_catalogo c INNER JOIN
+                  sipa_pedido_detalle pd ON c.codigo_presentacion = pd.codigo_presentacion INNER JOIN
+                  sipa_especificaciones_detalle p ON p.id_pedido_detalle = pd.id_pedido_detalle</CommandText>
+                    <Parameters />
+                  </DbCommand>
+                </SelectCommand>
+              </DbSource>
+            </MainSource>
+            <Mappings>
+              <Mapping SourceColumn="Presentacion" DataSetColumn="Presentacion" />
+              <Mapping SourceColumn="cantidad_unidad" DataSetColumn="cantidad_unidad" />
+              <Mapping SourceColumn="descripcion_especifica" DataSetColumn="descripcion_especifica" />
+              <Mapping SourceColumn="Descripcion" DataSetColumn="Descripcion" />
+              <Mapping SourceColumn="cantidad" DataSetColumn="cantidad" />
             </Mappings>
             <Sources />
           </TableAdapter>
@@ -251,6 +275,41 @@ FROM     ccl_catalogo</CommandText>
                 </xs:simpleType>
               </xs:element>
               <xs:element name="codigo_presentacion" msprop:Generator_ColumnVarNameInTable="columncodigo_presentacion" msprop:Generator_ColumnPropNameInRow="codigo_presentacion" msprop:Generator_ColumnPropNameInTable="codigo_presentacionColumn" msprop:Generator_UserColumnName="codigo_presentacion" type="xs:int" />
+            </xs:sequence>
+          </xs:complexType>
+        </xs:element>
+        <xs:element name="ccl_catalogo1" msprop:Generator_TableClassName="ccl_catalogo1DataTable" msprop:Generator_TableVarName="tableccl_catalogo1" msprop:Generator_RowChangedName="ccl_catalogo1RowChanged" msprop:Generator_TablePropName="ccl_catalogo1" msprop:Generator_RowDeletingName="ccl_catalogo1RowDeleting" msprop:Generator_RowChangingName="ccl_catalogo1RowChanging" msprop:Generator_RowEvHandlerName="ccl_catalogo1RowChangeEventHandler" msprop:Generator_RowDeletedName="ccl_catalogo1RowDeleted" msprop:Generator_RowClassName="ccl_catalogo1Row" msprop:Generator_UserTableName="ccl_catalogo1" msprop:Generator_RowEvArgName="ccl_catalogo1RowChangeEvent">
+          <xs:complexType>
+            <xs:sequence>
+              <xs:element name="Presentacion" msprop:Generator_ColumnVarNameInTable="columnPresentacion" msprop:Generator_ColumnPropNameInRow="Presentacion" msprop:Generator_ColumnPropNameInTable="PresentacionColumn" msprop:Generator_UserColumnName="Presentacion">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="80" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="cantidad_unidad" msprop:Generator_ColumnVarNameInTable="columncantidad_unidad" msprop:Generator_ColumnPropNameInRow="cantidad_unidad" msprop:Generator_ColumnPropNameInTable="cantidad_unidadColumn" msprop:Generator_UserColumnName="cantidad_unidad">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="60" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="descripcion_especifica" msprop:Generator_ColumnVarNameInTable="columndescripcion_especifica" msprop:Generator_ColumnPropNameInRow="descripcion_especifica" msprop:Generator_ColumnPropNameInTable="descripcion_especificaColumn" msprop:Generator_UserColumnName="descripcion_especifica" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="20000" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="Descripcion" msprop:Generator_ColumnVarNameInTable="columnDescripcion" msprop:Generator_ColumnPropNameInRow="Descripcion" msprop:Generator_ColumnPropNameInTable="DescripcionColumn" msprop:Generator_UserColumnName="Descripcion" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="1000" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="cantidad" msprop:Generator_ColumnVarNameInTable="columncantidad" msprop:Generator_ColumnPropNameInRow="cantidad" msprop:Generator_ColumnPropNameInTable="cantidadColumn" msprop:Generator_UserColumnName="cantidad" type="xs:decimal" minOccurs="0" />
             </xs:sequence>
           </xs:complexType>
         </xs:element>
