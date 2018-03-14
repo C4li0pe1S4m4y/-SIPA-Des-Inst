@@ -806,7 +806,7 @@ namespace AplicacionSIPA1.Pac
                         m = stringToDecimalString(((TextBox)(gridDet.Rows[i].FindControl("txtMonto"))).Text);
                         monto = c == string.Empty ? 0 : decimal.Parse(m);
                         total += (cantidad * monto);
-                        total += monto;
+                       
 
                         ((TextBox)(gridDet.Rows[i].FindControl("txtMonto"))).Text = String.Format(CultureInfo.InvariantCulture, "Q.{0:0,0.00}", monto);
 

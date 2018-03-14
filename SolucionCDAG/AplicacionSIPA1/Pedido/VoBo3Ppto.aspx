@@ -193,7 +193,7 @@
                                 <asp:BoundField DataField="documento" HeaderText="Tipo de Documento">
                                 <ItemStyle BackColor="#FF6600" Font-Bold="True" />
                                 </asp:BoundField>
-                                <asp:BoundField DataField="fecha_pedido" DataFormatString="{0:d}" HeaderText="Fecha Pedido">
+                                <asp:BoundField DataField="fecha_ppto" DataFormatString="{0:d}" HeaderText="Fecha Financiero">
                                 <HeaderStyle BorderStyle="Inset" HorizontalAlign="Center" VerticalAlign="Middle" />
                                 <ItemStyle BorderStyle="Inset" HorizontalAlign="Center" VerticalAlign="Middle" />
                                 </asp:BoundField>

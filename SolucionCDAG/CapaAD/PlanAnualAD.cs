@@ -253,7 +253,7 @@ namespace CapaAD
         {
             conectar = new ConexionBD();
             DataTable tabla = new DataTable();
-            string query = String.Format("CALL sp_el_pac({0});", idPac);
+            string query = String.Format("CALL sp_el_pac({0},2017);", idPac);
             conectar.AbrirConexion();
             MySqlDataAdapter consulta = new MySqlDataAdapter(query, conectar.conectar);
             consulta.Fill(tabla);
