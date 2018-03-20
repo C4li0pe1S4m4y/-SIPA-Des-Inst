@@ -93,7 +93,7 @@ namespace AplicacionSIPA1.ReporteriaSistema
                "id_accion, id_tipo_documento, id_estado_pedido, Solicitante FROM (SELECT a.no_solicitud, a.anio_solicitud AS Año, fn_codigo_accion(b.id_accion, 0, '', 1) AS Accion, a.Documento, a.fecha_pedido, c.Descripcion," +
                " a.estado_salida AS Estado, a.unidad_administrativa, c.costo_pedido AS Pedido, c.costo_estimado, c.costo_real, d.no_renglon, p.id_pac AS no_pac, a.anio_solicitud, a.id_unidad,u.id_padre ,b.id_accion, a.id_tipo_documento, " +
                "a.id_estado_pedido, CONCAT(se.id_empleado, ' - ', se.nombres) AS Solicitante FROM unionpedidocc a INNER JOIN sipa_acciones b ON a.id_accion = b.id_accion INNER JOIN sipa_pedido_detalle c ON a.id_pedido = c.id_pedido " +
-               "LEFT JOIN sipa_detalles_accion d ON d.id_detalle = c.id_detalle_accion INNER JOIN sipa_pac p ON p.id_pac = c.id_pac INNER JOIN ccl_empleados se ON se.id_empleado = a.id_solicitante INNER JOIN ccl_unidades u on u.id_unidad = a.id_unidad "+
+               "LEFT JOIN sipa_detalles_accion d ON d.id_detalle = c.id_detalle_accion INNER JOIN sipa_pac p ON p.id_pac = c.id_pac INNER JOIN ccl_empleados se ON se.id_empleado = a.id_solicitante INNER JOIN ccl_unidades u on u.id_unidad = a.id_unidad " +
                " WHERE (a.id_tipo_documento = 1) and p.anio = @Año " +
                "UNION ALL SELECT a.no_solicitud, a.anio_solicitud AS Año, fn_codigo_accion(b.id_accion, 0, '', 1) AS Accion, a.Documento, a.fecha_pedido, c.descripcion, a.estado_salida AS Estado, a.unidad_administrativa, c.costo_vale AS Pedido," +
                " c.costo_estimado, c.costo_real, d.no_renglon, 'N/A' AS no_pac, a.anio_solicitud, a.id_unidad,u.id_padre, b.id_accion, a.id_tipo_documento, a.id_estado_pedido, CONCAT(se.id_empleado, ' - ', se.nombres) AS Solicitante FROM unionpedidocc a " +
@@ -237,10 +237,10 @@ namespace AplicacionSIPA1.ReporteriaSistema
                 DataSet dsPpto = pAccionLN.PptoPoa(idPoa, 0);
                 int unidads = 0;
 
-                    if(ddlDependencias.SelectedValue == "0")
-                        int.TryParse(ddlUnidades.SelectedValue, out unidads);
-                    else
-                        int.TryParse(ddlDependencias.SelectedValue, out unidads);
+                if (ddlDependencias.SelectedValue == "0")
+                    int.TryParse(ddlUnidades.SelectedValue, out unidads);
+                else
+                    int.TryParse(ddlDependencias.SelectedValue, out unidads);
 
                 decimal pptoPoaUnidad = decimal.Parse(dsPpto.Tables["BUSQUEDA"].Rows[0]["PPTO_POA_UNIDAD"].ToString());
 
@@ -267,12 +267,25 @@ namespace AplicacionSIPA1.ReporteriaSistema
             int idPoa = 0;
             int.TryParse(lblIdPoa.Text, out idPoa);
             System.Text.StringBuilder stringBuilder = new System.Text.StringBuilder();
-            stringBuilder.Append("select sum(monto) as monto from sipa_detalles_accion ");
-            stringBuilder.Append("Where id_accion  = " + ddlAcciones.SelectedValue);
+            
+            if (ddlAcciones.SelectedValue !="0")
+            {
+                stringBuilder.Append("select sum(monto) as monto from sipa_detalles_accion ");
+                stringBuilder.Append("Where id_accion  = " + ddlAcciones.SelectedValue);
+            }
+            
 
             MySqlConnection thisConnection = new MySqlConnection(thisConnectionString);
             System.Data.DataSet thisDataSet = new System.Data.DataSet();
-            SearchValue2[0] = new MySqlParameter("@Unidad", ddlUnidades.SelectedValue);
+            if (ddlDependencias.SelectedIndex >= 1)
+            {
+                SearchValue2[0] = new MySqlParameter("@Unidad", ddlDependencias.SelectedValue);
+            }
+            else
+            {
+                SearchValue2[0] = new MySqlParameter("@Unidad", ddlUnidades.SelectedValue);
+            }
+
             SearchValue2[1] = new MySqlParameter("@Accion", ddlAcciones.SelectedValue);
             SearchValue2[2] = new MySqlParameter("@Año", ddlAnios.SelectedValue);
             /* Put the stored procedure result into a dataset */
