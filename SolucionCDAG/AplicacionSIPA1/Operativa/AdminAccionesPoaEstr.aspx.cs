@@ -373,7 +373,8 @@ namespace AplicacionSIPA1.Operativa
                 if (idUnidad > 0)
                 {
                     ddlUnidades.SelectedValue = idUnidad.ToString();
-                    
+                    planOperativoLN = new PlanOperativoLN();
+                    planOperativoLN.DdlDependencias(ddlDependecia, idUnidad.ToString());
                     if (anio > 0 && idUnidad > 0)
                         validarPoa(idUnidad, anio);
 
@@ -1008,8 +1009,8 @@ namespace AplicacionSIPA1.Operativa
 
                 decimal pptoPoaUnidad = decimal.Parse(dsPpto.Tables["BUSQUEDA"].Rows[0]["PPTO_POA_UNIDAD"].ToString());
                 decimal pptoDisponibleUnidad = decimal.Parse(dsPpto.Tables["BUSQUEDA"].Rows[0]["DISPONIBLE_UNIDAD"].ToString());
-                decimal pptoPoaDependencia = decimal.Parse(dsPpto.Tables["BUSQUEDA"].Rows[0]["PPTO_POA_DEPENDENCIA"].ToString());
-                decimal pptoDisponibleDep = decimal.Parse(dsPpto.Tables["BUSQUEDA"].Rows[0]["DISPONIBLE_DEPENDENCIA"].ToString());
+                decimal pptoPoaDependencia = decimal.Parse(dsPpto.Tables["BUSQUEDA"].Rows[0]["PPTO_POA_UNIDAD"].ToString());
+                decimal pptoDisponibleDep = decimal.Parse(dsPpto.Tables["BUSQUEDA"].Rows[0]["DISPONIBLE_UNIDAD"].ToString());
 
 
                 lblTechoU.Text = String.Format(CultureInfo.InvariantCulture, "Q.{0:0,0.00}", pptoPoaUnidad);
@@ -1446,6 +1447,52 @@ namespace AplicacionSIPA1.Operativa
         protected void ddlFuentes_SelectedIndexChanged(object sender, EventArgs e)
         {
             limpiarControlesError();
+        }
+
+        protected void ddlDependecia_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            try
+            {
+                limpiarControlesError();
+                int idPlan = int.Parse(ddlPlanes.SelectedValue);
+                int anio = int.Parse(ddlAnios.SelectedValue);
+                int idUnidad = int.Parse(ddlDependecia.SelectedValue);
+                int idUnidadTemp = int.Parse(ddlUnidades.SelectedValue);
+                btnNuevo_Click(sender, e);
+                ddlPlanes.SelectedValue = idPlan.ToString();
+                ddlPlanes_SelectedIndexChanged(sender, e);
+
+                ddlAnios.SelectedValue = anio.ToString();
+                btnGuardar.Visible = false;
+
+
+                planOperativoLN = new PlanOperativoLN();
+                planOperativoLN.DdlObjetivosB(ddlObjetivos, anio, idUnidad);
+                ddlObjetivos.Items[0].Text = "<< Elija un valor >>";
+
+                planAccionLN = new PlanAccionLN();
+                planAccionLN.DdlDependenciasUnidad(ddlDependencias, idUnidadTemp);
+
+                if (idUnidad > 0)
+                {
+                    ddlDependecia.SelectedValue = idUnidad.ToString();
+                    ddlUnidades.SelectedValue = idUnidadTemp.ToString();
+                    planOperativoLN = new PlanOperativoLN();
+                    planOperativoLN.DdlDependencias(ddlJefatura, idUnidad.ToString());
+                    if (anio > 0 && idUnidad > 0)
+                        validarPoa(idUnidad, anio);
+
+                    if (ddlDependencias.Items.Count == 1)
+                        ddlDependencias_SelectedIndexChanged(sender, e);
+                }
+
+                chkAccion.Checked = true;
+                chkAccion_CheckedChanged(sender, e);
+            }
+            catch (Exception ex)
+            {
+                lblError.Text = "ddlUnidades_SelectedIndexChanged(). " + ex.Message;
+            }
         }
 
         protected void btnModalModificarR_Click(object sender, EventArgs e)

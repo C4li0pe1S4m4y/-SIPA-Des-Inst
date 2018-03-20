@@ -1801,9 +1801,9 @@
                                           <TablixMembers>
                                             <TablixMember>
                                               <TablixHeader>
-                                                <Size>3.62183cm</Size>
+                                                <Size>6.04416cm</Size>
                                                 <CellContents>
-                                                  <Textbox Name="Textbox17">
+                                                  <Textbox Name="Textbox22">
                                                     <CanGrow>true</CanGrow>
                                                     <KeepTogether>true</KeepTogether>
                                                     <Paragraphs>
@@ -1822,7 +1822,7 @@
                                                         </Style>
                                                       </Paragraph>
                                                     </Paragraphs>
-                                                    <rd:DefaultName>Textbox17</rd:DefaultName>
+                                                    <rd:DefaultName>Textbox19</rd:DefaultName>
                                                     <Style>
                                                       <Border>
                                                         <Style>Solid</Style>
@@ -1840,7 +1840,7 @@
                                               <TablixMembers>
                                                 <TablixMember>
                                                   <TablixHeader>
-                                                    <Size>4.06633cm</Size>
+                                                    <Size>4.786cm</Size>
                                                     <CellContents>
                                                       <Textbox Name="Textbox19">
                                                         <CanGrow>true</CanGrow>
@@ -1879,7 +1879,7 @@
                                                   <TablixMembers>
                                                     <TablixMember>
                                                       <TablixHeader>
-                                                        <Size>4.68016cm</Size>
+                                                        <Size>5.91545cm</Size>
                                                         <CellContents>
                                                           <Textbox Name="Textbox21">
                                                             <CanGrow>true</CanGrow>
@@ -2257,10 +2257,20 @@
                                               </TablixHeader>
                                               <TablixMembers>
                                                 <TablixMember>
+                                                  <Group Name="indicador_o">
+                                                    <GroupExpressions>
+                                                      <GroupExpression>=Fields!indicador_o.Value</GroupExpression>
+                                                    </GroupExpressions>
+                                                  </Group>
+                                                  <SortExpressions>
+                                                    <SortExpression>
+                                                      <Value>=Fields!codigo_accion.Value</Value>
+                                                    </SortExpression>
+                                                  </SortExpressions>
                                                   <TablixHeader>
-                                                    <Size>3.62183cm</Size>
+                                                    <Size>6.04416cm</Size>
                                                     <CellContents>
-                                                      <Textbox Name="indicador_o">
+                                                      <Textbox Name="indicador_o1">
                                                         <CanGrow>true</CanGrow>
                                                         <KeepTogether>true</KeepTogether>
                                                         <Paragraphs>
@@ -2271,14 +2281,17 @@
                                                                 <Style />
                                                               </TextRun>
                                                             </TextRuns>
-                                                            <Style />
+                                                            <Style>
+                                                              <TextAlign>Center</TextAlign>
+                                                            </Style>
                                                           </Paragraph>
                                                         </Paragraphs>
-                                                        <rd:DefaultName>indicador_o</rd:DefaultName>
+                                                        <rd:DefaultName>indicador_o1</rd:DefaultName>
                                                         <Style>
                                                           <Border>
                                                             <Style>Solid</Style>
                                                           </Border>
+                                                          <VerticalAlign>Middle</VerticalAlign>
                                                           <PaddingLeft>2pt</PaddingLeft>
                                                           <PaddingRight>2pt</PaddingRight>
                                                           <PaddingTop>2pt</PaddingTop>
@@ -2290,7 +2303,7 @@
                                                   <TablixMembers>
                                                     <TablixMember>
                                                       <TablixHeader>
-                                                        <Size>4.06633cm</Size>
+                                                        <Size>4.786cm</Size>
                                                         <CellContents>
                                                           <Textbox Name="meta_o">
                                                             <CanGrow>true</CanGrow>
@@ -2322,7 +2335,7 @@
                                                       <TablixMembers>
                                                         <TablixMember>
                                                           <TablixHeader>
-                                                            <Size>4.68016cm</Size>
+                                                            <Size>5.91545cm</Size>
                                                             <CellContents>
                                                               <Textbox Name="responsable">
                                                                 <CanGrow>true</CanGrow>
@@ -2382,10 +2395,15 @@
           </TablixMembers>
         </TablixRowHierarchy>
         <DataSetName>DataSet1</DataSetName>
+        <SortExpressions>
+          <SortExpression>
+            <Value>=Fields!codigo_accion.Value</Value>
+          </SortExpression>
+        </SortExpressions>
         <Top>4.8387cm</Top>
         <Left>0.55245cm</Left>
         <Height>1.5175cm</Height>
-        <Width>93.83702cm</Width>
+        <Width>98.21431cm</Width>
         <Style>
           <Border>
             <Style>None</Style>
@@ -2560,7 +2578,7 @@
         <Top>4.2387cm</Top>
         <Left>25.49732cm</Left>
         <Height>0.6cm</Height>
-        <Width>18.96112cm</Width>
+        <Width>23.33841cm</Width>
         <ZIndex>5</ZIndex>
         <Style>
           <Border>
@@ -2611,8 +2629,8 @@
           </Paragraph>
         </Paragraphs>
         <rd:DefaultName>Textbox101</rd:DefaultName>
-        <Top>4.30926cm</Top>
-        <Left>44.45844cm</Left>
+        <Top>4.27398cm</Top>
+        <Left>48.83572cm</Left>
         <Height>0.6cm</Height>
         <Width>49.93104cm</Width>
         <ZIndex>6</ZIndex>

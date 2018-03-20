@@ -684,5 +684,21 @@ namespace CapaLN
             if (drop.Items.Count == 2)
                 drop.Items.RemoveAt(0);
         }
+
+        public void ddlPedidosCompras(DropDownList drop, string anio)
+        {
+            drop.ClearSelection();
+            drop.Items.Clear();
+            drop.AppendDataBoundItems = true;
+            drop.Items.Add("<< Elija un valor >>");
+            drop.Items[0].Value = "0";
+            ObjAD = new PlanOperativoAD();
+            drop.DataSource = ObjAD.DdlPedidoCompras(anio);
+            drop.DataTextField = "texto";
+            drop.DataValueField = "id";
+            drop.DataBind();
+            if (drop.Items.Count == 2)
+                drop.Items.RemoveAt(0);
+        }
     }
 }

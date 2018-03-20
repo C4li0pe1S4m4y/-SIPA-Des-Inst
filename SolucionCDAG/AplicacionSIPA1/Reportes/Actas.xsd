@@ -1,0 +1,105 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<xs:schema id="Actas" targetNamespace="http://tempuri.org/Actas.xsd" xmlns:mstns="http://tempuri.org/Actas.xsd" xmlns="http://tempuri.org/Actas.xsd" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata" xmlns:msprop="urn:schemas-microsoft-com:xml-msprop" attributeFormDefault="qualified" elementFormDefault="qualified">
+  <xs:annotation>
+    <xs:appinfo source="urn:schemas-microsoft-com:xml-msdatasource">
+      <DataSource DefaultConnectionIndex="0" FunctionsComponentName="QueriesTableAdapter" Modifier="AutoLayout, AnsiClass, Class, Public" SchemaSerializationMode="IncludeSchema" xmlns="urn:schemas-microsoft-com:xml-msdatasource">
+        <Connections>
+          <Connection AppSettingsObjectName="Web.config" AppSettingsPropertyName="dbcdagsipaConnectionString1" ConnectionStringObject="" IsAppSettingsProperty="true" Modifier="Assembly" Name="dbcdagsipaConnectionString1 (Web.config)" ParameterPrefix="@" PropertyReference="AppConfig.System.Configuration.ConfigurationManager.0.ConnectionStrings.dbcdagsipaConnectionString1.ConnectionString" Provider="MySql.Data.MySqlClient" />
+        </Connections>
+        <Tables>
+          <TableAdapter BaseClass="System.ComponentModel.Component" DataAccessorModifier="AutoLayout, AnsiClass, Class, Public" DataAccessorName="DatosActaTableAdapter" GeneratorDataComponentClassName="DatosActaTableAdapter" Name="DatosActa" UserDataComponentName="DatosActaTableAdapter">
+            <MainSource>
+              <DbSource ConnectionRef="dbcdagsipaConnectionString1 (Web.config)" DbObjectType="Unknown" FillMethodModifier="Public" FillMethodName="Fill" GenerateMethods="Both" GenerateShortCommands="false" GeneratorGetMethodName="GetData" GeneratorSourceName="Fill" GetMethodModifier="Public" GetMethodName="GetData" QueryType="Rowset" ScalarCallRetval="System.Object, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" UseOptimisticConcurrency="false" UserGetMethodName="GetData" UserSourceName="Fill">
+                <SelectCommand>
+                  <DbCommand CommandType="Text" ModifiedByUser="true">
+                    <CommandText>SELECT e.nombres, CONCAT(p.no_solicitud, '-', p.anio_solicitud) AS solicitud, p.Justificacion, pr.razon_social, pr.nit, pd.no_orden_compra, SUM(pd.costo_real) AS costo, u.Unidad
+FROM     sipa_pedidos p INNER JOIN
+                  ccl_empleados e ON e.id_empleado = p.id_tecnico INNER JOIN
+                  sipa_pedido_detalle pd ON pd.id_pedido = p.id_pedido INNER JOIN
+                  sipa_proveedores pr ON pr.id_proveedor = pd.id_proveedor INNER JOIN
+                  ccl_unidades u ON u.id_unidad = p.id_unidad
+WHERE  (p.id_pedido = 5)</CommandText>
+                    <Parameters />
+                  </DbCommand>
+                </SelectCommand>
+              </DbSource>
+            </MainSource>
+            <Mappings>
+              <Mapping SourceColumn="nombres" DataSetColumn="nombres" />
+              <Mapping SourceColumn="solicitud" DataSetColumn="solicitud" />
+              <Mapping SourceColumn="Justificacion" DataSetColumn="Justificacion" />
+              <Mapping SourceColumn="razon_social" DataSetColumn="razon_social" />
+              <Mapping SourceColumn="nit" DataSetColumn="nit" />
+              <Mapping SourceColumn="no_orden_compra" DataSetColumn="no_orden_compra" />
+              <Mapping SourceColumn="costo" DataSetColumn="costo" />
+              <Mapping SourceColumn="Unidad" DataSetColumn="Unidad" />
+            </Mappings>
+            <Sources />
+          </TableAdapter>
+        </Tables>
+        <Sources />
+      </DataSource>
+    </xs:appinfo>
+  </xs:annotation>
+  <xs:element name="Actas" msdata:IsDataSet="true" msdata:UseCurrentLocale="true" msprop:EnableTableAdapterManager="true" msprop:Generator_DataSetName="Actas" msprop:Generator_UserDSName="Actas">
+    <xs:complexType>
+      <xs:choice minOccurs="0" maxOccurs="unbounded">
+        <xs:element name="DatosActa" msprop:Generator_TableClassName="DatosActaDataTable" msprop:Generator_TableVarName="tableDatosActa" msprop:Generator_TablePropName="DatosActa" msprop:Generator_RowDeletingName="DatosActaRowDeleting" msprop:Generator_RowChangingName="DatosActaRowChanging" msprop:Generator_RowEvHandlerName="DatosActaRowChangeEventHandler" msprop:Generator_RowDeletedName="DatosActaRowDeleted" msprop:Generator_UserTableName="DatosActa" msprop:Generator_RowChangedName="DatosActaRowChanged" msprop:Generator_RowEvArgName="DatosActaRowChangeEvent" msprop:Generator_RowClassName="DatosActaRow">
+          <xs:complexType>
+            <xs:sequence>
+              <xs:element name="nombres" msprop:Generator_ColumnVarNameInTable="columnnombres" msprop:Generator_ColumnPropNameInRow="nombres" msprop:Generator_ColumnPropNameInTable="nombresColumn" msprop:Generator_UserColumnName="nombres">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="250" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="solicitud" msprop:Generator_ColumnVarNameInTable="columnsolicitud" msprop:Generator_ColumnPropNameInRow="solicitud" msprop:Generator_ColumnPropNameInTable="solicitudColumn" msprop:Generator_UserColumnName="solicitud" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="23" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="Justificacion" msprop:Generator_ColumnVarNameInTable="columnJustificacion" msprop:Generator_ColumnPropNameInRow="Justificacion" msprop:Generator_ColumnPropNameInTable="JustificacionColumn" msprop:Generator_UserColumnName="Justificacion" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="1000" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="razon_social" msprop:Generator_ColumnVarNameInTable="columnrazon_social" msprop:Generator_ColumnPropNameInRow="razon_social" msprop:Generator_ColumnPropNameInTable="razon_socialColumn" msprop:Generator_UserColumnName="razon_social" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="250" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="nit" msprop:Generator_ColumnVarNameInTable="columnnit" msprop:Generator_ColumnPropNameInRow="nit" msprop:Generator_ColumnPropNameInTable="nitColumn" msprop:Generator_UserColumnName="nit" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="25" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="no_orden_compra" msprop:Generator_ColumnVarNameInTable="columnno_orden_compra" msprop:Generator_ColumnPropNameInRow="no_orden_compra" msprop:Generator_ColumnPropNameInTable="no_orden_compraColumn" msprop:Generator_UserColumnName="no_orden_compra" type="xs:int" minOccurs="0" />
+              <xs:element name="costo" msprop:Generator_ColumnVarNameInTable="columncosto" msprop:Generator_ColumnPropNameInRow="costo" msprop:Generator_ColumnPropNameInTable="costoColumn" msprop:Generator_UserColumnName="costo" type="xs:decimal" minOccurs="0" />
+              <xs:element name="no_acta" msprop:Generator_ColumnVarNameInTable="columnno_acta" msprop:Generator_ColumnPropNameInRow="no_acta" msprop:Generator_ColumnPropNameInTable="no_actaColumn" msprop:Generator_UserColumnName="no_acta" type="xs:string" minOccurs="0" />
+              <xs:element name="hora_acta" msprop:Generator_ColumnVarNameInTable="columnhora_acta" msprop:Generator_ColumnPropNameInRow="hora_acta" msprop:Generator_ColumnPropNameInTable="hora_actaColumn" msprop:Generator_UserColumnName="hora_acta" type="xs:string" minOccurs="0" />
+              <xs:element name="fecha_acta" msprop:Generator_ColumnVarNameInTable="columnfecha_acta" msprop:Generator_ColumnPropNameInRow="fecha_acta" msprop:Generator_ColumnPropNameInTable="fecha_actaColumn" msprop:Generator_UserColumnName="fecha_acta" type="xs:string" minOccurs="0" />
+              <xs:element name="Unidad" msprop:Generator_ColumnVarNameInTable="columnUnidad" msprop:Generator_ColumnPropNameInRow="Unidad" msprop:Generator_ColumnPropNameInTable="UnidadColumn" msprop:Generator_UserColumnName="Unidad" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="75" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="numletras" msprop:Generator_ColumnVarNameInTable="columnnumletras" msprop:Generator_ColumnPropNameInRow="numletras" msprop:Generator_ColumnPropNameInTable="numletrasColumn" msprop:Generator_UserColumnName="numletras" type="xs:string" minOccurs="0" />
+              <xs:element name="fecha_compromiso" msprop:Generator_ColumnVarNameInTable="columnfecha_compromiso" msprop:Generator_ColumnPropNameInRow="fecha_compromiso" msprop:Generator_ColumnPropNameInTable="fecha_compromisoColumn" msprop:Generator_UserColumnName="fecha_compromiso" type="xs:string" minOccurs="0" />
+            </xs:sequence>
+          </xs:complexType>
+        </xs:element>
+      </xs:choice>
+    </xs:complexType>
+  </xs:element>
+</xs:schema>

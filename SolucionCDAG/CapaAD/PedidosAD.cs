@@ -2008,5 +2008,47 @@ namespace CapaAD
             return tabla;
         }
 
+        public int Ingresar_Insumo(string renglon,string codigo_insumo,string nombre,string caracteristicas,string presentacion,string cantidad_unidad,string codigo_presentacion)
+        {
+            try
+            {
+                int result = 0;
+                conectar = new ConexionBD();
+
+                string query = String.Format("INSERT INTO `dbcdagsipa`.`ccl_catalogo` VALUES ('{0}', '{1}', '{2}', '{3}', '{4}', '{5}', '{6}');",
+                    renglon, codigo_insumo, nombre, caracteristicas, presentacion, cantidad_unidad, codigo_presentacion);
+                conectar.AbrirConexion();
+                MySqlCommand cmd = new MySqlCommand(query, conectar.conectar);
+                result = cmd.ExecuteNonQuery();
+                conectar.CerrarConexion();
+                return result;
+            }
+            catch (Exception)
+            {
+                return -1;
+                throw;
+            }
+          
+        }
+
+        public DataTable InformacionPedidoCompras(int id)
+        {
+            conectar = new ConexionBD();
+            DataTable tabla = new DataTable();
+            string query = String.Format("SELECT e.nombres, CONCAT(p.no_solicitud, '-', p.anio_solicitud) AS solicitud, p.Justificacion, pr.razon_social, pr.nit, pd.no_orden_compra, SUM(pd.costo_real) AS costo, u.Unidad "+
+                          " FROM     sipa_pedidos p INNER JOIN "+
+                          " ccl_empleados e ON e.id_empleado = p.id_tecnico INNER JOIN" +
+                          " sipa_pedido_detalle pd ON pd.id_pedido = p.id_pedido INNER JOIN " +
+                          " sipa_proveedores pr ON pr.id_proveedor = pd.id_proveedor INNER JOIN "+ 
+                          " ccl_unidades u ON u.id_unidad = p.id_unidad "+
+                          " WHERE(p.id_pedido = {0});", id);
+            conectar.AbrirConexion();
+            MySqlDataAdapter consulta = new MySqlDataAdapter(query, conectar.conectar);
+            consulta.Fill(tabla);
+            conectar.CerrarConexion();
+            return tabla;
+        }
+
+
     }
 }

@@ -241,6 +241,30 @@
                         <tr>
                             <td style="width: 5%">&nbsp;</td>
                             <td style="width: 5%">&nbsp;</td>
+                            <td colspan="8">Dependencia:
+                            </td>
+                            <td colspan="8">Jefatura:
+                            </td>
+                            <td style="width: 5%">&nbsp;</td>
+                            <td style="width: 5%">&nbsp;</td>
+                        </tr>
+                        <tr>
+                            <td style="width: 5%">&nbsp;</td>
+                            <td style="width: 5%">&nbsp;</td>
+                            <td colspan="8">
+                                <asp:DropDownList ID="ddlDependecia" runat="server" AutoPostBack="True" OnSelectedIndexChanged="ddlDependecia_SelectedIndexChanged" class="form-control"  Width="100%">
+                                </asp:DropDownList>
+                            </td>
+                            <td colspan="8">
+                                <asp:DropDownList ID="ddlJefatura" runat="server" AutoPostBack="True" class="form-control"  Width="100%">
+                                </asp:DropDownList>
+                            </td>
+                            <td style="width: 5%">&nbsp;</td>
+                            <td style="width: 5%">&nbsp;</td>
+                        </tr>
+                        <tr>
+                            <td style="width: 5%">&nbsp;</td>
+                            <td style="width: 5%">&nbsp;</td>
                             <td colspan="8">&nbsp;</td>
                             <td>&nbsp;</td>
                             <td colspan="3">Presupuesto Aprobado:</td>

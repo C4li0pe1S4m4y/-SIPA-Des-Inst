@@ -590,5 +590,17 @@ namespace CapaAD
             return tabla;
         }
 
+        public DataTable DdlPedidoCompras(string anio)
+        {
+            conectar = new ConexionBD();
+            DataTable tabla = new DataTable();
+            conectar.AbrirConexion();
+            string query = string.Format("select id_pedido id, no_solicitud texto from sipa_pedidos where anio_solicitud = {0} and id_estado_pedido=12;", anio);
+            MySqlDataAdapter consulta = new MySqlDataAdapter(query, conectar.conectar);
+            consulta.Fill(tabla);
+            conectar.CerrarConexion();
+            return tabla;
+        }
+
     }
 }

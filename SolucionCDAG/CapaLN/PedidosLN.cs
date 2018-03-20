@@ -1834,5 +1834,41 @@ namespace CapaLN
             return dsResultado;
         }
 
+        public int Ingresar_Insumo(string renglon, string codigo_insumo, string nombre, string caracteristicas, string presentacion, string cantidad_unidad, string codigo_presentacion)
+        {
+            ObjAD = new PedidosAD();
+            return ObjAD.Ingresar_Insumo(renglon, codigo_insumo, nombre, caracteristicas, presentacion, cantidad_unidad, codigo_presentacion);
+        }
+
+        public DataSet InformacionPedidoCompras(int id,string noActa,string hora_acta,string fecha_acta,string fecha_compromiso)
+        {
+            DataSet dsResultado = armarDsResultado();
+            ObjAD = new PedidosAD();
+
+            try
+            {
+                DataTable dt = ObjAD.InformacionPedidoCompras(id);
+                dt.TableName = "BUSQUEDA";
+                dt.Columns.Add("No_acta", typeof(String));
+                dsResultado.Tables.Add(dt);
+                dsResultado.Tables[1].Rows[0]["No_acta"] = noActa;
+                dt.Columns.Add("hora_acta", typeof(String));
+                dsResultado.Tables.Add(dt);
+                dsResultado.Tables[1].Rows[0]["hora_acta"] = hora_acta;
+                dt.Columns.Add("fecha_acta", typeof(String));
+                dsResultado.Tables.Add(dt);
+                dsResultado.Tables[1].Rows[0]["fecha_acta"] = fecha_acta;
+                dt.Columns.Add("fecha_compromiso", typeof(String));
+                dsResultado.Tables.Add(dt);
+                dsResultado.Tables[1].Rows[0]["fecha_compromiso"] = fecha_compromiso;
+            }
+            catch (Exception ex)
+            {
+                dsResultado.Tables[0].Rows[0]["MSG_ERROR"] = " CapaLN.InformacionPedido(). " + ex.Message;
+            }
+
+            return dsResultado;
+        }
+
     }
 }

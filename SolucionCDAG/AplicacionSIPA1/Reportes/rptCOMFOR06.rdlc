@@ -1072,7 +1072,13 @@
             <Paragraph>
               <TextRuns>
                 <TextRun>
-                  <Value>Página: 1</Value>
+                  <Value>Página:</Value>
+                  <Style>
+                    <FontSize>9pt</FontSize>
+                  </Style>
+                </TextRun>
+                <TextRun>
+                  <Value>=Globals!PageNumber</Value>
                   <Style>
                     <FontSize>9pt</FontSize>
                   </Style>
