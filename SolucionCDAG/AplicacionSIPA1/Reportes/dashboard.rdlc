@@ -587,7 +587,7 @@
         </ChartNoDataMessage>
         <DataSetName>DataSet2</DataSetName>
         <Top>1.27167in</Top>
-        <Left>5.72167in</Left>
+        <Left>6.33in</Left>
         <Height>3.51667in</Height>
         <Width>4.69166in</Width>
         <ZIndex>1</ZIndex>
@@ -912,7 +912,7 @@
         </ChartNoDataMessage>
         <DataSetName>DataSet5</DataSetName>
         <Top>1.27167in</Top>
-        <Left>10.93833in</Left>
+        <Left>11.36333in</Left>
         <Height>3.51667in</Height>
         <Width>4.59166in</Width>
         <ZIndex>3</ZIndex>
@@ -1206,7 +1206,7 @@
         <Top>5.13833in</Top>
         <Left>0.32167in</Left>
         <Height>3.06667in</Height>
-        <Width>4.91666in</Width>
+        <Width>5.53333in</Width>
         <ZIndex>4</ZIndex>
         <Style>
           <Border>
@@ -1440,9 +1440,10 @@
           <ChartLegend Name="Default">
             <Style>
               <BackgroundGradientType>None</BackgroundGradientType>
-              <FontSize>8pt</FontSize>
+              <FontSize>7pt</FontSize>
             </Style>
-            <Position>BottomCenter</Position>
+            <Position>LeftBottom</Position>
+            <DockOutsideChartArea>true</DockOutsideChartArea>
             <ChartLegendTitle>
               <Caption />
               <Style>
@@ -1451,6 +1452,7 @@
                 <TextAlign>Center</TextAlign>
               </Style>
             </ChartLegendTitle>
+            <AutoFitTextDisabled>true</AutoFitTextDisabled>
             <HeaderSeparatorColor>Black</HeaderSeparatorColor>
             <ColumnSeparatorColor>Black</ColumnSeparatorColor>
           </ChartLegend>
@@ -1486,7 +1488,7 @@
         <Top>1.27167in</Top>
         <Left>0.32167in</Left>
         <Height>3.51667in</Height>
-        <Width>4.91666in</Width>
+        <Width>5.53333in</Width>
         <ZIndex>5</ZIndex>
         <Style>
           <Border>

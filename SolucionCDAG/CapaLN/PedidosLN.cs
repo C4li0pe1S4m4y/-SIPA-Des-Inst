@@ -15,7 +15,7 @@ namespace CapaLN
     public class PedidosLN
     {
         PedidosAD ObjAD;
-
+        private Numlet num;
         public void DdlSolicitantes(DropDownList drop, string usuario, int idUnidad)
         {
             drop.ClearSelection();
@@ -683,7 +683,7 @@ namespace CapaLN
         }
 
         //ALMACENAR UNA SOLICITUD DE AJUSTE DE PEDIDO
-        public DataSet AlmacenarAjustePedido(AJUSTE_PEDIDO ObjEN, DataSet dsDetalles, string usuario,string ip,string mac,string pc)
+        public DataSet AlmacenarAjustePedido(AJUSTE_PEDIDO ObjEN, DataSet dsDetalles, string usuario, string ip, string mac, string pc)
         {
             DataSet dsResultado = armarDsResultado();
 
@@ -1106,14 +1106,14 @@ namespace CapaLN
             return dsResultado;
         }
 
-        public DataSet AsignarValorReal(DataSet dsDetalles,string ip,string mac,string pc)
+        public DataSet AsignarValorReal(DataSet dsDetalles, string ip, string mac, string pc)
         {
             DataSet dsResultado = armarDsResultado();
 
             ObjAD = new PedidosAD();
             try
             {
-                DataSet ds = ObjAD.AsignarValorReal(dsDetalles,ip,mac,pc);
+                DataSet ds = ObjAD.AsignarValorReal(dsDetalles, ip, mac, pc);
 
                 if (bool.Parse(ds.Tables[0].Rows[0]["ERRORES"].ToString()))
                     throw new Exception(ds.Tables[0].Rows[0]["MSG_ERROR"].ToString());
@@ -1638,14 +1638,14 @@ namespace CapaLN
             return dsResultado;
         }*/
 
-        public DataSet DetallesPedidoAprobacion(int id, int id2, string criterio, int opcion,string anio)
+        public DataSet DetallesPedidoAprobacion(int id, int id2, string criterio, int opcion, string anio)
         {
             DataSet dsResultado = armarDsResultado();
             ObjAD = new PedidosAD();
 
             try
             {
-                DataTable dt = ObjAD.DetallesPedidoAprobacion(id, id2, criterio, opcion,int.Parse(anio));
+                DataTable dt = ObjAD.DetallesPedidoAprobacion(id, id2, criterio, opcion, int.Parse(anio));
                 dt.TableName = "BUSQUEDA";
                 dsResultado.Tables.Add(dt);
                 dsResultado.Tables[0].Rows[0]["ERRORES"] = false;
@@ -1737,7 +1737,7 @@ namespace CapaLN
 
         public DataSet PedidoDetallePac(int idPedido)
         {
-            
+
             ObjAD = new PedidosAD();
             try
             {
@@ -1748,7 +1748,7 @@ namespace CapaLN
                 return null;
             }
 
-           
+
         }
 
         public void DdlRenglonesxAccion(DropDownList drop, int idAccion)
@@ -1795,13 +1795,13 @@ namespace CapaLN
             return dsResultado;
         }
 
-        public DataSet BusquedaPresentacion(string codigo,string insumo)
+        public DataSet BusquedaPresentacion(string codigo, string insumo)
         {
             DataSet dsResultado = armarDsResultado();
             ObjAD = new PedidosAD();
             try
             {
-                DataTable dt = ObjAD.BusquedaPedido(codigo,insumo);
+                DataTable dt = ObjAD.BusquedaPedido(codigo, insumo);
                 dt.TableName = "BUSQUEDA";
                 dsResultado.Tables.Add(dt);
                 dsResultado.Tables[0].Rows[0]["ERRORES"] = false;
@@ -1840,27 +1840,30 @@ namespace CapaLN
             return ObjAD.Ingresar_Insumo(renglon, codigo_insumo, nombre, caracteristicas, presentacion, cantidad_unidad, codigo_presentacion);
         }
 
-        public DataSet InformacionPedidoCompras(int id,string noActa,string hora_acta,string fecha_acta,string fecha_compromiso)
+        public DataSet InformacionPedidoCompras(int id, string noActa, string hora_acta, string fecha_acta, string fecha_compromiso)
         {
             DataSet dsResultado = armarDsResultado();
             ObjAD = new PedidosAD();
 
             try
             {
+
                 DataTable dt = ObjAD.InformacionPedidoCompras(id);
-                dt.TableName = "BUSQUEDA";
+                dt.Columns.Add("hora_acta", typeof(String));
+                dt.Columns.Add("fecha_acta", typeof(String));
+                dt.Columns.Add("fecha_compromiso", typeof(String));
                 dt.Columns.Add("No_acta", typeof(String));
+                dt.Columns.Add("numletras", typeof(String));
+                dt.TableName = "BUSQUEDA";
                 dsResultado.Tables.Add(dt);
                 dsResultado.Tables[1].Rows[0]["No_acta"] = noActa;
-                dt.Columns.Add("hora_acta", typeof(String));
-                dsResultado.Tables.Add(dt);
                 dsResultado.Tables[1].Rows[0]["hora_acta"] = hora_acta;
-                dt.Columns.Add("fecha_acta", typeof(String));
-                dsResultado.Tables.Add(dt);
                 dsResultado.Tables[1].Rows[0]["fecha_acta"] = fecha_acta;
-                dt.Columns.Add("fecha_compromiso", typeof(String));
-                dsResultado.Tables.Add(dt);
                 dsResultado.Tables[1].Rows[0]["fecha_compromiso"] = fecha_compromiso;
+                num = new Numlet();
+                string letras = num.ToCustomCardinal(double.Parse(dsResultado.Tables[1].Rows[0]["costo"].ToString()));
+                letras = letras.ToUpper();
+                dsResultado.Tables[1].Rows[0]["numletras"] = letras;
             }
             catch (Exception ex)
             {

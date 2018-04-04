@@ -33,3 +33,8 @@ C:\Users\user Dell\Documents\Trabajo\SIPA Archivos\PRODUCCION V2\SolucionCDAG\SI
 C:\Users\user Dell\Documents\Trabajo\SIPA Archivos\PRODUCCION V2\SolucionCDAG\SIPA\CapaEN\obj\Release\CapaEN.csprojResolveAssemblyReference.cache
 C:\Users\user Dell\Documents\Trabajo\SIPA Archivos\PRODUCCION V2\SolucionCDAG\SIPA\CapaEN\obj\Release\CapaEN.dll
 C:\Users\user Dell\Documents\Trabajo\SIPA Archivos\PRODUCCION V2\SolucionCDAG\SIPA\CapaEN\obj\Release\CapaEN.pdb
+C:\Users\user Dell\Documents\GitHub\-SIPA-Des-Inst\SolucionCDAG\CapaEN\bin\Release\CapaEN.dll
+C:\Users\user Dell\Documents\GitHub\-SIPA-Des-Inst\SolucionCDAG\CapaEN\bin\Release\CapaEN.pdb
+C:\Users\user Dell\Documents\GitHub\-SIPA-Des-Inst\SolucionCDAG\CapaEN\obj\Release\CapaEN.csprojResolveAssemblyReference.cache
+C:\Users\user Dell\Documents\GitHub\-SIPA-Des-Inst\SolucionCDAG\CapaEN\obj\Release\CapaEN.dll
+C:\Users\user Dell\Documents\GitHub\-SIPA-Des-Inst\SolucionCDAG\CapaEN\obj\Release\CapaEN.pdb

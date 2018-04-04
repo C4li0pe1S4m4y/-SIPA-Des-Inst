@@ -68,7 +68,7 @@ namespace AplicacionSIPA1.Pedido
                 pAnualLN = new PlanAnualLN();
 
                 pEstrategicoLN.DdlPlanes(ddlPlanes);
-
+              
                 int idPlan = 0;
                 int anioIni = 0;
                 int anioFin = 0;
@@ -111,7 +111,13 @@ namespace AplicacionSIPA1.Pedido
                 //pAccionLN.DdlAccionesPoa(ddlAcciones, idPoa);
                 pAccionLN.DdlAcciones(ddlAcciones, idPoa, 0, "", 3);
                 ddlAcciones.Items[0].Text = "<< Elija un valor >>";
-                
+                ddlTipo.ClearSelection();
+                ddlTipo.Items.Add("<< >>");
+                ddlTipo.Items[0].Value = "0";
+                ddlTipo.Items.Add("Bien");
+                ddlTipo.Items[1].Value = "B";
+                ddlTipo.Items.Add("Servicio");
+                ddlTipo.Items[2].Value = "S";
                 filtrarGridDetalles(idPoa);
             }
             catch (Exception ex)
@@ -144,10 +150,15 @@ namespace AplicacionSIPA1.Pedido
                     object obj = gridDet.DataSource;
                     System.Data.DataTable tbl = gridDet.DataSource as System.Data.DataTable;
                     System.Data.DataView dv = tbl.DefaultView;
-
+                    filtro += " id > 0 ";
                     if (!ddlAcciones.SelectedValue.Equals("0"))
-                        filtro += " id_accion = " + ddlAcciones.SelectedValue;
-
+                        filtro += " AND id_accion = " + ddlAcciones.SelectedValue;
+                    if (!string.IsNullOrEmpty(txtNoReq.Text))
+                        filtro += " AND no_solicitud =  " + txtNoReq.Text ;
+                    if (!ddlTipo.SelectedValue.Equals("0"))
+                        filtro += " AND tipo_pedido = '" + ddlTipo.SelectedValue + "'" ;
+                    if (!string.IsNullOrEmpty(txtJustificacion.Text))
+                        filtro += " AND justificacion like '%" + txtJustificacion.Text + "%'";
                     dv.RowFilter = filtro;
                     gridDet.DataSource = dv;
                     gridDet.DataBind();
@@ -241,7 +252,7 @@ namespace AplicacionSIPA1.Pedido
             try
             {
                 limpiarControlesError();
-
+                LimpiarFiltro();
 
                 int anio = 0;
                 int idUnidad = 0;
@@ -278,7 +289,7 @@ namespace AplicacionSIPA1.Pedido
             try
             {
                 limpiarControlesError();
-
+                LimpiarFiltro();
 
                 int anio = 0;
                 int idUnidad = 0;
@@ -302,6 +313,7 @@ namespace AplicacionSIPA1.Pedido
                 pAccionLN.DdlAcciones(ddlAcciones, idPoa, 0, "", 3);
                 ddlAcciones.Items[0].Text = "<< Elija un valor >>";
 
+
                 InformacionPublica_TribunalHonor();
 
                 filtrarGridDetalles(idPoa);
@@ -319,7 +331,7 @@ namespace AplicacionSIPA1.Pedido
             try
             {
                 limpiarControlesError();
-
+                LimpiarFiltro();
                 int idPoa = 0;
                 int.TryParse(lblIdPoa.Text, out idPoa);
 
@@ -351,6 +363,8 @@ namespace AplicacionSIPA1.Pedido
             lblErrorPlan.Text = string.Empty;
             lblErrorAnio.Text = lblErrorUnidad.Text = string.Empty;
             lblError.Text = lblSuccess.Text = string.Empty;
+            
+           
 
         }
 
@@ -553,7 +567,7 @@ namespace AplicacionSIPA1.Pedido
             try
             {
                 limpiarControlesError();
-
+                LimpiarFiltro();
 
                 int anio = 0;
                 int idUnidad = 0;
@@ -592,7 +606,7 @@ namespace AplicacionSIPA1.Pedido
             try
             {
                 limpiarControlesError();
-
+                LimpiarFiltro();
 
                 int anio = 0;
                 int idUnidad = 0;
@@ -624,5 +638,30 @@ namespace AplicacionSIPA1.Pedido
                 lblError.Text = "ddlUnidades_SelectedIndexChanged(). " + ex.Message;
             }
         }
+
+        protected void btnRenglon_Click(object sender, ImageClickEventArgs e)
+        {
+            try
+            {
+                limpiarControlesError();
+
+                int idPoa = 0;
+                int.TryParse(lblIdPoa.Text, out idPoa);
+
+                filtrarGridDetalles(idPoa);
+            }
+            catch (Exception ex)
+            {
+                lblError.Text = "ddlAcciones(). " + ex.Message;
+            }
+        }
+        protected void LimpiarFiltro()
+        {
+            txtNoReq.Text = string.Empty;
+            txtJustificacion.Text = string.Empty;
+            ddlTipo.ClearSelection();
+        }
+
+
     }
 }

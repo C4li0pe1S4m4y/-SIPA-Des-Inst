@@ -203,7 +203,12 @@ namespace AplicacionSIPA1.ReporteriaSistema
         protected void ddlDependencia_SelectedIndexChanged(object sender, EventArgs e)
         {
             validarPoa(int.Parse(ddlDependencia.SelectedValue), int.Parse(ddlAnios.SelectedValue));
-
+            
+            int idPoa = 0;
+            int.TryParse(lblPoa.Text, out idPoa);
+            pAccionLN = new PlanAccionLN();
+            pAccionLN.DdlAcciones(ddlAcciones, idPoa, 0, "", 3);
+            ddlAcciones.Items[0].Text = "<< TODAS >>";
             System.Text.StringBuilder stringBuilder = new System.Text.StringBuilder();
             stringBuilder.Append(consulta());
             if(ddlDependencia.SelectedValue == "0")

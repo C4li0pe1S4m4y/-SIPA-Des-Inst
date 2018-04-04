@@ -140,6 +140,15 @@ namespace AplicacionSIPA1.ReporteriaSistema
 
         protected void ddlDependencias_SelectedIndexChanged(object sender, EventArgs e)
         {
+            validarPoa(int.Parse(ddlDependencias.SelectedValue), int.Parse(ddlAnios.SelectedValue));
+
+            int idPoa = 0;
+            int.TryParse(lblIdPoa.Text, out idPoa);
+            pAccionLN = new PlanAccionLN();
+            pAccionLN.DdlAcciones(ddlAcciones, idPoa, 0, "", 3);
+            ddlAcciones.Items[0].Text = "<< TODAS >>";
+            pAccionLN = new PlanAccionLN();
+            pAccionLN.DdlDocumentos(ddlNumeroDocumento, " AND id_unidad = " + ddlUnidades.SelectedValue + " AND anio_solicitud =" + ddlAnios.SelectedValue);
             System.Text.StringBuilder stringBuilder = new System.Text.StringBuilder();
             stringBuilder.Append(consulta());
             if (ddlDependencias.SelectedValue == "0")

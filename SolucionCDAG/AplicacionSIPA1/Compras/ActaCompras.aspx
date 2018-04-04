@@ -19,7 +19,7 @@
                             <label>Requisicion</label>
                             <asp:UpdatePanel runat="server" ID="updPanelMantBeneficios">
                                 <ContentTemplate>
-                                    <asp:DropDownList ID="ddlRequisicion" runat="server" CssClass="form-control" Width="80%"></asp:DropDownList>
+                                    <asp:DropDownList ID="ddlRequisicion" runat="server" OnSelectedIndexChanged="ddlRequisicion_SelectedIndexChanged"  CssClass="form-control" Width="80%"></asp:DropDownList>
                                 </ContentTemplate>
                             </asp:UpdatePanel>
                         </div>
@@ -45,6 +45,7 @@
                             <br />
                             <asp:Button ID="btnImprimir" runat="server" Text="Imprimir" CssClass="btn btn-default" OnClick="btnImprimir_Click" />
                         </div>
+                        
 
                     </div>
                 </div>

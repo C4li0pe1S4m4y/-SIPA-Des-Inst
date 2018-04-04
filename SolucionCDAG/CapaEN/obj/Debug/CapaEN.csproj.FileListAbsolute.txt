@@ -63,3 +63,8 @@ C:\Users\Renato Ojeda\Documents\Projectos CDAG\-SIPA-Des-Inst\SolucionCDAG\CapaE
 C:\Users\Renato Ojeda\Documents\Projectos CDAG\-SIPA-Des-Inst\SolucionCDAG\CapaEN\obj\Debug\CapaEN.csprojResolveAssemblyReference.cache
 C:\Users\Renato Ojeda\Documents\Projectos CDAG\-SIPA-Des-Inst\SolucionCDAG\CapaEN\obj\Debug\CapaEN.dll
 C:\Users\Renato Ojeda\Documents\Projectos CDAG\-SIPA-Des-Inst\SolucionCDAG\CapaEN\obj\Debug\CapaEN.pdb
+C:\Users\user Dell\Documents\GitHub\-SIPA-Des-Inst\SolucionCDAG\CapaEN\bin\Debug\CapaEN.dll
+C:\Users\user Dell\Documents\GitHub\-SIPA-Des-Inst\SolucionCDAG\CapaEN\bin\Debug\CapaEN.pdb
+C:\Users\user Dell\Documents\GitHub\-SIPA-Des-Inst\SolucionCDAG\CapaEN\obj\Debug\CapaEN.dll
+C:\Users\user Dell\Documents\GitHub\-SIPA-Des-Inst\SolucionCDAG\CapaEN\obj\Debug\CapaEN.pdb
+C:\Users\user Dell\Documents\GitHub\-SIPA-Des-Inst\SolucionCDAG\CapaEN\obj\Debug\CapaEN.csprojResolveAssemblyReference.cache

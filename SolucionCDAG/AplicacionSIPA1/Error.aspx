@@ -11,6 +11,7 @@
     <form id="form1" runat="server">
     <div class="jumbotron">
         <h2>Error Interno En la Aplicacion, porfavor contactar a soporte.sistemas@cdga.com.gt</h2>
+        <asp:Label ID="lblError" runat="server"></asp:Label>
     </div>
     </form>
 </body>

@@ -7,13 +7,19 @@
     <h3>&nbsp;&nbsp;&nbsp;&nbsp; Consulta Renglones Presupuestarios Detalle </h3>
     <asp:Label ID="lblPoa" runat="server" Visible="false"></asp:Label>
     <div class="row">
-        <div class="col-xs-5">
+        <div class="col-xs-2">
             <label>Año</label>
             <asp:DropDownList ID="ddlAnios" runat="server" AutoPostBack="True"  OnSelectedIndexChanged="ddlAnios_SelectedIndexChanged" class="form-control" Width="90%"></asp:DropDownList>
         </div>
-        <div class="col-xs-6">
+        <div class="col-xs-4">
             <label>Unidad</label>
-            <asp:DropDownList ID="ddlUnidades" runat="server" AutoPostBack="True" class="form-control" OnSelectedIndexChanged="ddlUnidades_SelectedIndexChanged" Width="80%"></asp:DropDownList>
+            <asp:DropDownList ID="ddlUnidades" runat="server" AutoPostBack="True" class="form-control" OnSelectedIndexChanged="ddlUnidades_SelectedIndexChanged" Width="74%"></asp:DropDownList>
+        </div>
+        <!-- Se agregaron las lineas de codigo que esta encerradas en el <div> -->
+        <div class="col-xs-4">
+            <label>Dependencia</label>
+                <asp:DropDownList ID="ddlDependencia" runat="server" OnSelectedIndexChanged="ddlDependencia_SelectedIndexChanged" AutoPostBack="True" class="form-control" Width="72%">
+                                </asp:DropDownList>        
         </div>
     </div>
     <div class="row">

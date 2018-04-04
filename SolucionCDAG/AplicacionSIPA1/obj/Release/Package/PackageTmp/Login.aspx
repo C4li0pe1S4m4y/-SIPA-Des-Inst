@@ -122,7 +122,7 @@
 		<div id="col2" style="padding:0px 50px 0px 50px">
 	        
             <div id="DivContenedorMenu_EW2" > 
-                <asp:Image ID="Image1" runat="server" Height="334px" ImageUrl="~/css/Fondos/logoCdag.png" Width="280px" />
+                <asp:Image ID="Image1" runat="server" Height="334px" ImageUrl="~/css/Fondos/logo-cdag.png" Width="280px" />
                 </div>
   </div>
 	</div>

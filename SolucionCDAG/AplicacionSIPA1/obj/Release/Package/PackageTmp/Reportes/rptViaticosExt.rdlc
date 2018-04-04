@@ -704,7 +704,7 @@
                         <Paragraph>
                           <TextRuns>
                             <TextRun>
-                              <Value />
+                              <Value>=First(Fields!dependencia.Value, "DataSet1")</Value>
                               <Style>
                                 <FontSize>9pt</FontSize>
                               </Style>

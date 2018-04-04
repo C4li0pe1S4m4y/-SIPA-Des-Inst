@@ -11,7 +11,7 @@ namespace AplicacionSIPA1
     {
         protected void Page_Load(object sender, EventArgs e)
         {
-
+            lblError.Text = Convert.ToString(Request.QueryString["No"]);
         }
     }
 }

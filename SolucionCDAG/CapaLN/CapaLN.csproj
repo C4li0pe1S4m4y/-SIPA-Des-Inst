@@ -52,6 +52,8 @@
     <Compile Include="ComprasLN.cs" />
     <Compile Include="AccionesLN.cs" />
     <Compile Include="CmiLN.cs" />
+    <Compile Include="Numalet.cs" />
+    <Compile Include="Numlet.cs" />
     <Compile Include="SeguimientoLN.cs" />
     <Compile Include="ViaticosLN.cs" />
     <Compile Include="EmpleadosLN.cs" />

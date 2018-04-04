@@ -16,13 +16,16 @@
     <div class="row">
         <div class="col-xs-1">
             <label>Año</label>
-            <asp:DropDownList ID="ddlAnios" runat="server" class="form-control"  Width="100%"></asp:DropDownList>
+            <asp:DropDownList ID="ddlAnios" runat="server" class="form-control" AutoPostBack="True" OnSelectedIndexChanged="ddlAnios_SelectedIndexChanged"  Width="100%"></asp:DropDownList>
         </div>
         <div class="col-xs-4">
             <label>Unidad</label>
             <asp:DropDownList ID="ddlUnidades" runat="server" class="form-control" AutoPostBack="True" OnSelectedIndexChanged="ddlUnidades_SelectedIndexChanged"  Width="100%"></asp:DropDownList>
         </div>
-         
+        <div class="col-xs-4">
+            <label>Dependencia</label>
+            <asp:DropDownList ID="ddlDependencias" runat="server" class="form-control" AutoPostBack="True" OnSelectedIndexChanged="ddlDependencias_SelectedIndexChanged"  Width="100%"></asp:DropDownList>
+        </div>         
     </div>
     <br />
     <div class="row">

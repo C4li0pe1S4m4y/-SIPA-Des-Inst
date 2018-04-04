@@ -2,566 +2,6 @@
 <Report xmlns="http://schemas.microsoft.com/sqlserver/reporting/2008/01/reportdefinition" xmlns:rd="http://schemas.microsoft.com/SQLServer/reporting/reportdesigner">
   <Body>
     <ReportItems>
-      <Textbox Name="no_acta">
-        <CanGrow>true</CanGrow>
-        <KeepTogether>true</KeepTogether>
-        <Paragraphs>
-          <Paragraph>
-            <TextRuns>
-              <TextRun>
-                <Value>    ACTA ADMINISTRATVA NO. </Value>
-                <Style />
-              </TextRun>
-              <TextRun>
-                <Value>=First(Fields!no_acta.Value, "DataSet1")</Value>
-                <Style />
-              </TextRun>
-            </TextRuns>
-            <Style />
-          </Paragraph>
-        </Paragraphs>
-        <rd:DefaultName>no_acta</rd:DefaultName>
-        <Top>1.64253cm</Top>
-        <Left>5.62187cm</Left>
-        <Height>0.6cm</Height>
-        <Width>6.98733cm</Width>
-        <Style>
-          <Border>
-            <Style>None</Style>
-          </Border>
-          <PaddingLeft>2pt</PaddingLeft>
-          <PaddingRight>2pt</PaddingRight>
-          <PaddingTop>2pt</PaddingTop>
-          <PaddingBottom>2pt</PaddingBottom>
-        </Style>
-      </Textbox>
-      <Textbox Name="hora_acta">
-        <CanGrow>true</CanGrow>
-        <KeepTogether>true</KeepTogether>
-        <Paragraphs>
-          <Paragraph>
-            <TextRuns>
-              <TextRun>
-                <Value>EN LA CUIDAD DE GUATEMALA,  SIENDO  LAS  </Value>
-                <Style>
-                  <FontFamily>CAlibri</FontFamily>
-                  <FontSize>12pt</FontSize>
-                </Style>
-              </TextRun>
-              <TextRun>
-                <Value>=First(Fields!hora_acta.Value, "DataSet1")</Value>
-                <Style>
-                  <FontFamily>CAlibri</FontFamily>
-                  <FontSize>12pt</FontSize>
-                </Style>
-              </TextRun>
-              <TextRun>
-                <Value>  HORAS  DEL </Value>
-                <Style>
-                  <FontFamily>CAlibri</FontFamily>
-                  <FontSize>12pt</FontSize>
-                </Style>
-              </TextRun>
-              <TextRun>
-                <Value>=Fields!fecha_acta.Value</Value>
-                <Style>
-                  <FontFamily>CAlibri</FontFamily>
-                  <FontSize>12pt</FontSize>
-                </Style>
-              </TextRun>
-              <TextRun>
-                <Value>   SE</Value>
-                <Style>
-                  <FontFamily>CAlibri</FontFamily>
-                  <FontSize>12pt</FontSize>
-                </Style>
-              </TextRun>
-            </TextRuns>
-            <Style />
-          </Paragraph>
-          <Paragraph>
-            <TextRuns>
-              <TextRun>
-                <Value>ENCUENTRAN  CONSTITUIDOS,  EN LA  OFICINA  DE  LA  DIRECCION  DE  COMPRAS Y</Value>
-                <Style>
-                  <FontFamily>CAlibri</FontFamily>
-                  <FontSize>12pt</FontSize>
-                </Style>
-              </TextRun>
-            </TextRuns>
-            <Style />
-          </Paragraph>
-          <Paragraph>
-            <TextRuns>
-              <TextRun>
-                <Value>CONTRATACIONES DE LA CONFEDERACIÓN DEPORTIVA AUTÓNOMA DE GUATEMALA UBICADA EN EL PMIER NIVEL DEL EDIFICIO PALACIO DE LOS DEPORTES PROFESOR MANUL MARIA AVILA AYALA, VEINTISÉIS  (26)  CALLE  NUEVE GUIÓN  TREINTA Y  UNO (9-31)  ZONA  CINCO  (5), COMPARECEN LAS SIGUIENTES PERSONAS: LICENCIADA MARÍA BEATRIZ GILARDI MATUS, SUBGERENTE ADMINISTRATIVO, GUSTAVO ADOLFO HERNANDEZ BARRERA, DIRECTOR DE COMPRAS Y CONTRATACIONES, OTTO RAUL DIAZ BROLO, COORDINADOR DE COMPRAS DIRECTAS, Y </Value>
-                <Style>
-                  <FontFamily>CAlibri</FontFamily>
-                  <FontSize>12pt</FontSize>
-                </Style>
-              </TextRun>
-              <TextRun>
-                <Value>=Fields!nombres.Value</Value>
-                <Style>
-                  <FontFamily>CAlibri</FontFamily>
-                  <FontSize>12pt</FontSize>
-                </Style>
-              </TextRun>
-              <TextRun>
-                <Value>, TÉCNICO DE COMPRAS, PPARA DEJAR  CONSTANCIA DE LO SIGUIENTE: </Value>
-                <Style>
-                  <FontFamily>CAlibri</FontFamily>
-                  <FontSize>12pt</FontSize>
-                </Style>
-              </TextRun>
-              <TextRun>
-                <Value>PRIMER: </Value>
-                <Style>
-                  <FontFamily>CAlibri</FontFamily>
-                  <FontSize>12pt</FontSize>
-                  <FontWeight>Bold</FontWeight>
-                </Style>
-              </TextRun>
-              <TextRun>
-                <Value>BASE LEGAL.</Value>
-                <Style>
-                  <FontFamily>CAlibri</FontFamily>
-                  <FontSize>12pt</FontSize>
-                  <FontWeight>Bold</FontWeight>
-                  <TextDecoration>Underline</TextDecoration>
-                </Style>
-              </TextRun>
-              <TextRun>
-                <Value> LA PRESENTE ACTA SE FACCIONA CON FUNDAMENTO EN LOS ARTÍCULOS CUARENTA Y TRES (43) Y CINCUENTA (50) DEL DECRETO NÚMERO CINCUENTA Y SIETE GUIÓN NOVENTA Y DOS (57-92) DEL CONGRESO DE LA REPÚBLICA DE GUATEMALA ''LEY DE CONTRATACIONES DEL ESTADO.'' </Value>
-                <Style>
-                  <FontFamily>CAlibri</FontFamily>
-                  <FontSize>12pt</FontSize>
-                  <FontWeight>Normal</FontWeight>
-                  <TextDecoration>None</TextDecoration>
-                </Style>
-              </TextRun>
-              <TextRun>
-                <Value>SEGUNDO: </Value>
-                <Style>
-                  <FontFamily>CAlibri</FontFamily>
-                  <FontSize>12pt</FontSize>
-                  <FontWeight>Bold</FontWeight>
-                  <TextDecoration>None</TextDecoration>
-                </Style>
-              </TextRun>
-              <TextRun>
-                <Value>OBJETO.</Value>
-                <Style>
-                  <FontFamily>CAlibri</FontFamily>
-                  <FontSize>12pt</FontSize>
-                  <FontWeight>Bold</FontWeight>
-                  <TextDecoration>Underline</TextDecoration>
-                </Style>
-              </TextRun>
-              <TextRun>
-                <Value> LA </Value>
-                <Style>
-                  <FontFamily>CAlibri</FontFamily>
-                  <FontSize>12pt</FontSize>
-                  <FontWeight>Normal</FontWeight>
-                  <TextDecoration>None</TextDecoration>
-                </Style>
-              </TextRun>
-              <TextRun>
-                <Value>=Fields!Unidad.Value</Value>
-                <Style>
-                  <FontFamily>CAlibri</FontFamily>
-                  <FontSize>12pt</FontSize>
-                  <FontWeight>Normal</FontWeight>
-                  <TextDecoration>None</TextDecoration>
-                </Style>
-              </TextRun>
-              <TextRun>
-                <Value> POR MEDIO DE LA REQUISICION NO. </Value>
-                <Style>
-                  <FontFamily>CAlibri</FontFamily>
-                  <FontSize>12pt</FontSize>
-                  <FontWeight>Normal</FontWeight>
-                  <TextDecoration>None</TextDecoration>
-                </Style>
-              </TextRun>
-              <TextRun>
-                <Value>=Fields!solicitud.Value</Value>
-                <Style>
-                  <FontFamily>CAlibri</FontFamily>
-                  <FontSize>12pt</FontSize>
-                  <FontWeight>Normal</FontWeight>
-                  <TextDecoration>None</TextDecoration>
-                </Style>
-              </TextRun>
-              <TextRun>
-                <Value> SOLICITALA CONTRATCION Y/O ADQUISICION DE </Value>
-                <Style>
-                  <FontFamily>CAlibri</FontFamily>
-                  <FontSize>12pt</FontSize>
-                  <FontWeight>Normal</FontWeight>
-                  <TextDecoration>None</TextDecoration>
-                </Style>
-              </TextRun>
-              <TextRun>
-                <Value>=Fields!Justificacion.Value</Value>
-                <Style>
-                  <FontFamily>CAlibri</FontFamily>
-                  <FontSize>12pt</FontSize>
-                  <FontWeight>Normal</FontWeight>
-                  <TextDecoration>None</TextDecoration>
-                </Style>
-              </TextRun>
-              <TextRun>
-                <Value>. ADJUDICÁNDOSE PARA EL EFECTO AL PROVEEDOR </Value>
-                <Style>
-                  <FontFamily>CAlibri</FontFamily>
-                  <FontSize>12pt</FontSize>
-                  <FontWeight>Normal</FontWeight>
-                  <TextDecoration>None</TextDecoration>
-                </Style>
-              </TextRun>
-              <TextRun>
-                <Value>=Fields!razon_social.Value</Value>
-                <Style>
-                  <FontFamily>CAlibri</FontFamily>
-                  <FontSize>12pt</FontSize>
-                  <FontWeight>Normal</FontWeight>
-                  <TextDecoration>None</TextDecoration>
-                </Style>
-              </TextRun>
-              <TextRun>
-                <Value>, INSCRITO ANTE  LA SUPERINTENDENCIA DE ADMINISTRACIÓN TRIBUTARIA -SAT- CON EL NUMERO DE IDENTIFICACION TRIBUTARIA -NIT- </Value>
-                <Style>
-                  <FontFamily>CAlibri</FontFamily>
-                  <FontSize>12pt</FontSize>
-                  <FontWeight>Normal</FontWeight>
-                  <TextDecoration>None</TextDecoration>
-                </Style>
-              </TextRun>
-              <TextRun>
-                <Value>=Fields!nit.Value</Value>
-                <Style>
-                  <FontFamily>CAlibri</FontFamily>
-                  <FontSize>12pt</FontSize>
-                  <FontWeight>Normal</FontWeight>
-                  <TextDecoration>None</TextDecoration>
-                </Style>
-              </TextRun>
-              <TextRun>
-                <Value>, SEGÚN ORDEN DE COMPRA NO.</Value>
-                <Style>
-                  <FontFamily>CAlibri</FontFamily>
-                  <FontSize>12pt</FontSize>
-                  <FontWeight>Normal</FontWeight>
-                  <TextDecoration>None</TextDecoration>
-                </Style>
-              </TextRun>
-              <TextRun>
-                <Value>=Fields!no_orden_compra.Value</Value>
-                <Style>
-                  <FontFamily>CAlibri</FontFamily>
-                  <FontSize>12pt</FontSize>
-                  <FontWeight>Normal</FontWeight>
-                  <TextDecoration>None</TextDecoration>
-                </Style>
-              </TextRun>
-              <TextRun>
-                <Value>, ELABORADA POR UN MONTO EN QUETZALES DE </Value>
-                <Style>
-                  <FontFamily>CAlibri</FontFamily>
-                  <FontSize>12pt</FontSize>
-                  <FontWeight>Normal</FontWeight>
-                  <TextDecoration>None</TextDecoration>
-                </Style>
-              </TextRun>
-              <TextRun>
-                <Value>=Fields!numletras.Value</Value>
-                <Style>
-                  <FontFamily>CAlibri</FontFamily>
-                  <FontSize>12pt</FontSize>
-                  <FontWeight>Bold</FontWeight>
-                  <TextDecoration>None</TextDecoration>
-                </Style>
-              </TextRun>
-              <TextRun>
-                <Value> (</Value>
-                <Style>
-                  <FontFamily>calibri</FontFamily>
-                  <FontSize>12pt</FontSize>
-                  <FontWeight>Bold</FontWeight>
-                  <TextDecoration>None</TextDecoration>
-                </Style>
-              </TextRun>
-              <TextRun>
-                <Value>=Fields!costo.Value</Value>
-                <Style>
-                  <FontFamily>calibri</FontFamily>
-                  <FontSize>12pt</FontSize>
-                  <FontWeight>Bold</FontWeight>
-                  <TextDecoration>None</TextDecoration>
-                </Style>
-              </TextRun>
-              <TextRun>
-                <Value>), </Value>
-                <Style>
-                  <FontFamily>calibri</FontFamily>
-                  <FontSize>12pt</FontSize>
-                  <FontWeight>Bold</FontWeight>
-                  <TextDecoration>None</TextDecoration>
-                </Style>
-              </TextRun>
-              <TextRun>
-                <Value>DE FECHA DE COMPROMISO </Value>
-                <Style>
-                  <FontFamily>calibri</FontFamily>
-                  <FontSize>12pt</FontSize>
-                  <FontWeight>Normal</FontWeight>
-                  <TextDecoration>None</TextDecoration>
-                </Style>
-              </TextRun>
-              <TextRun>
-                <Value>=Fields!fecha_compromiso.Value</Value>
-                <Style>
-                  <FontFamily>calibri</FontFamily>
-                  <FontSize>12pt</FontSize>
-                  <FontWeight>Normal</FontWeight>
-                  <TextDecoration>None</TextDecoration>
-                </Style>
-              </TextRun>
-              <TextRun>
-                <Value>. </Value>
-                <Style>
-                  <FontFamily>calibri</FontFamily>
-                  <FontSize>12pt</FontSize>
-                  <FontWeight>Normal</FontWeight>
-                  <TextDecoration>None</TextDecoration>
-                </Style>
-              </TextRun>
-              <TextRun>
-                <Value>TERCERO: </Value>
-                <Style>
-                  <FontFamily>calibri</FontFamily>
-                  <FontSize>12pt</FontSize>
-                  <FontWeight>Bold</FontWeight>
-                  <TextDecoration>None</TextDecoration>
-                </Style>
-              </TextRun>
-              <TextRun>
-                <Value>VALOR DE LA NEGOCIACIÓN.</Value>
-                <Style>
-                  <FontFamily>calibri</FontFamily>
-                  <FontSize>12pt</FontSize>
-                  <FontWeight>Bold</FontWeight>
-                  <TextDecoration>Underline</TextDecoration>
-                </Style>
-              </TextRun>
-              <TextRun>
-                <Value> LA CDAG SE OBLIGA A PAGAR A </Value>
-                <Style>
-                  <FontFamily>calibri</FontFamily>
-                  <FontSize>12pt</FontSize>
-                  <FontWeight>Normal</FontWeight>
-                  <TextDecoration>None</TextDecoration>
-                </Style>
-              </TextRun>
-              <TextRun>
-                <Value>=Fields!razon_social.Value</Value>
-                <Style>
-                  <FontFamily>calibri</FontFamily>
-                  <FontSize>12pt</FontSize>
-                  <FontWeight>Normal</FontWeight>
-                  <TextDecoration>None</TextDecoration>
-                </Style>
-              </TextRun>
-              <TextRun>
-                <Value>, EN CONCEPTO DE </Value>
-                <Style>
-                  <FontFamily>calibri</FontFamily>
-                  <FontSize>12pt</FontSize>
-                  <FontWeight>Normal</FontWeight>
-                  <TextDecoration>None</TextDecoration>
-                </Style>
-              </TextRun>
-              <TextRun>
-                <Value>=Fields!Justificacion.Value</Value>
-                <Style>
-                  <FontFamily>calibri</FontFamily>
-                  <FontSize>12pt</FontSize>
-                  <FontWeight>Normal</FontWeight>
-                  <TextDecoration>None</TextDecoration>
-                </Style>
-              </TextRun>
-              <TextRun>
-                <Value>, LA CANTIDAD EN QUETZALES DE </Value>
-                <Style>
-                  <FontFamily>calibri</FontFamily>
-                  <FontSize>12pt</FontSize>
-                  <FontWeight>Normal</FontWeight>
-                  <TextDecoration>None</TextDecoration>
-                </Style>
-              </TextRun>
-              <TextRun>
-                <Value xml:space="preserve"> </Value>
-                <Style>
-                  <FontFamily>CAlibri</FontFamily>
-                  <FontSize>12pt</FontSize>
-                  <FontWeight>Normal</FontWeight>
-                  <TextDecoration>None</TextDecoration>
-                </Style>
-              </TextRun>
-              <TextRun>
-                <Value xml:space="preserve"> </Value>
-                <Style>
-                  <FontFamily>calibri</FontFamily>
-                  <FontSize>12pt</FontSize>
-                  <FontWeight>Bold</FontWeight>
-                  <TextDecoration>None</TextDecoration>
-                </Style>
-              </TextRun>
-              <TextRun>
-                <Value>=Fields!numletras.Value</Value>
-                <Style>
-                  <FontFamily>calibri</FontFamily>
-                  <FontSize>12pt</FontSize>
-                  <FontWeight>Bold</FontWeight>
-                  <TextDecoration>None</TextDecoration>
-                </Style>
-              </TextRun>
-              <TextRun>
-                <Value>(</Value>
-                <Style>
-                  <FontFamily>calibri</FontFamily>
-                  <FontSize>12pt</FontSize>
-                  <FontWeight>Bold</FontWeight>
-                  <TextDecoration>None</TextDecoration>
-                </Style>
-              </TextRun>
-              <TextRun>
-                <Value>=Fields!costo.Value</Value>
-                <Style>
-                  <FontFamily>calibri</FontFamily>
-                  <FontSize>12pt</FontSize>
-                  <FontWeight>Bold</FontWeight>
-                  <TextDecoration>None</TextDecoration>
-                </Style>
-              </TextRun>
-              <TextRun>
-                <Value>), </Value>
-                <Style>
-                  <FontFamily>calibri</FontFamily>
-                  <FontSize>12pt</FontSize>
-                  <FontWeight>Bold</FontWeight>
-                  <TextDecoration>None</TextDecoration>
-                </Style>
-              </TextRun>
-              <TextRun>
-                <Value>MONTO CONSIGANADO EN LA ORDE DE COMPRA NO. </Value>
-                <Style>
-                  <FontFamily>calibri</FontFamily>
-                  <FontSize>12pt</FontSize>
-                  <FontWeight>Normal</FontWeight>
-                  <TextDecoration>None</TextDecoration>
-                </Style>
-              </TextRun>
-              <TextRun>
-                <Value>=Fields!no_orden_compra.Value</Value>
-                <Style>
-                  <FontFamily>calibri</FontFamily>
-                  <FontSize>12pt</FontSize>
-                  <FontWeight>Normal</FontWeight>
-                  <TextDecoration>None</TextDecoration>
-                </Style>
-              </TextRun>
-              <TextRun>
-                <Value>. </Value>
-                <Style>
-                  <FontFamily>calibri</FontFamily>
-                  <FontSize>12pt</FontSize>
-                  <FontWeight>Normal</FontWeight>
-                  <TextDecoration>None</TextDecoration>
-                </Style>
-              </TextRun>
-              <TextRun>
-                <Value>CUARTO: </Value>
-                <Style>
-                  <FontFamily>calibri</FontFamily>
-                  <FontSize>12pt</FontSize>
-                  <FontWeight>Bold</FontWeight>
-                  <TextDecoration>None</TextDecoration>
-                </Style>
-              </TextRun>
-              <TextRun>
-                <Value> NO HABIENDO MÁS QUE HACER CONSTAR, SE DA POR FINALIZADA LA PRESENTE, DIEZ (10) MINUTOS DESPUES DE INCIADA LA MISMA, FIRMANDO EN EL MISMO LUGAR Y FECHA, LOS QUE EN ELLA INTERVIENEN.</Value>
-                <Style>
-                  <FontFamily>calibri</FontFamily>
-                  <FontSize>12pt</FontSize>
-                  <FontWeight>Normal</FontWeight>
-                  <TextDecoration>None</TextDecoration>
-                </Style>
-              </TextRun>
-            </TextRuns>
-            <Style />
-          </Paragraph>
-          <Paragraph>
-            <TextRuns>
-              <TextRun>
-                <Value />
-                <Style>
-                  <FontFamily>calibri</FontFamily>
-                  <FontSize>12pt</FontSize>
-                  <FontWeight>Normal</FontWeight>
-                  <TextDecoration>None</TextDecoration>
-                </Style>
-              </TextRun>
-            </TextRuns>
-            <Style />
-          </Paragraph>
-          <Paragraph>
-            <TextRuns>
-              <TextRun>
-                <Value />
-                <Style>
-                  <FontFamily>calibri</FontFamily>
-                  <FontSize>12pt</FontSize>
-                  <FontWeight>Normal</FontWeight>
-                  <TextDecoration>None</TextDecoration>
-                </Style>
-              </TextRun>
-            </TextRuns>
-            <Style />
-          </Paragraph>
-          <Paragraph>
-            <TextRuns>
-              <TextRun>
-                <Value />
-                <Style>
-                  <FontFamily>calibri</FontFamily>
-                  <FontSize>12pt</FontSize>
-                  <FontWeight>Bold</FontWeight>
-                  <TextDecoration>None</TextDecoration>
-                </Style>
-              </TextRun>
-            </TextRuns>
-            <Style />
-          </Paragraph>
-        </Paragraphs>
-        <rd:DefaultName>hora_acta</rd:DefaultName>
-        <Top>2.8067cm</Top>
-        <Left>0.37253cm</Left>
-        <Height>12.792cm</Height>
-        <Width>16.45497cm</Width>
-        <ZIndex>1</ZIndex>
-        <Style>
-          <Border>
-            <Style>None</Style>
-          </Border>
-          <PaddingLeft>2pt</PaddingLeft>
-          <PaddingRight>2pt</PaddingRight>
-          <PaddingTop>2pt</PaddingTop>
-          <PaddingBottom>2pt</PaddingBottom>
-        </Style>
-      </Textbox>
       <Textbox Name="Textbox1">
         <CanGrow>true</CanGrow>
         <KeepTogether>true</KeepTogether>
@@ -577,7 +17,7 @@
                 </Style>
               </TextRun>
               <TextRun>
-                <Value>                                                                               OTTO RAUL DIAZ BROLO</Value>
+                <Value>                                         OTTO RAUL DIAZ BROLO</Value>
                 <Style>
                   <FontFamily>CAlibri</FontFamily>
                   <FontSize>12pt</FontSize>
@@ -592,7 +32,37 @@
           <Paragraph>
             <TextRuns>
               <TextRun>
-                <Value>TÉCNICO                                                                          COORDINADOR DE COMPRAS DIRECTAS</Value>
+                <Value>TÉCNICO                                                                 COORDINADOR DE COMPRAS DIRECTAS</Value>
+                <Style>
+                  <FontFamily>CAlibri</FontFamily>
+                  <FontSize>12pt</FontSize>
+                  <FontWeight>Normal</FontWeight>
+                </Style>
+              </TextRun>
+            </TextRuns>
+            <Style>
+              <TextAlign>Left</TextAlign>
+            </Style>
+          </Paragraph>
+          <Paragraph>
+            <TextRuns>
+              <TextRun>
+                <Value />
+                <Style>
+                  <FontFamily>CAlibri</FontFamily>
+                  <FontSize>12pt</FontSize>
+                  <FontWeight>Normal</FontWeight>
+                </Style>
+              </TextRun>
+            </TextRuns>
+            <Style>
+              <TextAlign>Left</TextAlign>
+            </Style>
+          </Paragraph>
+          <Paragraph>
+            <TextRuns>
+              <TextRun>
+                <Value />
                 <Style>
                   <FontFamily>CAlibri</FontFamily>
                   <FontSize>12pt</FontSize>
@@ -651,10 +121,505 @@
           </Paragraph>
         </Paragraphs>
         <rd:DefaultName>Textbox1</rd:DefaultName>
-        <Top>16.48037cm</Top>
-        <Left>0.37253cm</Left>
-        <Height>3.35167cm</Height>
-        <Width>16.45497cm</Width>
+        <Top>17.56099cm</Top>
+        <Left>0.38664cm</Left>
+        <Height>3.69034cm</Height>
+        <Width>15.67181cm</Width>
+        <Style>
+          <Border>
+            <Style>None</Style>
+          </Border>
+          <PaddingLeft>2pt</PaddingLeft>
+          <PaddingRight>2pt</PaddingRight>
+          <PaddingTop>2pt</PaddingTop>
+          <PaddingBottom>2pt</PaddingBottom>
+        </Style>
+      </Textbox>
+      <Textbox Name="Textbox2">
+        <CanGrow>true</CanGrow>
+        <KeepTogether>true</KeepTogether>
+        <Paragraphs>
+          <Paragraph>
+            <TextRuns>
+              <TextRun>
+                <Value>   ACTA ADMINISTRATVA NO. </Value>
+                <Style>
+                  <FontFamily>Calibri</FontFamily>
+                  <FontSize>12pt</FontSize>
+                </Style>
+              </TextRun>
+              <TextRun>
+                <Value>=First(Fields!no_acta.Value, "DataSet1")</Value>
+                <Style>
+                  <FontFamily>Calibri</FontFamily>
+                  <FontSize>12pt</FontSize>
+                </Style>
+              </TextRun>
+            </TextRuns>
+            <Style />
+          </Paragraph>
+        </Paragraphs>
+        <rd:DefaultName>Textbox2</rd:DefaultName>
+        <Top>0.56303cm</Top>
+        <Left>4.51415cm</Left>
+        <Height>0.6cm</Height>
+        <Width>8.215cm</Width>
+        <ZIndex>1</ZIndex>
+        <Style>
+          <Border>
+            <Style>None</Style>
+          </Border>
+          <PaddingLeft>2pt</PaddingLeft>
+          <PaddingRight>2pt</PaddingRight>
+          <PaddingTop>2pt</PaddingTop>
+          <PaddingBottom>2pt</PaddingBottom>
+        </Style>
+      </Textbox>
+      <Textbox Name="Textbox63">
+        <CanGrow>true</CanGrow>
+        <KeepTogether>true</KeepTogether>
+        <Paragraphs>
+          <Paragraph>
+            <TextRuns>
+              <TextRun>
+                <Value>EN LA CUIDAD DE GUATEMALA, SIENDO LAS </Value>
+                <Style>
+                  <FontFamily>CAlibri</FontFamily>
+                  <FontSize>12pt</FontSize>
+                </Style>
+              </TextRun>
+              <TextRun>
+                <Value>=First(Fields!hora_acta.Value, "DataSet1")</Value>
+                <Style>
+                  <FontFamily>CAlibri</FontFamily>
+                  <FontSize>12pt</FontSize>
+                </Style>
+              </TextRun>
+              <TextRun>
+                <Value> HORAS DEL </Value>
+                <Style>
+                  <FontFamily>CAlibri</FontFamily>
+                  <FontSize>12pt</FontSize>
+                </Style>
+              </TextRun>
+              <TextRun>
+                <Value>=UCase( Fields!fecha_acta.Value)</Value>
+                <Style>
+                  <FontFamily>CAlibri</FontFamily>
+                  <FontSize>12pt</FontSize>
+                </Style>
+              </TextRun>
+              <TextRun>
+                <Value> SE ENCUENTRAN     CONSTITUIDOS, EN LA OFICINA DE LA DIRECCION DE COMPRAS  Y CONTRATACIONES DE LA  CONFEDERACIÓN DEPORTIVA AUTÓNOMA DE GUATEMALA UBICADA EN EL PRIMER NIVEL DEL EDIFICIO PALACIO DE LOS DEPORTES MANUEL MARIA AVILA AYALA, VEINTISÉIS (26) CALLE NUEVE GUIÓN TREINTA Y UNO (9-31) ZONA CINCO (5), COMPARECEN LAS SIGUIENTES PERSONAS: LICENCIADA MARÍA BEATRIZ GILARDI MATUS, SUBGERENTE ADMINISTRATIVO, GUSTAVO ADOLFO HERNANDEZ BARRERA, DIRECTOR DE COMPRAS Y CONTRATACIONES, OTTO RAUL DIAZ BROLO, COORDINADOR DE COMPRAS DIRECTAS , </Value>
+                <Style>
+                  <FontFamily>CAlibri</FontFamily>
+                  <FontSize>12pt</FontSize>
+                </Style>
+              </TextRun>
+              <TextRun>
+                <Value>Y </Value>
+                <Style />
+              </TextRun>
+              <TextRun>
+                <Value>=Fields!nombres.Value</Value>
+                <Style>
+                  <FontFamily>CAlibri</FontFamily>
+                  <FontSize>12pt</FontSize>
+                </Style>
+              </TextRun>
+              <TextRun>
+                <Value>, TÉCNICO DE COMPRAS, PARA DEJAR CONSTANCIA DE LO SIGUIENTE: </Value>
+                <Style>
+                  <FontFamily>CAlibri</FontFamily>
+                  <FontSize>12pt</FontSize>
+                </Style>
+              </TextRun>
+              <TextRun>
+                <Value>PRIMERO: </Value>
+                <Style>
+                  <FontFamily>CAlibri</FontFamily>
+                  <FontSize>12pt</FontSize>
+                  <FontWeight>Bold</FontWeight>
+                </Style>
+              </TextRun>
+              <TextRun>
+                <Value>BASE LEGAL.</Value>
+                <Style>
+                  <FontFamily>CAlibri</FontFamily>
+                  <FontSize>12pt</FontSize>
+                  <FontWeight>Bold</FontWeight>
+                  <TextDecoration>Underline</TextDecoration>
+                </Style>
+              </TextRun>
+              <TextRun>
+                <Value> LA PRESENTE ACTA SE FACCIONA CON FUNDAMENTO EN LOS ARTÍCULOS CUARENTA Y TRES (43) Y CINCUENTA (50) DEL DECRETO NÚMERO CINCUENTA Y SIETE GUIÓN NOVENTA Y DOS (57-92) DEL CONGRESO DE LA REPÚBLICA DE GUATEMALA ''LEY DE CONTRATACIONES DEL ESTADO." </Value>
+                <Style>
+                  <FontFamily>CAlibri</FontFamily>
+                  <FontSize>12pt</FontSize>
+                  <FontWeight>Normal</FontWeight>
+                  <TextDecoration>None</TextDecoration>
+                </Style>
+              </TextRun>
+              <TextRun>
+                <Value>SEGUNDO: </Value>
+                <Style>
+                  <FontFamily>CAlibri</FontFamily>
+                  <FontSize>12pt</FontSize>
+                  <FontWeight>Bold</FontWeight>
+                  <TextDecoration>None</TextDecoration>
+                </Style>
+              </TextRun>
+              <TextRun>
+                <Value>OBJETO.</Value>
+                <Style>
+                  <FontFamily>CAlibri</FontFamily>
+                  <FontSize>12pt</FontSize>
+                  <FontWeight>Bold</FontWeight>
+                  <TextDecoration>Underline</TextDecoration>
+                </Style>
+              </TextRun>
+              <TextRun>
+                <Value>  LA </Value>
+                <Style>
+                  <FontFamily>CAlibri</FontFamily>
+                  <FontSize>12pt</FontSize>
+                  <FontWeight>Normal</FontWeight>
+                  <TextDecoration>None</TextDecoration>
+                </Style>
+              </TextRun>
+              <TextRun>
+                <Value>=Fields!Unidad.Value</Value>
+                <Style>
+                  <FontFamily>CAlibri</FontFamily>
+                  <FontSize>12pt</FontSize>
+                  <FontWeight>Normal</FontWeight>
+                  <TextDecoration>None</TextDecoration>
+                </Style>
+              </TextRun>
+              <TextRun>
+                <Value> POR MEDIO DE LA REQUISICION NO. </Value>
+                <Style>
+                  <FontFamily>CAlibri</FontFamily>
+                  <FontSize>12pt</FontSize>
+                  <FontWeight>Normal</FontWeight>
+                  <TextDecoration>None</TextDecoration>
+                </Style>
+              </TextRun>
+              <TextRun>
+                <Value>=Fields!solicitud.Value</Value>
+                <Style>
+                  <FontFamily>CAlibri</FontFamily>
+                  <FontSize>12pt</FontSize>
+                  <FontWeight>Normal</FontWeight>
+                  <TextDecoration>None</TextDecoration>
+                </Style>
+              </TextRun>
+              <TextRun>
+                <Value>, SOLICITALA CONTRATCION Y/O ADQUISICION DE </Value>
+                <Style>
+                  <FontFamily>CAlibri</FontFamily>
+                  <FontSize>12pt</FontSize>
+                  <FontWeight>Normal</FontWeight>
+                  <TextDecoration>None</TextDecoration>
+                </Style>
+              </TextRun>
+              <TextRun>
+                <Value>=Fields!Justificacion.Value</Value>
+                <Style>
+                  <FontFamily>CAlibri</FontFamily>
+                  <FontSize>12pt</FontSize>
+                  <FontWeight>Normal</FontWeight>
+                  <TextDecoration>None</TextDecoration>
+                </Style>
+              </TextRun>
+              <TextRun>
+                <Value> ADJUDICÁNDOSE PARA EL EFECTO AL PROVEEDOR </Value>
+                <Style>
+                  <FontFamily>CAlibri</FontFamily>
+                  <FontSize>12pt</FontSize>
+                  <FontWeight>Normal</FontWeight>
+                  <TextDecoration>None</TextDecoration>
+                </Style>
+              </TextRun>
+              <TextRun>
+                <Value>=Fields!razon_social.Value</Value>
+                <Style>
+                  <FontFamily>CAlibri</FontFamily>
+                  <FontSize>12pt</FontSize>
+                  <FontWeight>Normal</FontWeight>
+                  <TextDecoration>None</TextDecoration>
+                </Style>
+              </TextRun>
+              <TextRun>
+                <Value>, INSCRITO  ANTE LA SUPERINTENDENCIA DE ADMINISTRACIÓN TRIBUTARIA -SAT- CON EL NUMERO    DE IDENTIFICACION TRIBUTARIA  -NIT- </Value>
+                <Style>
+                  <FontFamily>CAlibri</FontFamily>
+                  <FontSize>12pt</FontSize>
+                  <FontWeight>Normal</FontWeight>
+                  <TextDecoration>None</TextDecoration>
+                </Style>
+              </TextRun>
+              <TextRun>
+                <Value>=Fields!nit.Value</Value>
+                <Style>
+                  <FontFamily>CAlibri</FontFamily>
+                  <FontSize>12pt</FontSize>
+                  <FontWeight>Normal</FontWeight>
+                  <TextDecoration>None</TextDecoration>
+                </Style>
+              </TextRun>
+              <TextRun>
+                <Value>, SEGÚN ORDEN  DE COMPRA NO. </Value>
+                <Style>
+                  <FontFamily>CAlibri</FontFamily>
+                  <FontSize>12pt</FontSize>
+                  <FontWeight>Normal</FontWeight>
+                  <TextDecoration>None</TextDecoration>
+                </Style>
+              </TextRun>
+              <TextRun>
+                <Value>=Fields!no_orden_compra.Value</Value>
+                <Style>
+                  <FontFamily>CAlibri</FontFamily>
+                  <FontSize>12pt</FontSize>
+                  <FontWeight>Normal</FontWeight>
+                  <TextDecoration>None</TextDecoration>
+                </Style>
+              </TextRun>
+              <TextRun>
+                <Value> , ELABORADA POR UN MONTO EN QUETZALES DE </Value>
+                <Style>
+                  <FontFamily>CAlibri</FontFamily>
+                  <FontSize>12pt</FontSize>
+                  <FontWeight>Normal</FontWeight>
+                  <TextDecoration>None</TextDecoration>
+                </Style>
+              </TextRun>
+              <TextRun>
+                <Value>=Fields!numletras.Value</Value>
+                <Style>
+                  <FontFamily>CAlibri</FontFamily>
+                  <FontSize>12pt</FontSize>
+                  <FontWeight>Bold</FontWeight>
+                  <TextDecoration>None</TextDecoration>
+                </Style>
+              </TextRun>
+              <TextRun>
+                <Value> (</Value>
+                <Style>
+                  <FontFamily>CAlibri</FontFamily>
+                  <FontSize>12pt</FontSize>
+                  <FontWeight>Bold</FontWeight>
+                  <TextDecoration>None</TextDecoration>
+                </Style>
+              </TextRun>
+              <TextRun>
+                <Value>=Round(Fields!costo.Value,2)</Value>
+                <Style>
+                  <FontFamily>calibri</FontFamily>
+                  <FontSize>12pt</FontSize>
+                  <FontWeight>Bold</FontWeight>
+                  <TextDecoration>None</TextDecoration>
+                </Style>
+              </TextRun>
+              <TextRun>
+                <Value>), </Value>
+                <Style>
+                  <FontFamily>calibri</FontFamily>
+                  <FontSize>12pt</FontSize>
+                  <FontWeight>Bold</FontWeight>
+                  <TextDecoration>None</TextDecoration>
+                </Style>
+              </TextRun>
+              <TextRun>
+                <Value>DE FECHA DE COMPROMISO </Value>
+                <Style>
+                  <FontFamily>calibri</FontFamily>
+                  <FontSize>12pt</FontSize>
+                  <FontWeight>Normal</FontWeight>
+                  <TextDecoration>None</TextDecoration>
+                </Style>
+              </TextRun>
+              <TextRun>
+                <Value>=Fields!fecha_compromiso.Value</Value>
+                <Style>
+                  <FontFamily>calibri</FontFamily>
+                  <FontSize>12pt</FontSize>
+                  <FontWeight>Normal</FontWeight>
+                  <TextDecoration>None</TextDecoration>
+                </Style>
+              </TextRun>
+              <TextRun>
+                <Value>. </Value>
+                <Style>
+                  <FontFamily>calibri</FontFamily>
+                  <FontSize>12pt</FontSize>
+                  <FontWeight>Normal</FontWeight>
+                  <TextDecoration>None</TextDecoration>
+                </Style>
+              </TextRun>
+              <TextRun>
+                <Value>TERCERO:  </Value>
+                <Style>
+                  <FontFamily>calibri</FontFamily>
+                  <FontSize>12pt</FontSize>
+                  <FontWeight>Bold</FontWeight>
+                  <TextDecoration>None</TextDecoration>
+                </Style>
+              </TextRun>
+              <TextRun>
+                <Value>VALOR DE LA NEGOCIACIÓN.</Value>
+                <Style>
+                  <FontFamily>calibri</FontFamily>
+                  <FontSize>12pt</FontSize>
+                  <FontWeight>Bold</FontWeight>
+                  <TextDecoration>Underline</TextDecoration>
+                </Style>
+              </TextRun>
+              <TextRun>
+                <Value> LA CDAG SE OBLIGA A PAGAR A </Value>
+                <Style>
+                  <FontFamily>calibri</FontFamily>
+                  <FontSize>12pt</FontSize>
+                  <FontWeight>Normal</FontWeight>
+                  <TextDecoration>None</TextDecoration>
+                </Style>
+              </TextRun>
+              <TextRun>
+                <Value>=Fields!razon_social.Value</Value>
+                <Style>
+                  <FontFamily>CAlibri</FontFamily>
+                  <FontSize>12pt</FontSize>
+                  <FontWeight>Normal</FontWeight>
+                  <TextDecoration>None</TextDecoration>
+                </Style>
+              </TextRun>
+              <TextRun>
+                <Value>, EN CONCEPTO DE </Value>
+                <Style>
+                  <FontFamily>calibri</FontFamily>
+                  <FontSize>12pt</FontSize>
+                  <FontWeight>Normal</FontWeight>
+                  <TextDecoration>None</TextDecoration>
+                </Style>
+              </TextRun>
+              <TextRun>
+                <Value>=Fields!Justificacion.Value</Value>
+                <Style>
+                  <FontFamily>CAlibri</FontFamily>
+                  <FontSize>12pt</FontSize>
+                  <FontWeight>Normal</FontWeight>
+                  <TextDecoration>None</TextDecoration>
+                </Style>
+              </TextRun>
+              <TextRun>
+                <Value xml:space="preserve"> </Value>
+                <Style>
+                  <FontFamily>CAlibri</FontFamily>
+                  <FontSize>12pt</FontSize>
+                  <FontWeight>Normal</FontWeight>
+                  <TextDecoration>None</TextDecoration>
+                </Style>
+              </TextRun>
+              <TextRun>
+                <Value>LA CANTIDAD EN QUETZALES DE </Value>
+                <Style>
+                  <FontFamily>calibri</FontFamily>
+                  <FontSize>12pt</FontSize>
+                  <FontWeight>Normal</FontWeight>
+                  <TextDecoration>None</TextDecoration>
+                </Style>
+              </TextRun>
+              <TextRun>
+                <Value>=Fields!numletras.Value</Value>
+                <Style>
+                  <FontFamily>CAlibri</FontFamily>
+                  <FontSize>12pt</FontSize>
+                  <FontWeight>Bold</FontWeight>
+                  <TextDecoration>None</TextDecoration>
+                </Style>
+              </TextRun>
+              <TextRun>
+                <Value> (</Value>
+                <Style>
+                  <FontFamily>CAlibri</FontFamily>
+                  <FontSize>12pt</FontSize>
+                  <FontWeight>Bold</FontWeight>
+                  <TextDecoration>None</TextDecoration>
+                </Style>
+              </TextRun>
+              <TextRun>
+                <Value>=Round(Fields!costo.Value,2)</Value>
+                <Style>
+                  <FontFamily>calibri</FontFamily>
+                  <FontSize>12pt</FontSize>
+                  <FontWeight>Bold</FontWeight>
+                  <TextDecoration>None</TextDecoration>
+                </Style>
+              </TextRun>
+              <TextRun>
+                <Value>), </Value>
+                <Style>
+                  <FontFamily>calibri</FontFamily>
+                  <FontSize>12pt</FontSize>
+                  <FontWeight>Bold</FontWeight>
+                  <TextDecoration>None</TextDecoration>
+                </Style>
+              </TextRun>
+              <TextRun>
+                <Value>MONTO CONSIGANADO EN LA ORDE DE COMPRA NO. </Value>
+                <Style>
+                  <FontFamily>calibri</FontFamily>
+                  <FontSize>12pt</FontSize>
+                  <FontWeight>Normal</FontWeight>
+                  <TextDecoration>None</TextDecoration>
+                </Style>
+              </TextRun>
+              <TextRun>
+                <Value>=Fields!no_orden_compra.Value</Value>
+                <Style>
+                  <FontFamily>CAlibri</FontFamily>
+                  <FontSize>12pt</FontSize>
+                  <FontWeight>Normal</FontWeight>
+                  <TextDecoration>None</TextDecoration>
+                </Style>
+              </TextRun>
+              <TextRun>
+                <Value>. </Value>
+                <Style>
+                  <FontFamily>calibri</FontFamily>
+                  <FontSize>12pt</FontSize>
+                  <FontWeight>Normal</FontWeight>
+                  <TextDecoration>None</TextDecoration>
+                </Style>
+              </TextRun>
+              <TextRun>
+                <Value>CUARTO: </Value>
+                <Style>
+                  <FontFamily>calibri</FontFamily>
+                  <FontSize>12pt</FontSize>
+                  <FontWeight>Bold</FontWeight>
+                  <TextDecoration>None</TextDecoration>
+                </Style>
+              </TextRun>
+              <TextRun>
+                <Value>NO HABIENDO MÁS QUE HACER CONSTAR, SE DA POR FINALIZADA LA PRESENTE, DIEZ (10) MINUTOS DESPUES DE INCIADA LA MISMA, FIRMANDO EN EL MISMO LUGAR Y FECHA, LOS QUE EN ELLA INTERVIENEN. </Value>
+                <Style>
+                  <FontFamily>calibri</FontFamily>
+                  <FontSize>12pt</FontSize>
+                  <FontWeight>Normal</FontWeight>
+                  <TextDecoration>None</TextDecoration>
+                </Style>
+              </TextRun>
+            </TextRuns>
+            <Style />
+          </Paragraph>
+        </Paragraphs>
+        <rd:DefaultName>Textbox63</rd:DefaultName>
+        <Top>1.5367cm</Top>
+        <Left>0.11761cm</Left>
+        <Height>13.87263cm</Height>
+        <Width>16.12901cm</Width>
         <ZIndex>2</ZIndex>
         <Style>
           <Border>
@@ -667,10 +632,10 @@
         </Style>
       </Textbox>
     </ReportItems>
-    <Height>21.12433cm</Height>
+    <Height>21.56882cm</Height>
     <Style />
   </Body>
-  <Width>17.3355cm</Width>
+  <Width>16.65111cm</Width>
   <Page>
     <PageHeight>35.56cm</PageHeight>
     <PageWidth>21.59cm</PageWidth>
