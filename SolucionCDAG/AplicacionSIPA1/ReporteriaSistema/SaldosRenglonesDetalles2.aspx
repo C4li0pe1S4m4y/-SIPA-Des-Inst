@@ -7,24 +7,24 @@
     <h3>&nbsp;&nbsp;&nbsp;&nbsp; Consulta Renglones Presupuestarios Detalle </h3>
     <asp:Label ID="lblPoa" runat="server" Visible="false"></asp:Label>
     <div class="row">
-        <div class="col-xs-5">
+        <div class="col-sm-5">
             <label>Año</label>
             <asp:DropDownList ID="ddlAnios" runat="server" AutoPostBack="True" class="form-control" Width="90%"></asp:DropDownList>
         </div>
-        <div class="col-xs-6">
+        <div class="col-sm-6">
             <label>Unidad</label>
             <asp:DropDownList ID="ddlUnidades" runat="server" AutoPostBack="True" class="form-control" OnSelectedIndexChanged="ddlUnidades_SelectedIndexChanged" Width="80%"></asp:DropDownList>
         </div>
     </div>
     <div class="row">
-        <div class="col-xs-7">
+        <div class="col-sm-7">
             <label>Acciones</label>
             <asp:DropDownList ID="ddlAcciones" runat="server" AutoPostBack="True" BackColor="#003366" OnSelectedIndexChanged="ddlAcciones_SelectedIndexChanged" class="form-control" ForeColor="White" Width="100%"></asp:DropDownList>
         </div>
     </div>
 
     <div class="row">
-        <div class="col-xs-5">
+        <div class="col-sm-5">
             <label>Tipo de Documento</label>
             <br />
             <asp:CheckBoxList ID="chkTiposSalida" runat="server" OnSelectedIndexChanged="chkTiposSalida_SelectedIndexChanged" CssClass="form-control" RepeatDirection="Horizontal" AutoPostBack="True">
@@ -34,26 +34,26 @@
                 <asp:ListItem Selected="True" Value="4">Viáticos</asp:ListItem>
             </asp:CheckBoxList>
         </div>
-        <div class="col-xs-3">
+        <div class="col-sm-3">
             <label>Fecha Inicio</label>
             <br />
             <asp:TextBox ID="txtFechaInicio" runat="server" TextMode="Date"></asp:TextBox>
         </div>
-        <div class="col-xs-3">
+        <div class="col-sm-3">
             <label>Fecha Final</label>
             <br />
             <asp:TextBox ID="txtFechaFinal" OnTextChanged="txtFechaFinal_TextChanged" AutoPostBack="true" runat="server" TextMode="Date"></asp:TextBox>
         </div>
     </div>
     <div class="row">
-        <div class="col-xs-11">
+        <div class="col-sm-11">
             <label>Estados</label>
             <br />
             <asp:CheckBoxList ID="chkEstados" runat="server" OnSelectedIndexChanged="chkEstados_SelectedIndexChanged" RepeatDirection="Horizontal" AutoPostBack="True"></asp:CheckBoxList>
         </div>
     </div>
     <br />
-    <div class="col-xs-12" style="width: 100%; height: 100%; left: 23px; top: 3px;">
+    <div class="col-sm-12" style="width: 100%; height: 100%; left: 23px; top: 3px;">
         <rsweb:ReportViewer ID="ReportViewer1" runat="server" Font-Names="Verdana" Font-Size="8pt" WaitMessageFont-Names="Verdana" WaitMessageFont-Size="14pt" Width="1473px">
             <LocalReport ReportPath="Reportes\SaldosRenglonesDet.rdlc">
                 <DataSources>

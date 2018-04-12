@@ -17,6 +17,9 @@ namespace CapaAD
         public MySqlDataAdapter adaptador = new MySqlDataAdapter();
         public DataTable tabla = new DataTable();
 
+
+        MySqlTransaction myTrans;
+
         public void AbrirConexion()
         {
             string sConn;
@@ -32,7 +35,7 @@ namespace CapaAD
             catch (Exception ex)
             {
                 Console.WriteLine(ex + "Fallo en la Conexión");
-              
+
                 throw;
             }
         }
@@ -42,6 +45,51 @@ namespace CapaAD
             if (conectar.State == System.Data.ConnectionState.Open)
             {
                 conectar.Close();
+            }
+        }
+
+        public void IniciarTransaccion()
+
+        {
+
+            if (conectar.State == System.Data.ConnectionState.Open)
+
+            {
+
+                myTrans = conectar.BeginTransaction(IsolationLevel.Serializable);
+
+            }
+
+        }
+
+
+
+        public void CommitTrx()
+
+        {
+
+            if (conectar.State == System.Data.ConnectionState.Open)
+
+            {
+
+                myTrans.Commit();
+
+            }
+
+        }
+
+
+
+        public void RollBack()
+
+        {
+
+            if (conectar.State == System.Data.ConnectionState.Open)
+
+            {
+
+                myTrans.Rollback();
+
             }
         }
 

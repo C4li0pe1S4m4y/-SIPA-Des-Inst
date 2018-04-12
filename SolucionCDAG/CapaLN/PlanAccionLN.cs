@@ -472,6 +472,30 @@ namespace CapaLN
             return dsResultado;
         }
 
+        public DataSet RollBackAlmacenarDetalleTransferencias(string usuario, string accion,decimal monto)
+        {
+            DataSet dsResultado = armarDsResultado();
+
+            ObjAD = new PlanAccionAD();
+            try
+            {
+                DataTable dt = ObjAD.RollBackAlmacenarDetalleTransferencias(usuario,accion,monto);
+
+                if (!bool.Parse(dt.Rows[0]["RESULTADO"].ToString()))
+                    throw new Exception(dt.Rows[0]["MENSAJE"].ToString());
+
+                dsResultado.Tables[0].Rows[0]["ERRORES"] = false;
+                dsResultado.Tables[0].Rows[0]["MSG_ERROR"] = string.Empty;
+                dsResultado.Tables[0].Rows[0]["VALOR"] = dt.Rows[0]["MENSAJE"].ToString();
+            }
+            catch (Exception ex)
+            {
+                dsResultado.Tables[0].Rows[0]["MSG_ERROR"] = " CapaLN.AlmacenarDetalleTransferencias(). " + ex.Message;
+            }
+
+            return dsResultado;
+        }
+
         public DataSet armarDsResultado()
         {
             DataSet ds = new DataSet();

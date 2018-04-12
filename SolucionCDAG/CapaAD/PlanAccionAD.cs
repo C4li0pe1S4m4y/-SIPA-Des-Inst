@@ -287,12 +287,55 @@ namespace CapaAD
             return tabla;
         }
 
+        //public DataTable AlmacenarDetalleTransferencias(AccionesDetTransferenciasEN ObjEN)
+        //{
+        //    conectar = new ConexionBD();
+        //    DataTable tabla = new DataTable();
+        //    conectar.AbrirConexion();
+        //    string query = string.Format("CALL sp_iu_accion_det_transferencia({0}, {1}, {2}, {3}, {4}, {5}, {6}, '{7}', {8}, {9}, '{10}', {11}, {12}, {13}, {14}, '{15}', '{16}', '{17}');", ObjEN.vid_poa, ObjEN.vid_accion_origen, ObjEN.vid_detalle, ObjEN.vmonto_actual_origen, ObjEN.vmonto_nuevo_origen, ObjEN.vcodificado_origen, ObjEN.vdebito, ObjEN.vdestino_debito, ObjEN.vid_accion_destino, ObjEN.vid_detalle_destino, ObjEN.vno_renglon_ppto, ObjEN.vmonto_actual_destino, ObjEN.vmonto_nuevo_destino, ObjEN.vcodificado_destino, ObjEN.vcredito, ObjEN.vorigen_credito, ObjEN.vjustificacion, ObjEN.vusuario);
+        //    MySqlDataAdapter consulta = new MySqlDataAdapter(query, conectar.conectar);
+        //    consulta.Fill(tabla);
+        //    conectar.CerrarConexion();
+        //    return tabla;
+        //}
+
         public DataTable AlmacenarDetalleTransferencias(AccionesDetTransferenciasEN ObjEN)
+
         {
             conectar = new ConexionBD();
             DataTable tabla = new DataTable();
             conectar.AbrirConexion();
-            string query = string.Format("CALL sp_iu_accion_det_transferencia({0}, {1}, {2}, {3}, {4}, {5}, {6}, '{7}', {8}, {9}, '{10}', {11}, {12}, {13}, {14}, '{15}', '{16}', '{17}');", ObjEN.vid_poa, ObjEN.vid_accion_origen, ObjEN.vid_detalle, ObjEN.vmonto_actual_origen, ObjEN.vmonto_nuevo_origen, ObjEN.vcodificado_origen, ObjEN.vdebito, ObjEN.vdestino_debito, ObjEN.vid_accion_destino, ObjEN.vid_detalle_destino, ObjEN.vno_renglon_ppto, ObjEN.vmonto_actual_destino, ObjEN.vmonto_nuevo_destino, ObjEN.vcodificado_destino, ObjEN.vcredito, ObjEN.vorigen_credito, ObjEN.vjustificacion, ObjEN.vusuario);
+            conectar.IniciarTransaccion();
+            try
+            {
+                string query = string.Format("CALL sp_iu_accion_det_transferencia({0}, {1}, {2}, {3}, {4}, {5}, {6}, '{7}', {8}, {9}, '{10}', {11}, {12}, {13}, {14}, '{15}', '{16}', '{17}');", ObjEN.vid_poa, ObjEN.vid_accion_origen, ObjEN.vid_detalle, ObjEN.vmonto_actual_origen, ObjEN.vmonto_nuevo_origen, ObjEN.vcodificado_origen, ObjEN.vdebito, ObjEN.vdestino_debito, ObjEN.vid_accion_destino, ObjEN.vid_detalle_destino, ObjEN.vno_renglon_ppto, ObjEN.vmonto_actual_destino, ObjEN.vmonto_nuevo_destino, ObjEN.vcodificado_destino, ObjEN.vcredito, ObjEN.vorigen_credito, ObjEN.vjustificacion, ObjEN.vusuario);
+                MySqlDataAdapter consulta = new MySqlDataAdapter(query, conectar.conectar);
+                conectar.CommitTrx();
+                consulta.Fill(tabla);
+            }
+            catch
+            {
+                conectar.RollBack();
+                tabla = null;
+            }
+            conectar.CerrarConexion();
+            return tabla;
+
+        }
+
+
+
+
+        public DataTable RollBackAlmacenarDetalleTransferencias(string usuario,string accion,decimal monto)
+        {
+            conectar = new ConexionBD();
+            DataTable tabla = new DataTable();
+            conectar.AbrirConexion();
+            string query = string.Format("UPDATE sipa_detalles_accion SET " +
+                                        "monto = {2}, usuario_act = '{0}', fecha_act = NOW() " +
+                                        "WHERE id_detalle = {1}; " +
+                                        "UPDATE sipa_detalle_accion_mod  SET  id_detalle = {1},Justificacion='Reintegro'  WHERE id_modificacion = (LAST_INSERT_ID());",usuario,accion,monto); 
+        
             MySqlDataAdapter consulta = new MySqlDataAdapter(query, conectar.conectar);
             consulta.Fill(tabla);
             conectar.CerrarConexion();

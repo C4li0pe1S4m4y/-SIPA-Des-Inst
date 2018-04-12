@@ -7,11 +7,11 @@
 
 <asp:Content ID="Content4" ContentPlaceHolderID="ContentPlaceHolder2" runat="server">
 
-    <br />
+   
 
     <div class="jumbotron">
         <div class="container">
-        <h1 style="font-size: large">¡Bienvenido!</h1>
+        <h1 style="font-size: large">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; ¡Bienvenido!</h1>
         <p class="text-primary" style="font-size: medium" >Sistema Integrado de Procesos Administrativos (SIPA) es un sistema creado para el personal de la Confederación Deportiva Autónoma de Guatemala
             para la Automatizacion de los procesos Administrativos de la Institucion.
         </p>

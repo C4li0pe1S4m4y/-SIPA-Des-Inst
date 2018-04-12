@@ -67,7 +67,7 @@ namespace AplicacionSIPA1.Compras
                     GridView gridPlan = new GridView();
 
                     DataSet dsResultado = pPedidoLN.InformacionPedidoCompras(int.Parse(ddlRequisicion.SelectedValue), txtActaNo.Text, txthora.Text,
-                    txtFechaInicio.Text, txtFechaCompromiso.Text);
+                    txtFechaInicio.Text," ");
 
 
 

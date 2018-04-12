@@ -11,7 +11,8 @@
         <div class="col-md-12">
 
             <div class="row">
-                <div class="col-xs-5">
+                <div class="col-sm-1"></div>
+                <div class="col-sm-5">
                     <label>Año</label>
                     <strong>
                         <asp:Label ID="lblErrorAnio" runat="server" ForeColor="Red" Style="font-size: medium">*</asp:Label>
@@ -19,7 +20,7 @@
                     <asp:DropDownList ID="ddlAnios" runat="server" AutoPostBack="True" class="form-control" OnSelectedIndexChanged="ddlAnios_SelectedIndexChanged" Width="100%">
                     </asp:DropDownList>
                 </div>
-                <div class="col-xs-5">
+                <div class="col-sm-5">
                     <label>Unidad</label>
                     <strong>
                         <asp:Label ID="lblErrorUnidad" runat="server" ForeColor="Red" Style="font-size: medium">*</asp:Label>
@@ -29,34 +30,37 @@
                 </div>
             </div>
             <div class="row">
-                <div class="col-xs-5">
+                <div class="col-sm-1"></div>
+                <div class="col-sm-5">
                     <label>Dependencia</label>
                     <asp:DropDownList ID="ddlDependencia" runat="server" OnSelectedIndexChanged="ddlDependencia_SelectedIndexChanged" AutoPostBack="True" class="form-control" Width="100%">
                     </asp:DropDownList>
                 </div>
-                <div class="col-xs-5">
+                <div class="col-sm-5">
                     <label>Jefatura/Unidad</label>
                     <asp:DropDownList ID="ddlJefaturaUnidad" runat="server" OnSelectedIndexChanged="ddlJefaturaUnidad_SelectedIndexChanged" AutoPostBack="True" class="form-control" Width="100%">
                     </asp:DropDownList>
                 </div>
             </div>
             <div class="row">
-                <div class="col-xs-10">
+                <div class="col-sm-1"></div>
+                <div class="col-sm-10">
                     <label>Acciones </label>
                     <asp:DropDownList ID="ddlAcciones" runat="server" AutoPostBack="True" BackColor="#003366" class="form-control" ForeColor="White" OnSelectedIndexChanged="ddlAcciones_SelectedIndexChanged" Width="100%">
                     </asp:DropDownList>
                 </div>
             </div>
             <div class="row">
-                <div class="col-xs-1">
+                <div class="col-sm-1"></div>
+                <div class="col-sm-1">
                     <label>No.Requesicion</label>
                     <asp:TextBox ID="txtNoReq" runat="server" CssClass="form-control" Width="100%"></asp:TextBox>
                 </div>
-                <div class="col-xs-1">
+                <div class="col-sm-1">
                     <label>Bien/Servicio</label>
                     <asp:DropDownList ID="ddlTipo"  runat="server" CssClass="form-control" Width="100%"></asp:DropDownList>
                 </div>
-                <div class="col-xs-3">
+                <div class="col-sm-3">
                     <label>Justificación</label>
                     <asp:TextBox ID="txtJustificacion" runat="server" CssClass="form-control" Width="100%"></asp:TextBox>
                 </div>
@@ -70,10 +74,10 @@
     </div>
 
     <div class="row">
-        <div class="col-xs-3">
+        <div class="col-sm-3">
             <asp:Label ID="lblError" runat="server" Font-Bold="True" Font-Size="Medium" ForeColor="Red"></asp:Label>
         </div>
-        <div class="col-xs-2">
+        <div class="col-sm-2">
             <asp:Label ID="lblSuccess" runat="server" Font-Bold="True" Font-Size="Medium" ForeColor="Green"></asp:Label>
         </div>
     </div>
@@ -81,17 +85,17 @@
     <asp:UpdatePanel ID="upIngreso" runat="server">
         <ContentTemplate>
             <div class="row">
-                <div class="col-xs-11">
+                <div class="col-sm-1"></div>
+                <div class="col-sm-10">
                     <br />
                     <asp:GridView ID="gridDet" runat="server" AutoGenerateColumns="False" BackColor="White" BorderColor="#CCCCCC" BorderStyle="Solid" BorderWidth="1px" CellPadding="5" CellSpacing="1" DataKeyNames="ID,multianual" ForeColor="Black" GridLines="Vertical" HorizontalAlign="Center" PageSize="12" Width="100%" Font-Size="X-Small"
-                        CssClass="table table-hover table-responsive modal-content">
+                        CssClass="table table-hover ">
                         <AlternatingRowStyle BackColor="#CEEFFF" ForeColor="#333333" />
                         <Columns>
                             <asp:TemplateField HeaderText="Opciones" ControlStyle-Width="25px">
                                 <ItemTemplate>
                                     <asp:LinkButton ID="btnConsultar" runat="server" OnClick="btnConsultar_Click"><asp:Image ImageUrl="~/img/24_bits/accept.png" runat="server" /></asp:LinkButton>
-                                    &nbsp;
-                                            &nbsp;
+                                    
                                             <asp:LinkButton ID="btnImprimirr" runat="server" OnClick="btnImprimir_Click"><asp:Image ImageUrl="~/img/24_bits/download_page.png" runat="server" /></asp:LinkButton>
                                 </ItemTemplate>
                                 <HeaderStyle BorderStyle="Inset" HorizontalAlign="Center" VerticalAlign="Middle" />
@@ -179,16 +183,16 @@
     </asp:UpdatePanel>
      <asp:Label ID="lblIdPoa" runat="server" Style="font-size: medium" ForeColor="White">0</asp:Label>
      <div class="row">
-        <div class="col-xs-1">
+        <div class="col-sm-1">
             <asp:Label ID="lblPlanE" Visible="false" runat="server" Text="*"></asp:Label>
         </div>
-        <div class="col-xs-2">
+        <div class="col-sm-2">
             <asp:Label ID="lblErrorPlan" runat="server" ForeColor="Red" Style="font-size: medium">*</asp:Label>
             <asp:DropDownList ID="ddlPlanes" runat="server" AutoPostBack="True" OnSelectedIndexChanged="ddlPlanes_SelectedIndexChanged" Width="50%">
             </asp:DropDownList>
         </div>
 
-        <div class="col-xs-3">
+        <div class="col-sm-3">
             <asp:Label ID="lblErrorPoa" runat="server" ForeColor="Red" Style="font-size: medium"></asp:Label>
         </div>
     </div>

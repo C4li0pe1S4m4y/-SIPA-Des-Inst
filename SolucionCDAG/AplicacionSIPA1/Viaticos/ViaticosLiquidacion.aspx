@@ -6,6 +6,11 @@
 
 
 <asp:Content ID="Content2" runat="server" ContentPlaceHolderID="head">
+    <style type="text/css">
+        .auto-style3 {
+            width: 3%;
+        }
+    </style>
 </asp:Content>
 <asp:Content ID="Content1" runat="server" contentplaceholderid="ContentPlaceHolder3">
     <asp:UpdatePanel ID="UpdatePanel1" runat="server">
@@ -110,7 +115,7 @@
                     <td>&nbsp;</td>
                     <td>&nbsp;</td>
                     <td>&nbsp;</td>
-                    <td>&nbsp;</td>
+                    <td class="auto-style3">&nbsp;</td>
                     <td>&nbsp;</td>
                     <td style="width: 5%">&nbsp;</td>
                 </tr>
@@ -122,7 +127,7 @@
                     <td>&nbsp;</td>
                     <td colspan="3">No. de viático</td>
                     <td>&nbsp;</td>
-                    <td>&nbsp;</td>
+                    <td class="auto-style3">&nbsp;</td>
                     <td>&nbsp;</td>
                     <td style="width: 5%">&nbsp;</td>
                 </tr>
@@ -163,7 +168,7 @@
                     <td>&nbsp;</td>
                     <td>&nbsp;</td>
                     <td>&nbsp;</td>
-                    <td>&nbsp;</td>
+                    <td class="auto-style3">&nbsp;</td>
                     <td>&nbsp;</td>
                     <td style="width: 5%">&nbsp;</td>
                 </tr>
@@ -171,7 +176,7 @@
                     <td style="width: 5%">&nbsp;</td>
                     <td colspan="18">
                         <asp:DetailsView ID="dvPedido" runat="server" AllowPaging="True" AutoGenerateRows="False" DataKeyNames="ID,ID_ACCION" OnPageIndexChanging="dvPedido_PageIndexChanging" Width="100%"
-                            CssClass="table table-hover table-responsive">
+                            CssClass="table table-hover ">
                             <AlternatingRowStyle BackColor="#CEEFFF" ForeColor="#333333" />
                             <Fields>
                                 <asp:BoundField DataField="ID" HeaderText="ID" Visible="false">
@@ -292,7 +297,7 @@
                                 </asp:BoundField>
                             </Fields>
                             <FooterStyle Font-Bold="False" />
-                            <PagerStyle BackColor="White" BorderStyle="Solid" Font-Bold="True" Font-Names="Algerian" Font-Overline="False" Font-Size="Large" Font-Strikeout="False" Font-Underline="False" />
+                            <PagerStyle BackColor="White" BorderStyle="Solid" Font-Bold="True"  Font-Overline="False" Font-Size="Medium" Font-Strikeout="False" Font-Underline="False" />
                         </asp:DetailsView>
                     </td>
                     <td style="width: 5%">&nbsp;</td>
@@ -319,7 +324,7 @@
                     <td style="width: 5%; background-color: #006600;">&nbsp;</td>
                     <td style="width: 5%; background-color: #006600;">&nbsp;</td>
                     <td style="width: 5%; background-color: #006600;">&nbsp;</td>
-                    <td style="width: 5%; background-color: #006600;">&nbsp;</td>
+                    <td style="background-color: #006600;" class="auto-style3">&nbsp;</td>
                     <td style="width: 5%; background-color: #006600;">&nbsp;</td>
                     <td style="width: 5%; background-color: #006600;">&nbsp;</td>
                 </tr>
@@ -340,7 +345,7 @@
                     <td style="width: 5%">&nbsp;</td>
                     <td style="width: 5%">&nbsp;</td>
                     <td style="width: 5%">&nbsp;</td>
-                    <td style="width: 5%">&nbsp;</td>
+                    <td class="auto-style3">&nbsp;</td>
                     <td style="width: 5%">&nbsp;</td>
                     <td style="width: 5%">&nbsp;</td>
                     <td style="width: 5%">&nbsp;</td>
@@ -367,7 +372,7 @@
                     <td style="width: 5%">&nbsp;</td>
                     <td style="width: 5%">&nbsp;</td>
                     <td style="width: 5%">&nbsp;</td>
-                    <td style="width: 5%">&nbsp;</td>
+                    <td class="auto-style3">&nbsp;</td>
                     <td style="width: 5%">&nbsp;</td>
                     <td style="width: 5%">&nbsp;</td>
                     <td style="width: 5%">&nbsp;</td>
@@ -402,7 +407,7 @@
                     <td style="width: 5%; text-align: center;">
                         <asp:Label ID="lblACT" runat="server" Font-Bold="True" Text="ACT" Visible="False"></asp:Label>
                     </td>
-                    <td style="width: 5%; text-align: center;">
+                    <td style="text-align: center;" class="auto-style3">
                         <asp:Label ID="lblOBR" runat="server" Font-Bold="True" Text="OBR" Visible="False"></asp:Label>
                     </td>
                     <td style="width: 5%">
@@ -453,13 +458,13 @@
                             <asp:ListItem Value="---"></asp:ListItem>
                         </asp:DropDownList>
                     </td>
-                    <td style="width: 5%">
-                        <asp:DropDownList ID="ddlOBR" runat="server" class="" OnSelectedIndexChanged="ddlOBR_SelectedIndexChanged" Width="97%" Visible="False">
+                    <td class="auto-style3">
+                        <asp:DropDownList ID="ddlOBR" runat="server" class="" OnSelectedIndexChanged="ddlOBR_SelectedIndexChanged" Width="79%" Visible="False" Height="22px">
                             <asp:ListItem Value="---"></asp:ListItem>
                         </asp:DropDownList>
                     </td>
                     <td style="width: 5%">
-                        <asp:DropDownList ID="ddlRenglones" runat="server" class="" Width="90%">
+                        <asp:DropDownList ID="ddlRenglones" runat="server" class="" Width="90%" CssClass="offset-sm-0">
                         </asp:DropDownList>
                     </td>
                     <td style="width: 5%">&nbsp;</td>
@@ -482,7 +487,7 @@
                     <td style="width: 5%">&nbsp;</td>
                     <td style="width: 5%">&nbsp;</td>
                     <td style="width: 5%">&nbsp;</td>
-                    <td style="width: 5%">&nbsp;</td>
+                    <td class="auto-style3">&nbsp;</td>
                     <td style="width: 5%">&nbsp;</td>
                     <td style="width: 5%">&nbsp;</td>
                 </tr>
@@ -490,7 +495,7 @@
                     <td style="width: 5%">&nbsp;</td>
                     <td colspan="18">
                         <asp:GridView ID="gridDetalle" runat="server" AutoGenerateColumns="False" BackColor="White" BorderColor="#CCCCCC" BorderStyle="Solid" BorderWidth="1px" CellPadding="5" CellSpacing="1" DataKeyNames="ID" ForeColor="Black" GridLines="Vertical" HorizontalAlign="Center" PageSize="12" Width="100%"
-                            CssClass="table table-hover table-responsive">
+                            CssClass="table table-hover ">
                             <AlternatingRowStyle BackColor="#CEEFFF" ForeColor="#333333" />
                             <Columns>
                                 <asp:CommandField ButtonType="Image" SelectImageUrl="~/img/24_bits/accept.png" ShowSelectButton="True" Visible="False">
@@ -571,7 +576,7 @@
                     <td style="width: 5%">&nbsp;</td>
                     <td style="width: 5%">&nbsp;</td>
                     <td style="width: 5%">&nbsp;</td>
-                    <td style="width: 5%">&nbsp;</td>
+                    <td class="auto-style3">&nbsp;</td>
                     <td style="width: 5%">&nbsp;</td>
                     <td style="width: 5%">&nbsp;</td>
                 </tr>
@@ -610,7 +615,7 @@
                     <td style="width: 5%">&nbsp;</td>
                     <td style="width: 5%">&nbsp;</td>
                     <td style="width: 5%">&nbsp;</td>
-                    <td style="width: 5%">&nbsp;</td>
+                    <td class="auto-style3">&nbsp;</td>
                     <td style="width: 5%">&nbsp;</td>
                     <td style="width: 5%">&nbsp;</td>
                 </tr>
@@ -656,7 +661,7 @@
                     <td style="width: 5%">&nbsp;</td>
                     <td style="width: 5%">&nbsp;</td>
                     <td style="width: 5%">&nbsp;</td>
-                    <td style="width: 5%">&nbsp;</td>
+                    <td class="auto-style3">&nbsp;</td>
                     <td style="width: 5%">&nbsp;</td>
                     <td style="width: 5%">&nbsp;</td>
                 </tr>
@@ -679,7 +684,7 @@
                     <td style="width: 5%; background-color: #006600;">&nbsp;</td>
                     <td style="width: 5%; background-color: #006600;">&nbsp;</td>
                     <td style="width: 5%; background-color: #006600;">&nbsp;</td>
-                    <td style="width: 5%; background-color: #006600;">&nbsp;</td>
+                    <td style="background-color: #006600;" class="auto-style3">&nbsp;</td>
                     <td style="width: 5%; background-color: #006600;">&nbsp;</td>
                     <td style="width: 5%; background-color: #006600;">&nbsp;</td>
                 </tr>
@@ -701,7 +706,7 @@
                     <td style="width: 5%">&nbsp;</td>
                     <td style="width: 5%">&nbsp;</td>
                     <td style="width: 5%">&nbsp;</td>
-                    <td style="width: 5%">&nbsp;</td>
+                    <td class="auto-style3">&nbsp;</td>
                     <td style="width: 5%">&nbsp;</td>
                     <td style="width: 5%">&nbsp;</td>
                 </tr>
@@ -710,7 +715,7 @@
                     <td style="width: 5%">&nbsp;</td>
                     <td colspan="18">
                         <asp:GridView ID="gridSaldos" runat="server" AutoGenerateColumns="False" BackColor="White" BorderColor="#CCCCCC" BorderStyle="Solid" BorderWidth="1px" CellPadding="5" CellSpacing="1" DataKeyNames="ID" ForeColor="Black" GridLines="Vertical" HorizontalAlign="Center" Width="100%"
-                            CssClass="table table-hover table-responsive">
+                            CssClass="table table-hover ">
                             <AlternatingRowStyle BackColor="#CEEFFF" ForeColor="#333333" />
                             <Columns>
                                 <asp:BoundField DataField="ID" HeaderText="ID" Visible="False">

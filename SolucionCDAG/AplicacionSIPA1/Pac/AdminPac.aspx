@@ -3,10 +3,7 @@
 
 
 <asp:Content ID="Content2" runat="server" ContentPlaceHolderID="head">
-    <p>
-        &nbsp;</p>
-    <p>
-        &nbsp;</p>
+  
 </asp:Content>
 
 <asp:Content ID="Content1" runat="server" contentplaceholderid="ContentPlaceHolder3">
@@ -166,7 +163,7 @@
                 <tr>
                     <td>&nbsp;</td>
                     <td colspan="18">
-                        <asp:GridView ID="gridRenglon" runat="server" AutoGenerateColumns="False" BackColor="White" BorderColor="#CCCCCC" BorderStyle="Solid" BorderWidth="1px" CellPadding="5" CellSpacing="1" DataKeyNames="ID,NO_RENGLON" ForeColor="Black" GridLines="Vertical" OnSelectedIndexChanged="gridRenglon_SelectedIndexChanged" Width="100%" AllowPaging="True" OnPageIndexChanging="gridRenglon_PageIndexChanging" OnSelectedIndexChanging="gridRenglon_SelectedIndexChanging" CssClass="table table-hover table-responsive">
+                        <asp:GridView ID="gridRenglon" runat="server" AutoGenerateColumns="False" BackColor="White" BorderColor="#CCCCCC" BorderStyle="Solid" BorderWidth="1px" CellPadding="5" CellSpacing="1" DataKeyNames="ID,NO_RENGLON" ForeColor="Black" GridLines="Vertical" OnSelectedIndexChanged="gridRenglon_SelectedIndexChanged" Width="100%" AllowPaging="True" OnPageIndexChanging="gridRenglon_PageIndexChanging" OnSelectedIndexChanging="gridRenglon_SelectedIndexChanging" CssClass="table table-hover ">
                             <AlternatingRowStyle BackColor="#CEEFFF" ForeColor="#333333" />
                             <Columns>
                                 <asp:CommandField ButtonType="Image" SelectImageUrl="~/img/24_bits/accept.png" ShowSelectButton="True">
@@ -377,7 +374,7 @@
                     <td>&nbsp;</td>
                     <td colspan="12">
                         <asp:GridView ID="gridDet" runat="server" AutoGenerateColumns="False" BackColor="White" BorderColor="#CCCCCC" BorderStyle="Solid" BorderWidth="1px" CellPadding="5" CellSpacing="1" DataKeyNames="ID" ForeColor="Black" GridLines="Vertical" HorizontalAlign="Center" OnSelectedIndexChanged="gridDet_SelectedIndexChanged" PageSize="12" ShowFooter="True" Width="100%" 
-                            CssClass="table table-hover table-responsive">
+                            CssClass="table table-hover ">
                             <AlternatingRowStyle BackColor="#CEEFFF" ForeColor="#333333" />
                             <Columns>
                                 <asp:BoundField DataField="ID" HeaderText="ID" Visible="False">

@@ -39,6 +39,7 @@ namespace AplicacionSIPA1
                 }
                 else
                 {
+                    ReportViewer1.LocalReport.EnableHyperlinks = true;
                     pReportesAD = new ReportesAD();
                     MySqlConnection thisConnection = new MySqlConnection(thisConnectionString);
                     System.Data.DataSet thisDataSet = new System.Data.DataSet();

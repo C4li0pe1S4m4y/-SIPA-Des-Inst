@@ -23,6 +23,7 @@
         }
         .auto-style15 {
             width: 161px;
+            height: 81px;
         }
         .auto-style16 {
             color: #006699;
@@ -59,6 +60,13 @@
         .auto-style22 {
             height: 41px;
         }
+        .auto-style23 {
+            width: 275px;
+            height: 244px;
+        }
+        .auto-style24 {
+            height: 244px;
+        }
     </style>
 </asp:Content>
 <asp:Content ID="Content1" runat="server" contentplaceholderid="ContentPlaceHolder3">
@@ -66,7 +74,7 @@
                        <ContentTemplate>
                            <table style="width:100%; margin-left: auto; margin-right: auto;" >
                             <tr>
-                                <td class="auto-style15" style="font:40" colspan="2"><strong class="text-info">
+                                <td class="auto-style15" colspan="2"><strong class="text-info">
                                     &nbsp;
                                     <br />
                                     &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
@@ -75,18 +83,18 @@
                                 </td>
                             </tr>
                                <tr>
-                                   <td class="auto-style15">
+                                   <td class="auto-style23">
                                        <br />
                                    </td>
-                                   <td>
-                                       <asp:GridView ID="gridUsuario" runat="server" AllowPaging="True" AutoGenerateColumns="False" BackColor="White" BorderColor="#CCCCCC" BorderStyle="Solid" BorderWidth="1px" CellPadding="5" CellSpacing="1" CssClass="table table-hover table-responsive" DataKeyNames="ID" ForeColor="Black" GridLines="Vertical" Height="305px" HorizontalAlign="Center" OnPageIndexChanging="gridUsuario_PageIndexChanging" OnRowDeleting="gridUsuario_RowDeleting" OnSelectedIndexChanged="gridUsuario_SelectedIndexChanged" PageSize="5" Width="74%">
+                                   <td class="auto-style24">
+                                       <asp:GridView ID="gridUsuario" runat="server" AllowPaging="True" AutoGenerateColumns="False" BackColor="White" BorderColor="#CCCCCC" BorderStyle="Solid" BorderWidth="1px" CellPadding="5" CellSpacing="1" CssClass="table table-hover " DataKeyNames="ID" ForeColor="Black" GridLines="Vertical" Height="200px" HorizontalAlign="Center" OnPageIndexChanging="gridUsuario_PageIndexChanging" OnRowDeleting="gridUsuario_RowDeleting" OnSelectedIndexChanged="gridUsuario_SelectedIndexChanged" PageSize="5" Width="64%" style="margin-left: 0px">
                                            <AlternatingRowStyle BackColor="#CEEFFF" ForeColor="#333333" />
                                            <Columns>
                                                <asp:CommandField ButtonType="Image" SelectImageUrl="~/img/24_bits/accept.png" ShowSelectButton="True">
                                                <HeaderStyle BorderStyle="Inset" HorizontalAlign="Center" VerticalAlign="Middle" />
                                                <ItemStyle BorderStyle="Inset" HorizontalAlign="Center" VerticalAlign="Middle" />
                                                </asp:CommandField>
-                                               <asp:TemplateField ShowHeader="False">
+                                               <asp:TemplateField ShowHeader="False" Visible="false">
                                                    <HeaderStyle BorderStyle="Inset" HorizontalAlign="Center" VerticalAlign="Middle" />
                                                    <ItemStyle BorderStyle="Inset" HorizontalAlign="Center" VerticalAlign="Middle" />
                                                </asp:TemplateField>
@@ -107,13 +115,16 @@
                                                <ItemStyle BorderStyle="Inset" HorizontalAlign="Center" VerticalAlign="Middle" />
                                                </asp:CheckBoxField>
                                            </Columns>
-                                           <FooterStyle BackColor="#CCCC99" ForeColor="Black" />
-                                           <HeaderStyle BackColor="#333333" Font-Bold="True" ForeColor="White" />
-                                           <PagerStyle BackColor="#333333" ForeColor="White" HorizontalAlign="Center" />
+                                           <FooterStyle BackColor="#FF6600" />
+                                           <HeaderStyle BackColor="#00CC66" Font-Bold="True" ForeColor="White" />
+                                           <PagerStyle BackColor="#00CC99" ForeColor="White" CssClass="dataTables_paginate paging_simple_numbers" HorizontalAlign="Center" />
                                            <SelectedRowStyle BackColor="#99FF99" Font-Bold="True" ForeColor="#333333" />
                                        </asp:GridView>
                                    </td>
                                </tr>
+                               <tfoot>
+
+                               </tfoot>
                         </table>
               
                         <table style="width:80%;" >

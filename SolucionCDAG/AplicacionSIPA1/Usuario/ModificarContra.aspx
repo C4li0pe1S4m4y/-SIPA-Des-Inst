@@ -13,21 +13,21 @@
                                 <td class="auto-style13">Modificar Contraseña</td>
                             </tr>
                             <tr>
-                                <td class="auto-style14">Contraseña Actual&nbsp;&nbsp;&nbsp; </td>
-                                <td class="auto-style12">
-                                    <asp:TextBox ID="TextPass_Anterior" runat="server" class="form-control" placeholder="Contraseña Actual" TextMode="Password"></asp:TextBox>
+                                <td class="auto-style15">Contraseña Actual&nbsp;&nbsp;&nbsp; </td>
+                                <td class="auto-style16">
+                                    <asp:TextBox ID="TextPass_Anterior" runat="server" class="form-control" placeholder="Contraseña Actual" TextMode="Password" Width="557px"></asp:TextBox>
                                 </td>
                             </tr>
                             <tr>
                                 <td class="auto-style14">Nueva Contraseña&nbsp;&nbsp;&nbsp; </td>
                                 <td class="auto-style12">
-                                    <asp:TextBox ID="TextPass_Nuevo" runat="server" class="form-control" placeholder="Nueva Contraseña" TextMode="Password"></asp:TextBox>
+                                    <asp:TextBox ID="TextPass_Nuevo" runat="server" class="form-control" placeholder="Nueva Contraseña" TextMode="Password" Width="557px"></asp:TextBox>
                                 </td>
                             </tr>
                             <tr>
                                 <td class="auto-style14">Confirmar Contraseña&nbsp;&nbsp;&nbsp; </td>
                                 <td class="auto-style12">
-                                    <asp:TextBox ID="TextPass_Confirmar" runat="server" class="form-control" placeholder="Confirmar Contraseña" TextMode="Password"></asp:TextBox>
+                                    <asp:TextBox ID="TextPass_Confirmar" runat="server" class="form-control" placeholder="Confirmar Contraseña" TextMode="Password" Width="557px"></asp:TextBox>
                                 </td>
                             </tr>
                             <tr>
@@ -68,6 +68,18 @@
             font-weight: bold;
             color: #006699;
             text-align: right;
+        }
+        .auto-style15 {
+            width: 30%;
+            font-weight: bold;
+            color: #006699;
+            text-align: right;
+            height: 27px;
+        }
+        .auto-style16 {
+            width: 60%;
+            text-align: left;
+            height: 27px;
         }
     </style>
 </asp:Content>

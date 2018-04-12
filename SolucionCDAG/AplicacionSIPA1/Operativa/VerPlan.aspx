@@ -3,10 +3,7 @@
 
 
 <asp:Content ID="Content2" runat="server" ContentPlaceHolderID="head">
-    <p>
-        &nbsp;</p>
-    <p>
-        &nbsp;</p>
+   
 </asp:Content>
 
 <asp:Content ID="Content1" runat="server" contentplaceholderid="ContentPlaceHolder3">
@@ -310,7 +307,7 @@
                         <table style="width:100%">
                             <tr>
                             <td colspan="24">
-                                <asp:GridView ID="gridPlan" runat="server" AllowPaging="True" AutoGenerateColumns="False" BackColor="White" BorderColor="#CCCCCC" BorderStyle="Solid" BorderWidth="1px" CellPadding="5" CellSpacing="1" DataKeyNames="ID,ID_ACCION" ForeColor="Black" GridLines="Vertical" HorizontalAlign="Center" PageSize="50" Width="100%" OnRowDataBound="gridPlan_RowDataBound" style="margin-left: 47px" CssClass="table table-hover table-responsive">
+                                <asp:GridView ID="gridPlan" runat="server" AllowPaging="True" AutoGenerateColumns="False" BackColor="White" BorderColor="#CCCCCC" BorderStyle="Solid" BorderWidth="1px" CellPadding="5" CellSpacing="1" DataKeyNames="ID,ID_ACCION" ForeColor="Black" GridLines="Vertical" HorizontalAlign="Center" PageSize="50" Width="100%" OnRowDataBound="gridPlan_RowDataBound" style="margin-left: 47px" CssClass="table table-hover ">
                                     <AlternatingRowStyle BackColor="#CEEFFF" ForeColor="#333333" />
                                     <Columns>
                                         <asp:BoundField DataField="ID" HeaderText="ID" Visible="False">
@@ -611,7 +608,7 @@
                                 <td style="width: 5%">&nbsp;</td>
                                 <td style="width: 5%">&nbsp;</td>
                                 <td colspan="12">
-                                    <asp:GridView ID="gridRenglonesUnidad" runat="server" AutoGenerateColumns="False" BackColor="White" BorderColor="#CCCCCC" BorderStyle="Solid" BorderWidth="1px" CellPadding="5" CellSpacing="1" DataKeyNames="ID" ForeColor="Black" GridLines="Vertical" PageSize="50" ShowFooter="True" Width="100%" CssClass="table table-hover table-responsive">
+                                    <asp:GridView ID="gridRenglonesUnidad" runat="server" AutoGenerateColumns="False" BackColor="White" BorderColor="#CCCCCC" BorderStyle="Solid" BorderWidth="1px" CellPadding="5" CellSpacing="1" DataKeyNames="ID" ForeColor="Black" GridLines="Vertical" PageSize="50" ShowFooter="True" Width="100%" CssClass="table table-hover ">
                                         <AlternatingRowStyle BackColor="#CEEFFF" ForeColor="#333333" />
                                         <Columns>
                                             <asp:BoundField DataField="ID" HeaderText="ID" Visible="False">

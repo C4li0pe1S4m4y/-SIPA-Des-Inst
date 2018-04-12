@@ -117,10 +117,18 @@
     <Content Include="Compras\IngresoProveedores.aspx" />
     <Content Include="Compras\ListadoProveedores.aspx" />
     <Content Include="Compras\MesaEntradaCompras.aspx" />
+    <Content Include="Content\bootstrap-responsive.css" />
+    <Content Include="Content\bootstrap-responsive.min.css" />
+    <Content Include="Content\bootstrap.css" />
+    <Content Include="Content\bootstrap.min.css" />
     <Content Include="Content\css\select2.css" />
     <Content Include="Content\css\select2.min.css" />
     <Content Include="Copia de Pedido\gastoEstado.aspx" />
+    <Content Include="css\main.css" />
+    <Content Include="css\util.css" />
     <Content Include="Error.aspx" />
+    <Content Include="img\glyphicons-halflings-white.png" />
+    <Content Include="img\glyphicons-halflings.png" />
     <Content Include="Inicio.aspx" />
     <Content Include="Estrategia\PlanesEstrategicos.aspx" />
     <Content Include="Estrategia\PlanesEstrategicosB.aspx" />
@@ -129,6 +137,7 @@
     <Content Include="Financiero\MesaEntradaFinanciero.aspx" />
     <Content Include="img\cargar.gif" />
     <Content Include="img\logoBcoGuate.jpg" />
+    <Content Include="js\main.js" />
     <Content Include="Operativa\AdminAccionesPoaPpto.aspx" />
     <Content Include="Operativa\AdminPlanOperativo.aspx" />
     <Content Include="Operativa\Modificaciones\GESFOR2Listado.aspx" />
@@ -167,8 +176,28 @@
     <Content Include="Reporteria\SaldosRenglonesPen.aspx" />
     <Content Include="Reportes\frmReporte.aspx" />
     <Content Include="packages.config" />
+    <Content Include="Scripts\bootstrap.js" />
+    <Content Include="Scripts\bootstrap.min.js" />
+    <Content Include="Scripts\esm\popper-utils.js" />
+    <Content Include="Scripts\esm\popper-utils.min.js" />
+    <Content Include="Scripts\esm\popper.js" />
+    <Content Include="Scripts\esm\popper.min.js" />
+    <Content Include="Scripts\esm\popper.min.js.map" />
+    <Content Include="Scripts\esm\popper.js.map" />
+    <Content Include="Scripts\esm\popper-utils.min.js.map" />
+    <Content Include="Scripts\esm\popper-utils.js.map" />
+    <None Include="Scripts\jquery-1.7.1-vsdoc.js" />
+    <Content Include="Scripts\jquery-1.7.1.js" />
+    <Content Include="Scripts\popper-utils.js" />
+    <Content Include="Scripts\popper-utils.min.js" />
+    <Content Include="Scripts\popper.js" />
+    <Content Include="Scripts\popper.min.js" />
     <Content Include="Scripts\select2.js" />
     <Content Include="Scripts\select2.min.js" />
+    <Content Include="Scripts\umd\popper-utils.js" />
+    <Content Include="Scripts\umd\popper-utils.min.js" />
+    <Content Include="Scripts\umd\popper.js" />
+    <Content Include="Scripts\umd\popper.min.js" />
     <Content Include="Service References\WsTipoCambio\AplicacionSIPA1.WsTipoCambio.DataVariable.datasource">
       <DependentUpon>Reference.svcmap</DependentUpon>
     </Content>
@@ -215,10 +244,6 @@
     <Content Include="Viaticos\ViaticosIngresoExt.aspx" />
     <Content Include="Viaticos\ViaticosListado.aspx" />
     <Content Include="Viaticos\ViaticosIngreso.aspx" />
-    <Content Include="Content\bootstrap-theme.css" />
-    <Content Include="Content\bootstrap-theme.min.css" />
-    <Content Include="Content\bootstrap.css" />
-    <Content Include="Content\bootstrap.min.css" />
     <Content Include="Content\Site.css" />
     <Content Include="Content\themes\base\images\ui-bg_flat_0_aaaaaa_40x100.png" />
     <Content Include="Content\themes\base\images\ui-bg_flat_75_ffffff_40x100.png" />
@@ -300,7 +325,6 @@
     <Content Include="Estrategia\EjesEstrategicosB.aspx" />
     <Content Include="Estrategia\EjesEstrategicos.aspx" />
     <Content Include="favicon.ico" />
-    <Content Include="fonts\glyphicons-halflings-regular.svg" />
     <Content Include="fonts\iconic\iconic_stroke.svg" />
     <Content Include="img\24_bits\accept.png" />
     <Content Include="img\24_bits\add.png" />
@@ -406,12 +430,8 @@
     <Content Include="Reporteria\SaldosUnidades.aspx" />
     <Content Include="RH\ListadoEmpleados.aspx" />
     <Content Include="RH\IngresoEmpleados.aspx" />
-    <Content Include="Scripts\bootstrap.js" />
-    <Content Include="Scripts\bootstrap.min.js" />
     <Content Include="Scripts\chosen.jquery.js" />
     <Content Include="Scripts\jquery-1.7.1.min.js" />
-    <Content Include="Content\bootstrap-theme.css.map" />
-    <Content Include="Content\bootstrap.css.map" />
     <Content Include="Reportes\dsSipa.xsc">
       <DependentUpon>dsSipa.xsd</DependentUpon>
     </Content>
@@ -424,9 +444,6 @@
     <EmbeddedResource Include="Reportes\ActaCompras.rdlc" />
     <EmbeddedResource Include="Reportes\rptCatalogoInsumos.rdlc" />
     <EmbeddedResource Include="Reportes\SaldosRenglonesDet.rdlc" />
-    <Content Include="fonts\glyphicons-halflings-regular.woff2" />
-    <Content Include="Content\bootstrap.min.css.map" />
-    <Content Include="Content\bootstrap-theme.min.css.map" />
     <Content Include="Reportes\Actas.xsc">
       <DependentUpon>Actas.xsd</DependentUpon>
     </Content>
@@ -535,9 +552,6 @@
     <Content Include="Reportes\RequisicionesEstados.xss">
       <DependentUpon>RequisicionesEstados.xsd</DependentUpon>
     </Content>
-    <None Include="Scripts\jquery-1.9.1.intellisense.js" />
-    <Content Include="Scripts\jquery-1.9.1.js" />
-    <Content Include="Scripts\jquery-1.9.1.min.js" />
     <Content Include="Scripts\jquery-ui-1.8.20.js" />
     <Content Include="Scripts\jquery-ui-1.8.20.min.js" />
     <Content Include="Scripts\jquery.dropotron-1.0.js" />
@@ -1519,16 +1533,21 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="Principal.Master" />
-    <Content Include="fonts\glyphicons-halflings-regular.eot" />
-    <Content Include="fonts\glyphicons-halflings-regular.ttf" />
-    <Content Include="fonts\glyphicons-halflings-regular.woff" />
     <Content Include="fonts\iconic\iconic_stroke.eot" />
     <Content Include="fonts\iconic\iconic_stroke.otf" />
     <Content Include="fonts\iconic\iconic_stroke.ttf" />
-    <Content Include="Scripts\jquery-1.9.1.min.map" />
     <Content Include="Service References\WsTipoCambio\TipoCambio.wsdl" />
     <Content Include="Viaticos\ArchivoPDF\ViaticosExt.pdf" />
     <Content Include="Viaticos\ArchivoPDF\ViaticosInt.pdf" />
+    <Content Include="Scripts\umd\popper.min.js.map" />
+    <Content Include="Scripts\umd\popper.js.map" />
+    <Content Include="Scripts\umd\popper-utils.min.js.map" />
+    <Content Include="Scripts\umd\popper-utils.js.map" />
+    <Content Include="Scripts\README.md" />
+    <Content Include="Scripts\popper.min.js.map" />
+    <Content Include="Scripts\popper.js.map" />
+    <Content Include="Scripts\popper-utils.min.js.map" />
+    <Content Include="Scripts\popper-utils.js.map" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
@@ -1595,6 +1614,9 @@
   </ItemGroup>
   <ItemGroup>
     <WCFMetadataStorage Include="Service References\WsTipoCambio\" />
+  </ItemGroup>
+  <ItemGroup>
+    <TypeScriptCompile Include="Scripts\index.d.ts" />
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>

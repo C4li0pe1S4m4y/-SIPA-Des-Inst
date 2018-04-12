@@ -740,13 +740,13 @@ namespace AplicacionSIPA1.Operativa
                     idDetalleAccionDestino = int.Parse(dsResultado.Tables["BUSQUEDA"].Rows[0]["ID"].ToString());
 
                 FuncionesVarias funciones = new FuncionesVarias();
-                decimal debito = funciones.StringToDecimal(txtMontoActualOrigen.Text) - funciones.StringToDecimal(txtNuevoMontoOrigen.Text);
-                txtDebito.Text = String.Format(CultureInfo.InvariantCulture, "Q.{0:0,0.00}", debito);
+                decimal nuevoMontoO = funciones.StringToDecimal(txtMontoActualOrigen.Text) - funciones.StringToDecimal(txtDebito.Text);
+                txtNuevoMontoOrigen.Text = String.Format(CultureInfo.InvariantCulture, "Q.{0:0,0.00}", nuevoMontoO);
 
-                decimal nuevoMontoDestino = funciones.StringToDecimal(txtMontoActualDestino.Text) + debito;
+                decimal nuevoMontoDestino = funciones.StringToDecimal(txtMontoActualDestino.Text) + funciones.StringToDecimal(txtDebito.Text);
                 txtNuevoMontoDestino.Text = String.Format(CultureInfo.InvariantCulture, "Q.{0:0,0.00}", nuevoMontoDestino);
 
-                txtCredito.Text = txtDebito.Text = String.Format(CultureInfo.InvariantCulture, "Q.{0:0,0.00}", debito);
+                txtCredito.Text = txtDebito.Text = String.Format(CultureInfo.InvariantCulture, "Q.{0:0,0.00}", funciones.StringToDecimal(txtDebito.Text));
 
                 accionDetTransferenciasEN = new AccionesDetTransferenciasEN();
 
@@ -780,8 +780,41 @@ namespace AplicacionSIPA1.Operativa
                 if (bool.Parse(dsResultado.Tables[0].Rows[0]["ERRORES"].ToString()))
                     throw new Exception("No se INSERTÓ/ la transferencia: " + dsResultado.Tables[0].Rows[0]["MSG_ERROR"].ToString());
 
+                int idAccion = 0;
+                int.TryParse(ddlAccionDestino.SelectedValue, out idAccion);
+                dsResultado = planAccionLN.InformacionAccionDetalles(idAccion, 0, ddlRenglonDestino.SelectedValue, 7);
+
+                if (bool.Parse(dsResultado.Tables[0].Rows[0]["ERRORES"].ToString()))
+                    throw new Exception("No se CONSULTÓ el Renglón: " + dsResultado.Tables[0].Rows[0]["MSG_ERROR"].ToString());
+
+                if (dsResultado.Tables["BUSQUEDA"].Rows.Count > 0)
+                {
+                    decimal montoActual, codificado, saldo = 0;
+                    decimal.TryParse(dsResultado.Tables["BUSQUEDA"].Rows[0]["MONTO"].ToString(), out montoActual);
+                    decimal.TryParse(dsResultado.Tables["BUSQUEDA"].Rows[0]["CODIFICADO"].ToString(), out codificado);
+                    decimal.TryParse(dsResultado.Tables["BUSQUEDA"].Rows[0]["SALDO"].ToString(), out saldo);
+
+                    lblCodificadoDestino.Text = String.Format(CultureInfo.InvariantCulture, "Q.{0:0,0.00}", codificado);
+                    lblSaldoDestino.Text = String.Format(CultureInfo.InvariantCulture, "Q.{0:0,0.00}", saldo);
+                    
+                }
+                //if (funciones.StringToDecimal(lblSaldoDestino.Text) == funciones.StringToDecimal(txtCredito.Text)+ funciones.StringToDecimal(txtMontoActualDestino.Text))
+                //{
+                //    lblSuccessMonto.Text = "Transferencia INSERTADA exitosamente!. Presione nuevo para una nueva transferencia";
+                //    resultado = true;
+                //}
+                //else
+                //{
+                //   dsResultado =  planAccionLN.RollBackAlmacenarDetalleTransferencias(Session["usuario"].ToString(), ddlRenglonOrigen.SelectedValue,
+                //       funciones.StringToDecimal(txtCredito.Text)+ funciones.StringToDecimal(txtNuevoMontoOrigen.Text));
+                //    resultado = false;
+                //    lblErrorModMonto.Text = "No se realizo la transferencia.";
+                //}
+
                 lblSuccessMonto.Text = "Transferencia INSERTADA exitosamente!. Presione nuevo para una nueva transferencia";
                 resultado = true;
+
+
             }
             catch (Exception ex)
             {
@@ -2122,10 +2155,10 @@ namespace AplicacionSIPA1.Operativa
 
                 try
                 {
-                    nuevoMontoOrigen = funciones.StringToDecimal(txtNuevoMontoOrigen.Text);
+                    nuevoMontoOrigen = funciones.StringToDecimal(txtDebito.Text);
                     txtNuevoMontoOrigen.Text = String.Format(CultureInfo.InvariantCulture, "Q.{0:0,0.00}", nuevoMontoOrigen);
 
-                    if (nuevoMontoOrigen <= 0)
+                    if (nuevoMontoOrigen < 0)
                         throw new Exception();
                 }
                 catch (Exception ex)
@@ -2156,9 +2189,9 @@ namespace AplicacionSIPA1.Operativa
                         lblSaldoOrigen.Text = String.Format(CultureInfo.InvariantCulture, "Q.{0:0,0.00}", saldo);
                         txtMontoActualOrigen.Text = String.Format(CultureInfo.InvariantCulture, "Q.{0:0,0.00}", montoActual);
                         //txtNuevoMontoOrigen.Text = String.Format(CultureInfo.InvariantCulture, "Q.{0:0,0.00}", codificado);
-                        txtDebito.Text = String.Format(CultureInfo.InvariantCulture, "Q.{0:0,0.00}", 0);
+                        txtNuevoMontoOrigen.Text = String.Format(CultureInfo.InvariantCulture, "Q.{0:0,0.00}", 0);
 
-                        if (nuevoMontoOrigen < codificado)
+                        if (montoActual -  nuevoMontoOrigen < codificado)
                         {
                             lblErrorMontoOrigen.Text = "El nuevo monto debe no puede ser menor al codificado del renglón. ";
                             lblErrorModMonto.Text += "El nuevo monto debe no puede ser menor al codificado del renglón. ";

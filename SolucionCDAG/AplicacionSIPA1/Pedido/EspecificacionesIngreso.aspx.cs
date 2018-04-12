@@ -92,6 +92,8 @@ namespace AplicacionSIPA1.Pedido
         {
             try
             {
+                int idPedido = 0;
+                int.TryParse(lblIdPedido.Text.Split('-')[0].Trim(), out idPedido);
                 int idTipoDocumento = 0;
                 if (lblTipoDocumento.Text.Equals("R"))
                     idTipoDocumento = 1;
@@ -123,7 +125,7 @@ namespace AplicacionSIPA1.Pedido
                 }
 
                 //if (idEstado.Equals("3"))
-                    generarReporte(int.Parse(lblIdPedido.Text));
+                    generarReporte(idPedido);
             }
             catch (Exception ex)
             {
@@ -343,7 +345,9 @@ namespace AplicacionSIPA1.Pedido
 
         protected void btnImprimir_Click(object sender, EventArgs e)
         {
-            generarReporte(int.Parse(lblIdPedido.Text));
+            int idPedido = 0;
+            int.TryParse(lblIdPedido.Text.Split('-')[0].Trim(), out idPedido);
+            generarReporte(idPedido);
         }
 
         protected void btnListado_Click(object sender, EventArgs e)

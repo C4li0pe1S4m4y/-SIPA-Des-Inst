@@ -128,8 +128,7 @@
                                 <asp:TemplateField HeaderText="Opciones" ControlStyle-Width="25px" >
                                     <ItemTemplate>                                             
                                     <asp:LinkButton ID="btnConsultar" runat="server" OnClick="btnConsultar_Click"><asp:Image ImageUrl="~/img/24_bits/accept.png" runat="server" /></asp:LinkButton>
-                                    &nbsp;
-                                    &nbsp;
+                                   
                                     <asp:LinkButton ID="btnImprimirr" runat="server" OnClick="btnImprimir_Click"><asp:Image ImageUrl="~/img/24_bits/download_page.png" runat="server" /></asp:LinkButton>                   
                                </ItemTemplate>
                                     <HeaderStyle BorderStyle="Inset" HorizontalAlign="Center" VerticalAlign="Middle" />

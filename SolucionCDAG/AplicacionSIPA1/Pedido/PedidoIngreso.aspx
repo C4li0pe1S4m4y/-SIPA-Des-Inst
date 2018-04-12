@@ -3,9 +3,7 @@
 
 
 <asp:Content ID="Content2" runat="server" ContentPlaceHolderID="head">
-    <p>
-        d
-    </p>
+   
     <style type="text/css">
         .auto-style3 {
             width: 84px;
@@ -19,6 +17,12 @@
     <style type="text/css">
         .auto-style3 {
             width: 11px;
+        }
+        .auto-style6 {
+            width: 22%;
+        }
+        .auto-style7 {
+            width: 7%;
         }
     </style>
 </asp:Content>
@@ -45,7 +49,7 @@
                             <td colspan="18" style="text-align: center;"><strong>
                                 <asp:Label ID="lblErrorPoa" runat="server" ForeColor="Red" Style="font-size: medium"></asp:Label>
                             </strong></td>
-                            <td style="width: 5%"><strong>
+                            <td class="auto-style6"><strong>
                                 <asp:Label ID="lblIdPoa" runat="server" ForeColor="White" Style="font-size: medium">0</asp:Label>
                             </strong></td>
                         </tr>
@@ -56,7 +60,7 @@
                             <td colspan="3">Unidad:<strong><asp:Label ID="lblErrorUnidad" runat="server" ForeColor="Red" Style="font-size: medium">*</asp:Label>
                             </strong></td>
                             <td class="text-right" colspan="6">&nbsp;</td>
-                            <td style="width: 5%">&nbsp;</td>
+                            <td class="auto-style6">&nbsp;</td>
                         </tr>
                         <tr>
                             <td>&nbsp;</td>
@@ -68,14 +72,14 @@
                                 <asp:DropDownList ID="ddlUnidades" runat="server" AutoPostBack="True" class="form-control" OnSelectedIndexChanged="ddlUnidades_SelectedIndexChanged" Width="100%">
                                 </asp:DropDownList>
                             </td>
-                            <td style="width: 5%">&nbsp;</td>
+                            <td class="auto-style6">&nbsp;</td>
                         </tr>
                         <tr>
                             <td>&nbsp;</td>
                             <td colspan="9">Dependencia:</td>
                             <td colspan="3">Jefatura/Unidad:</td>
                             <td class="text-right" colspan="6">&nbsp;</td>
-                            <td style="width: 5%">&nbsp;</td>
+                            <td class="auto-style6">&nbsp;</td>
                         </tr>
                         <tr>
                             <td>&nbsp;</td>
@@ -87,13 +91,13 @@
                                 <asp:DropDownList ID="ddlJefaturaUnidad" runat="server" OnSelectedIndexChanged="ddlJefaturaUnidad_SelectedIndexChanged" AutoPostBack="True" class="form-control" Width="100%">
                                 </asp:DropDownList>
                             </td>
-                            <td style="width: 5%">&nbsp;</td>
+                            <td class="auto-style6">&nbsp;</td>
                         </tr>
                         <tr>
                             <td>&nbsp;</td>
                             <td colspan="18">Acciones:<strong><asp:Label ID="lblErrorAccion" runat="server" ForeColor="Red" Style="font-size: medium">*</asp:Label>
                             </strong></td>
-                            <td style="width: 5%">&nbsp;</td>
+                            <td class="auto-style6">&nbsp;</td>
                         </tr>
                         <tr>
                             <td>&nbsp;</td>
@@ -101,7 +105,7 @@
                                 <asp:DropDownList ID="ddlAcciones" runat="server" AutoPostBack="True" BackColor="#003366" class="form-control" ForeColor="White" OnSelectedIndexChanged="ddlAcciones_SelectedIndexChanged" Width="100%">
                                 </asp:DropDownList>
                             </td>
-                            <td style="width: 5%">&nbsp;</td>
+                            <td class="auto-style6">&nbsp;</td>
                         </tr>
 
 
@@ -110,7 +114,7 @@
                             <td colspan="6">&nbsp;</td>
                             <td colspan="6">&nbsp;</td>
                             <td colspan="6">&nbsp;</td>
-                            <td style="width: 5%">&nbsp;</td>
+                            <td class="auto-style6">&nbsp;</td>
                         </tr>
                         <tr>
                             <td>&nbsp;</td>
@@ -125,7 +129,7 @@
                             <td colspan="6" class="text-right">Estado del pedido: <strong>
                                 <asp:Label ID="lblEstadoPedido" runat="server" Style="font-size: medium"></asp:Label>
                             </strong></td>
-                            <td style="width: 5%">&nbsp;</td>
+                            <td class="auto-style6">&nbsp;</td>
                         </tr>
                         <tr>
                             <td>&nbsp;</td>
@@ -135,7 +139,7 @@
                             </strong></td>
                             <td colspan="6">Tipo de pedido:<strong><asp:Label ID="lblErrorTipoPedido" runat="server" ForeColor="Red" Style="font-size: medium">*</asp:Label>
                             </strong></td>
-                            <td style="width: 5%">&nbsp;</td>
+                            <td class="auto-style6">&nbsp;</td>
                         </tr>
                         <tr>
                             <td>&nbsp;</td>
@@ -151,7 +155,7 @@
                                 <asp:DropDownList ID="ddlTipoPedido" runat="server" AutoPostBack="True" class="form-control" Width="100%" OnSelectedIndexChanged="ddlTipoPedido_SelectedIndexChanged" BackColor="#FFFF99">
                                 </asp:DropDownList>
                             </td>
-                            <td style="width: 5%">&nbsp;</td>
+                            <td class="auto-style6">&nbsp;</td>
                         </tr>
                         <tr>
                             <td>&nbsp;</td>
@@ -159,16 +163,16 @@
                             <td colspan="16">Justificación:<strong><asp:Label ID="lblErrorJustificacion" runat="server" ForeColor="Red" Style="font-size: medium">*</asp:Label>
                             </strong></td>
                             <td style="width: 5%">&nbsp;</td>
-                            <td style="width: 5%">&nbsp;</td>
+                            <td class="auto-style6">&nbsp;</td>
                         </tr>
                         <tr>
                             <td>&nbsp;</td>
                             <td>&nbsp;</td>
                             <td colspan="16">
-                                <asp:TextBox ID="txtJustificacion" runat="server" class="form-control" Enabled="true" Height="50px" MaxLength="750" placeholder="Ingrese la justificación del pedido" TextMode="MultiLine" Width="100%" BackColor="#FFFF99"></asp:TextBox>
+                                <asp:TextBox ID="txtJustificacion" runat="server" class="form-control" Enabled="true" Height="50px" MaxLength="750" placeholder="Ingrese la justificación del pedido" TextMode="MultiLine" required="true" Width="100%" BackColor="#FFFF99"></asp:TextBox>
                             </td>
                             <td style="width: 5%">&nbsp;</td>
-                            <td style="width: 5%">&nbsp;</td>
+                            <td class="auto-style6">&nbsp;</td>
                         </tr>
                         <tr>
                             <td>&nbsp;</td>
@@ -178,7 +182,7 @@
                             </strong></td>
                             <td colspan="6">Anexos:<strong><asp:Label ID="lblErrorAnexos" runat="server" ForeColor="Red" Style="font-size: medium">*</asp:Label>
                             </strong></td>
-                            <td style="width: 5%">&nbsp;</td>
+                            <td class="auto-style6">&nbsp;</td>
                         </tr>
                         <tr>
                             <td>&nbsp;</td>
@@ -198,7 +202,7 @@
                                     <asp:ListItem Value="2">Términos Ref.</asp:ListItem>
                                 </asp:RadioButtonList>
                             </td>
-                            <td style="width: 5%">&nbsp;</td>
+                            <td class="auto-style6">&nbsp;</td>
                         </tr>
                         <tr>
                             <td style="width: 5%">&nbsp;</td>
@@ -218,9 +222,9 @@
                             <td style="width: 5%">&nbsp;</td>
                             <td style="width: 5%">&nbsp;</td>
                             <td style="width: 5%">&nbsp;</td>
+                            <td class="auto-style7">&nbsp;</td>
                             <td style="width: 5%">&nbsp;</td>
-                            <td style="width: 5%">&nbsp;</td>
-                            <td style="width: 5%">&nbsp;</td>
+                            <td class="auto-style6">&nbsp;</td>
                         </tr>
                         <tr>
                             <td style="width: 5%; background-color: #006600;">&nbsp;</td>
@@ -240,9 +244,9 @@
                             <td style="width: 5%; background-color: #006600;">&nbsp;</td>
                             <td style="width: 5%; background-color: #006600;">&nbsp;</td>
                             <td style="width: 5%; background-color: #006600;">&nbsp;</td>
+                            <td style="background-color: #006600;" class="auto-style7">&nbsp;</td>
                             <td style="width: 5%; background-color: #006600;">&nbsp;</td>
-                            <td style="width: 5%; background-color: #006600;">&nbsp;</td>
-                            <td style="width: 5%; background-color: #006600;">&nbsp;</td>
+                            <td style="background-color: #006600;" class="auto-style6">&nbsp;</td>
                         </tr>
                         <tr>
                             <td style="width: 5%">&nbsp;</td>
@@ -262,9 +266,9 @@
                             <td style="width: 5%">&nbsp;</td>
                             <td style="width: 5%">&nbsp;</td>
                             <td style="width: 5%">&nbsp;</td>
+                            <td class="auto-style7">&nbsp;</td>
                             <td style="width: 5%">&nbsp;</td>
-                            <td style="width: 5%">&nbsp;</td>
-                            <td style="width: 5%">&nbsp;</td>
+                            <td class="auto-style6">&nbsp;</td>
                         </tr>
                         <tr>
                             <td>&nbsp;</td>
@@ -274,7 +278,7 @@
                             <td class="text-right" style="font-size: large" colspan="6"><strong>Saldo del PAC:
                         <asp:Label ID="lblDisponibleP" runat="server" Font-Bold="True" Font-Size="Large" ForeColor="Red" Text="0.00"></asp:Label>
                             </strong></td>
-                            <td style="width: 5%">&nbsp;</td>
+                            <td class="auto-style6">&nbsp;</td>
                         </tr>
                         <tr>
                             <td>&nbsp;</td>
@@ -282,7 +286,7 @@
                                 <asp:DropDownList ID="ddlPac" runat="server" AutoPostBack="True" class="form-control" Width="100%" OnSelectedIndexChanged="ddlPac_SelectedIndexChanged">
                                 </asp:DropDownList>
                             </td>
-                            <td style="width: 5%">&nbsp;</td>
+                            <td class="auto-style6">&nbsp;</td>
                         </tr>
                         <tr>
                             <td>&nbsp;</td>
@@ -294,7 +298,7 @@
                             <td>&nbsp;</td>
                             <td colspan="6"></td>
                             <td colspan="6">
-                                <td style="width: 5%">&nbsp;</td>
+                                <td class="auto-style6">&nbsp;</td>
                         </tr>
                         <tr>
                             <td>&nbsp;</td>
@@ -307,7 +311,7 @@
                             <td>&nbsp;</td>
                             <td>&nbsp;</td>
                             <td colspan="6">&nbsp;</td>
-                            <td colspan="6">&nbsp;<td style="width: 5%">&nbsp;</td>
+                            <td colspan="6">&nbsp;<td class="auto-style6">&nbsp;</td>
                             </td>
                         </tr>
                         <tr>
@@ -341,16 +345,16 @@
                             <td class="text-right" style="font-size: large" colspan="6"><strong>Saldo del Renglón:
                         <asp:Label ID="lblDisponibleR" runat="server" Font-Bold="True" Font-Size="Large" ForeColor="Red" Text="0.00"></asp:Label>
                             </strong></td>
-                            <td style="width: 5%">&nbsp;</td>
+                            <td class="auto-style6">&nbsp;</td>
                         </tr>
                         <tr>
                             <td>&nbsp;</td>
                             <td>&nbsp;</td>
                             <td colspan="16">
-                                <asp:TextBox ID="txtDescripcion" runat="server" BackColor="#FFFF99" class="form-control" Enabled="true" Height="40px" MaxLength="750" placeholder="Ingrese la descripción del Bien o Servicio que desea adquirir" TextMode="MultiLine" Width="100%"></asp:TextBox>
+                                <asp:TextBox ID="txtDescripcion" runat="server" BackColor="#FFFF99" class="form-control" Enabled="true" Height="40px" MaxLength="750" required="true" placeholder="Ingrese la descripción del Bien o Servicio que desea adquirir" TextMode="MultiLine" Width="100%"></asp:TextBox>
                             </td>
                             <td>&nbsp;</td>
-                            <td style="width: 5%">&nbsp;</td>
+                            <td class="auto-style6">&nbsp;</td>
                         </tr>
                         <tr>
                             <td>&nbsp;</td>
@@ -370,9 +374,9 @@
                             <td>&nbsp;</td>
                             <td>&nbsp;</td>
                             <td>&nbsp;</td>
+                            <td class="auto-style7">&nbsp;</td>
                             <td>&nbsp;</td>
-                            <td>&nbsp;</td>
-                            <td style="width: 5%">&nbsp;</td>
+                            <td class="auto-style6">&nbsp;</td>
                         </tr>
                         <tr>
                               <td>&nbsp;</td>
@@ -395,15 +399,15 @@
                             </td>
                             
                             <td colspan="3">
-                                <asp:TextBox ID="txtCantidad" runat="server" BackColor="#FFFF99" class="form-control" Font-Size="Large" MaxLength="10" Style="text-align: right" Width="100%"></asp:TextBox>
+                                <asp:TextBox ID="txtCantidad" runat="server" BackColor="#FFFF99" class="form-control" Font-Size="Large" MaxLength="10" Style="text-align: right" required="true" Width="100%"></asp:TextBox>
                             </td>
                             <td colspan="3">
-                                <asp:TextBox ID="txtCosto" runat="server" BackColor="#FFFF99" class="form-control" Font-Size="Large" MaxLength="12" Style="text-align: right" Width="100%"></asp:TextBox>
+                                <asp:TextBox ID="txtCosto" runat="server" BackColor="#FFFF99" class="form-control" Font-Size="Large" MaxLength="12" Style="text-align: right" required="true" Width="100%"></asp:TextBox>
                             </td>
                             <td colspan="6">
                                 <asp:LinkButton ID="btnGuardar" runat="server" class="btn btn-primary" OnClick="btnGuardar_Click" Text="Guardar" ValidationGroup="grpDatos" Width="120px" OnClientClick="javascript:if(!confirm('¿Desea GUARDAR este registro?'))return false" />
-                                <asp:Button ID="btnLimpiarC" runat="server" class="btn btn-warning" OnClick="btnNuevo_Click" Text="Nuevo" Width="120px" />
-                                <asp:Button ID="btnListado" runat="server" CausesValidation="False" class="btn btn-info" OnClick="btnListado_Click" Text="Ver Listado" Width="120px" />
+                                <asp:Button ID="btnLimpiarC" runat="server" class="btn btn-warning" OnClick="btnNuevo_Click" Text="Nuevo" Width="120px" UseSubmitBehavior="false" />
+                                <asp:Button ID="btnListado" runat="server" UseSubmitBehavior="false" CausesValidation="False" class="btn btn-info" OnClick="btnListado_Click" Text="Ver Listado" Width="120px" />
 
                             </td>
                             <td>&nbsp;</td>
@@ -421,7 +425,7 @@
                             </strong></td>
                             <td colspan="6">&nbsp;</td>
                             <td>&nbsp;</td>
-                            <td style="width: 5%">&nbsp;</td>
+                            <td class="auto-style6">&nbsp;</td>
                         </tr>
                         <tr>
                             <td>&nbsp;</td>
@@ -434,7 +438,7 @@
                                 </asp:UpdateProgress>
                             </td>
                             <td>&nbsp;</td>
-                            <td style="width: 5%">&nbsp;</td>
+                            <td class="auto-style6">&nbsp;</td>
                         </tr>
                         <tr>
                             <td>&nbsp;</td>
@@ -445,7 +449,7 @@
                                 <asp:Label ID="lblError" runat="server" Font-Bold="True" Font-Size="Medium" ForeColor="Red"></asp:Label>
                             </span></td>
                             <td>&nbsp;</td>
-                            <td style="width: 5%">&nbsp;</td>
+                            <td class="auto-style6">&nbsp;</td>
                         </tr>
                         <tr>
                             <td style="width: 5%">&nbsp;</td>
@@ -455,20 +459,20 @@
                                 <asp:Button ID="btnAnular" runat="server" class="btn btn-danger" Text="Anular" Width="120px" OnClick="btnAnular_Click" Visible="False" OnClientClick="javascript:if(!confirm('¿Desea ANULAR este registro?'))return false" />
                             </td>
                             <td style="width: 5%">&nbsp;</td>
-                            <td style="width: 5%">&nbsp;</td>
+                            <td class="auto-style6">&nbsp;</td>
                         </tr>
                         <tr>
                             <td style="width: 5%">&nbsp;</td>
                             <td style="width: 5%">&nbsp;</td>
                             <td colspan="16" style="text-align: center"><span></span></td>
                             <td style="width: 5%">&nbsp;</td>
-                            <td style="width: 5%">&nbsp;</td>
+                            <td class="auto-style6">&nbsp;</td>
                         </tr>
                         <tr>
                             <td style="width: 5%">&nbsp;</td>
                             <td style="width: 5%">&nbsp;</td>
                             <td colspan="16">
-                                <asp:GridView ID="gridDet" runat="server" AutoGenerateColumns="False" BackColor="White" BorderColor="#CCCCCC" BorderStyle="Solid" BorderWidth="1px" CellPadding="5" CellSpacing="1" DataKeyNames="ID,NUMERO" ForeColor="Black" GridLines="Vertical" HorizontalAlign="Center" PageSize="12" ShowFooter="True" Width="100%" OnRowDeleting="gridDet_RowDeleting" OnSelectedIndexChanged="gridDet_SelectedIndexChanged" Font-Size="XX-Small" CssClass="table table-responsive table-hover">
+                                <asp:GridView ID="gridDet" runat="server" AutoGenerateColumns="False" BackColor="White" BorderColor="#CCCCCC" BorderStyle="Solid" BorderWidth="1px" CellPadding="5" CellSpacing="1" DataKeyNames="ID,NUMERO" ForeColor="Black" GridLines="Vertical" HorizontalAlign="Center" PageSize="12" ShowFooter="True" Width="100%" OnRowDeleting="gridDet_RowDeleting" OnSelectedIndexChanged="gridDet_SelectedIndexChanged" Font-Size="XX-Small" CssClass="table  table-hover">
                                     <AlternatingRowStyle BackColor="#CEEFFF" ForeColor="#333333" />
                                     <Columns>
                                         <asp:CommandField ButtonType="Image" SelectImageUrl="~/img/24_bits/accept.png" ShowSelectButton="True">
@@ -546,7 +550,7 @@
                                 </asp:GridView>
                             </td>
                             <td style="width: 5%">&nbsp;</td>
-                            <td style="width: 5%">&nbsp;</td>
+                            <td class="auto-style6">&nbsp;</td>
                         </tr>
                         <tr>
                             <td style="width: 5%">&nbsp;</td>
@@ -560,16 +564,16 @@
                             <td style="width: 5%">&nbsp;</td>
                             <td style="width: 5%">&nbsp;</td>
                             <td style="width: 5%">&nbsp;</td>
+                            <td class="auto-style7">&nbsp;</td>
                             <td style="width: 5%">&nbsp;</td>
-                            <td style="width: 5%">&nbsp;</td>
-                            <td style="width: 5%">&nbsp;</td>
+                            <td class="auto-style6">&nbsp;</td>
                         </tr>
                         <tr>
                             <td style="width: 5%">&nbsp;</td>
                             <td style="width: 5%">&nbsp;</td>
                             <td colspan="16">La acción seleccionada contiene los siguientes renglones presupuestarios relacionados:</td>
                             <td style="width: 5%">&nbsp;</td>
-                            <td style="width: 5%">&nbsp;</td>
+                            <td class="auto-style6">&nbsp;</td>
                         </tr>
                         <tr>
                             <td style="width: 5%">&nbsp;</td>
@@ -589,15 +593,15 @@
                             <td style="width: 5%">&nbsp;</td>
                             <td style="width: 5%">&nbsp;</td>
                             <td style="width: 5%">&nbsp;</td>
+                            <td class="auto-style7">&nbsp;</td>
                             <td style="width: 5%">&nbsp;</td>
-                            <td style="width: 5%">&nbsp;</td>
-                            <td style="width: 5%">&nbsp;</td>
+                            <td class="auto-style6">&nbsp;</td>
                         </tr>
                         <tr>
                             <td style="width: 5%">&nbsp;</td>
                             <td style="width: 5%">&nbsp;</td>
                             <td colspan="16">
-                                <asp:GridView ID="gridSaldos" runat="server" AutoGenerateColumns="False" BackColor="White" BorderColor="#CCCCCC" BorderStyle="Solid" BorderWidth="1px" CellPadding="5" CellSpacing="1" DataKeyNames="ID" ForeColor="Black" GridLines="Vertical" HorizontalAlign="Center" Width="100%" CssClass="table table-hover table-responsive">
+                                <asp:GridView ID="gridSaldos" runat="server" AutoGenerateColumns="False" BackColor="White" BorderColor="#CCCCCC" BorderStyle="Solid" BorderWidth="1px" CellPadding="5" CellSpacing="1" DataKeyNames="ID" ForeColor="Black" GridLines="Vertical" HorizontalAlign="Center" Width="100%" CssClass="table table-hover ">
                                     <AlternatingRowStyle BackColor="#CEEFFF" ForeColor="#333333" />
                                     <Columns>
                                         <asp:BoundField DataField="ID" HeaderText="ID" Visible="False">
@@ -660,7 +664,7 @@
                                 </asp:GridView>
                             </td>
                             <td style="width: 5%">&nbsp;</td>
-                            <td style="width: 5%">&nbsp;</td>
+                            <td class="auto-style6">&nbsp;</td>
                         </tr>
                         <tr>
                             <td style="width: 5%">&nbsp;</td>
@@ -680,9 +684,9 @@
                             <td style="width: 5%">&nbsp;</td>
                             <td style="width: 5%">&nbsp;</td>
                             <td style="width: 5%">&nbsp;</td>
+                            <td class="auto-style7">&nbsp;</td>
                             <td style="width: 5%">&nbsp;</td>
-                            <td style="width: 5%">&nbsp;</td>
-                            <td style="width: 5%">&nbsp;</td>
+                            <td class="auto-style6">&nbsp;</td>
                         </tr>
                         <tr>
                             <td style="width: 5%">&nbsp;</td>
@@ -702,9 +706,9 @@
                             <td style="width: 5%">&nbsp;</td>
                             <td style="width: 5%">&nbsp;</td>
                             <td style="width: 5%">&nbsp;</td>
+                            <td class="auto-style7">&nbsp;</td>
                             <td style="width: 5%">&nbsp;</td>
-                            <td style="width: 5%">&nbsp;</td>
-                            <td style="width: 5%">&nbsp;</td>
+                            <td class="auto-style6">&nbsp;</td>
                         </tr>
                     </table>
                     <br />

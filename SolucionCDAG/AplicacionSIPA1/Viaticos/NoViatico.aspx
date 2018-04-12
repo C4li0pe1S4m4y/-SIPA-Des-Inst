@@ -106,16 +106,18 @@
 
 
         <p class="auto-style11">
-            <span class="auto-style12">
+            <span class="auto-style12">&nbsp;&nbsp;&nbsp;
             <asp:Label ID="lblMensaje" runat="server"></asp:Label>
 &nbsp;</span><asp:Label ID="lblNoPedido" runat="server" CssClass="auto-style12" ForeColor="#000099" Text="0" Visible="False"></asp:Label>
             <span class="auto-style12">&nbsp;
             <asp:Label ID="lblAccion" runat="server"></asp:Label>
 &nbsp;con Exito.</span></p>
         <p>
+            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
             <asp:HyperLink ID="HyperLink3" runat="server" Font-Size="X-Large" Font-Underline="True">Listado</asp:HyperLink>
         </p>
         <p>
+            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
             <asp:HyperLink ID="HyperLink1" runat="server" Font-Overline="False" Font-Size="X-Large" Font-Underline="True" NavigateUrl="~/Pedido/CrearPedido.aspx">Crear Nuevo</asp:HyperLink>
         </p>
         <p>

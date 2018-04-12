@@ -2035,7 +2035,8 @@ namespace CapaAD
         {
             conectar = new ConexionBD();
             DataTable tabla = new DataTable();
-            string query = String.Format("SELECT e.nombres, CONCAT(p.no_solicitud, '-', p.anio_solicitud) AS solicitud, p.Justificacion, pr.razon_social, pr.nit, pd.no_orden_compra, SUM(pd.costo_real) AS costo, u.Unidad "+
+            string query = String.Format("SELECT e.nombres, CONCAT(p.no_solicitud, '-', p.anio_solicitud) AS solicitud, p.Justificacion, pr.razon_social, pr.nit, pd.no_orden_compra, SUM(pd.costo_real) AS costo, u.Unidad, " +
+                          " concat( date_format(pd.fecha_orden_compra ,'%d') , ' de ',fn_nombre_meses(date_format(pd.fecha_orden_compra,'%m')),' ', date_format(pd.fecha_orden_compra,' %Y')) fecha_compromiso " +   
                           " FROM     sipa_pedidos p INNER JOIN "+
                           " ccl_empleados e ON e.id_empleado = p.id_tecnico INNER JOIN" +
                           " sipa_pedido_detalle pd ON pd.id_pedido = p.id_pedido INNER JOIN " +

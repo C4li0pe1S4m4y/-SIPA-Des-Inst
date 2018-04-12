@@ -90,7 +90,7 @@
                     <td style="width: 5%">&nbsp;</td>
                     <td style="width: 5%">&nbsp;</td>
                     <td colspan="12">
-                        <asp:TextBox ID="txtNit" runat="server" BackColor="#FFFF99" class="form-control" Enabled="true" MaxLength="100" placeholder="" Width="100%"></asp:TextBox>
+                        <asp:TextBox ID="txtNit" runat="server" BackColor="#FFFF99" class="form-control" required="true" Enabled="true" MaxLength="100" placeholder="" Width="100%"></asp:TextBox>
                     </td>
                     <td style="width: 5%">&nbsp;</td>
                     <td style="width: 5%">&nbsp;</td>
@@ -126,7 +126,7 @@
                     <td style="width: 5%">&nbsp;</td>
                     <td style="width: 5%">&nbsp;</td>
                     <td colspan="12">
-                        <asp:TextBox ID="txtRazonSocial" runat="server" BackColor="#FFFF99" class="form-control" Enabled="true" MaxLength="100" placeholder="" Width="100%"></asp:TextBox>
+                        <asp:TextBox ID="txtRazonSocial" runat="server" BackColor="#FFFF99" class="form-control" required="true" Enabled="true" MaxLength="100" placeholder="" Width="100%"></asp:TextBox>
                     </td>
                     <td style="width: 5%">&nbsp;</td>
                     <td style="width: 5%">&nbsp;</td>
@@ -162,7 +162,7 @@
                     <td style="width: 5%">&nbsp;</td>
                     <td style="width: 5%">&nbsp;</td>
                     <td colspan="12">
-                        <asp:TextBox ID="txtNombre" runat="server" BackColor="#FFFF99" class="form-control" Enabled="true" MaxLength="100" placeholder="" Width="100%"></asp:TextBox>
+                        <asp:TextBox ID="txtNombre" runat="server" BackColor="#FFFF99" class="form-control" Enabled="true" required="true" MaxLength="100" placeholder="" Width="100%"></asp:TextBox>
                     </td>
                     <td style="width: 5%">&nbsp;</td>
                     <td style="width: 5%">&nbsp;</td>
@@ -285,8 +285,8 @@
                     <td style="width: 5%">&nbsp;</td>
                     <td colspan="16" style="text-align: center;">
                         <asp:Button ID="btnGuardar" runat="server" class="btn btn-success" OnClick="btnGuardar_Click" Text="Guardar" ValidationGroup="grpDatos" Width="120px" />
-                        <asp:Button ID="btnLimpiarC" runat="server" class="btn btn-warning" OnClick="btnNuevo_Click" Text="Nuevo" Width="120px" />
-                        <asp:Button ID="btnListado" runat="server" CausesValidation="False" class="btn btn-info" PostBackUrl="~/Compras/ListadoProveedores.aspx" Text="Ver Listado" Width="120px" />
+                        <asp:Button ID="btnLimpiarC" runat="server" class="btn btn-warning" OnClick="btnNuevo_Click" Text="Nuevo" Width="120px" UseSubmitBehavior="false" />
+                        <asp:Button ID="btnListado" runat="server" CausesValidation="False" class="btn btn-info" PostBackUrl="~/Compras/ListadoProveedores.aspx" Text="Ver Listado" Width="120px" UseSubmitBehavior="false" />
                         <asp:Button ID="btnEliminar" runat="server" class="btn btn-danger" OnClick="btnEliminar_Click" Text="Eliminar" Width="120px" Visible="False" />
                     </td>
                     <td style="width: 5%">&nbsp;</td>
@@ -389,85 +389,7 @@
                     <br />
                     <br />
                     <br />
-                    <br />
-                    <br />
-                    <br />
-                    <br />
-                    <br />
-                    <br />
-                    <br />
-                    <br />
-                    <br />
-                    <br />
-                    <br />
-                    <br />
-                    <br />
-                    <br />
-                    <br />
-                    <br />
-                    <br />
-                    <br />
-                    <br />
-                    <br />
-                    <br />
-                    <br />
-                    <br />
-                    <br />
-                    <br />
-                    <br />
-                    <br />
-                    <br />
-                    <br />
-                    <br />
-                    <br />
-                    <br />
-                    <br />
-                    <br />
-                    <br />
-                    <br />
-                    <br />
-                    <br />
-                    <br />
-                    <br />
-                    <br />
-                    <br />
-                    <br />
-                    <br />
-                    <br />
-                    <br />
-                    <br />
-                    <br />
-                    <br />
-                    <br />
-                    <br />
-                    <br />
-                    <br />
-                    <br />
-                    <br />
-                    <br />
-                    <br />
-                    <br />
-                    <br />
-                    <br />
-                    <br />
-                    <br />
-                    <br />
-                    <br />
-                    <br />
-                    <br />
-                    <br />
-                    <br />
-                    <br />
-                    <br />
-                    <br />
-                    <br />
-                    <br />
-                    <br />
-                    <br />
-                    <br />
-                    <br />
-                    <br />
-                    <br />
+                   
                 </ContentTemplate>
             </asp:UpdatePanel>
             <div></div>                  

@@ -1851,7 +1851,6 @@ namespace CapaLN
                 DataTable dt = ObjAD.InformacionPedidoCompras(id);
                 dt.Columns.Add("hora_acta", typeof(String));
                 dt.Columns.Add("fecha_acta", typeof(String));
-                dt.Columns.Add("fecha_compromiso", typeof(String));
                 dt.Columns.Add("No_acta", typeof(String));
                 dt.Columns.Add("numletras", typeof(String));
                 dt.TableName = "BUSQUEDA";
@@ -1859,7 +1858,7 @@ namespace CapaLN
                 dsResultado.Tables[1].Rows[0]["No_acta"] = noActa;
                 dsResultado.Tables[1].Rows[0]["hora_acta"] = hora_acta;
                 dsResultado.Tables[1].Rows[0]["fecha_acta"] = fecha_acta;
-                dsResultado.Tables[1].Rows[0]["fecha_compromiso"] = fecha_compromiso;
+                
                 num = new Numlet();
                 string letras = num.ToCustomCardinal(double.Parse(dsResultado.Tables[1].Rows[0]["costo"].ToString()));
                 letras = letras.ToUpper();

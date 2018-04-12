@@ -4,7 +4,13 @@
 
 
 
-<asp:Content ID="Content2" runat="server" ContentPlaceHolderID="head"></asp:Content>
+<asp:Content ID="Content2" runat="server" ContentPlaceHolderID="head">
+    <style type="text/css">
+        .auto-style3 {
+            width: 73%;
+        }
+    </style>
+</asp:Content>
 
 
 
@@ -61,7 +67,7 @@
                 <tr>
                     <td class="auto-style3" style="width: 180px">&nbsp;</td>
                     <td class="auto-style14">
-                        <asp:GridView ID="gridBusqueda" runat="server" AutoGenerateColumns="False" BackColor="White" BorderColor="#CCCCCC" BorderStyle="Solid" BorderWidth="1px" CellPadding="5" CellSpacing="1" DataKeyNames="ID" ForeColor="Black" GridLines="Vertical" HorizontalAlign="Center" OnRowDeleting="gridBusqueda_RowDeleting" OnSelectedIndexChanged="gridBusqueda_SelectedIndexChanged" PageSize="5" Width="100%" OnPageIndexChanging="gridBusqueda_PageIndexChanging" CssClass="table table-responsive table-hover">
+                        <asp:GridView ID="gridBusqueda" runat="server" AutoGenerateColumns="False" BackColor="White" BorderColor="#CCCCCC" BorderStyle="Solid" BorderWidth="1px" CellPadding="5" CellSpacing="1" DataKeyNames="ID" ForeColor="Black" GridLines="Vertical" HorizontalAlign="Center" OnRowDeleting="gridBusqueda_RowDeleting" OnSelectedIndexChanged="gridBusqueda_SelectedIndexChanged" PageSize="5" Width="100%" OnPageIndexChanging="gridBusqueda_PageIndexChanging" CssClass="table  table-hover">
                             <AlternatingRowStyle BackColor="#CEEFFF" ForeColor="#333333" />
                             <Columns>
                                 <asp:CommandField ButtonType="Image" SelectImageUrl="~/img/24_bits/accept.png" ShowSelectButton="True" HeaderText="Modificar">
@@ -71,7 +77,7 @@
                                 
                                 <asp:CommandField HeaderText="Eliminar" ShowDeleteButton="True"> 
                                 <HeaderStyle BorderStyle="Inset" HorizontalAlign="Center" VerticalAlign="Middle" />
-                                <ItemStyle BorderStyle="Inset" HorizontalAlign="Center" VerticalAlign="Middle" />
+                                <ItemStyle BorderStyle="Inset" ForeColor="Red" BorderColor="Black"  HorizontalAlign="Center" VerticalAlign="Middle" />
                                 </asp:CommandField>
                                 
                                 <asp:BoundField DataField="ID" HeaderText="ID" Visible="False">
