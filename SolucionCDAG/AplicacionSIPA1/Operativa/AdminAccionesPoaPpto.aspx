@@ -3,7 +3,7 @@
 
 
 <asp:Content ID="Content2" runat="server" ContentPlaceHolderID="head">
-
+    
     <script type="text/javascript">
         function verPanelModalReglon() {
             $('#ContentPlaceHolder3_PanelModalReglon').modal('show');

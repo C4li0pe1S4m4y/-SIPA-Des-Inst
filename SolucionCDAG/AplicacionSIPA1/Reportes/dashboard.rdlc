@@ -1652,7 +1652,7 @@
         <ActionInfo>
           <Actions>
             <Action>
-              <Hyperlink>="http://localhost:49311/Viaticos/ViaticosListado.aspx"</Hyperlink>
+              <Hyperlink>="http://localhost:49311/Pedido/GastoListado.aspx"</Hyperlink>
             </Action>
           </Actions>
         </ActionInfo>

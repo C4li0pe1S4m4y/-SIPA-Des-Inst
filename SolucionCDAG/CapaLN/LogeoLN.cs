@@ -47,7 +47,7 @@ namespace CapaLN
                     MenuItem mnuMenuItem = new MenuItem();
 
                     mnuMenuItem.Value = drMenuItem["IdMenu"].ToString();
-                    mnuMenuItem.Text = drMenuItem["descripcion"].ToString();
+                    mnuMenuItem.Text = drMenuItem["descripcion"].ToString().ToUpper();
                     mnuMenuItem.ImageUrl = drMenuItem["Icono"].ToString();
                     mnuMenuItem.NavigateUrl = drMenuItem["Url"].ToString();
 
@@ -71,7 +71,7 @@ namespace CapaLN
                     MenuItem mnuNewMenuItem = new MenuItem();
 
                     mnuNewMenuItem.Value = drMenuItem["IdMenu"].ToString();
-                    mnuNewMenuItem.Text = drMenuItem["descripcion"].ToString();
+                    mnuNewMenuItem.Text = drMenuItem["descripcion"].ToString().ToUpper();
                     mnuNewMenuItem.ImageUrl = drMenuItem["Icono"].ToString();
                     mnuNewMenuItem.NavigateUrl = drMenuItem["Url"].ToString();
                     mnuMenuItem.ChildItems.Add(mnuNewMenuItem);

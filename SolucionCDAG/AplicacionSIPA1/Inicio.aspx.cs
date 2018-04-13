@@ -23,6 +23,7 @@ namespace AplicacionSIPA1
         {
             if (!IsPostBack)
             {
+                ReportViewer1.LocalReport.EnableHyperlinks = true;
                 pEstrategicoLN = new PlanEstrategicoLN();
                 pOperativoLN = new PlanOperativoLN();
                 pEstrategicoLN.DdlAniosPlan(ddlAnios, 2016, 2020);
