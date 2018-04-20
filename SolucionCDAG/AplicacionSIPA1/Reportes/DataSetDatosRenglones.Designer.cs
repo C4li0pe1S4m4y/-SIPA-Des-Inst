@@ -2470,6 +2470,8 @@ namespace AplicacionSIPA1.Reportes {
             
             private global::System.Data.DataColumn columnrenglon_pac;
             
+            private global::System.Data.DataColumn columnno_orden_compra;
+            
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
             public SaldosDetalleDataTable() {
@@ -2681,6 +2683,14 @@ namespace AplicacionSIPA1.Reportes {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public global::System.Data.DataColumn no_orden_compraColumn {
+                get {
+                    return this.columnno_orden_compra;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
             [global::System.ComponentModel.Browsable(false)]
             public int Count {
                 get {
@@ -2738,7 +2748,8 @@ namespace AplicacionSIPA1.Reportes {
                         string Solicitante, 
                         string AnalistaPpto, 
                         string TecnicoCompras, 
-                        string renglon_pac) {
+                        string renglon_pac, 
+                        long no_orden_compra) {
                 SaldosDetalleRow rowSaldosDetalleRow = ((SaldosDetalleRow)(this.NewRow()));
                 object[] columnValuesArray = new object[] {
                         no_solicitud,
@@ -2762,7 +2773,8 @@ namespace AplicacionSIPA1.Reportes {
                         Solicitante,
                         AnalistaPpto,
                         TecnicoCompras,
-                        renglon_pac};
+                        renglon_pac,
+                        no_orden_compra};
                 rowSaldosDetalleRow.ItemArray = columnValuesArray;
                 this.Rows.Add(rowSaldosDetalleRow);
                 return rowSaldosDetalleRow;
@@ -2807,6 +2819,7 @@ namespace AplicacionSIPA1.Reportes {
                 this.columnAnalistaPpto = base.Columns["AnalistaPpto"];
                 this.columnTecnicoCompras = base.Columns["TecnicoCompras"];
                 this.columnrenglon_pac = base.Columns["renglon_pac"];
+                this.columnno_orden_compra = base.Columns["no_orden_compra"];
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
@@ -2856,6 +2869,8 @@ namespace AplicacionSIPA1.Reportes {
                 base.Columns.Add(this.columnTecnicoCompras);
                 this.columnrenglon_pac = new global::System.Data.DataColumn("renglon_pac", typeof(string), null, global::System.Data.MappingType.Element);
                 base.Columns.Add(this.columnrenglon_pac);
+                this.columnno_orden_compra = new global::System.Data.DataColumn("no_orden_compra", typeof(long), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnno_orden_compra);
                 this.columnAccion.MaxLength = 1000;
                 this.columnDocumento.MaxLength = 49;
                 this.columnDescripcion.MaxLength = 1000;
@@ -4441,6 +4456,22 @@ namespace AplicacionSIPA1.Reportes {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public long no_orden_compra {
+                get {
+                    try {
+                        return ((long)(this[this.tableSaldosDetalle.no_orden_compraColumn]));
+                    }
+                    catch (global::System.InvalidCastException e) {
+                        throw new global::System.Data.StrongTypingException("The value for column \'no_orden_compra\' in table \'SaldosDetalle\' is DBNull.", e);
+                    }
+                }
+                set {
+                    this[this.tableSaldosDetalle.no_orden_compraColumn] = value;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
             public bool Isno_solicitudNull() {
                 return this.IsNull(this.tableSaldosDetalle.no_solicitudColumn);
             }
@@ -4653,6 +4684,18 @@ namespace AplicacionSIPA1.Reportes {
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
             public void SetTecnicoComprasNull() {
                 this[this.tableSaldosDetalle.TecnicoComprasColumn] = global::System.Convert.DBNull;
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public bool Isno_orden_compraNull() {
+                return this.IsNull(this.tableSaldosDetalle.no_orden_compraColumn);
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public void Setno_orden_compraNull() {
+                this[this.tableSaldosDetalle.no_orden_compraColumn] = global::System.Convert.DBNull;
             }
         }
         
@@ -6246,6 +6289,7 @@ WHERE  (up.estado_financiero = 1) AND (aa.id_poa = 23)";
             tableMapping.ColumnMappings.Add("AnalistaPpto", "AnalistaPpto");
             tableMapping.ColumnMappings.Add("TecnicoCompras", "TecnicoCompras");
             tableMapping.ColumnMappings.Add("renglon_pac", "renglon_pac");
+            tableMapping.ColumnMappings.Add("no_orden_compra", "no_orden_compra");
             this._adapter.TableMappings.Add(tableMapping);
         }
         
@@ -6253,7 +6297,7 @@ WHERE  (up.estado_financiero = 1) AND (aa.id_poa = 23)";
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
         private void InitConnection() {
             this._connection = new global::MySql.Data.MySqlClient.MySqlConnection();
-            this._connection.ConnectionString = System.Configuration.ConfigurationManager.ConnectionStrings["dbcdagsipaConnectionString1"].ConnectionString;
+            this._connection.ConnectionString = System.Configuration.ConfigurationManager.ConnectionStrings["dbcdagsipaConnectionString2"].ConnectionString;
         }
         
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
@@ -6265,56 +6309,57 @@ WHERE  (up.estado_financiero = 1) AND (aa.id_poa = 23)";
             this._commandCollection[0].CommandText = "SELECT no_solicitud, Año, Accion, Documento, fecha_pedido, Descripcion, Estado, u" +
                 "nidad_administrativa, Pedido, costo_estimado, costo_real, no_renglon, no_pac, re" +
                 "nglon_pac, anio_solicitud, id_unidad, id_accion, id_tipo_documento, \r\n          " +
-                "        id_estado_pedido, Solicitante, AnalistaPpto, TecnicoCompras\r\nFROM     (S" +
-                "ELECT a.no_solicitud, a.anio_solicitud AS Año, fn_codigo_accion(b.id_accion, 0, " +
-                "\'\', 1) AS Accion, a.Documento, a.fecha_pedido, c.Descripcion, a.estado_salida AS" +
-                " Estado, a.unidad_administrativa, c.costo_pedido AS Pedido, \r\n                  " +
-                "                  c.costo_estimado, c.costo_real, d.no_renglon, p.id_pac AS no_p" +
-                "ac, da.no_renglon AS renglon_pac, a.anio_solicitud, a.id_unidad, b.id_accion, a." +
-                "id_tipo_documento, a.id_estado_pedido, CONCAT(se.id_empleado, \' - \', se.nombres)" +
-                " \r\n                                    AS Solicitante, CONCAT(sep.id_empleado, \'" +
-                " - \', sep.nombres) AS AnalistaPpto, CONCAT(sec.id_empleado, \' - \', sec.nombres) " +
-                "AS TecnicoCompras\r\n                  FROM      unionpedidocc a INNER JOIN\r\n     " +
-                "                               sipa_acciones b ON a.id_accion = b.id_accion INNE" +
-                "R JOIN\r\n                                    sipa_pedido_detalle c ON a.id_pedido" +
-                " = c.id_pedido LEFT OUTER JOIN\r\n                                    sipa_detalle" +
-                "s_accion d ON d.id_detalle = c.id_detalle_accion INNER JOIN\r\n                   " +
-                "                 sipa_pac p ON p.id_pac = c.id_pac INNER JOIN\r\n                 " +
-                "                   ccl_empleados se ON se.id_empleado = a.id_solicitante LEFT OU" +
-                "TER JOIN\r\n                                    ccl_empleados sep ON sep.id_emplea" +
-                "do = a.id_direc_financiera LEFT OUTER JOIN\r\n                                    " +
-                "ccl_empleados sec ON sec.id_empleado = a.id_tecnico INNER JOIN\r\n                " +
-                "                    sipa_detalles_accion da ON p.id_detalle = da.id_detalle\r\n   " +
-                "               WHERE   (a.id_tipo_documento = 1)\r\n                  UNION ALL\r\n " +
-                "                 SELECT a.no_solicitud, a.anio_solicitud AS Año, fn_codigo_accio" +
-                "n(b.id_accion, 0, \'\', 1) AS Accion, a.Documento, a.fecha_pedido, c.descripcion, " +
-                "a.estado_salida AS Estado, a.unidad_administrativa, c.costo_vale AS Pedido, c.co" +
-                "sto_estimado, \r\n                                    c.costo_real, d.no_renglon, " +
-                "\'N/A\' AS no_pac, \'N/A\' AS renglon_pac, a.anio_solicitud, a.id_unidad, b.id_accio" +
-                "n, a.id_tipo_documento, a.id_estado_pedido, CONCAT(se.id_empleado, \' - \', se.nom" +
-                "bres) AS Solicitante, \r\n                                    CONCAT(sep.id_emplea" +
-                "do, \' - \', sep.nombres) AS AnalistaPpto, CONCAT(sec.id_empleado, \' - \', sec.nomb" +
-                "res) AS TecnicoCompras\r\n                  FROM     unionpedidocc a INNER JOIN\r\n " +
-                "                                   sipa_acciones b ON a.id_accion = b.id_accion " +
-                "INNER JOIN\r\n                                    sipa_ccvale_detalle c ON a.id_pe" +
-                "dido = c.id_ccvale LEFT OUTER JOIN\r\n                                    sipa_det" +
-                "alles_accion d ON d.id_detalle = c.id_detalle_accion INNER JOIN\r\n               " +
-                "                     ccl_empleados se ON se.id_empleado = a.id_solicitante LEFT " +
-                "OUTER JOIN\r\n                                    ccl_empleados sep ON sep.id_empl" +
-                "eado = a.id_direc_financiera LEFT OUTER JOIN\r\n                                  " +
-                "  ccl_empleados sec ON sec.id_empleado = a.id_tecnico\r\n                  WHERE  " +
-                "(a.id_tipo_documento = 2)\r\n                  UNION ALL\r\n                  SELECT" +
-                " a.no_solicitud, a.anio_solicitud AS Año, fn_codigo_accion(b.id_accion, 0, \'\', 1" +
-                ") AS Accion, CONCAT(a.Documento, \'/\', tv.abreviatura) AS Expr1, a.fecha_pedido, " +
-                "c.justificacion, a.estado_salida AS Estado, a.unidad_administrativa, \r\n         " +
-                "                           c.costo_viatico + c.pasajes + c.kilometraje AS Pedido" +
-                ", c.costo_estimado + c.pasajes_estimado + c.kilometraje_estimado AS costo_estima" +
-                "do, c.costo_real + c.pasajes_real + c.kilometraje_real AS costo_real, d.no_rengl" +
-                "on, \r\n                                    \'N/A\' AS no_pac, \'N/A\' AS renglon_pac," +
-                " a.anio_solicitud, a.id_unidad, b.id_accion, a.id_tipo_documento, a.id_estado_pe" +
-                "dido, CONCAT(se.id_empleado, \' - \', se.nombres) AS Solicitante, CONCAT(sep.id_em" +
-                "pleado, \' - \', sep.nombres) \r\n                                    AS AnalistaPpt" +
-                "o, CONCAT(sec.id_empleado, \' - \', sec.nombres) AS TecnicoCompras\r\n              " +
+                "        id_estado_pedido, Solicitante, AnalistaPpto, TecnicoCompras, no_orden_co" +
+                "mpra\r\nFROM     (SELECT a.no_solicitud, a.anio_solicitud AS Año, fn_codigo_accion" +
+                "(b.id_accion, 0, \'\', 1) AS Accion, a.Documento, a.fecha_pedido, c.Descripcion, a" +
+                ".estado_salida AS Estado, a.unidad_administrativa, c.costo_pedido AS Pedido, \r\n " +
+                "                                   c.costo_estimado, c.costo_real, d.no_renglon," +
+                " p.id_pac AS no_pac, da.no_renglon AS renglon_pac, a.anio_solicitud, a.id_unidad" +
+                ", b.id_accion, a.id_tipo_documento, a.id_estado_pedido, CONCAT(se.id_empleado, \'" +
+                " - \', se.nombres) \r\n                                    AS Solicitante, CONCAT(s" +
+                "ep.id_empleado, \' - \', sep.nombres) AS AnalistaPpto, CONCAT(sec.id_empleado, \' -" +
+                " \', sec.nombres) AS TecnicoCompras, c.no_orden_compra\r\n                  FROM   " +
+                "   unionpedidocc a INNER JOIN\r\n                                    sipa_acciones" +
+                " b ON a.id_accion = b.id_accion INNER JOIN\r\n                                    " +
+                "sipa_pedido_detalle c ON a.id_pedido = c.id_pedido LEFT OUTER JOIN\r\n            " +
+                "                        sipa_detalles_accion d ON d.id_detalle = c.id_detalle_ac" +
+                "cion INNER JOIN\r\n                                    sipa_pac p ON p.id_pac = c." +
+                "id_pac INNER JOIN\r\n                                    ccl_empleados se ON se.id" +
+                "_empleado = a.id_solicitante LEFT OUTER JOIN\r\n                                  " +
+                "  ccl_empleados sep ON sep.id_empleado = a.id_direc_financiera LEFT OUTER JOIN\r\n" +
+                "                                    ccl_empleados sec ON sec.id_empleado = a.id_" +
+                "tecnico INNER JOIN\r\n                                    sipa_detalles_accion da " +
+                "ON p.id_detalle = da.id_detalle\r\n                  WHERE   (a.id_tipo_documento " +
+                "= 1)\r\n                  UNION ALL\r\n                  SELECT a.no_solicitud, a.an" +
+                "io_solicitud AS Año, fn_codigo_accion(b.id_accion, 0, \'\', 1) AS Accion, a.Docume" +
+                "nto, a.fecha_pedido, c.descripcion, a.estado_salida AS Estado, a.unidad_administ" +
+                "rativa, c.costo_vale AS Pedido, c.costo_estimado, \r\n                            " +
+                "        c.costo_real, d.no_renglon, \'N/A\' AS no_pac, \'N/A\' AS renglon_pac, a.ani" +
+                "o_solicitud, a.id_unidad, b.id_accion, a.id_tipo_documento, a.id_estado_pedido, " +
+                "CONCAT(se.id_empleado, \' - \', se.nombres) AS Solicitante, \r\n                    " +
+                "                CONCAT(sep.id_empleado, \' - \', sep.nombres) AS AnalistaPpto, CON" +
+                "CAT(sec.id_empleado, \' - \', sec.nombres) AS TecnicoCompras, 0 AS no_orden_compra" +
+                "\r\n                  FROM     unionpedidocc a INNER JOIN\r\n                       " +
+                "             sipa_acciones b ON a.id_accion = b.id_accion INNER JOIN\r\n          " +
+                "                          sipa_ccvale_detalle c ON a.id_pedido = c.id_ccvale LEF" +
+                "T OUTER JOIN\r\n                                    sipa_detalles_accion d ON d.id" +
+                "_detalle = c.id_detalle_accion INNER JOIN\r\n                                    c" +
+                "cl_empleados se ON se.id_empleado = a.id_solicitante LEFT OUTER JOIN\r\n          " +
+                "                          ccl_empleados sep ON sep.id_empleado = a.id_direc_fina" +
+                "nciera LEFT OUTER JOIN\r\n                                    ccl_empleados sec ON" +
+                " sec.id_empleado = a.id_tecnico\r\n                  WHERE  (a.id_tipo_documento =" +
+                " 2)\r\n                  UNION ALL\r\n                  SELECT a.no_solicitud, a.ani" +
+                "o_solicitud AS Año, fn_codigo_accion(b.id_accion, 0, \'\', 1) AS Accion, CONCAT(a." +
+                "Documento, \'/\', tv.abreviatura) AS Expr1, a.fecha_pedido, c.justificacion, a.est" +
+                "ado_salida AS Estado, a.unidad_administrativa, \r\n                               " +
+                "     c.costo_viatico + c.pasajes + c.kilometraje AS Pedido, c.costo_estimado + c" +
+                ".pasajes_estimado + c.kilometraje_estimado AS costo_estimado, c.costo_real + c.p" +
+                "asajes_real + c.kilometraje_real AS costo_real, d.no_renglon, \r\n                " +
+                "                    \'N/A\' AS no_pac, \'N/A\' AS renglon_pac, a.anio_solicitud, a.i" +
+                "d_unidad, b.id_accion, a.id_tipo_documento, a.id_estado_pedido, CONCAT(se.id_emp" +
+                "leado, \' - \', se.nombres) AS Solicitante, CONCAT(sep.id_empleado, \' - \', sep.nom" +
+                "bres) \r\n                                    AS AnalistaPpto, CONCAT(sec.id_emple" +
+                "ado, \' - \', sec.nombres) AS TecnicoCompras, 0 AS no_orden_compra\r\n              " +
                 "    FROM     unionpedidocc a INNER JOIN\r\n                                    sip" +
                 "a_acciones b ON a.id_accion = b.id_accion INNER JOIN\r\n                          " +
                 "          sipa_viaticos c ON a.id_pedido = c.id_viatico LEFT OUTER JOIN\r\n       " +
@@ -6336,18 +6381,18 @@ WHERE  (up.estado_financiero = 1) AND (aa.id_poa = 23)";
                 "icitud, a.id_unidad, b.id_accion, a.id_tipo_documento, a.id_estado_pedido, CONCA" +
                 "T(se.id_empleado, \' - \', se.nombres) AS Solicitante, CONCAT(sep.id_empleado, \' -" +
                 " \', sep.nombres) \r\n                                    AS AnalistaPpto, CONCAT(s" +
-                "ec.id_empleado, \' - \', sec.nombres) AS TecnicoCompras\r\n                  FROM   " +
-                "  unionpedidocc a INNER JOIN\r\n                                    sipa_acciones " +
-                "b ON a.id_accion = b.id_accion INNER JOIN\r\n                                    s" +
-                "ipa_viaticos c ON a.id_pedido = c.id_viatico LEFT OUTER JOIN\r\n                  " +
-                "                  sipa_detalles_accion d ON d.id_detalle = c.id_detalle_accion I" +
-                "NNER JOIN\r\n                                    ccl_empleados se ON se.id_emplead" +
-                "o = a.id_solicitante INNER JOIN\r\n                                    sipa_tipos_" +
-                "viatico tv ON tv.id_tipo_viatico = c.id_tipo_viatico LEFT OUTER JOIN\r\n          " +
-                "                          ccl_empleados sep ON sep.id_empleado = a.id_direc_fina" +
-                "nciera LEFT OUTER JOIN\r\n                                    ccl_empleados sec ON" +
-                " sec.id_empleado = a.id_tecnico\r\n                  WHERE  (a.id_tipo_documento =" +
-                " 4)) t\r\nWHERE  (id_estado_pedido > 0)\r\nORDER BY id_unidad";
+                "ec.id_empleado, \' - \', sec.nombres) AS TecnicoCompras, 0 AS no_orden_compra\r\n   " +
+                "               FROM     unionpedidocc a INNER JOIN\r\n                            " +
+                "        sipa_acciones b ON a.id_accion = b.id_accion INNER JOIN\r\n               " +
+                "                     sipa_viaticos c ON a.id_pedido = c.id_viatico LEFT OUTER JO" +
+                "IN\r\n                                    sipa_detalles_accion d ON d.id_detalle =" +
+                " c.id_detalle_accion INNER JOIN\r\n                                    ccl_emplead" +
+                "os se ON se.id_empleado = a.id_solicitante INNER JOIN\r\n                         " +
+                "           sipa_tipos_viatico tv ON tv.id_tipo_viatico = c.id_tipo_viatico LEFT " +
+                "OUTER JOIN\r\n                                    ccl_empleados sep ON sep.id_empl" +
+                "eado = a.id_direc_financiera LEFT OUTER JOIN\r\n                                  " +
+                "  ccl_empleados sec ON sec.id_empleado = a.id_tecnico\r\n                  WHERE  " +
+                "(a.id_tipo_documento = 4)) t\r\nWHERE  (id_estado_pedido > 0)\r\nORDER BY id_unidad";
             this._commandCollection[0].CommandType = global::System.Data.CommandType.Text;
         }
         

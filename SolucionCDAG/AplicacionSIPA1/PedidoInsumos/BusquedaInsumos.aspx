@@ -60,6 +60,7 @@
             <asp:ImageButton ID="btnRenglon" runat="server" OnClick="btnRenglon_Click" ImageUrl="~/img/24_bits/find.png" CssClass="auto-style13" Height="28px" Width="33px" />
         </div>
     </div>
+   
     <div class="col-sm-12" style="width: 100%; height: 100%;">
         <br />
         <rsweb:ReportViewer ID="ReportViewer1" runat="server" Font-Names="Verdana" Font-Size="8pt" WaitMessageFont-Names="Verdana" WaitMessageFont-Size="14pt" Width="1238px" Height="495px" CssClass="auto-style11">

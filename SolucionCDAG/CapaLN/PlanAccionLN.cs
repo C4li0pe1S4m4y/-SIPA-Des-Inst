@@ -926,5 +926,24 @@ namespace CapaLN
 
             return dsResultado;
         }
+
+        public DataSet InformacionPorCuatrimestre(string anio, string cuatrimestre)
+        {
+            DataSet dsResultado = armarDsResultado();
+            ObjAD = new PlanAccionAD();
+            try
+            {
+                DataTable dt = ObjAD.InformacionPorCuatrimestre(anio,cuatrimestre);
+                dt.TableName = "BUSQUEDA";
+                dsResultado.Tables.Add(dt);
+                dsResultado.Tables[0].Rows[0]["ERRORES"] = false;
+            }
+            catch (Exception ex)
+            {
+                dsResultado.Tables[0].Rows[0]["MSG_ERROR"] = " CapaLN.InformacionAccionDetalles(). " + ex.Message;
+            }
+
+            return dsResultado;
+        }
     }
 }

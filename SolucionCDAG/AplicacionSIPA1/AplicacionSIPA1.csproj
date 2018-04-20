@@ -170,6 +170,7 @@
     <Content Include="ReporteriaSistema\Pedidos\HistorialEstados.aspx" />
     <Content Include="ReporteriaSistema\ReportePedidos.aspx" />
     <Content Include="ReporteriaSistema\SaldosRenglones.aspx" />
+    <Content Include="ReporteriaSistema\SaldosRenglonesCuatrimestres.aspx" />
     <Content Include="ReporteriaSistema\SaldosRenglonesDetalles.aspx" />
     <Content Include="ReporteriaSistema\SaldosRenglonesDetalles2.aspx" />
     <Content Include="ReporteriaSistema\SalidasBusqueda.aspx" />
@@ -674,6 +675,13 @@
     </Compile>
     <Compile Include="ReporteriaSistema\EstadosDocumentos.aspx.designer.cs">
       <DependentUpon>EstadosDocumentos.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="ReporteriaSistema\SaldosRenglonesCuatrimestres.aspx.cs">
+      <DependentUpon>SaldosRenglonesCuatrimestres.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="ReporteriaSistema\SaldosRenglonesCuatrimestres.aspx.designer.cs">
+      <DependentUpon>SaldosRenglonesCuatrimestres.aspx</DependentUpon>
     </Compile>
     <Compile Include="ReporteriaSistema\SaldosRenglonesDetalles2.aspx.cs">
       <DependentUpon>SaldosRenglonesDetalles2.aspx</DependentUpon>

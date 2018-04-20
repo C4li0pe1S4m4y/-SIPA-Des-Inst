@@ -246,28 +246,28 @@ namespace AplicacionSIPA1.ReporteriaSistema
 
         protected void gridReportes_RowDataBound(object sender, GridViewRowEventArgs e)
         {
-            try
-            {
-                if (e.Row.RowType == DataControlRowType.DataRow)
+                try
                 {
-                    e.Row.Cells[2].HorizontalAlign = HorizontalAlign.Right;
-                    e.Row.Cells[3].HorizontalAlign = HorizontalAlign.Right;
-                    e.Row.Cells[4].HorizontalAlign = HorizontalAlign.Right;
+                    if (e.Row.RowType == DataControlRowType.DataRow)
+                    {
+                        e.Row.Cells[2].HorizontalAlign = HorizontalAlign.Right;
+                        e.Row.Cells[3].HorizontalAlign = HorizontalAlign.Right;
+                        e.Row.Cells[4].HorizontalAlign = HorizontalAlign.Right;
 
-                    decimal valor = decimal.Parse(e.Row.Cells[2].Text);
-                    e.Row.Cells[2].Text = String.Format(CultureInfo.InvariantCulture, "Q.{0:0,0.00}", valor);
+                        decimal valor = decimal.Parse(e.Row.Cells[2].Text);
+                        e.Row.Cells[2].Text = String.Format(CultureInfo.InvariantCulture, "Q.{0:0,0.00}", valor);
 
-                    valor = decimal.Parse(e.Row.Cells[3].Text);
-                    e.Row.Cells[3].Text = String.Format(CultureInfo.InvariantCulture, "Q.{0:0,0.00}", valor);
+                        valor = decimal.Parse(e.Row.Cells[3].Text);
+                        e.Row.Cells[3].Text = String.Format(CultureInfo.InvariantCulture, "Q.{0:0,0.00}", valor);
 
-                    valor = decimal.Parse(e.Row.Cells[4].Text);
-                    e.Row.Cells[4].Text = String.Format(CultureInfo.InvariantCulture, "Q.{0:0,0.00}", valor);
-                }                
-            }
-            catch (Exception ex)
-            {
-               // lblError.Text = "gridReportes_RowDataBound(). " + ex.Message;
-            }
+                        valor = decimal.Parse(e.Row.Cells[4].Text);
+                        e.Row.Cells[4].Text = String.Format(CultureInfo.InvariantCulture, "Q.{0:0,0.00}", valor);
+                    }                
+                }
+                catch (Exception ex)
+                {
+                   // lblError.Text = "gridReportes_RowDataBound(). " + ex.Message;
+                }
 
         }
 

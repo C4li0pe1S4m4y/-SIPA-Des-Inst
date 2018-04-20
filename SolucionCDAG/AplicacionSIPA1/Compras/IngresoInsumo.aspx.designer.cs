@@ -76,6 +76,15 @@ namespace AplicacionSIPA1.Compras {
         protected global::System.Web.UI.WebControls.TextBox txtCodigoPresentacion;
         
         /// <summary>
+        /// Control CargaArchivo.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.FileUpload CargaArchivo;
+        
+        /// <summary>
         /// Control btnGuardar.
         /// </summary>
         /// <remarks>
@@ -92,5 +101,14 @@ namespace AplicacionSIPA1.Compras {
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
         protected global::System.Web.UI.WebControls.LinkButton btnListado;
+        
+        /// <summary>
+        /// Control btnCargarArchivo.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Button btnCargarArchivo;
     }
 }

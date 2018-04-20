@@ -31,6 +31,7 @@ namespace AplicacionSIPA1.Pedido
             {
                 try
                 {
+                    Response.AddHeader("Cache-Control", "no-cache");
                     string s = Convert.ToString(Request.QueryString["No"]);
                     string mostrarBotones = Convert.ToString(Request.QueryString["OptB"]);
                     string tipoDocumento = Convert.ToString(Request.QueryString["TipoD"]);

@@ -747,5 +747,22 @@ namespace CapaAD
             conectar.CerrarConexion();
             return tabla;
         }
+
+        public DataTable InformacionPorCuatrimestre(string anio, string cuatrimestre)
+        {
+            conectar = new ConexionBD();
+            DataTable tabla = new DataTable();
+            string query = String.Format("select da.no_renglon,90000.00 as renglon_monto,sum(pd.costo_pedido) codificado, (90000 - sum(pd.costo_pedido)) saldo " +
+                "from sipa_pedidos p inner join sipa_pedido_detalle pd on pd.id_pedido = p.id_pedido " +
+                "inner join sipa_detalles_accion da on da.id_detalle = pd.id_detalle_accion " +
+                "where id_estado_pedido in (8,10,12) and p.anio_solicitud = {0} and p.id_tipo_pedido = 1 and month(fecha_financiero) in ({1}) " +
+                "Group by da.no_renglon having sum(pd.costo_pedido) < 25000;"
+                , anio, cuatrimestre);
+            conectar.AbrirConexion();
+            MySqlDataAdapter consulta = new MySqlDataAdapter(query, conectar.conectar);
+            consulta.Fill(tabla);
+            conectar.CerrarConexion();
+            return tabla;
+        }
     }
 }

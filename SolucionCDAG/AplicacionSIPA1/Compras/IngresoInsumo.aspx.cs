@@ -49,5 +49,34 @@ namespace AplicacionSIPA1.Compras
             }
            
         }
+
+        protected void btnCargarArchivo_Click(object sender, EventArgs e)
+        {
+            if (CargaArchivo.HasFile)
+            {
+                string fileExt = System.IO.Path.GetExtension(CargaArchivo.FileName);
+                if (fileExt == ".csv")
+                {
+                    try
+                    {
+                        CargaArchivo.SaveAs("C:\\ProgramData\\MySQL\\MySQL Server 5.7\\Uploads\\Catalogo.csv");
+                        ScriptManager.RegisterStartupScript(this, typeof(string), "Almaceado", "alert('El formato del archivo no es correcto');", true);
+                    }
+                    catch (Exception ex)
+                    {
+                        ScriptManager.RegisterStartupScript(this, typeof(string), "Error", "alert('Error " + ex.Message.ToString()+ "');", true);
+                        throw;
+                    }
+                }
+                else
+                {
+                    ScriptManager.RegisterStartupScript(this, typeof(string), "Error", "alert('El formato del archivo no es correcto');", true);
+                }
+            }
+            else
+            {
+                ScriptManager.RegisterStartupScript(this, typeof(string), "Error", "alert('No se a seleccionado ningun archivo');", true);
+            }
+        }
     }
 }
