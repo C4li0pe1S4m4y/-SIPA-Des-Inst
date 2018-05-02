@@ -115,6 +115,9 @@ namespace AplicacionSIPA1.Pedido
                 rblEstadosPedido.SelectedValue = "6";
                 rblEstadosPedido_SelectedIndexChanged(new Object(), new EventArgs());
 
+                pInsumoLN = new PedidosLN();
+                pInsumoLN.DdlSubproducto(ddlSubproducto, int.Parse(ddlUnidades.SelectedValue));
+
             }
             catch (Exception ex)
             {
@@ -196,6 +199,10 @@ namespace AplicacionSIPA1.Pedido
                                 int.TryParse(dvPedido.SelectedValue.ToString(), out idPedido);
 
                                 validarEstadoPedido(idPedido);
+
+                                pInsumoLN = new PedidosLN();
+                                pInsumoLN.DdlSubproducto(ddlSubproducto, (idPedido));
+
 
                                 string tipoDocumento = "";
 
@@ -692,7 +699,7 @@ namespace AplicacionSIPA1.Pedido
                             string noSolicitud = dvPedido.Rows[1].Cells[1].Text;
                             string tipoSolicitud = dvPedido.Rows[3].Cells[1].Text;
 
-                            NuevaAprobacion();
+                            //NuevaAprobacion();
                             lblSuccess.Text = tipoSolicitud + " No. " + noSolicitud + " APROBADA con éxito!";
                             //EnvioDeCorreos objEC = new EnvioDeCorreos();
                             //objEC.EnvioCorreo(planOperativoLN.ObtenerCorreoxUsuario(jefeTemp[1].Trim()), "Nueva REQUISICIÓN/VALE APROBADA por Presupuesto", lblSuccess.Text, usuario);
@@ -761,7 +768,7 @@ namespace AplicacionSIPA1.Pedido
                     RD.Name = "DataSet1";
 
                     if (idTipoSalida == 1)
-                        dsResultado = pInsumoLN.InformacionPedido(idEncabezado, 0, 0, "", 3);
+                        dsResultado = pInsumoLN.InformacionDetallePedidoPpto(idEncabezado.ToString());
                     else if (idTipoSalida == 2)
                         dsResultado = pInsumoLN.InformacionVale(idEncabezado, 0, 3);
                     else if (idTipoSalida == 3)
@@ -774,9 +781,15 @@ namespace AplicacionSIPA1.Pedido
                     RD2.Value = dsResultado.Tables[1];
                     RD2.Name = "DataSet2";
 
+                    dsResultado = pInsumoLN.InformacionProductoSub(ddlSubproducto.SelectedValue);
+                    ReportDataSource RD3 = new ReportDataSource();
+                    RD3.Value = dsResultado.Tables[1];
+                    RD3.Name = "DataSet3";
+
                     rViewer.LocalReport.DataSources.Clear();
                     rViewer.LocalReport.DataSources.Add(RD);
                     rViewer.LocalReport.DataSources.Add(RD2);
+                    rViewer.LocalReport.DataSources.Add(RD3);
                     rViewer.LocalReport.ReportEmbeddedResource = "\\Reportes/rptFINFOR23.rdlc";
                     rViewer.LocalReport.ReportPath = @"Reportes\\rptFINFOR23.rdlc";
                     rViewer.LocalReport.Refresh();
@@ -1253,7 +1266,7 @@ namespace AplicacionSIPA1.Pedido
 
         protected void btnImprimir_Click(object sender, EventArgs e)
         {
-
+          
         }
 
         protected void btnBuscar_Click(object sender, EventArgs e)
@@ -1302,6 +1315,38 @@ namespace AplicacionSIPA1.Pedido
             catch (Exception ex)
             {
                 lblError.Text = "rblEstadosPedido(). " + ex.Message;
+            }
+        }
+
+        protected void ddlSubproducto_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            int idPedido,idTipoDocumento = 0;
+            int.TryParse(rblTipoDocto.SelectedValue, out idTipoDocumento);
+            if (dvPedido.SelectedValue != null)
+            {
+                int.TryParse(dvPedido.SelectedValue.ToString(), out idPedido);
+
+                validarEstadoPedido(idPedido);
+                
+                string tipoDocumento = "";
+
+                if (tipoDoc() == 1)
+                    tipoDocumento = "R";
+                else if (tipoDoc() == 2)
+                    tipoDocumento = "V";
+
+                if (tipoDocumento.Equals("R") || tipoDocumento.Equals("V"))
+                {
+                    string jScript = "javascript:window.open('EspecificacionesIngreso.aspx?No=" + dvPedido.SelectedValue.ToString() + "&OptB=false&TipoD=" + tipoDocumento + "', '_blank');";
+                    LinkButton lbAnexo = (LinkButton)(dvPedido.Rows[13].FindControl("LinkButton1"));
+
+                    if (lbAnexo.Text.Equals("Especificaciones"))
+                        lbAnexo.Attributes.Add("onclick", jScript);
+                    else
+                        lbAnexo.Attributes.Clear();
+                }
+
+                generarReporte(idPedido, idTipoDocumento);
             }
         }
     }

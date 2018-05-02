@@ -112,9 +112,9 @@
                     <td style="width: 5%">&nbsp;</td>
                 </tr>
                 <tr>
-                    <td colspan="20">
-                        <asp:GridView ID="gridProveedores" runat="server" AllowPaging="True" AutoGenerateColumns="False" BackColor="White" BorderColor="#CCCCCC" BorderStyle="Solid" BorderWidth="1px" CellPadding="5" CellSpacing="1" DataKeyNames="ID" ForeColor="Black" GridLines="Vertical" HorizontalAlign="Center" OnPageIndexChanging="gridProveedores_PageIndexChanging" OnSelectedIndexChanged="gridProveedores_SelectedIndexChanged" PageSize="100" Width="100%" style="margin-left: 37px"
-                            CssClass="table table-hover table-responsive">
+                    <td colspan="19">
+                        <asp:GridView ID="gridProveedores" runat="server" AllowPaging="True" AutoGenerateColumns="False" BackColor="White" BorderColor="#CCCCCC" BorderStyle="Solid" BorderWidth="1px" CellPadding="5" CellSpacing="1" DataKeyNames="ID" ForeColor="Black" GridLines="Vertical" HorizontalAlign="Center" OnPageIndexChanging="gridProveedores_PageIndexChanging" OnSelectedIndexChanged="gridProveedores_SelectedIndexChanged" PageSize="100" Width="100%" style="margin-left: 48px; margin-right: 63px;"
+                            CssClass="table table-hover ">
                             <AlternatingRowStyle BackColor="#CEEFFF" ForeColor="#333333" />
                             <Columns>
                                 <asp:CommandField ButtonType="Image" SelectImageUrl="~/img/24_bits/accept.png" ShowSelectButton="True">
@@ -275,84 +275,7 @@
                     <br />
                     <br />
                     <br />
-                    <br />
-                    <br />
-                    <br />
-                    <br />
-                    <br />
-                    <br />
-                    <br />
-                    <br />
-                    <br />
-                    <br />
-                    <br />
-                    <br />
-                    <br />
-                    <br />
-                    <br />
-                    <br />
-                    <br />
-                    <br />
-                    <br />
-                    <br />
-                    <br />
-                    <br />
-                    <br />
-                    <br />
-                    <br />
-                    <br />
-                    <br />
-                    <br />
-                    <br />
-                    <br />
-                    <br />
-                    <br />
-                    <br />
-                    <br />
-                    <br />
-                    <br />
-                    <br />
-                    <br />
-                    <br />
-                    <br />
-                    <br />
-                    <br />
-                    <br />
-                    <br />
-                    <br />
-                    <br />
-                    <br />
-                    <br />
-                    <br />
-                    <br />
-                    <br />
-                    <br />
-                    <br />
-                    <br />
-                    <br />
-                    <br />
-                    <br />
-                    <br />
-                    <br />
-                    <br />
-                    <br />
-                    <br />
-                    <br />
-                    <br />
-                    <br />
-                    <br />
-                    <br />
-                    <br />
-                    <br />
-                    <br />
-                    <br />
-                    <br />
-                    <br />
-                    <br />
-                    <br />
-                    <br />
-                    <br />
-                    <br />
+            
                 </ContentTemplate>
             </asp:UpdatePanel>
             <div></div>                  

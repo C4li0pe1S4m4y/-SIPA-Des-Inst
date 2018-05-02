@@ -323,16 +323,16 @@
                             
                             <td colspan="4">
                                 
-                                <asp:Button ID="btInsumo" runat="server" OnClick="OnclickBtnInsumo"  CssClass="btn btn-info" Text="Busqueda I" />
+                                <asp:Button ID="btInsumo" runat="server" OnClick="OnclickBtnInsumo" UseSubmitBehavior="false" CssClass="btn btn-info" Text="Busqueda I" />
                             </td>
                             <td colspan="2"><asp:Label runat="server" ID="lblCodigoPresentacion" Text="Codigo de Presentacion"></asp:Label> </td>
                             <td colspan="3"><strong>
-                                <asp:TextBox ID="txtCodigoPresentacion" TextMode="Number" runat="server" CssClass="form-control"></asp:TextBox>
+                                <asp:TextBox ID="txtCodigoPresentacion" TextMode="Number" runat="server" CssClass="form-control" ></asp:TextBox>
                             </strong></td>
                             
                             <td colspan="3">
                                 
-                                <asp:Button ID="btnCodigoPresentacion" runat="server" OnClick="btnCodigoPresentacion_Click"   CssClass="btn btn-info" Text="Busqueda P" />
+                                <asp:Button ID="btnCodigoPresentacion" runat="server" OnClick="btnCodigoPresentacion_Click" UseSubmitBehavior="false"  CssClass="btn btn-info" Text="Busqueda P" />
                             </td>
                         </tr>
                         <tr>

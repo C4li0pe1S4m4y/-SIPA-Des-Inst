@@ -213,7 +213,7 @@
                                 </asp:TemplateField>
                             </Fields>
                             <FooterStyle Font-Bold="False" />
-                            <PagerStyle BackColor="White" BorderStyle="Solid" Font-Bold="True" Font-Names="Algerian" Font-Overline="False" Font-Size="Large" Font-Strikeout="False" Font-Underline="False" />
+                            <PagerStyle BackColor="White" BorderStyle="Solid" Font-Bold="True" Font-Overline="False" Font-Size="Medium" Font-Strikeout="False" Font-Underline="False" />
                         </asp:DetailsView>
                     </td>
                     <td style="width: 5%">&nbsp;</td>
@@ -270,7 +270,7 @@
                 </tr>
                 <tr>
                     <td colspan="20">
-                        <asp:GridView ID="gridDetalle" runat="server" AutoGenerateColumns="False" BackColor="White" BorderColor="#CCCCCC" BorderStyle="Solid" BorderWidth="1px" CellPadding="5" CellSpacing="1" DataKeyNames="ID,COSTO_ESTIMADO" Font-Size="Small" ForeColor="Black" GridLines="Vertical" HorizontalAlign="Center" OnRowDataBound="gridDetalle_RowDataBound" PageSize="12" ShowFooter="True" Width="100%">
+                        <asp:GridView ID="gridDetalle" runat="server" AutoGenerateColumns="False" BackColor="White" BorderColor="#CCCCCC" BorderStyle="Solid" BorderWidth="1px" CellPadding="5" CellSpacing="1" DataKeyNames="ID,COSTO_ESTIMADO" Font-Size="Small" ForeColor="Black" GridLines="Vertical" HorizontalAlign="Center" OnRowDataBound="gridDetalle_RowDataBound" PageSize="12" ShowFooter="True" Width="99%">
                             <AlternatingRowStyle BackColor="#CEEFFF" ForeColor="#333333" />
                             <Columns>
                                 <asp:CommandField ButtonType="Image" SelectImageUrl="~/img/24_bits/accept.png" ShowSelectButton="True" Visible="False">

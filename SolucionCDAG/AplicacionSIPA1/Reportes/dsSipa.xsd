@@ -93,6 +93,45 @@ FROM     ccl_catalogo c INNER JOIN
             </Mappings>
             <Sources />
           </TableAdapter>
+          <TableAdapter BaseClass="System.ComponentModel.Component" DataAccessorModifier="AutoLayout, AnsiClass, Class, Public" DataAccessorName="detalle_presupuestoTableAdapter" GeneratorDataComponentClassName="detalle_presupuestoTableAdapter" Name="detalle_presupuesto" UserDataComponentName="detalle_presupuestoTableAdapter">
+            <MainSource>
+              <DbSource ConnectionRef="dbcdagsipaConnectionString1 (Web.config)" DbObjectType="Unknown" FillMethodModifier="Public" FillMethodName="Fill" GenerateMethods="Both" GenerateShortCommands="false" GeneratorGetMethodName="GetData" GeneratorSourceName="Fill" GetMethodModifier="Public" GetMethodName="GetData" QueryType="Rowset" ScalarCallRetval="System.Object, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" UseOptimisticConcurrency="false" UserGetMethodName="GetData" UserSourceName="Fill">
+                <SelectCommand>
+                  <DbCommand CommandType="Text" ModifiedByUser="true">
+                    <CommandText>SELECT 0 AS numero, pd.Descripcion AS Descripcion_detalle, pd.codigo_insumo, da.no_renglon AS renglon_ppto
+FROM     sipa_pedido_detalle pd INNER JOIN
+                  sipa_detalles_accion da ON da.id_detalle = pd.id_detalle_accion</CommandText>
+                    <Parameters />
+                  </DbCommand>
+                </SelectCommand>
+              </DbSource>
+            </MainSource>
+            <Mappings>
+              <Mapping SourceColumn="codigo_insumo" DataSetColumn="codigo_insumo" />
+              <Mapping SourceColumn="Descripcion_detalle" DataSetColumn="Descripcion_detalle" />
+              <Mapping SourceColumn="renglon_ppto" DataSetColumn="renglon_ppto" />
+            </Mappings>
+            <Sources />
+          </TableAdapter>
+          <TableAdapter BaseClass="System.ComponentModel.Component" DataAccessorModifier="AutoLayout, AnsiClass, Class, Public" DataAccessorName="ccl_subproductoTableAdapter" GeneratorDataComponentClassName="ccl_subproductoTableAdapter" Name="ccl_subproducto" UserDataComponentName="ccl_subproductoTableAdapter">
+            <MainSource>
+              <DbSource ConnectionRef="dbcdagsipaConnectionString2 (Web.config)" DbObjectName="dbcdagsipa.ccl_subproducto" DbObjectType="Table" FillMethodModifier="Public" FillMethodName="Fill" GenerateMethods="Both" GenerateShortCommands="false" GeneratorGetMethodName="GetData" GeneratorSourceName="Fill" GetMethodModifier="Public" GetMethodName="GetData" QueryType="Rowset" ScalarCallRetval="System.Object, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" UseOptimisticConcurrency="false" UserGetMethodName="GetData" UserSourceName="Fill">
+                <SelectCommand>
+                  <DbCommand CommandType="Text" ModifiedByUser="true">
+                    <CommandText>SELECT id_producto, codigo, subproducto
+FROM     ccl_subproducto</CommandText>
+                    <Parameters />
+                  </DbCommand>
+                </SelectCommand>
+              </DbSource>
+            </MainSource>
+            <Mappings>
+              <Mapping SourceColumn="id_producto" DataSetColumn="id_producto" />
+              <Mapping SourceColumn="codigo" DataSetColumn="codigo" />
+              <Mapping SourceColumn="subproducto" DataSetColumn="subproducto" />
+            </Mappings>
+            <Sources />
+          </TableAdapter>
         </Tables>
         <Sources />
       </DataSource>
@@ -310,6 +349,49 @@ FROM     ccl_catalogo c INNER JOIN
                 </xs:simpleType>
               </xs:element>
               <xs:element name="cantidad" msprop:Generator_ColumnVarNameInTable="columncantidad" msprop:Generator_ColumnPropNameInRow="cantidad" msprop:Generator_ColumnPropNameInTable="cantidadColumn" msprop:Generator_UserColumnName="cantidad" type="xs:decimal" minOccurs="0" />
+            </xs:sequence>
+          </xs:complexType>
+        </xs:element>
+        <xs:element name="detalle_presupuesto" msprop:Generator_TableClassName="detalle_presupuestoDataTable" msprop:Generator_TableVarName="tabledetalle_presupuesto" msprop:Generator_RowChangedName="detalle_presupuestoRowChanged" msprop:Generator_TablePropName="detalle_presupuesto" msprop:Generator_RowDeletingName="detalle_presupuestoRowDeleting" msprop:Generator_RowChangingName="detalle_presupuestoRowChanging" msprop:Generator_RowEvHandlerName="detalle_presupuestoRowChangeEventHandler" msprop:Generator_RowDeletedName="detalle_presupuestoRowDeleted" msprop:Generator_RowClassName="detalle_presupuestoRow" msprop:Generator_UserTableName="detalle_presupuesto" msprop:Generator_RowEvArgName="detalle_presupuestoRowChangeEvent">
+          <xs:complexType>
+            <xs:sequence>
+              <xs:element name="codigo_insumo" msprop:Generator_ColumnVarNameInTable="columncodigo_insumo" msprop:Generator_ColumnPropNameInRow="codigo_insumo" msprop:Generator_ColumnPropNameInTable="codigo_insumoColumn" msprop:Generator_UserColumnName="codigo_insumo" type="xs:int" minOccurs="0" />
+              <xs:element name="numero" msprop:Generator_ColumnVarNameInTable="columnnumero" msprop:Generator_ColumnPropNameInRow="numero" msprop:Generator_ColumnPropNameInTable="numeroColumn" msprop:Generator_UserColumnName="numero" type="xs:string" minOccurs="0" />
+              <xs:element name="Descripcion_detalle" msprop:Generator_ColumnVarNameInTable="columnDescripcion_detalle" msprop:Generator_ColumnPropNameInRow="Descripcion_detalle" msprop:Generator_ColumnPropNameInTable="Descripcion_detalleColumn" msprop:Generator_UserColumnName="Descripcion_detalle" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="1000" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="renglon_ppto" msprop:Generator_ColumnVarNameInTable="columnrenglon_ppto" msprop:Generator_ColumnPropNameInRow="renglon_ppto" msprop:Generator_ColumnPropNameInTable="renglon_pptoColumn" msprop:Generator_UserColumnName="renglon_ppto">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="5" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+            </xs:sequence>
+          </xs:complexType>
+        </xs:element>
+        <xs:element name="ccl_subproducto" msprop:Generator_TableClassName="ccl_subproductoDataTable" msprop:Generator_TableVarName="tableccl_subproducto" msprop:Generator_TablePropName="ccl_subproducto" msprop:Generator_RowDeletingName="ccl_subproductoRowDeleting" msprop:Generator_RowChangingName="ccl_subproductoRowChanging" msprop:Generator_RowEvHandlerName="ccl_subproductoRowChangeEventHandler" msprop:Generator_RowDeletedName="ccl_subproductoRowDeleted" msprop:Generator_UserTableName="ccl_subproducto" msprop:Generator_RowChangedName="ccl_subproductoRowChanged" msprop:Generator_RowEvArgName="ccl_subproductoRowChangeEvent" msprop:Generator_RowClassName="ccl_subproductoRow">
+          <xs:complexType>
+            <xs:sequence>
+              <xs:element name="id_producto" msprop:Generator_ColumnVarNameInTable="columnid_producto" msprop:Generator_ColumnPropNameInRow="id_producto" msprop:Generator_ColumnPropNameInTable="id_productoColumn" msprop:Generator_UserColumnName="id_producto" type="xs:int" />
+              <xs:element name="codigo" msprop:Generator_ColumnVarNameInTable="columncodigo" msprop:Generator_ColumnPropNameInRow="codigo" msprop:Generator_ColumnPropNameInTable="codigoColumn" msprop:Generator_UserColumnName="codigo">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="45" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="subproducto" msprop:Generator_ColumnVarNameInTable="columnsubproducto" msprop:Generator_ColumnPropNameInRow="subproducto" msprop:Generator_ColumnPropNameInTable="subproductoColumn" msprop:Generator_UserColumnName="subproducto">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="300" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
             </xs:sequence>
           </xs:complexType>
         </xs:element>

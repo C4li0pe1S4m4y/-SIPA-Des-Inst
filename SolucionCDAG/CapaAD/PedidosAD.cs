@@ -2031,6 +2031,34 @@ namespace CapaAD
           
         }
 
+        public int Ingresar_Inusmo_Catalogo()
+        {
+            try
+            {
+                int result = 0;
+                conectar = new ConexionBD();
+                string query = string.Format("TRUNCATE `dbcdagsipa`.`ccl_catalogo`;");
+                
+                conectar.AbrirConexion();
+                MySqlCommand cmd = new MySqlCommand(query, conectar.conectar);
+                result = cmd.ExecuteNonQuery();
+                query = String.Format("LOAD DATA local INFILE 'C:\\\\ProgramData\\\\MySQL\\\\MySQL Server 5.7\\\\Uploads\\\\Catalogo.csv' INTO TABLE dbcdagsipa.ccl_catalogo " +
+                  "FIELDS TERMINATED BY ',' ENCLOSED BY '\"' " +
+                  "LINES TERMINATED BY '\\n' " +
+                  "IGNORE 2 LINES;");
+                cmd = new MySqlCommand(query, conectar.conectar);
+                result = cmd.ExecuteNonQuery();
+                conectar.CerrarConexion();
+                return result;
+            }
+            catch (Exception ex)
+            {
+                return -1;
+                throw;
+            }
+
+        }
+
         public DataTable InformacionPedidoCompras(int id)
         {
             conectar = new ConexionBD();
@@ -2049,7 +2077,45 @@ namespace CapaAD
             conectar.CerrarConexion();
             return tabla;
         }
+        public DataTable DdlSubproducto(int pedido)
+        {
+            conectar = new ConexionBD();
+            DataTable tabla = new DataTable();
+            conectar.AbrirConexion();
+            string query = string.Format("SELECT id_subproducto id,subproducto FROM ccl_subproducto where id_unidad ="+
+                " (select u.id_padre from sipa_pedidos p "+
+                " inner join ccl_unidades u on u.id_unidad = p.id_unidad" +
+                " where id_pedido = {0});", pedido);
+            MySqlDataAdapter consulta = new MySqlDataAdapter(query, conectar.conectar);
+            consulta.Fill(tabla);
+            conectar.CerrarConexion();
+            return tabla;
+        }
+
+        public DataTable InformacionProductoSub(string id)
+        {
+            conectar = new ConexionBD();
+            DataTable tabla = new DataTable();
+            string query = String.Format(" select pro.codigo id_producto,sub.codigo codigo,sub.subproducto from ccl_subproducto sub " +
+                " inner join ccl_productos pro on pro.id_producto = sub.id_producto where sub.id_subproducto ={0};", id);
+            conectar.AbrirConexion();
+            MySqlDataAdapter consulta = new MySqlDataAdapter(query, conectar.conectar);
+            consulta.Fill(tabla);
+            conectar.CerrarConexion();
+            return tabla;
+        }
 
 
+        public DataTable InformacionDetallePedidoPpto(string id)
+        {
+            conectar = new ConexionBD();
+            DataTable tabla = new DataTable();
+            string query = String.Format("CALL sp_pedidoPpto({0});", id);
+            conectar.AbrirConexion();
+            MySqlDataAdapter consulta = new MySqlDataAdapter(query, conectar.conectar);
+            consulta.Fill(tabla);
+            conectar.CerrarConexion();
+            return tabla;
+        }
     }
 }

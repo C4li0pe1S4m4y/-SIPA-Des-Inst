@@ -212,11 +212,11 @@
                     <td style="width: 5%">&nbsp;</td>
                     <td style="width: 5%">&nbsp;</td>
                     <td colspan="3">
-                        <asp:TextBox ID="txtFecha" runat="server" BackColor="#FFFF99" class="" Font-Size="Large" Style="text-align: right" Width="100%" TextMode="Date"></asp:TextBox>
+                        <asp:TextBox ID="txtFecha" runat="server" BackColor="#FFFF99" class="" Font-Size="Large" Style="text-align: right" Width="100%" required="true" TextMode="Date"></asp:TextBox>
                     </td>
                     <td style="width: 5%">&nbsp;</td>
                     <td colspan="6">
-                        <asp:TextBox ID="txtDependencia" runat="server" BackColor="#FFFF99" class="form-control" Style="text-align: left" Width="100%"></asp:TextBox>
+                        <asp:TextBox ID="txtDependencia" runat="server" BackColor="#FFFF99" class="form-control" required="true" Style="text-align: left" Width="100%"></asp:TextBox>
                     </td>
                     <td style="width: 5%">&nbsp;</td>
                     <td class="text-right" colspan="5">
@@ -365,7 +365,7 @@
                     <td style="width: 5%">&nbsp;</td>
                     <td style="width: 5%">&nbsp;</td>
                     <td colspan="16">
-                        <asp:TextBox ID="txtJustificacion" runat="server" BackColor="#FFFF99" class="" Style="text-align: left" Width="100%" Height="40px" TextMode="MultiLine"></asp:TextBox>
+                        <asp:TextBox ID="txtJustificacion" runat="server" BackColor="#FFFF99" class=""  required="true" Style="text-align: left" Width="100%" Height="40px" TextMode="MultiLine"></asp:TextBox>
                     </td>
                     <td style="width: 5%">&nbsp;</td>
                     <td style="width: 5%">&nbsp;</td>
@@ -404,7 +404,7 @@
                     <td style="width: 5%">&nbsp;</td>
                     <td style="width: 5%">&nbsp;</td>
                     <td colspan="16">
-                        <asp:TextBox ID="txtDestino" runat="server" BackColor="#FFFF99" class="" Style="text-align: left" Width="100%" Height="40px" TextMode="MultiLine"></asp:TextBox>
+                        <asp:TextBox ID="txtDestino" runat="server" BackColor="#FFFF99" class="" Style="text-align: left" Width="100%" Height="40px" required="true" TextMode="MultiLine"></asp:TextBox>
                     </td>
                     <td style="width: 5%">&nbsp;</td>
                     <td style="width: 5%">&nbsp;</td>
@@ -709,11 +709,11 @@
                     <td colspan="16" style="text-align: center">
                         <strong>
                         <asp:Button ID="btnGuardar" runat="server" class="btn btn-success" OnClick="btnGuardar_Click" Text="Guardar" ValidationGroup="grpDatos" Width="120px" />
-                        <asp:Button ID="btnLimpiarC" runat="server" class="btn btn-warning" OnClick="btnNuevo_Click" Text="Nuevo" Width="120px" />
+                        <asp:Button ID="btnLimpiarC" runat="server" class="btn btn-warning" OnClick="btnNuevo_Click" Text="Nuevo" Width="120px"  UseSubmitBehavior="false"/>
                         </strong>
                         <asp:Button ID="btnEnviar" runat="server" class="btn btn-primary" Text="Enviar" ValidationGroup="grpDatos" Width="120px" OnClick="btnEnviar_Click" />
                         <asp:Button ID="btnAnular" runat="server" class="btn btn-danger" Text="Anular" Width="120px" OnClick="btnAnular_Click" Visible="False" />
-                        <asp:Button ID="btnListado" runat="server" CausesValidation="False" class="btn btn-info" OnClick="btnListado_Click"  Text="Ver Listado" Width="120px" />
+                        <asp:Button ID="btnListado" runat="server" CausesValidation="False" class="btn btn-info" OnClick="btnListado_Click" UseSubmitBehavior="false" Text="Ver Listado" Width="120px" />
                     </td>
                     <td style="width: 5%">&nbsp;</td>
                     <td style="width: 5%">&nbsp;</td>
@@ -969,60 +969,7 @@
                 </tr>
 
             </table>
-                    <br />
-                    <br />
-                    <br />
-                    <br />
-                    <br />
-                    <br />
-                    <br />
-                    <br />
-                    <br />
-                    <br />
-                    <br />
-                    <br />
-                    <br />
-                    <br />
-                    <br />
-                    <br />
-                    <br />
-                    <br />
-                    <br />
-                    <br />
-                    <br />
-                    <br />
-                    <br />
-                    <br />
-                    <br />
-                    <br />
-                    <br />
-                    <br />
-                    <br />
-                    <br />
-                    <br />
-                    <br />
-                    <br />
-                    <br />
-                    <br />
-                    <br />
-                    <br />
-                    <br />
-                    <br />
-                    <br />
-                    <br />
-                    <br />
-                    <br />
-                    <br />
-                    <br />
-                    <br />
-                    <br />
-                    <br />
-                    <br />
-                    <br />
-                    <br />
-                    <br />
-                    <br />
-                    <br />
+                   
                     <br />
                     <br />
                     <br />

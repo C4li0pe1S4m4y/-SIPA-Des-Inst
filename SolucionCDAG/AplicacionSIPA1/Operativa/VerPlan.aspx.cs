@@ -128,7 +128,7 @@ namespace AplicacionSIPA1.Operativa
                 dv.Sort = "cod_ee asc";
 
                 filtro = " anio = " + ddlAnios.SelectedValue;
-
+                filtro = " id_unidad =" + ddlUnidades.SelectedValue;
                 if (!ddlAcciones.SelectedValue.Equals("0"))
                     filtro += " AND id_accion = " + ddlAcciones.SelectedValue;
                 

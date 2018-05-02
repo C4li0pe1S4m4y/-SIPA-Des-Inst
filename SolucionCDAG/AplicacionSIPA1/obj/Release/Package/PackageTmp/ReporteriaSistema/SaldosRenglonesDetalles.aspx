@@ -3,34 +3,37 @@
 <%@ Register Assembly="Microsoft.ReportViewer.WebForms, Version=11.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91" Namespace="Microsoft.Reporting.WebForms" TagPrefix="rsweb" %>
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
 </asp:Content>
-<asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder2" runat="server">
+<asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder3" runat="server">
     <h3>&nbsp;&nbsp;&nbsp;&nbsp; Consulta Renglones Presupuestarios Detalle </h3>
     <asp:Label ID="lblPoa" runat="server" Visible="false"></asp:Label>
     <div class="row">
-        <div class="col-xs-2">
+        <div class="col-md-1"></div>
+        <div class="col-sm-2">
             <label>Año</label>
             <asp:DropDownList ID="ddlAnios" runat="server" AutoPostBack="True"  OnSelectedIndexChanged="ddlAnios_SelectedIndexChanged" class="form-control" Width="90%"></asp:DropDownList>
         </div>
-        <div class="col-xs-4">
+        <div class="col-sm-4">
             <label>Unidad</label>
             <asp:DropDownList ID="ddlUnidades" runat="server" AutoPostBack="True" class="form-control" OnSelectedIndexChanged="ddlUnidades_SelectedIndexChanged" Width="74%"></asp:DropDownList>
         </div>
         <!-- Se agregaron las lineas de codigo que esta encerradas en el <div> -->
-        <div class="col-xs-4">
+        <div class="col-sm-4">
             <label>Dependencia</label>
                 <asp:DropDownList ID="ddlDependencia" runat="server" OnSelectedIndexChanged="ddlDependencia_SelectedIndexChanged" AutoPostBack="True" class="form-control" Width="72%">
                                 </asp:DropDownList>        
         </div>
     </div>
     <div class="row">
-        <div class="col-xs-7">
+        <div class="col-md-1"></div>
+        <div class="col-sm-7">
             <label>Acciones</label>
             <asp:DropDownList ID="ddlAcciones" runat="server" AutoPostBack="True" BackColor="#003366" OnSelectedIndexChanged="ddlAcciones_SelectedIndexChanged" class="form-control" ForeColor="White" Width="100%"></asp:DropDownList>
         </div>
     </div>
 
     <div class="row">
-        <div class="col-xs-5">
+        <div class="col-md-1"></div>
+        <div class="col-sm-5">
             <label>Tipo de Documento</label>
             <br />
             <asp:CheckBoxList ID="chkTiposSalida" runat="server" OnSelectedIndexChanged="chkTiposSalida_SelectedIndexChanged" CssClass="form-control" RepeatDirection="Horizontal" AutoPostBack="True">
@@ -40,31 +43,40 @@
                 <asp:ListItem Selected="True" Value="4">Viáticos</asp:ListItem>
             </asp:CheckBoxList>
         </div>
-        <div class="col-xs-3">
+        <div class="col-sm-3">
             <label>Fecha Inicio</label>
             <br />
             <asp:TextBox ID="txtFechaInicio" runat="server" TextMode="Date"></asp:TextBox>
         </div>
-        <div class="col-xs-3">
+        <div class="col-sm-3">
             <label>Fecha Final</label>
             <br />
             <asp:TextBox ID="txtFechaFinal" OnTextChanged="txtFechaFinal_TextChanged" AutoPostBack="true" runat="server" TextMode="Date"></asp:TextBox>
         </div>
     </div>
     <div class="row">
-        <div class="col-xs-9">
+        <div class="col-md-1"></div>
+        <div class="col-sm-8">
             <label>Estados</label>
             <br />
             <asp:CheckBoxList ID="chkEstados" runat="server"  RepeatDirection="Horizontal" ></asp:CheckBoxList>
         </div>
-        <div class="col-xs-3">
+
+        <div class="col-sm-2">
             <br />
+            
             <asp:Button ID="btnBucarEstados" runat="server" Text="Buscar Estado" OnClick="btnBucarEstados_Click" CssClass="btn btn-info" />
         </div>
     </div>
     <br />
-    <div class="col-xs-12" style="width: 100%; height: 100%; left: 23px; top: 3px;">
-        <rsweb:ReportViewer ID="ReportViewer1" runat="server" Font-Names="Verdana" Font-Size="8pt" WaitMessageFont-Names="Verdana" WaitMessageFont-Size="14pt" Width="1473px">
+    <div class="row">
+        <div style="text-align: center;"><span>
+            <asp:Label ID="lblError" runat="server" Font-Bold="True" Font-Size="Medium" ForeColor="Red"></asp:Label>
+            <asp:Label ID="lblSuccess" runat="server" Font-Bold="True" Font-Size="Medium" ForeColor="Green"></asp:Label>
+        </span></div>
+    </div>
+    <div class="col-sm-12" style="width: 100%; height: 100%; left: 23px; top: 3px;">
+        <rsweb:ReportViewer ID="ReportViewer1"  runat="server" Font-Names="Verdana" Font-Size="8pt" WaitMessageFont-Names="Verdana" WaitMessageFont-Size="14pt" Width="1473px">
             <LocalReport ReportPath="Reportes\SaldosRenglonesDet.rdlc">
                 <DataSources>
                     <rsweb:ReportDataSource DataSourceId="SqlDataSource1" Name="DataSet1" />

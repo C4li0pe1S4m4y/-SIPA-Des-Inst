@@ -2598,7 +2598,7 @@
           <Top>1.49437cm</Top>
           <Left>3.03056cm</Left>
           <Height>1.15604cm</Height>
-          <Width>4.74702cm</Width>
+          <Width>3.81569cm</Width>
           <ZIndex>2</ZIndex>
           <Style>
             <Border>
@@ -2644,9 +2644,9 @@
           </Paragraphs>
           <rd:DefaultName>Textbox3</rd:DefaultName>
           <Top>1.49437cm</Top>
-          <Left>7.77759cm</Left>
+          <Left>6.84625cm</Left>
           <Height>1.15604cm</Height>
-          <Width>2.36948cm</Width>
+          <Width>2.47589cm</Width>
           <ZIndex>3</ZIndex>
           <Style>
             <Border>
@@ -2679,9 +2679,9 @@
           </Paragraphs>
           <rd:DefaultName>Textbox4</rd:DefaultName>
           <Top>1.49437cm</Top>
-          <Left>10.14707cm</Left>
+          <Left>9.32214cm</Left>
           <Height>1.15604cm</Height>
-          <Width>2.97157cm</Width>
+          <Width>1.55932cm</Width>
           <ZIndex>4</ZIndex>
           <Style>
             <Border>
@@ -2748,15 +2748,68 @@
           </Paragraphs>
           <rd:DefaultName>Textbox5</rd:DefaultName>
           <Top>1.49437cm</Top>
-          <Left>13.11864cm</Left>
+          <Left>10.88146cm</Left>
           <Height>1.15604cm</Height>
-          <Width>4.44617cm</Width>
+          <Width>3.27947cm</Width>
           <ZIndex>5</ZIndex>
           <Style>
             <Border>
               <Style>Solid</Style>
               <Width>1.5pt</Width>
             </Border>
+            <PaddingLeft>2pt</PaddingLeft>
+            <PaddingRight>2pt</PaddingRight>
+            <PaddingTop>2pt</PaddingTop>
+            <PaddingBottom>2pt</PaddingBottom>
+          </Style>
+        </Textbox>
+        <Textbox Name="Textbox7">
+          <CanGrow>true</CanGrow>
+          <KeepTogether>true</KeepTogether>
+          <Paragraphs>
+            <Paragraph>
+              <TextRuns>
+                <TextRun>
+                  <Value>Fecha de aprobacion: 20/04/2018</Value>
+                  <Style>
+                    <FontFamily>TImes New Roman</FontFamily>
+                    <FontWeight>Normal</FontWeight>
+                  </Style>
+                </TextRun>
+              </TextRuns>
+              <Style />
+            </Paragraph>
+          </Paragraphs>
+          <rd:DefaultName>Textbox7</rd:DefaultName>
+          <Top>1.48167cm</Top>
+          <Left>14.16093cm</Left>
+          <Height>1.16874cm</Height>
+          <Width>3.40388cm</Width>
+          <ZIndex>6</ZIndex>
+          <Style>
+            <Border>
+              <Style>Solid</Style>
+            </Border>
+            <TopBorder>
+              <Color>Black</Color>
+              <Style>Solid</Style>
+              <Width>1pt</Width>
+            </TopBorder>
+            <BottomBorder>
+              <Color>Black</Color>
+              <Style>Solid</Style>
+              <Width>1pt</Width>
+            </BottomBorder>
+            <LeftBorder>
+              <Color>Black</Color>
+              <Style>Solid</Style>
+              <Width>1pt</Width>
+            </LeftBorder>
+            <RightBorder>
+              <Color>Black</Color>
+              <Style>Solid</Style>
+              <Width>1pt</Width>
+            </RightBorder>
             <PaddingLeft>2pt</PaddingLeft>
             <PaddingRight>2pt</PaddingRight>
             <PaddingTop>2pt</PaddingTop>

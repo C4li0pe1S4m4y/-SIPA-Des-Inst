@@ -59,8 +59,13 @@ namespace AplicacionSIPA1.Compras
                 {
                     try
                     {
+                        log.Visible = true;
                         CargaArchivo.SaveAs("C:\\ProgramData\\MySQL\\MySQL Server 5.7\\Uploads\\Catalogo.csv");
-                        ScriptManager.RegisterStartupScript(this, typeof(string), "Almaceado", "alert('El formato del archivo no es correcto');", true);
+                        pedidoLN = new PedidosLN();
+                        
+                        pedidoLN.Ingresar_Insumo_Catalgo();
+                        ScriptManager.RegisterStartupScript(this, typeof(string), "Almaceado", "alert('El archivo se almaceno correctamente');", true);
+                        log.Visible = false;
                     }
                     catch (Exception ex)
                     {

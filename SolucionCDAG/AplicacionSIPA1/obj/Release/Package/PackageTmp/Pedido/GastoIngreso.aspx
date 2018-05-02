@@ -210,7 +210,7 @@
                     <td>&nbsp;</td>
                     <td>&nbsp;</td>
                     <td colspan="16">
-                        <asp:TextBox ID="txtJustificacion" runat="server" class="form-control" Enabled="true" Height="50px" MaxLength="750" placeholder="Ingrese la justificación del pedido" TextMode="MultiLine" Width="100%" BackColor="#FFFF99"></asp:TextBox>
+                        <asp:TextBox ID="txtJustificacion" runat="server" class="form-control" Enabled="true" Height="50px" MaxLength="750" placeholder="Ingrese la justificación del pedido" TextMode="MultiLine" Width="100%" required="true" BackColor="#FFFF99"></asp:TextBox>
                     </td>
                     <td style="width: 5%">&nbsp;</td>
                     <td style="width: 5%">&nbsp;</td>
@@ -256,7 +256,7 @@
                     <td>&nbsp;</td>
                     <td>&nbsp;</td>
                     <td colspan="16">
-                        <asp:TextBox ID="txtDescripcion" runat="server" BackColor="#FFFF99" class="form-control" Enabled="true" Height="40px" MaxLength="750" placeholder="Ingrese la descripción del Bien o Servicio que desea adquirir" TextMode="MultiLine" Width="100%"></asp:TextBox>
+                        <asp:TextBox ID="txtDescripcion" runat="server" BackColor="#FFFF99" class="form-control" Enabled="true" Height="40px" MaxLength="750" placeholder="Ingrese la descripción del Bien o Servicio que desea adquirir" required="true" TextMode="MultiLine" Width="100%"></asp:TextBox>
                     </td>
                     <td>&nbsp;</td>
                     <td style="width: 5%">&nbsp;</td>
@@ -298,15 +298,15 @@
                     <td colspan="4">
                         &nbsp;</td>
                     <td colspan="3">
-                        <asp:TextBox ID="txtCantidad" runat="server" BackColor="#FFFF99" class="form-control" Font-Size="Large" MaxLength="8" Style="text-align: right" Width="100%"></asp:TextBox>
+                        <asp:TextBox ID="txtCantidad" runat="server" BackColor="#FFFF99" class="form-control" Font-Size="Large" MaxLength="8" Style="text-align: right" required="true" Width="100%"></asp:TextBox>
                     </td>
                     <td colspan="3">
-                        <asp:TextBox ID="txtCosto" runat="server" BackColor="#FFFF99" class="form-control" Font-Size="Large" MaxLength="12" Style="text-align: right" Width="100%"></asp:TextBox>
+                        <asp:TextBox ID="txtCosto" runat="server" BackColor="#FFFF99" class="form-control" Font-Size="Large" MaxLength="12" Style="text-align: right" required="true" Width="100%"></asp:TextBox>
                     </td>
                     <td colspan="6">
                         <asp:Button ID="btnGuardar" runat="server" class="btn btn-success" OnClick="btnGuardar_Click" Text="Guardar" ValidationGroup="grpDatos" Width="120px" />
-                        <asp:Button ID="btnLimpiarC" runat="server" class="btn btn-warning" OnClick="btnNuevo_Click" Text="Nuevo" Width="120px" />
-                        <asp:Button ID="btnListado" runat="server" CausesValidation="False" class="btn btn-info" OnClick="btnListado_Click" Text="Ver Listado" Width="120px"  />
+                        <asp:Button ID="btnLimpiarC" runat="server" class="btn btn-warning" OnClick="btnNuevo_Click" Text="Nuevo" Width="120px" UseSubmitBehavior="false"/>
+                        <asp:Button ID="btnListado" runat="server" CausesValidation="False" class="btn btn-info" OnClick="btnListado_Click" UseSubmitBehavior="false" Text="Ver Listado" Width="120px"  />
                     </td>
                     <td>&nbsp;</td>
                     <td style="width: 5%">&nbsp;</td>
@@ -363,7 +363,7 @@
                     <td style="width: 5%">&nbsp;</td>
                     <td colspan="16">
                         <asp:GridView ID="gridDet" runat="server" AutoGenerateColumns="False" BackColor="White" BorderColor="#CCCCCC" BorderStyle="Solid" BorderWidth="1px" CellPadding="5" CellSpacing="1" DataKeyNames="ID,NUMERO" ForeColor="Black" GridLines="Vertical" HorizontalAlign="Center" PageSize="12" ShowFooter="True" Width="100%" OnRowDeleting="gridDet_RowDeleting" OnSelectedIndexChanged="gridDet_SelectedIndexChanged" Font-Size="XX-Small"
-                            CssClass="table table-hover table-responsive">
+                            CssClass="table table-hover ">
                             <AlternatingRowStyle BackColor="#CEEFFF" ForeColor="#333333" />
                             <Columns>
                                 <asp:CommandField ButtonType="Image" SelectImageUrl="~/img/24_bits/accept.png" ShowSelectButton="True">

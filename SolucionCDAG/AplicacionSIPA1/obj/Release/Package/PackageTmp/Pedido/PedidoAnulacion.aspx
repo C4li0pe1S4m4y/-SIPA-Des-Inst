@@ -3,6 +3,12 @@
 
 
 <asp:Content ID="Content2" runat="server" ContentPlaceHolderID="head">
+    <style type="text/css">
+        .auto-style3 {
+            text-align: center;
+            font-size: large;
+        }
+    </style>
 </asp:Content>
 <asp:Content ID="Content1" runat="server" contentplaceholderid="ContentPlaceHolder3">
     <asp:UpdatePanel ID="UpdatePanel1" runat="server">
@@ -19,7 +25,7 @@
                         <asp:DropDownList ID="ddlPlanes" runat="server" AutoPostBack="True" OnSelectedIndexChanged="ddlPlanes_SelectedIndexChanged" Width="50%" Visible="False">
                         </asp:DropDownList>
                         </strong></td>
-                    <td style="font-size: x-large; text-align: center; background-color: #006600; color: #FFFFFF;" class="text-center" colspan="16"><strong>ANULACIONES DE
+                    <td style="text-align: center; background-color: #006600; color: #FFFFFF;" class="auto-style3" colspan="16"><strong>ANULACIONES DE
                         <br />
                         REQUISICIONES,&nbsp; VALES DE CAJA CHICA,
                         <br />
@@ -193,7 +199,7 @@
                     <td style="width: 5%">&nbsp;</td>
                     <td colspan="18">
                          <asp:DetailsView ID="dvPedido" runat="server" AllowPaging="True" AutoGenerateRows="False" DataKeyNames="ID,ID_ACCION" OnPageIndexChanging="dvPedido_PageIndexChanging" Width="100%"
-                            CssClass="table table-hover table-responsive">
+                            CssClass="table table-hover ">
                             
                             <AlternatingRowStyle BackColor="#CEEFFF" ForeColor="#333333" />
                             <Fields>
@@ -261,7 +267,7 @@
                                 </asp:BoundField>
                             </Fields>
                             <FooterStyle Font-Bold="False" />
-                            <PagerStyle BackColor="White" BorderStyle="Solid" Font-Bold="True" Font-Names="Algerian" Font-Overline="False" Font-Size="Large" Font-Strikeout="False" Font-Underline="False" />
+                            <PagerStyle BackColor="White" BorderStyle="Solid" Font-Bold="True"  Font-Overline="False" Font-Size="Large" Font-Strikeout="False" Font-Underline="False" />
                         </asp:DetailsView>
                     </td>
                     <td style="width: 5%">&nbsp;</td>
@@ -337,7 +343,7 @@
                     <td style="width: 5%">&nbsp;</td>
                     <td colspan="18">
                          <asp:GridView ID="gridDetalle" runat="server" AutoGenerateColumns="False" BackColor="White" BorderColor="#CCCCCC" BorderStyle="Solid" BorderWidth="1px" CellPadding="5" CellSpacing="1" DataKeyNames="ID,COSTO_ESTIMADO" Font-Size="Small" ForeColor="Black" GridLines="Vertical" HorizontalAlign="Center" PageSize="12" ShowFooter="True" Width="100%"
-                            CssClass="table table-hover table-responsive">
+                            CssClass="table table-hover ">
                           
                             <AlternatingRowStyle BackColor="#CEEFFF" ForeColor="#333333" />
                             <Columns>

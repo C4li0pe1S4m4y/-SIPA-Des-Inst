@@ -3,15 +3,18 @@
 
 
 <asp:Content ID="Content2" runat="server" ContentPlaceHolderID="head">
-    <p>
-        }</p>
-    <p>
-        &nbsp;</p>
+  
+     
     <script type="text/javascript">
         function verPanelModalReglon() {
             $('#ContentPlaceHolder3_PanelModalReglon').modal('show');
         }
      </script>
+    <style type="text/css">
+        .auto-style3 {
+            background-color: #FFFF66;
+        }
+    </style>
 </asp:Content>
 
 <asp:Content ID="Content1" runat="server" contentplaceholderid="ContentPlaceHolder3">
@@ -1253,7 +1256,9 @@
                     <td style="width: 5%">&nbsp;</td>
                     <td style="width: 5%">&nbsp;</td>
                     
-                    <td style="width: 5%">&nbsp;</td>
+                    <td style="width: 5%">
+                        <label style="color:darkorange">Ahora solo se tiene que agregar el monto que se desea debitar en la casilla del DEBITO. </label>
+                    </td>
                     <td style="width: 5%">&nbsp;</td>
                     <td style="width: 5%">&nbsp;</td>
                     <td style="width: 5%">&nbsp;</td>
@@ -1495,10 +1500,10 @@
                         <asp:TextBox ID="txtMontoActualOrigen" runat="server" class="form-control" Font-Bold="True" Font-Size="Medium" MaxLength="20" ReadOnly="True" Style="text-align: right" Width="100%">100000000</asp:TextBox>
                     </td>
                     <td colspan="2">
-                        <asp:TextBox ID="txtNuevoMontoOrigen" runat="server" BackColor="#FFFF99" class="form-control" Font-Bold="True" Font-Size="Medium" MaxLength="20" Style="text-align: right" Width="100%" ForeColor="Black">100000000</asp:TextBox>
+                        <asp:TextBox ID="txtNuevoMontoOrigen" runat="server" BackColor="#FFFF99" class="form-control" ReadOnly="True" Font-Bold="True" Font-Size="Medium" MaxLength="20" Style="text-align: right" Width="100%" ForeColor="Black">100000000</asp:TextBox>
                     </td>
                     <td colspan="3">
-                        <asp:TextBox ID="txtDebito" runat="server" class="form-control" Font-Bold="True" Font-Size="Medium" MaxLength="20" ReadOnly="True" Style="text-align: right" Width="100%" ForeColor="Red">100000000</asp:TextBox>
+                        <asp:TextBox ID="txtDebito" runat="server" class="form-control" Font-Bold="True" Font-Size="Medium" MaxLength="20"  Style="text-align: right" Width="100%" ForeColor="Red">100000000</asp:TextBox>
                     </td>
                     <td style="width: 5%">&nbsp;</td>
                     <td style="width: 5%">&nbsp;</td>

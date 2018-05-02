@@ -244,11 +244,11 @@
                     <td style="width: 5%">&nbsp;</td>
                     <td style="width: 5%">&nbsp;</td>
                     <td colspan="3">
-                        <asp:TextBox ID="txtFecha" runat="server" BackColor="#FFFF99" class="" Font-Size="Large" Style="text-align: right" Width="100%" TextMode="Date"></asp:TextBox>
+                        <asp:TextBox ID="txtFecha" runat="server" BackColor="#FFFF99" class="" Font-Size="Large" Style="text-align: right" Width="100%" required="true" TextMode="Date"></asp:TextBox>
                     </td>
                     <td style="width: 5%">&nbsp;</td>
                     <td colspan="6">
-                        <asp:TextBox ID="txtDependencia" runat="server" BackColor="#FFFF99" class="form-control" Style="text-align: left" Width="100%"></asp:TextBox>
+                        <asp:TextBox ID="txtDependencia" runat="server" BackColor="#FFFF99" class="form-control" Style="text-align: left" Width="100%" required="true"></asp:TextBox>
                     </td>
                     <td style="width: 5%">&nbsp;</td>
                     <td class="text-right" colspan="5">
@@ -397,7 +397,7 @@
                     <td style="width: 5%">&nbsp;</td>
                     <td style="width: 5%">&nbsp;</td>
                     <td colspan="16">
-                        <asp:TextBox ID="txtJustificacion" runat="server" BackColor="#FFFF99" class="" Style="text-align: left" Width="100%" Height="40px" TextMode="MultiLine"></asp:TextBox>
+                        <asp:TextBox ID="txtJustificacion" runat="server" BackColor="#FFFF99" required="true" class="" Style="text-align: left" Width="100%" Height="40px" TextMode="MultiLine"></asp:TextBox>
                     </td>
                     <td style="width: 5%">&nbsp;</td>
                     <td style="width: 5%">&nbsp;</td>
@@ -436,7 +436,7 @@
                     <td style="width: 5%">&nbsp;</td>
                     <td style="width: 5%">&nbsp;</td>
                     <td colspan="16">
-                        <asp:TextBox ID="txtDestino" runat="server" BackColor="#FFFF99" class="" Style="text-align: left" Width="100%" Height="40px" TextMode="MultiLine"></asp:TextBox>
+                        <asp:TextBox ID="txtDestino" runat="server" BackColor="#FFFF99" required="true" class="" Style="text-align: left" Width="100%" Height="40px" TextMode="MultiLine"></asp:TextBox>
                     </td>
                     <td style="width: 5%">&nbsp;</td>
                     <td style="width: 5%">&nbsp;</td>
@@ -541,10 +541,10 @@
                     <td style="width: 5%">&nbsp;</td>
                     <td style="width: 5%">&nbsp;</td>
                     <td style="text-align: center;" colspan="2">
-                        <asp:TextBox ID="txtFechaIni" runat="server" BackColor="#FFFF99" class="form-control" MaxLength="10" Style="text-align: right" TextMode="Date" Width="95%" Font-Bold="True" Font-Size="X-Small">01/01/2016</asp:TextBox>
+                        <asp:TextBox ID="txtFechaIni" runat="server" BackColor="#FFFF99" class="form-control" MaxLength="10" Style="text-align: right" required="true" TextMode="Date" Width="95%" Font-Bold="True" Font-Size="X-Small">01/01/2016</asp:TextBox>
                     </td>
                     <td colspan="2" style="text-align: center;">
-                        <asp:TextBox ID="txtFechaFin" runat="server" BackColor="#FFFF99" class="form-control" MaxLength="10" Style="text-align: right" TextMode="Date" Width="95%" Font-Bold="True" Font-Size="X-Small">01/01/2016</asp:TextBox>
+                        <asp:TextBox ID="txtFechaFin" runat="server" BackColor="#FFFF99" class="form-control" MaxLength="10" Style="text-align: right" required="true" TextMode="Date" Width="95%" Font-Bold="True" Font-Size="X-Small">01/01/2016</asp:TextBox>
                     </td>
                     <td style="text-align: center;" colspan="4">
                         <asp:TextBox ID="txtCuotaDiaria" runat="server" MaxLength="12" ReadOnly="True" Style="text-align: right" Width="75%" Font-Size="Large" Height="50px"></asp:TextBox>
@@ -717,11 +717,11 @@
                     <td colspan="16" style="text-align: center">
                         <strong>
                         <asp:Button ID="btnGuardar" runat="server" class="btn btn-success" OnClick="btnGuardar_Click" Text="Guardar" ValidationGroup="grpDatos" Width="120px" />
-                        <asp:Button ID="btnLimpiarC" runat="server" class="btn btn-warning" OnClick="btnNuevo_Click" Text="Nuevo" Width="120px" />
+                        <asp:Button ID="btnLimpiarC" runat="server" class="btn btn-warning" OnClick="btnNuevo_Click" Text="Nuevo" Width="120px" UseSubmitBehavior="false" />
                         </strong>
                         <asp:Button ID="btnEnviar" runat="server" class="btn btn-primary" Text="Enviar" ValidationGroup="grpDatos" Width="120px" OnClick="btnEnviar_Click" />
                         <asp:Button ID="btnAnular" runat="server" class="btn btn-danger" Text="Anular" Width="120px" OnClick="btnAnular_Click" Visible="False" />
-                        <asp:Button ID="btnListado" runat="server" CausesValidation="False" class="btn btn-info" OnClick="btnListado_Click"  Text="Ver Listado" Width="120px" />
+                        <asp:Button ID="btnListado" runat="server" CausesValidation="False" class="btn btn-info" OnClick="btnListado_Click"  Text="Ver Listado" Width="120px" UseSubmitBehavior="false" />
                     </td>
                     <td style="width: 5%">&nbsp;</td>
                     <td style="width: 5%">&nbsp;</td>
@@ -753,7 +753,7 @@
                     <td style="width: 5%">&nbsp;</td>
                     <td colspan="16">
                         <asp:GridView ID="gridDet" runat="server" AutoGenerateColumns="False" BackColor="White" BorderColor="#CCCCCC" BorderStyle="Solid" BorderWidth="1px" CellPadding="5" CellSpacing="1" DataKeyNames="ID" ForeColor="Black" GridLines="Vertical" HorizontalAlign="Center" OnRowDeleting="gridDet_RowDeleting" OnSelectedIndexChanged="gridDet_SelectedIndexChanged" PageSize="12" Width="100%"
-                            CssClass="table table-hover table-responsive">
+                            CssClass="table table-hover">
                             <AlternatingRowStyle BackColor="#CEEFFF" ForeColor="#333333" />
                             <Columns>
                                 <asp:CommandField ButtonType="Image" SelectImageUrl="~/img/24_bits/accept.png" ShowSelectButton="True" Visible="False">

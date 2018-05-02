@@ -17,29 +17,29 @@
         <ContentTemplate>
             <h2 style="text-align: center">Regularizacion PAC</h2>
             <div class="row">
-                <div class="col-xs-1">
+                <div class="col-sm-1">
                     <label>Año</label>
                     <asp:DropDownList ID="ddlAnio" runat="server" CssClass="form-control" Width="85%"></asp:DropDownList>
                 </div>
-                <div class="col-xs-4">
+                <div class="col-sm-4">
                     <label>Unidad</label>
                     <asp:DropDownList ID="ddlUnidad" AutoPostBack="true" runat="server" CssClass="form-control" OnSelectedIndexChanged="ddlUnidad_SelectedIndexChanged" Width="90%"></asp:DropDownList>
                 </div>
-                <div class="col-xs-2">
+                <div class="col-sm-2">
                     <label>No. de Documento</label>
                     <asp:TextBox ID="txtNo" runat="server" BackColor="#FFFF99" class="form-control" Font-Bold="True"></asp:TextBox>
                 </div>
-                <div class="col-xs-3">
+                <div class="col-sm-3">
                     <br />
                     <asp:Button ID="btnBuscar" runat="server" OnClick="btnBuscar_Click" Text="Buscar" CssClass="btn btn-info" />
                 </div>
             </div>
             <div class="row">
-                <div class="col-xs-4">
+                <div class="col-sm-4">
                     <label>Dependencia</label>
                     <asp:DropDownList ID="ddlDependencia" runat="server" CssClass="form-control" Width="100%"></asp:DropDownList>
                 </div>
-                <div class="col-xs-4">
+                <div class="col-sm-4">
                     <label>Jefatura/Unidad</label>
                     <asp:DropDownList ID="ddlJefatura" runat="server" CssClass="form-control" Width="100%"></asp:DropDownList>
                 </div>
@@ -97,32 +97,32 @@
                     <div class="modal-content">
                         <h3 style="text-align: center">Cambio de PAC</h3>
                         <div class="row">
-                            <div class="col-xs-6">
+                            <div class="col-sm-6">
                                 <label>PAC</label>
                                 <asp:Label ID="lblPACm" runat="server"></asp:Label>
                                 <asp:Label ID="lblIdDetalle" Visible="false" runat="server" />
                             </div>
                         </div>
                         <div class="row">
-                            <div class="col-xs-2">
+                            <div class="col-sm-2">
                                 <label>Renglon PAC</label>
                                 <asp:TextBox ID="txtRenglonPacM" Width="80%" runat="server" Enabled="false" CssClass="form-control"></asp:TextBox>
                             </div>
-                            <div class="col-xs-2">
+                            <div class="col-sm-2">
                                 <label>Renglon Ppto</label>
                                 <asp:TextBox ID="txtRenglonPptoM" Width="80%" runat="server" Enabled="false" CssClass="form-control"></asp:TextBox>
                             </div>
-                            <div class="col-xs-4">
+                            <div class="col-sm-4">
                                 <label>Nuevo PAC</label>
                                 <asp:DropDownList ID="ddlNPac" runat="server" CssClass="form-control"></asp:DropDownList>
                             </div>
                         </div>
                         <div class="row">
-                            <div class="col-xs-3">
+                            <div class="col-sm-3">
                                 <br />
                                 <asp:Button ID="btnGuardarM" Width="80%" runat="server" Text="Guardar" CssClass="btn btn-success"  OnClick="btnGuardarM_Click" UseSubmitBehavior="false" data-dismiss="modal"/>
                             </div>
-                            <div class="col-xs-3">
+                            <div class="col-sm-3">
                                 <br />
                                 <asp:Button ID="btnCancelarM" Width="80%" runat="server" Text="Cancelar" data-dismiss="modal" aria-hidden="true" CssClass="btn btn-danger" />
                             </div>

@@ -2,34 +2,43 @@
 
 <%@ Register Assembly="Microsoft.ReportViewer.WebForms, Version=11.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91" Namespace="Microsoft.Reporting.WebForms" TagPrefix="rsweb" %>
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
+    <style type="text/css">
+        .auto-style3 {
+            color: #007bff;
+            width: 1303px;
+        }
+    </style>
 </asp:Content>
-<asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder2" runat="server">
+<asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder3" runat="server">
     <div class="row">
-        <div class="col-xs-12">
-            <h3  class="text-primary" >¡Bienvenido!</h3>
-              <p  class="text-primary" style="font-size: small" >    
-                Sistema Integrado de Procesos Administrativos (SIPA) es un sistema creado para el personal de la Confederación Deportiva Autónoma de Guatemala para la Automatizacion de los procesos Administrativos de la Institucion.
+        <div class="col-sm-1"></div>
+        <div class="col-sm-10">
+            <h3  class="text-primary" >&nbsp;&nbsp; ¡Bienvenido!</h3>
+              <p  class="auto-style3" style="font-size: medium" >    
+               
+                Sistema Integrado de Procesos Administrativos (SIPA) es un sistema creado para el personal de la&nbsp;&nbsp; Confederación&nbsp; Deportiva Autónoma de Guatemala para la Automatizacion de los procesos Administrativos de la&nbsp;&nbsp; Institucion.
               </p>
     
         </div>
       </div>
     <div class="row">
-        <div class="col-xs-1">
-            <label>Año</label>
-            <asp:DropDownList ID="ddlAnios" runat="server" class="form-control" AutoPostBack="True" OnSelectedIndexChanged="ddlAnios_SelectedIndexChanged"  Width="100%"></asp:DropDownList>
+        <div class="col-sm-1"></div>
+        <div class="col-sm-1">
+            <label> &nbsp; Año</label>
+             &nbsp; <asp:DropDownList ID="ddlAnios" runat="server" class="form-control" AutoPostBack="True" OnSelectedIndexChanged="ddlAnios_SelectedIndexChanged"  Width="100%"></asp:DropDownList>
         </div>
-        <div class="col-xs-4">
+        <div class="col-sm-4">
             <label>Unidad</label>
             <asp:DropDownList ID="ddlUnidades" runat="server" class="form-control" AutoPostBack="True" OnSelectedIndexChanged="ddlUnidades_SelectedIndexChanged"  Width="100%"></asp:DropDownList>
         </div>
-        <div class="col-xs-4">
+        <div class="col-sm-4">
             <label>Dependencia</label>
             <asp:DropDownList ID="ddlDependencias" runat="server" class="form-control" AutoPostBack="True" OnSelectedIndexChanged="ddlDependencias_SelectedIndexChanged"  Width="100%"></asp:DropDownList>
         </div>         
     </div>
     <br />
     <div class="row">
-        <rsweb:ReportViewer ShowToolBar="False" ID="ReportViewer1" runat="server" Font-Names="Verdana" Font-Size="8pt" WaitMessageFont-Names="Verdana" WaitMessageFont-Size="14pt" Height="525px" Width="1530px">
+        <rsweb:ReportViewer ShowToolBar="False" ID="ReportViewer1" runat="server" Font-Names="Verdana" Font-Size="8pt" WaitMessageFont-Names="Verdana" WaitMessageFont-Size="14pt" Height="525px" Width="1530px" >
             <LocalReport ReportPath="Reportes\dashboard.rdlc">
                 <DataSources>
                     <rsweb:ReportDataSource DataSourceId="SqlDataSource1" Name="DataSet1" />
@@ -63,7 +72,7 @@
         <asp:SqlDataSource ID="SqlDataSource1" runat="server" ConnectionString="<%$ ConnectionStrings:dbcdagsipaConnectionString1 %>" ProviderName="<%$ ConnectionStrings:dbcdagsipaConnectionString1.ProviderName %>" SelectCommand="SELECT p.no_solicitud, ep.nombre_estado, u.Unidad FROM sipa_pedidos p INNER JOIN sipa_estados_pedido ep ON ep.id_estado_pedido = p.id_estado_pedido INNER JOIN ccl_unidades u ON u.id_unidad = p.id_unidad where u.id_unidad =31"></asp:SqlDataSource>
     </div>
     <div class="row">
-        <div class="col-xs-6">
+        <div class="col-sm-6">
             <p class="text-danger">Puede enviar sus solicitudes de apoyo al correo: soporte.sistemas@cdag.com.gt</p>
         </div>
     </div>

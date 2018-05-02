@@ -3,6 +3,15 @@
 
 
 <asp:Content ID="Content2" runat="server" ContentPlaceHolderID="head">
+    <style type="text/css">
+        .auto-style3 {
+            width: 5%;
+            height: 64px;
+        }
+        .auto-style4 {
+            height: 64px;
+        }
+    </style>
 </asp:Content>
 <asp:Content ID="Content1" runat="server" contentplaceholderid="ContentPlaceHolder3">
     <asp:UpdatePanel ID="UpdatePanel1" runat="server">
@@ -175,7 +184,7 @@
                     <td style="width: 5%">&nbsp;</td>
                     <td colspan="18">
                         <asp:DetailsView ID="dvPedido" runat="server" AllowPaging="True" AutoGenerateRows="False" DataKeyNames="ID,ID_ACCION" OnPageIndexChanging="dvPedido_PageIndexChanging" Width="100%"
-                            CssClass="table table-hover table-responsive">
+                            CssClass="table table-hover ">
                             <AlternatingRowStyle BackColor="#CEEFFF" ForeColor="#333333" />
                             <Fields>
                                 <asp:BoundField DataField="ID" HeaderText="Id" Visible ="false">
@@ -193,7 +202,7 @@
                                 <asp:BoundField DataField="documento" HeaderText="Tipo de Documento">
                                 <ItemStyle BackColor="#FF6600" Font-Bold="True" />
                                 </asp:BoundField>
-                                <asp:BoundField DataField="fecha_pedido" DataFormatString="{0:d}" HeaderText="Fecha Pedido">
+                                <asp:BoundField DataField="fecha_ppto" DataFormatString="{0:d}" HeaderText="Fecha Financiero">
                                 <HeaderStyle BorderStyle="Inset" HorizontalAlign="Center" VerticalAlign="Middle" />
                                 <ItemStyle BorderStyle="Inset" HorizontalAlign="Center" VerticalAlign="Middle" />
                                 </asp:BoundField>
@@ -242,7 +251,7 @@
                                 </asp:BoundField>
                             </Fields>
                             <FooterStyle Font-Bold="False" />
-                            <PagerStyle BackColor="White" BorderStyle="Solid" Font-Bold="True" Font-Names="Algerian" Font-Overline="False" Font-Size="Large" Font-Strikeout="False" Font-Underline="False" />
+                            <PagerStyle BackColor="White" BorderStyle="Solid" Font-Bold="True"  Font-Overline="False" Font-Size="Large" Font-Strikeout="False" Font-Underline="False" />
                         </asp:DetailsView>
                         *El sistema sólo tiene cargadas las especificaciones técnicas.</td>
                     <td style="width: 5%">&nbsp;</td>
@@ -270,9 +279,32 @@
                     <td style="width: 5%">&nbsp;</td>
                     <td style="width: 5%">&nbsp;</td>
                 </tr>
-                <tr>
+                 
+                  <tr>
                     <td style="width: 5%">&nbsp;</td>
                     <td style="width: 5%">&nbsp;</td>
+                    <td style="width: 5%">&nbsp;</td>
+                    <td style="width: 5%">&nbsp;</td>
+                    <td style="width: 5%">&nbsp;</td>
+                    <td style="width: 5%">&nbsp;</td>
+                    <td style="width: 5%">&nbsp;</td>
+                    <td style="width: 5%">&nbsp;</td>
+                    <td style="width: 5%">&nbsp;</td>
+                    <td style="width: 5%">&nbsp;</td>
+                    <td style="width: 5%">&nbsp;</td>
+                    <td style="width: 5%">&nbsp;</td>
+                    <td style="width: 5%">&nbsp;</td>
+                    <td style="width: 5%">&nbsp;</td>
+                    <td style="width: 5%">&nbsp;</td>
+                    <td style="width: 5%">&nbsp;</td>
+                    <td style="width: 5%">&nbsp;</td>
+                    <td style="width: 5%">&nbsp;</td>
+                    <td style="width: 5%">&nbsp;</td>
+                    <td style="width: 5%">&nbsp;</td>
+                </tr>
+                 <tr>
+                    <td style="width: 5%">&nbsp;</td>
+                    <td style="width: 5%"><strong>Subproducto</strong></td>
                     <td style="width: 5%">&nbsp;</td>
                     <td style="width: 5%">&nbsp;</td>
                     <td style="width: 5%">&nbsp;</td>
@@ -292,31 +324,33 @@
                     <td style="width: 5%">&nbsp;</td>
                     <td style="width: 5%">&nbsp;</td>
                 </tr>
+       
                 <tr>
-                    <td style="width: 5%">&nbsp;</td>
-                    <td colspan="8">
-                        &nbsp;</td>
-                    <td style="width: 5%">&nbsp;</td>
-                    <td style="width: 5%">
+                    <td class="auto-style3"></td>
+                    <td colspan="8" class="auto-style4">
+                        <asp:DropDownList ID="ddlSubproducto" runat="server" CssClass="form-control"></asp:DropDownList>
+                    </td>
+                    <td class="auto-style3"></td>
+                    <td class="auto-style3">
                         <asp:Label ID="lblAnio" runat="server" Text="0"></asp:Label>
                     </td>
-                    <td style="width: 5%">
+                    <td class="auto-style3">
                         <asp:Label ID="lblEntidad" runat="server" Text="1130-0061"></asp:Label>
                     </td>
-                    <td style="width: 5%; margin-left: 40px;">
+                    <td style="margin-left: 40px;" class="auto-style3">
                         <asp:DropDownList ID="ddlPRG" runat="server" AutoPostBack="True" class="" Width="97%" OnSelectedIndexChanged="ddlPRG_SelectedIndexChanged" BackColor="#FFFF99">
                             <asp:ListItem>--</asp:ListItem>
                             <asp:ListItem>11</asp:ListItem>
                             <asp:ListItem>99</asp:ListItem>
                         </asp:DropDownList>
                     </td>
-                    <td style="width: 5%">
+                    <td class="auto-style3">
                         <asp:DropDownList ID="ddlSPRG" runat="server" AutoPostBack="True" class="" Width="97%" OnSelectedIndexChanged="ddlSPRG_SelectedIndexChanged" BackColor="#FFFF99">
                             <asp:ListItem Selected="True">--</asp:ListItem>
                             <asp:ListItem>00</asp:ListItem>
                         </asp:DropDownList>
                     </td>
-                    <td style="width: 5%">
+                    <td class="auto-style3">
                         <asp:DropDownList ID="ddlPROY" runat="server" AutoPostBack="True" class="" Width="97%" OnSelectedIndexChanged="ddlPROY_SelectedIndexChanged" BackColor="#FFFF99">
                             <asp:ListItem>---</asp:ListItem>
                             <asp:ListItem>000</asp:ListItem>
@@ -347,22 +381,22 @@
                             <asp:ListItem>025</asp:ListItem>
                         </asp:DropDownList>
                     </td>
-                    <td style="width: 5%">
+                    <td class="auto-style3">
                         <asp:DropDownList ID="ddlACT" runat="server" AutoPostBack="True" class="" Width="97%" OnSelectedIndexChanged="ddlACT_SelectedIndexChanged" BackColor="#FFFF99">
                             <asp:ListItem Value="---"></asp:ListItem>
                         </asp:DropDownList>
                     </td>
-                    <td style="width: 5%">
+                    <td class="auto-style3">
                         <asp:DropDownList ID="ddlOBR" runat="server" AutoPostBack="True" class="" Width="97%" OnSelectedIndexChanged="ddlOBR_SelectedIndexChanged" BackColor="#FFFF99">
                             <asp:ListItem Value="---"></asp:ListItem>
                         </asp:DropDownList>
                     </td>
-                    <td style="width: 5%">
+                    <td class="auto-style3">
                         <asp:DropDownList ID="ddlRenglonesC" runat="server" AutoPostBack="True" class="" Width="97%" Visible="False" BackColor="#FFFF99">
                         </asp:DropDownList>
                     </td>
-                    <td style="width: 5%">&nbsp;</td>
-                    <td style="width: 5%">&nbsp;</td>
+                    <td class="auto-style3"></td>
+                    <td class="auto-style3"></td>
                 </tr>
                 <tr>
                     <td style="width: 5%">&nbsp;</td>
@@ -434,7 +468,7 @@
                     <td style="width: 5%">&nbsp;</td>
                     <td colspan="18">
                         <asp:GridView ID="gridDetalle" runat="server" AutoGenerateColumns="False" BackColor="White" BorderColor="#CCCCCC" BorderStyle="Solid" BorderWidth="1px" CellPadding="5" CellSpacing="1" DataKeyNames="ID" ForeColor="Black" GridLines="Vertical" HorizontalAlign="Center" PageSize="12" ShowFooter="True" Width="100%" Font-Size="Small" OnRowDataBound="gridDetalle_RowDataBound" 
-                            CssClass="table table-hover table-responsive">
+                            CssClass="table table-hover ">
                             <AlternatingRowStyle BackColor="#CEEFFF" ForeColor="#333333" />
                             <Columns>
                                 <asp:CommandField ButtonType="Image" SelectImageUrl="~/img/24_bits/accept.png" ShowSelectButton="True" Visible="false">
@@ -680,7 +714,7 @@
                     <td style="width: 5%">&nbsp;</td>
                     <td colspan="18">
                         <asp:GridView ID="gridSaldos" runat="server" AutoGenerateColumns="False" BackColor="White" BorderColor="#CCCCCC" BorderStyle="Solid" BorderWidth="1px" CellPadding="5" CellSpacing="1" DataKeyNames="ID" ForeColor="Black" GridLines="Vertical" HorizontalAlign="Center" Width="100%"
-                            CssClass="table table-hover table-responsive">
+                            CssClass="table table-hover ">
                             <AlternatingRowStyle BackColor="#CEEFFF" ForeColor="#333333" />
                             <Columns>
                                 <asp:BoundField DataField="ID" HeaderText="ID" Visible="False">

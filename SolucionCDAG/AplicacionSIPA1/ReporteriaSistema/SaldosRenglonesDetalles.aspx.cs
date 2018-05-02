@@ -283,7 +283,7 @@ namespace AplicacionSIPA1.ReporteriaSistema
             query = " SELECT t.*" +
                     "FROM(SELECT a.no_solicitud, a.anio_solicitud AS Año, fn_codigo_accion(b.id_accion, 0, '', 1) AS Accion, a.Documento, a.fecha_pedido, c.Descripcion, a.estado_salida AS Estado, a.unidad_administrativa, c.costo_pedido AS Pedido, " +
                                     "c.costo_estimado, c.costo_real, d.no_renglon, p.id_pac AS no_pac, da.no_renglon AS renglon_pac, a.anio_solicitud, a.id_unidad, b.id_accion, a.id_tipo_documento, a.id_estado_pedido, CONCAT(se.id_empleado, ' - ', se.nombres) " +
-                                    "AS Solicitante, CONCAT(sep.id_empleado, ' - ', sep.nombres) AS AnalistaPpto, CONCAT(sec.id_empleado, ' - ', sec.nombres) AS TecnicoCompras,u.id_padre,c.no_orden_compra " +
+                                    "AS Solicitante, CONCAT(sep.id_empleado, ' - ', sep.nombres) AS AnalistaPpto, CONCAT(sec.id_empleado, ' - ', sec.nombres) AS TecnicoCompras,u.id_padre,c.no_orden_compra,date_format(c.fecha_orden_compra,'%d/%m/%y') fecha_orden_compra " +
                     "FROM      unionpedidocc a INNER JOIN " +
                                     "sipa_acciones b ON a.id_accion = b.id_accion INNER JOIN " +
                                     "sipa_pedido_detalle c ON a.id_pedido = c.id_pedido LEFT OUTER JOIN " +
@@ -298,7 +298,7 @@ namespace AplicacionSIPA1.ReporteriaSistema
                       "UNION ALL " +
                       "SELECT a.no_solicitud, a.anio_solicitud AS Año, fn_codigo_accion(b.id_accion, 0, '', 1) AS Accion, a.Documento, a.fecha_pedido, c.descripcion, a.estado_salida AS Estado, a.unidad_administrativa, c.costo_vale AS Pedido, c.costo_estimado, " +
                                         "c.costo_real, d.no_renglon, 'N/A' AS no_pac, 'N/A' AS renglon_pac, a.anio_solicitud, a.id_unidad, b.id_accion, a.id_tipo_documento, a.id_estado_pedido, CONCAT(se.id_empleado, ' - ', se.nombres) AS Solicitante, " +
-                                        "CONCAT(sep.id_empleado, ' - ', sep.nombres) AS AnalistaPpto, CONCAT(sec.id_empleado, ' - ', sec.nombres) AS TecnicoCompras,u.id_padre,0 as no_orden_compra " +
+                                        "CONCAT(sep.id_empleado, ' - ', sep.nombres) AS AnalistaPpto, CONCAT(sec.id_empleado, ' - ', sec.nombres) AS TecnicoCompras,u.id_padre,0 as no_orden_compra, ' ' as fecha_orden_compra " +
                       "FROM     unionpedidocc a INNER JOIN " +
                                         "sipa_acciones b ON a.id_accion = b.id_accion INNER JOIN " +
                                         "sipa_ccvale_detalle c ON a.id_pedido = c.id_ccvale LEFT OUTER JOIN " +
@@ -311,7 +311,7 @@ namespace AplicacionSIPA1.ReporteriaSistema
                       "UNION ALL " +
                       "SELECT a.no_solicitud, a.anio_solicitud AS Año, fn_codigo_accion(b.id_accion, 0, '', 1) AS Accion, a.Documento, a.fecha_pedido, c.descripcion, a.estado_salida AS Estado, a.unidad_administrativa, c.costo_gasto AS Pedido, c.costo_estimado, " +
                                         "c.costo_real, d.no_renglon, 'N/A' AS no_pac, 'N/A' AS renglon_pac, a.anio_solicitud, a.id_unidad, b.id_accion, a.id_tipo_documento, a.id_estado_pedido, CONCAT(se.id_empleado, ' - ', se.nombres) AS Solicitante, " +
-                                        "CONCAT(sep.id_empleado, ' - ', sep.nombres) AS AnalistaPpto, CONCAT(sec.id_empleado, ' - ', sec.nombres) AS TecnicoCompras,u.id_padre, 0 as no_orden_compra " +
+                                        "CONCAT(sep.id_empleado, ' - ', sep.nombres) AS AnalistaPpto, CONCAT(sec.id_empleado, ' - ', sec.nombres) AS TecnicoCompras,u.id_padre, 0 as no_orden_compra,' ' as fecha_orden_compra " +
                       "FROM     unionpedidocc a INNER JOIN " +
                                         "sipa_acciones b ON a.id_accion = b.id_accion INNER JOIN " +
                                         "sipa_gasto_detalle c ON a.id_pedido = c.id_gasto LEFT OUTER JOIN " +
@@ -325,7 +325,7 @@ namespace AplicacionSIPA1.ReporteriaSistema
                       " SELECT a.no_solicitud, a.anio_solicitud AS Año, fn_codigo_accion(b.id_accion, 0, '', 1) AS Accion, CONCAT(a.Documento, '/', tv.abreviatura) AS Expr1, a.fecha_pedido, c.justificacion, a.estado_salida AS Estado, a.unidad_administrativa," +
                                         "c.costo_viatico + c.pasajes + c.kilometraje AS Pedido, c.costo_estimado + c.pasajes_estimado + c.kilometraje_estimado AS costo_estimado, c.costo_real + c.pasajes_real + c.kilometraje_real AS costo_real, d.no_renglon," +
                                         "'N/A' AS no_pac, 'N/A' AS renglon_pac, a.anio_solicitud, a.id_unidad, b.id_accion, a.id_tipo_documento, a.id_estado_pedido, CONCAT(se.id_empleado, ' - ', se.nombres) AS Solicitante, CONCAT(sep.id_empleado, ' - ', sep.nombres) " +
-                                        "AS AnalistaPpto, CONCAT(sec.id_empleado, ' - ', sec.nombres) AS TecnicoCompras,u.id_padre ,0 as no_orden_compra " +
+                                        "AS AnalistaPpto, CONCAT(sec.id_empleado, ' - ', sec.nombres) AS TecnicoCompras,u.id_padre ,0 as no_orden_compra,' ' as fecha_orden_compra " +
                       "FROM     unionpedidocc a INNER JOIN " +
                                         "sipa_acciones b ON a.id_accion = b.id_accion INNER JOIN " +
                                         "sipa_viaticos c ON a.id_pedido = c.id_viatico LEFT OUTER JOIN " +

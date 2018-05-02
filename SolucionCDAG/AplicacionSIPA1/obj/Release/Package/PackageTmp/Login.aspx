@@ -9,7 +9,23 @@
    <%--  <link href="Content/bootstrap.css" rel="stylesheet" type="text/css" media="screen" />--%>
     <link href="css/style.css" rel="stylesheet" type="text/css" media="screen" />
     <link href="css/utilities.css" rel="stylesheet" type="text/css" media="screen" />
- 
+   
+<!--===============================================================================================-->	
+	<link rel="icon" type="image/png" href="images/icons/favicon.ico"/>
+<!--===============================================================================================-->
+	<link rel="stylesheet" type="text/css" href="vendor/bootstrap/css/bootstrap.min.css"/>
+<!--===============================================================================================-->
+	<link rel="stylesheet" type="text/css" href="fonts/font-awesome-4.7.0/css/font-awesome.min.css"/>
+<!--===============================================================================================-->
+	<link rel="stylesheet" type="text/css" href="vendor/animate/animate.css"/>
+<!--===============================================================================================-->	
+	<link rel="stylesheet" type="text/css" href="vendor/css-hamburgers/hamburgers.min.css"/>
+<!--===============================================================================================-->
+	<link rel="stylesheet" type="text/css" href="vendor/select2/select2.min.css"/>
+<!--===============================================================================================-->
+	<link rel="stylesheet" type="text/css" href="css/util.css"/>
+	<link rel="stylesheet" type="text/css" href="css/main.css"/>
+<!--===============================================================================================-->
     <style type="text/css">
 
         .style11
@@ -30,35 +46,6 @@
         }
 
 
-        .auto-style1 {
-            font-size: x-large;
-            font-weight: normal;
-            color: #FFFFFF;
-            text-align: left;
-        }
-
-
-        .auto-style2 {
-            width: 280px;
-            text-align: left;
-            font-weight: 700;
-        }
-        .auto-style7 {
-            width: 280px;
-            height: 8px;
-            font-weight: normal;
-        }
-        
-
-        .auto-style9 {
-        }
-
-
-        .auto-style10 {
-            color: #FFFFFF;
-        }
-        
-
         </style>
     
      <script type="text/javascript">
@@ -77,74 +64,60 @@
  
     <body id="body2">
         
-            <form id="form1" runat="server">
-
-        <br />
-        <br />
-        <br />
-
-    <div id="two-columns2"">
-
-		<div id="col1">
-									
-            <table align="center" class="style11">
-                <tr>
-                    <td class="auto-style1">&nbsp;</td>
-                </tr>
-                <tr>
-                    <td class="auto-style2" valign="bottom">
-                        <asp:TextBox ID="TextUsuario" runat="server" BorderStyle="None" CssClass=" InputUsuario " placeholder="Usuario" Style="font-size: large; text-align: left;" Height="40px" Width="244px"></asp:TextBox>
-                    </td>
-                </tr>
-                <tr>
-                    <td class="auto-style7" valign="top">&nbsp;</td>
-                </tr>
-                <tr>
-                    <td class="auto-style9">
-                        <asp:TextBox ID="TextContraseña" runat="server" TextMode="Password" placeholder="Contraseña" CssClass="InputUsuario" Style="font-size: large; text-align: left;" BorderStyle="None" Height="40px" Width="244px"></asp:TextBox>
-                    </td>
-                </tr>
-                <tr>
-                    <td class="auto-style9">
-                        <asp:Button ID="btniniciar" runat="server" CssClass="button" Text="Iniciar Sesión" OnClick="btniniciar_Click" Height="40px" Width="244px" />
-                    </td>
-                </tr>
-                <tr>
-                    <td class="style23" style="text-align: left">
-                        <asp:Label ID="resultado" runat="server" ForeColor="#dddddd" style="color: #CC0000"></asp:Label>
-                    </td>
-                </tr>
-            </table>
-			
-						
-		</div>
-
-		<div id="col2" style="padding:0px 50px 0px 50px">
-	        
-            <div id="DivContenedorMenu_EW2" > 
-                <asp:Image ID="Image1" runat="server" Height="334px" ImageUrl="~/css/Fondos/logo-cdag.png" Width="280px" />
+               <div id="DivContenedorMenu_EW2">
                 </div>
-  </div>
-	</div>
-            
+                <div class="limiter">
+			<div class="container-login100">
+				<div class="wrap-login100">
+					<div class="login100-pic js-tilt" >
+						 <asp:Image ID="Image1" runat="server" Height="251px" ImageUrl="~/css/Fondos/logo-cdag.png" Width="213px" />
+					</div>
 
-        <div id="welcome">
-    
-           
+					<form class="login100-form validate-form" runat="server">
+						<span class="login100-form-title">
+							Login
+						</span>
+
+						<div class="wrap-input100 validate-input" data-validate = "Valid email is required: ex@abc.xyz">
+							
+							<asp:TextBox ID="TextUsuario" runat="server" BorderStyle="None" CssClass="input100 =" placeholder="Usuario" ></asp:TextBox>
+							<span class="focus-input100"></span>
+							<span class="symbol-input100">
+								<i class="fa fa-envelope" aria-hidden="true"></i>
+							</span>
+						</div>
+
+						<div class="wrap-input100 validate-input" data-validate = "Password is required">
+							
+							<asp:TextBox ID="TextContraseña" runat="server" TextMode="Password" placeholder="Contraseña" CssClass="input100" ></asp:TextBox>
+							<span class="focus-input100"></span>
+							<span class="symbol-input100">
+								<i class="fa fa-lock" aria-hidden="true"></i>
+							</span>
+						</div>
+						
+						<div class="container-login100-form-btn">
+							
+							<asp:Button ID="btniniciar" runat="server" CssClass="login100-form-btn" Text="Iniciar Sesión" OnClick="btniniciar_Click"  />
+						</div>
+
+						 <asp:Label ID="resultado" runat="server" ForeColor="#dddddd" style="color: #CC0000"></asp:Label>
+
+						<div class="text-center p-t-136">
+							<a class="txt2" href="#">
+								Todos los Derechos Reservados CDAG, Guatemala 2,018
+								<i class="fa fa-long-arrow-right m-l-5" aria-hidden="true"></i>
+							</a>
+						</div>
+					</form>
+				</div>
+			</div>
+		</div>
        
-            <br />
-
-            <br />
-            <br />
-
-        </div>
-        <footer id="#footer p" style="text-align: center" class="auto-style10">
-
-            Todos los Derechos Reservados CDAG, Guatemala 2,016</footer>
-                    </form>
+          
 
 
-            </body>
+     </body>
 
 
 

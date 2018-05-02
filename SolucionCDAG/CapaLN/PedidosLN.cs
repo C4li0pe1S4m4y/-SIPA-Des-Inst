@@ -1872,5 +1872,76 @@ namespace CapaLN
             return dsResultado;
         }
 
+        public int Ingresar_Insumo_Catalgo()
+        {
+            ObjAD = new PedidosAD();
+            return ObjAD.Ingresar_Inusmo_Catalogo();
+        }
+
+        public void DdlSubproducto(DropDownList drop, int idTipoPedido)
+        {
+            drop.ClearSelection();
+            drop.Items.Clear();
+
+            drop.AppendDataBoundItems = true;
+            drop.Items.Add("<< Elija un valor >>");
+            drop.Items[0].Value = "0";
+
+            if (idTipoPedido > 0)
+            {
+                ObjAD = new PedidosAD();
+                drop.DataSource = ObjAD.DdlSubproducto(idTipoPedido);
+                drop.DataTextField = "subproducto";
+                drop.DataValueField = "id";
+            }
+            drop.DataBind();
+
+            if (drop.Items.Count == 2)
+            {
+                drop.Items.RemoveAt(0);
+                drop.SelectedIndex = 0;
+            }
+        }
+
+        public DataSet InformacionProductoSub(string id)
+        {
+            DataSet dsResultado = armarDsResultado();
+            ObjAD = new PedidosAD();
+
+            try
+            {
+                DataTable dt = ObjAD.InformacionProductoSub(id);
+                dt.TableName = "BUSQUEDA";
+                dsResultado.Tables.Add(dt);
+                dsResultado.Tables[0].Rows[0]["ERRORES"] = false;
+            }
+            catch (Exception ex)
+            {
+                dsResultado.Tables[0].Rows[0]["MSG_ERROR"] = " CapaLN.InformacionPedido(). " + ex.Message;
+            }
+
+            return dsResultado;
+        }
+
+        public DataSet InformacionDetallePedidoPpto(string id)
+        {
+            DataSet dsResultado = armarDsResultado();
+            ObjAD = new PedidosAD();
+
+            try
+            {
+                DataTable dt = ObjAD.InformacionDetallePedidoPpto(id);
+                dt.TableName = "BUSQUEDA";
+                dsResultado.Tables.Add(dt);
+                dsResultado.Tables[0].Rows[0]["ERRORES"] = false;
+            }
+            catch (Exception ex)
+            {
+                dsResultado.Tables[0].Rows[0]["MSG_ERROR"] = " CapaLN.InformacionPedido(). " + ex.Message;
+            }
+
+            return dsResultado;
+        }
+
     }
 }

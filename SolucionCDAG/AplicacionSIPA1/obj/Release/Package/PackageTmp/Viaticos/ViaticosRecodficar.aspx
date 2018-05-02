@@ -1,5 +1,10 @@
 ﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Principal.Master" AutoEventWireup="true" CodeBehind="ViaticosRecodficar.aspx.cs" Inherits="AplicacionSIPA1.Viaticos.ViaticosRecodficar" %>
 <asp:Content ID="Content2" runat="server" ContentPlaceHolderID="head">
+    <style type="text/css">
+        .auto-style3 {
+            width: 4%;
+        }
+    </style>
 </asp:Content>
 <asp:Content ID="Content1" runat="server" contentplaceholderid="ContentPlaceHolder3">
     <asp:UpdatePanel ID="UpdatePanel1" runat="server">
@@ -19,7 +24,7 @@
                     <td style="font-size: x-large; text-align: center; color: #FFFFFF; background-color: #006600;" class="text-center" colspan="16"><strong>RECODIFICACION DE VIÁTICOS
                         <br />
                         AL INTERIOR Y EXTERIOR</strong></td>
-                    <td class="text-right" colspan="2" style="font-size: x-large; background-color: #006600;">&nbsp;</td>
+                    <td class="text-right" colspan="6" style="font-size: x-large; background-color: #006600;">&nbsp;</td>
                 </tr>
                 <tr>
                     <td>
@@ -104,7 +109,7 @@
                     <td>&nbsp;</td>
                     <td>&nbsp;</td>
                     <td>&nbsp;</td>
-                    <td>&nbsp;</td>
+                    <td class="auto-style3">&nbsp;</td>
                     <td>&nbsp;</td>
                     <td style="width: 5%">&nbsp;</td>
                 </tr>
@@ -116,7 +121,7 @@
                     <td>&nbsp;</td>
                     <td colspan="3">No. de viático</td>
                     <td>&nbsp;</td>
-                    <td>&nbsp;</td>
+                    <td class="auto-style3">&nbsp;</td>
                     <td>&nbsp;</td>
                     <td style="width: 5%">&nbsp;</td>
                 </tr>
@@ -157,7 +162,7 @@
                     <td>&nbsp;</td>
                     <td>&nbsp;</td>
                     <td>&nbsp;</td>
-                    <td>&nbsp;</td>
+                    <td class="auto-style3">&nbsp;</td>
                     <td>&nbsp;</td>
                     <td style="width: 5%">&nbsp;</td>
                 </tr>
@@ -165,7 +170,7 @@
                     <td style="width: 5%">&nbsp;</td>
                     <td colspan="18">
                         <asp:DetailsView ID="dvPedido" runat="server" AllowPaging="True" AutoGenerateRows="False" DataKeyNames="ID,ID_ACCION" OnPageIndexChanging="dvPedido_PageIndexChanging" Width="100%"
-                            CssClass="table table-hover table-responsive">
+                            CssClass="table table-hover ">
                             <AlternatingRowStyle BackColor="#CEEFFF" ForeColor="#333333" />
                             <Fields>
                                 <asp:BoundField DataField="ID" HeaderText="ID" Visible="false">
@@ -286,7 +291,7 @@
                                 </asp:BoundField>
                             </Fields>
                             <FooterStyle Font-Bold="False" />
-                            <PagerStyle BackColor="White" BorderStyle="Solid" Font-Bold="True" Font-Names="Algerian" Font-Overline="False" Font-Size="Large" Font-Strikeout="False" Font-Underline="False" />
+                            <PagerStyle BackColor="White" BorderStyle="Solid" Font-Bold="True"  Font-Overline="False" Font-Size="Medium" Font-Strikeout="False" Font-Underline="False" />
                         </asp:DetailsView>
                     </td>
                     <td style="width: 5%">&nbsp;</td>
@@ -313,7 +318,7 @@
                     <td style="width: 5%; background-color: #006600;">&nbsp;</td>
                     <td style="width: 5%; background-color: #006600;">&nbsp;</td>
                     <td style="width: 5%; background-color: #006600;">&nbsp;</td>
-                    <td style="width: 5%; background-color: #006600;">&nbsp;</td>
+                    <td style="background-color: #006600;" class="auto-style3">&nbsp;</td>
                     <td style="width: 5%; background-color: #006600;">&nbsp;</td>
                     <td style="width: 5%; background-color: #006600;">&nbsp;</td>
                 </tr>
@@ -334,7 +339,7 @@
                     <td style="width: 5%">&nbsp;</td>
                     <td style="width: 5%">&nbsp;</td>
                     <td style="width: 5%">&nbsp;</td>
-                    <td style="width: 5%">&nbsp;</td>
+                    <td class="auto-style3">&nbsp;</td>
                     <td style="width: 5%">&nbsp;</td>
                     <td style="width: 5%">&nbsp;</td>
                     <td style="width: 5%">&nbsp;</td>
@@ -361,7 +366,7 @@
                     <td style="width: 5%">&nbsp;</td>
                     <td style="width: 5%">&nbsp;</td>
                     <td style="width: 5%">&nbsp;</td>
-                    <td style="width: 5%">&nbsp;</td>
+                    <td class="auto-style3">&nbsp;</td>
                     <td style="width: 5%">&nbsp;</td>
                     <td style="width: 5%">&nbsp;</td>
                     <td style="width: 5%">&nbsp;</td>
@@ -396,7 +401,7 @@
                     <td style="width: 5%; text-align: center;">
                         <asp:Label ID="lblACT" runat="server" Font-Bold="True" Text="ACT" Visible="False"></asp:Label>
                     </td>
-                    <td style="width: 5%; text-align: center;">
+                    <td style="text-align: center;" class="auto-style3">
                         <asp:Label ID="lblOBR" runat="server" Font-Bold="True" Text="OBR" Visible="False"></asp:Label>
                     </td>
                     <td style="width: 5%">
@@ -447,7 +452,7 @@
                             <asp:ListItem Value="---"></asp:ListItem>
                         </asp:DropDownList>
                     </td>
-                    <td style="width: 5%">
+                    <td class="auto-style3">
                         <asp:DropDownList ID="ddlOBR" runat="server" class="" OnSelectedIndexChanged="ddlOBR_SelectedIndexChanged" Width="97%" Visible="False">
                             <asp:ListItem Value="---"></asp:ListItem>
                         </asp:DropDownList>
@@ -476,7 +481,7 @@
                     <td style="width: 5%">&nbsp;</td>
                     <td style="width: 5%">&nbsp;</td>
                     <td style="width: 5%">&nbsp;</td>
-                    <td style="width: 5%">&nbsp;</td>
+                    <td class="auto-style3">&nbsp;</td>
                     <td style="width: 5%">&nbsp;</td>
                     <td style="width: 5%">&nbsp;</td>
                 </tr>
@@ -484,7 +489,7 @@
                     <td style="width: 5%">&nbsp;</td>
                     <td colspan="18">
                         <asp:GridView ID="gridDetalle" runat="server" AutoGenerateColumns="False" BackColor="White" BorderColor="#CCCCCC" BorderStyle="Solid" BorderWidth="1px" CellPadding="5" CellSpacing="1" DataKeyNames="ID" ForeColor="Black" GridLines="Vertical" HorizontalAlign="Center" PageSize="12" Width="100%"
-                            CssClass="table table-hover table-responsive">
+                            CssClass="table table-hover ">
                             <AlternatingRowStyle BackColor="#CEEFFF" ForeColor="#333333" />
                             <Columns>
                                 <asp:CommandField ButtonType="Image" SelectImageUrl="~/img/24_bits/accept.png" ShowSelectButton="True" Visible="False">
@@ -565,7 +570,7 @@
                     <td style="width: 5%">&nbsp;</td>
                     <td style="width: 5%">&nbsp;</td>
                     <td style="width: 5%">&nbsp;</td>
-                    <td style="width: 5%">&nbsp;</td>
+                    <td class="auto-style3">&nbsp;</td>
                     <td style="width: 5%">&nbsp;</td>
                     <td style="width: 5%">&nbsp;</td>
                 </tr>
@@ -604,7 +609,7 @@
                     <td style="width: 5%">&nbsp;</td>
                     <td style="width: 5%">&nbsp;</td>
                     <td style="width: 5%">&nbsp;</td>
-                    <td style="width: 5%">&nbsp;</td>
+                    <td class="auto-style3">&nbsp;</td>
                     <td style="width: 5%">&nbsp;</td>
                     <td style="width: 5%">&nbsp;</td>
                 </tr>
@@ -650,7 +655,7 @@
                     <td style="width: 5%">&nbsp;</td>
                     <td style="width: 5%">&nbsp;</td>
                     <td style="width: 5%">&nbsp;</td>
-                    <td style="width: 5%">&nbsp;</td>
+                    <td class="auto-style3">&nbsp;</td>
                     <td style="width: 5%">&nbsp;</td>
                     <td style="width: 5%">&nbsp;</td>
                 </tr>
@@ -673,7 +678,7 @@
                     <td style="width: 5%; background-color: #006600;">&nbsp;</td>
                     <td style="width: 5%; background-color: #006600;">&nbsp;</td>
                     <td style="width: 5%; background-color: #006600;">&nbsp;</td>
-                    <td style="width: 5%; background-color: #006600;">&nbsp;</td>
+                    <td style="background-color: #006600;" class="auto-style3">&nbsp;</td>
                     <td style="width: 5%; background-color: #006600;">&nbsp;</td>
                     <td style="width: 5%; background-color: #006600;">&nbsp;</td>
                 </tr>
@@ -695,7 +700,7 @@
                     <td style="width: 5%">&nbsp;</td>
                     <td style="width: 5%">&nbsp;</td>
                     <td style="width: 5%">&nbsp;</td>
-                    <td style="width: 5%">&nbsp;</td>
+                    <td class="auto-style3">&nbsp;</td>
                     <td style="width: 5%">&nbsp;</td>
                     <td style="width: 5%">&nbsp;</td>
                 </tr>
@@ -704,7 +709,7 @@
                     <td style="width: 5%">&nbsp;</td>
                     <td colspan="18">
                         <asp:GridView ID="gridSaldos" runat="server" AutoGenerateColumns="False" BackColor="White" BorderColor="#CCCCCC" BorderStyle="Solid" BorderWidth="1px" CellPadding="5" CellSpacing="1" DataKeyNames="ID" ForeColor="Black" GridLines="Vertical" HorizontalAlign="Center" Width="100%"
-                            CssClass="table table-hover table-responsive">
+                            CssClass="table table-hover ">
                             <AlternatingRowStyle BackColor="#CEEFFF" ForeColor="#333333" />
                             <Columns>
                                 <asp:BoundField DataField="ID" HeaderText="ID" Visible="False">
@@ -750,86 +755,7 @@
                     <br />
                     <br />
                     <br />
-                    <br />
-                    <br />
-                    <br />
-                    <br />
-                    <br />
-                    <br />
-                    <br />
-                    <br />
-                    <br />
-                    <br />
-                    <br />
-                    <br />
-                    <br />
-                    <br />
-                    <br />
-                    <br />
-                    <br />
-                    <br />
-                    <br />
-                    <br />
-                    <br />
-                    <br />
-                    <br />
-                    <br />
-                    <br />
-                    <br />
-                    <br />
-                    <br />
-                    <br />
-                    <br />
-                    <br />
-                    <br />
-                    <br />
-                    <br />
-                    <br />
-                    <br />
-                    <br />
-                    <br />
-                    <br />
-                    <br />
-                    <br />
-                    <br />
-                    <br />
-                    <br />
-                    <br />
-                    <br />
-                    <br />
-                    <br />
-                    <br />
-                    <br />
-                    <br />
-                    <br />
-                    <br />
-                    <br />
-                    <br />
-                    <br />
-                    <br />
-                    <br />
-                    <br />
-                    <br />
-                    <br />
-                    <br />
-                    <br />
-                    <br />
-                    <br />
-                    <br />
-                    <br />
-                    <br />
-                    <br />
-                    <br />
-                    <br />
-                    <br />
-                    <br />
-                    <br />
-                    <br />
-                    <br />
-                    <br />
-                    <br />
-                    <br />
-                    <br />
+                  
                 </ContentTemplate>
             </asp:UpdatePanel>
             <div></div>                  

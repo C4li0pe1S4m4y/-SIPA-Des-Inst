@@ -162,15 +162,6 @@
                 <tr>
                     <td style="width: 5%">&nbsp;</td>
                     <td style="width: 5%">&nbsp;</td>
-                    <td colspan="16" style="text-align: center">
-                        <asp:Button ID="btnBuscar" runat="server" class="btn btn-primary" OnClick="busqueda" Text="Buscar" Width="200px" />
-                    </td>
-                    <td style="width: 5%">&nbsp;</td>
-                    <td style="width: 5%">&nbsp;</td>
-                </tr>
-                <tr>
-                    <td style="width: 5%">&nbsp;</td>
-                    <td style="width: 5%">&nbsp;</td>
                     <td style="width: 5%">&nbsp;</td>
                     <td style="width: 5%">&nbsp;</td>
                     <td style="width: 5%">&nbsp;</td>

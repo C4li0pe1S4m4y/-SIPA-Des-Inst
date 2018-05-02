@@ -476,6 +476,23 @@ namespace CapaAD
             return tabla;
         }
 
+        public DataTable PptoPoaDependecias(int unidad, int anio)
+        {
+            conectar = new ConexionBD();
+            DataTable tabla = new DataTable();
+            string query = String.Format("select SUM(da.monto) codificado from sipa_detalles_accion da ,sipa_acciones a "+
+                "inner join sipa_poa p on p.id_poa = a.id_poa "+
+                " inner join ccl_unidades u on u.id_unidad = p.id_unidad "+
+                " where a.id_accion = da.id_accion and u.id_padre = {0} and p.anio={1}", unidad, anio);
+            conectar.AbrirConexion();
+            MySqlDataAdapter consulta = new MySqlDataAdapter(query, conectar.conectar);
+            consulta.Fill(tabla);
+            conectar.CerrarConexion();
+            return tabla;
+        }
+
+       
+
         public DataTable PptoDep(int idPoa, int idDependencia)
         {
             conectar = new ConexionBD();

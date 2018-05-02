@@ -3,6 +3,15 @@
 
 
 <asp:Content ID="Content2" runat="server" ContentPlaceHolderID="head">
+    <style type="text/css">
+        .auto-style3 {
+            width: 5%;
+            height: 64px;
+        }
+        .auto-style4 {
+            height: 64px;
+        }
+    </style>
 </asp:Content>
 <asp:Content ID="Content1" runat="server" contentplaceholderid="ContentPlaceHolder3">
     <asp:UpdatePanel ID="UpdatePanel1" runat="server">
@@ -270,9 +279,32 @@
                     <td style="width: 5%">&nbsp;</td>
                     <td style="width: 5%">&nbsp;</td>
                 </tr>
-                <tr>
+                 
+                  <tr>
                     <td style="width: 5%">&nbsp;</td>
                     <td style="width: 5%">&nbsp;</td>
+                    <td style="width: 5%">&nbsp;</td>
+                    <td style="width: 5%">&nbsp;</td>
+                    <td style="width: 5%">&nbsp;</td>
+                    <td style="width: 5%">&nbsp;</td>
+                    <td style="width: 5%">&nbsp;</td>
+                    <td style="width: 5%">&nbsp;</td>
+                    <td style="width: 5%">&nbsp;</td>
+                    <td style="width: 5%">&nbsp;</td>
+                    <td style="width: 5%">&nbsp;</td>
+                    <td style="width: 5%">&nbsp;</td>
+                    <td style="width: 5%">&nbsp;</td>
+                    <td style="width: 5%">&nbsp;</td>
+                    <td style="width: 5%">&nbsp;</td>
+                    <td style="width: 5%">&nbsp;</td>
+                    <td style="width: 5%">&nbsp;</td>
+                    <td style="width: 5%">&nbsp;</td>
+                    <td style="width: 5%">&nbsp;</td>
+                    <td style="width: 5%">&nbsp;</td>
+                </tr>
+                 <tr>
+                    <td style="width: 5%">&nbsp;</td>
+                    <td style="width: 5%"><strong>Subproducto</strong></td>
                     <td style="width: 5%">&nbsp;</td>
                     <td style="width: 5%">&nbsp;</td>
                     <td style="width: 5%">&nbsp;</td>
@@ -292,31 +324,33 @@
                     <td style="width: 5%">&nbsp;</td>
                     <td style="width: 5%">&nbsp;</td>
                 </tr>
+       
                 <tr>
-                    <td style="width: 5%">&nbsp;</td>
-                    <td colspan="8">
-                        &nbsp;</td>
-                    <td style="width: 5%">&nbsp;</td>
-                    <td style="width: 5%">
+                    <td class="auto-style3"></td>
+                    <td colspan="8" class="auto-style4">
+                        <asp:DropDownList ID="ddlSubproducto" runat="server" AutoPostBack="true" OnSelectedIndexChanged="ddlSubproducto_SelectedIndexChanged" CssClass="form-control"></asp:DropDownList>
+                    </td>
+                    <td class="auto-style3"></td>
+                    <td class="auto-style3">
                         <asp:Label ID="lblAnio" runat="server" Text="0"></asp:Label>
                     </td>
-                    <td style="width: 5%">
+                    <td class="auto-style3">
                         <asp:Label ID="lblEntidad" runat="server" Text="1130-0061"></asp:Label>
                     </td>
-                    <td style="width: 5%; margin-left: 40px;">
+                    <td style="margin-left: 40px;" class="auto-style3">
                         <asp:DropDownList ID="ddlPRG" runat="server" AutoPostBack="True" class="" Width="97%" OnSelectedIndexChanged="ddlPRG_SelectedIndexChanged" BackColor="#FFFF99">
                             <asp:ListItem>--</asp:ListItem>
                             <asp:ListItem>11</asp:ListItem>
                             <asp:ListItem>99</asp:ListItem>
                         </asp:DropDownList>
                     </td>
-                    <td style="width: 5%">
+                    <td class="auto-style3">
                         <asp:DropDownList ID="ddlSPRG" runat="server" AutoPostBack="True" class="" Width="97%" OnSelectedIndexChanged="ddlSPRG_SelectedIndexChanged" BackColor="#FFFF99">
                             <asp:ListItem Selected="True">--</asp:ListItem>
                             <asp:ListItem>00</asp:ListItem>
                         </asp:DropDownList>
                     </td>
-                    <td style="width: 5%">
+                    <td class="auto-style3">
                         <asp:DropDownList ID="ddlPROY" runat="server" AutoPostBack="True" class="" Width="97%" OnSelectedIndexChanged="ddlPROY_SelectedIndexChanged" BackColor="#FFFF99">
                             <asp:ListItem>---</asp:ListItem>
                             <asp:ListItem>000</asp:ListItem>
@@ -347,22 +381,22 @@
                             <asp:ListItem>025</asp:ListItem>
                         </asp:DropDownList>
                     </td>
-                    <td style="width: 5%">
+                    <td class="auto-style3">
                         <asp:DropDownList ID="ddlACT" runat="server" AutoPostBack="True" class="" Width="97%" OnSelectedIndexChanged="ddlACT_SelectedIndexChanged" BackColor="#FFFF99">
                             <asp:ListItem Value="---"></asp:ListItem>
                         </asp:DropDownList>
                     </td>
-                    <td style="width: 5%">
+                    <td class="auto-style3">
                         <asp:DropDownList ID="ddlOBR" runat="server" AutoPostBack="True" class="" Width="97%" OnSelectedIndexChanged="ddlOBR_SelectedIndexChanged" BackColor="#FFFF99">
                             <asp:ListItem Value="---"></asp:ListItem>
                         </asp:DropDownList>
                     </td>
-                    <td style="width: 5%">
+                    <td class="auto-style3">
                         <asp:DropDownList ID="ddlRenglonesC" runat="server" AutoPostBack="True" class="" Width="97%" Visible="False" BackColor="#FFFF99">
                         </asp:DropDownList>
                     </td>
-                    <td style="width: 5%">&nbsp;</td>
-                    <td style="width: 5%">&nbsp;</td>
+                    <td class="auto-style3"></td>
+                    <td class="auto-style3"></td>
                 </tr>
                 <tr>
                     <td style="width: 5%">&nbsp;</td>

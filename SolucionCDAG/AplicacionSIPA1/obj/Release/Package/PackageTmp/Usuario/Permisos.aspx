@@ -39,9 +39,9 @@
                                 </td>
                             </tr>
                             <tr>
-                                <td></td>
-                                <td colspan="2" >
-                                    <asp:GridView ID="gridUsuario" runat="server" AllowPaging="True" AutoGenerateColumns="False" BackColor="White" BorderColor="#CCCCCC" BorderStyle="Solid" BorderWidth="1px" CellPadding="5" CellSpacing="1" DataKeyNames="ID" ForeColor="Black" GridLines="Vertical" HorizontalAlign="Center" OnPageIndexChanging="gridUsuario_PageIndexChanging" OnSelectedIndexChanged="gridUsuario_SelectedIndexChanged" PageSize="5" Width="65%" CssClass="table table-hover table-responsive">
+                                <td class="auto-style25"></td>
+                                <td colspan="2" class="auto-style25" >
+                                    <asp:GridView ID="gridUsuario" runat="server" AllowPaging="True" AutoGenerateColumns="False" BackColor="White" BorderColor="#CCCCCC" BorderStyle="Solid" BorderWidth="1px" CellPadding="5" CellSpacing="1" DataKeyNames="ID" ForeColor="Black" GridLines="Vertical" HorizontalAlign="Center" OnPageIndexChanging="gridUsuario_PageIndexChanging" OnSelectedIndexChanged="gridUsuario_SelectedIndexChanged" PageSize="5" Width="65%" CssClass="table table-hover " Height="240px">
                                         <AlternatingRowStyle BackColor="#CEEFFF" ForeColor="#333333" />
                                         <Columns>
                                             <asp:CommandField ButtonType="Image" SelectImageUrl="~/img/24_bits/accept.png" ShowSelectButton="True">
@@ -170,7 +170,7 @@
                             <tr>
                                 <td class="auto-style11">&nbsp;</td>
                                 <td class="auto-style12" colspan="2">
-                                    <asp:GridView ID="gridCargo" runat="server" AutoGenerateColumns="False" BackColor="White" BorderColor="#CCCCCC" BorderStyle="Solid" BorderWidth="1px" CellPadding="5" CellSpacing="1" DataKeyNames="ID" ForeColor="Black" GridLines="Vertical" HorizontalAlign="Center" OnSelectedIndexChanged="gridUsuario_SelectedIndexChanged" PageSize="5" Width="65%" OnRowDeleting="gridCargo_RowDeleting" CssClass="table table-hover table-hover table-bordered">
+                                    <asp:GridView ID="gridCargo" runat="server" AutoGenerateColumns="False" BackColor="White" BorderColor="#CCCCCC" BorderStyle="Solid" BorderWidth="1px" CellPadding="5" CellSpacing="1" DataKeyNames="ID" ForeColor="Black" GridLines="Vertical" HorizontalAlign="Center" OnSelectedIndexChanged="gridUsuario_SelectedIndexChanged" PageSize="5" Width="86%" OnRowDeleting="gridCargo_RowDeleting" CssClass="table table-hover table-hover table-bordered" style="margin-left: 0px">
                                         <AlternatingRowStyle BackColor="#CEEFFF" ForeColor="#333333" />
                                         <Columns>
                                             <asp:CommandField ButtonType="Image" SelectImageUrl="~/img/24_bits/accept.png" ShowSelectButton="True">
@@ -289,6 +289,9 @@
             font-weight: bold;
             color: #006699;
             text-align: right;
+        }
+        .auto-style25 {
+            height: 238px;
         }
     </style>
 </asp:Content>

@@ -56,6 +56,9 @@
             <TablixColumn>
               <Width>1in</Width>
             </TablixColumn>
+            <TablixColumn>
+              <Width>1in</Width>
+            </TablixColumn>
           </TablixColumns>
           <TablixRows>
             <TablixRow>
@@ -839,7 +842,6 @@
                         <PaddingBottom>2pt</PaddingBottom>
                       </Style>
                     </Textbox>
-                    <rd:Selected>true</rd:Selected>
                   </CellContents>
                 </TablixCell>
                 <TablixCell>
@@ -859,6 +861,56 @@
                         </Paragraph>
                       </Paragraphs>
                       <rd:DefaultName>Textbox2</rd:DefaultName>
+                      <Style>
+                        <Border>
+                          <Style>Solid</Style>
+                        </Border>
+                        <TopBorder>
+                          <Color>Black</Color>
+                          <Style>Solid</Style>
+                          <Width>1pt</Width>
+                        </TopBorder>
+                        <BottomBorder>
+                          <Color>Black</Color>
+                          <Style>Solid</Style>
+                          <Width>1pt</Width>
+                        </BottomBorder>
+                        <LeftBorder>
+                          <Color>Black</Color>
+                          <Style>Solid</Style>
+                          <Width>1pt</Width>
+                        </LeftBorder>
+                        <RightBorder>
+                          <Color>Black</Color>
+                          <Style>Solid</Style>
+                          <Width>1pt</Width>
+                        </RightBorder>
+                        <BackgroundColor>LimeGreen</BackgroundColor>
+                        <PaddingLeft>2pt</PaddingLeft>
+                        <PaddingRight>2pt</PaddingRight>
+                        <PaddingTop>2pt</PaddingTop>
+                        <PaddingBottom>2pt</PaddingBottom>
+                      </Style>
+                    </Textbox>
+                  </CellContents>
+                </TablixCell>
+                <TablixCell>
+                  <CellContents>
+                    <Textbox Name="Textbox4">
+                      <CanGrow>true</CanGrow>
+                      <KeepTogether>true</KeepTogether>
+                      <Paragraphs>
+                        <Paragraph>
+                          <TextRuns>
+                            <TextRun>
+                              <Value>fecha orden compra</Value>
+                              <Style />
+                            </TextRun>
+                          </TextRuns>
+                          <Style />
+                        </Paragraph>
+                      </Paragraphs>
+                      <rd:DefaultName>Textbox4</rd:DefaultName>
                       <Style>
                         <Border>
                           <Style>Solid</Style>
@@ -1724,12 +1776,65 @@
                     </Textbox>
                   </CellContents>
                 </TablixCell>
+                <TablixCell>
+                  <CellContents>
+                    <Textbox Name="fecha_orden_compra">
+                      <CanGrow>true</CanGrow>
+                      <KeepTogether>true</KeepTogether>
+                      <Paragraphs>
+                        <Paragraph>
+                          <TextRuns>
+                            <TextRun>
+                              <Value>=Fields!fecha_orden_compra.Value</Value>
+                              <Style>
+                                <Language>es-GT</Language>
+                              </Style>
+                            </TextRun>
+                          </TextRuns>
+                          <Style />
+                        </Paragraph>
+                      </Paragraphs>
+                      <rd:DefaultName>fecha_orden_compra</rd:DefaultName>
+                      <Style>
+                        <Border>
+                          <Style>Solid</Style>
+                        </Border>
+                        <TopBorder>
+                          <Color>Black</Color>
+                          <Style>Solid</Style>
+                          <Width>1pt</Width>
+                        </TopBorder>
+                        <BottomBorder>
+                          <Color>Black</Color>
+                          <Style>Solid</Style>
+                          <Width>1pt</Width>
+                        </BottomBorder>
+                        <LeftBorder>
+                          <Color>Black</Color>
+                          <Style>Solid</Style>
+                          <Width>1pt</Width>
+                        </LeftBorder>
+                        <RightBorder>
+                          <Color>Black</Color>
+                          <Style>Solid</Style>
+                          <Width>1pt</Width>
+                        </RightBorder>
+                        <BackgroundColor>=IIF(RowNumber(nothing) mod 2 = 0,"LightGrey","Transparent")</BackgroundColor>
+                        <PaddingLeft>2pt</PaddingLeft>
+                        <PaddingRight>2pt</PaddingRight>
+                        <PaddingTop>2pt</PaddingTop>
+                        <PaddingBottom>2pt</PaddingBottom>
+                      </Style>
+                    </Textbox>
+                  </CellContents>
+                </TablixCell>
               </TablixCells>
             </TablixRow>
           </TablixRows>
         </TablixBody>
         <TablixColumnHierarchy>
           <TablixMembers>
+            <TablixMember />
             <TablixMember />
             <TablixMember />
             <TablixMember />
@@ -1767,7 +1872,7 @@
         <DataSetName>DataSet1</DataSetName>
         <Left>0.105in</Left>
         <Height>0.66666in</Height>
-        <Width>14.72834in</Width>
+        <Width>15.72834in</Width>
         <Style>
           <Border>
             <Style>Solid</Style>
@@ -1915,10 +2020,14 @@
           <DataField>no_orden_compra</DataField>
           <rd:TypeName>System.Int64</rd:TypeName>
         </Field>
+        <Field Name="fecha_orden_compra">
+          <DataField>fecha_orden_compra</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
+        </Field>
       </Fields>
       <rd:DataSetInfo>
         <rd:DataSetName>DataSet1</rd:DataSetName>
-        <rd:SchemaPath>C:\Users\user Dell\Documents\GitHub\-SIPA-Des-Inst\SolucionCDAG\AplicacionSIPA1\Reportes\DataSetDatosRenglones.xsd</rd:SchemaPath>
+        <rd:SchemaPath>C:\Users\user Dell\Documents\Trabajo\SIPA Archivos\PRODUCCION V2\SolucionCDAG\SIPA\AplicacionSIPA1\Reportes\DataSetDatosRenglones.xsd</rd:SchemaPath>
         <rd:TableName>SaldosDetalle</rd:TableName>
         <rd:TableAdapterFillMethod>Fill</rd:TableAdapterFillMethod>
         <rd:TableAdapterGetDataMethod>GetData</rd:TableAdapterGetDataMethod>

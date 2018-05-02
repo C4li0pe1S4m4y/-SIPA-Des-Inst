@@ -148,7 +148,7 @@ namespace AplicacionSIPA1.Operativa
             planAccionLN.DdlAcciones(ddlAcciones, 0);
             txtCodigo.Text = txtAccion.Text = string.Empty;
             txtCodigo.Enabled = false;
-            rfvCodigo.Enabled = rfvAccion.Enabled = false; 
+            rfvCodigo.Enabled = rfvAccion.Enabled = false;
         }
 
         protected void limpiarCNuevaMeta()
@@ -167,7 +167,8 @@ namespace AplicacionSIPA1.Operativa
             rfvMeta.Enabled = rfvMetaC1.Enabled = rfvMetaC2.Enabled = rfvMetaC3.Enabled = false;
             rfvPond1.Enabled = rfvPond2.Enabled = rfvPond3.Enabled = rfvPonderacion.Enabled = false;
             rvPond.Enabled = false;
-            /*rfvPresupuesto.Enabled = */rfvResponsable.Enabled = false;
+            /*rfvPresupuesto.Enabled = */
+            rfvResponsable.Enabled = false;
         }
 
         protected void limpiarNListado()
@@ -206,18 +207,18 @@ namespace AplicacionSIPA1.Operativa
             try
             {
                 lblErrorBusqueda.Text = string.Empty;
-                
+
                 int idUnidad = int.Parse(ddlBUnidades.SelectedValue);
                 int anio = int.Parse(ddlBAnio.SelectedValue);
 
                 planAccionLN = new PlanAccionLN();
                 //planAccionLN.GridBusqueda(gridBusqueda, Session["Usuario"].ToString().ToLower(), idUnidad, anio);
-                
+
                 gridBusqueda.PageIndex = e.NewPageIndex;
             }
             catch (Exception ex)
             {
-                lblErrorBusqueda.Text = "gridBusqueda_PageIndexChanging(). " + ex.Message; 
+                lblErrorBusqueda.Text = "gridBusqueda_PageIndexChanging(). " + ex.Message;
             }
         }
 
@@ -412,7 +413,7 @@ namespace AplicacionSIPA1.Operativa
 
                 if (anio > 0)
                 {
-                    ddlAnios.SelectedValue = anio.ToString();                    
+                    ddlAnios.SelectedValue = anio.ToString();
                     if (anio > 0 && idUnidad > 0)
                         validarPoa(idUnidad, anio);
                 }
@@ -434,8 +435,8 @@ namespace AplicacionSIPA1.Operativa
 
                 txtCodigo.Text = txtAccion.Text = lblPpto.Text = /*txtPpto.Text =*/ string.Empty;
                 txtCodigo.Enabled = false;
-                rfvCodigo.Enabled = rfvAccion.Enabled = false; 
-                limpiarCNuevaMeta(); 
+                rfvCodigo.Enabled = rfvAccion.Enabled = false;
+                limpiarCNuevaMeta();
                 //txtAccion.Focus();
 
                 obtenerPresupuesto(int.Parse(lblIdPoa.Text), int.Parse(ddlDependencias.SelectedValue));
@@ -453,8 +454,8 @@ namespace AplicacionSIPA1.Operativa
 
                     decimal pptoAccion = 0;
                     decimal.TryParse(dsResultado.Tables["BUSQUEDA"].Rows[0]["MONTO_ACCION"].ToString(), out pptoAccion);
-                    lblPpto.Text = /*txtPpto.Text =*/ String.Format(CultureInfo.InvariantCulture, "Q.{0:0,0.00}", pptoAccion); 
-                    
+                    lblPpto.Text = /*txtPpto.Text =*/ String.Format(CultureInfo.InvariantCulture, "Q.{0:0,0.00}", pptoAccion);
+
                     txtCodigo.Enabled = true;
 
                     planAccionLN.DdlMetas(ddlMetas, vValue);
@@ -516,7 +517,7 @@ namespace AplicacionSIPA1.Operativa
                             ddlDependencias_SelectedIndexChanged(sender, e);
                         }
                     }
-                }                
+                }
             }
             catch (Exception ex)
             {
@@ -600,7 +601,7 @@ namespace AplicacionSIPA1.Operativa
             dv.RowFilter = filtro;
 
             gridPlanO.DataSource = dv;
-            gridPlanO.DataBind() ;
+            gridPlanO.DataBind();
 
             if (gridPlanO.Rows.Count == 1)
                 gridPlanO.SelectedIndex = 0;
@@ -717,7 +718,7 @@ namespace AplicacionSIPA1.Operativa
                     metasEN.Noviembre = txtM11.Text.Equals(string.Empty) ? 0 : 1;
                     metasEN.Diciembre = txtM12.Text.Equals(string.Empty) ? 0 : 1;
                     metasEN.Anio = int.Parse(ddlAnios.SelectedValue);
-                    metasEN.Usuario = Session["usuario"].ToString();                    
+                    metasEN.Usuario = Session["usuario"].ToString();
 
                     /*dsResultado = planAccionLN.AlmacenarMeta(metasEN);
 
@@ -729,8 +730,8 @@ namespace AplicacionSIPA1.Operativa
                     else
                         mensaje += "Meta ACTUALIZADA correctamente. \n";
 
-                    idMeta = int.Parse(dsResultado.Tables[0].Rows[0]["VALOR"].ToString());*/               
-                    
+                    idMeta = int.Parse(dsResultado.Tables[0].Rows[0]["VALOR"].ToString());*/
+
                     if (validarControlesABCDetalle())
                     //if (false)
                     {
@@ -904,7 +905,7 @@ namespace AplicacionSIPA1.Operativa
                 if (!rfvPond3.IsValid)
                     lblError.Text += "Ingrese la ponderación del tercer cuatrimestre!. ";
 
-                if(!rvPond.IsValid)
+                if (!rvPond.IsValid)
                     lblError.Text += "La ponderación de acciones debe ser entre 1 y 100!. ";
 
                 if (!rfvPonderacion.IsValid)
@@ -939,7 +940,7 @@ namespace AplicacionSIPA1.Operativa
                 decimal monto = 0;
                 idRenglon = idFuente = 0;
                 monto = 0;
-                
+
                 int.TryParse(ddlRenglones.SelectedValue, out idRenglon);
                 int.TryParse(ddlFuentes.SelectedValue, out idFuente);
                 decimal.TryParse(txtMonto.Text, out monto);
@@ -964,10 +965,10 @@ namespace AplicacionSIPA1.Operativa
             try
             {
                 lblTechoD.Text = lblTechoU.Text = lblAsignado.Text = lblDisponibleD.Text = lblDisponibleU.Text = String.Format(CultureInfo.InvariantCulture, "Q.{0:0,0.00}", 0);
-                
+
                 planOperativoLN = new PlanOperativoLN();
                 DataSet dsPoa = planOperativoLN.DatosPoaUnidad(idUnidad, anio);
-                
+
                 if (dsPoa.Tables.Count == 0)
                     throw new Exception("Error al consultar el presupuesto.");
 
@@ -978,7 +979,7 @@ namespace AplicacionSIPA1.Operativa
                 lblEstadoPoa.Text = dsPoa.Tables[0].Rows[0]["ID_ESTADO"].ToString() + " - " + dsPoa.Tables[0].Rows[0]["ESTADO"].ToString();
 
                 int idPoa = int.Parse(dsPoa.Tables[0].Rows[0]["ID_POA"].ToString());
-                lblIdPoa.Text = idPoa.ToString();            
+                lblIdPoa.Text = idPoa.ToString();
 
                 //
                 if (!estadoPoa.Equals("9"))
@@ -1019,6 +1020,21 @@ namespace AplicacionSIPA1.Operativa
                 decimal pptoPoaDependencia = decimal.Parse(dsPpto.Tables["BUSQUEDA"].Rows[0]["PPTO_POA_UNIDAD"].ToString());
                 decimal pptoDisponibleDep = decimal.Parse(dsPpto.Tables["BUSQUEDA"].Rows[0]["DISPONIBLE_UNIDAD"].ToString());
 
+
+                if (ddlUnidades.SelectedValue == "29" && ddlDependencia.SelectedIndex < 1)
+                {
+                    dsPpto = planAccionLN.PptoPoaDependencia(int.Parse(ddlUnidades.SelectedValue), int.Parse(ddlAnios.SelectedValue));
+                    pptoDisponibleUnidad = pptoPoaUnidad - decimal.Parse(dsPpto.Tables["BUSQUEDA"].Rows[0]["codificado"].ToString());
+                    pptoDisponibleDep = pptoDisponibleUnidad;
+                }
+                else if (ddlDependencia.SelectedValue == "29")
+                {
+                    dsPpto = planAccionLN.PptoPoa(idPoa);
+                    pptoPoaUnidad = decimal.Parse(dsPpto.Tables["BUSQUEDA"].Rows[0]["TECHO"].ToString());
+                    pptoDisponibleUnidad = decimal.Parse(dsPpto.Tables["BUSQUEDA"].Rows[0]["DISPONIBLE"].ToString());
+                    pptoPoaDependencia = decimal.Parse(dsPpto.Tables["BUSQUEDA"].Rows[0]["TECHO"].ToString());
+                    pptoDisponibleDep = decimal.Parse(dsPpto.Tables["BUSQUEDA"].Rows[0]["DISPONIBLE"].ToString());
+                }
 
                 lblTechoU.Text = String.Format(CultureInfo.InvariantCulture, "Q.{0:0,0.00}", pptoPoaUnidad);
                 lblDisponibleU.Text = String.Format(CultureInfo.InvariantCulture, "Q.{0:0,0.00}", pptoDisponibleUnidad);
@@ -1108,7 +1124,7 @@ namespace AplicacionSIPA1.Operativa
                 planOperativoLN = new PlanOperativoLN();
 
                 DataSet dsDatos = planOperativoLN.BuscarId(idMeta.ToString());
-                
+
                 int idKpi = int.Parse(dsDatos.Tables["BUSQUEDA"].Rows[0]["ID_KPI_O"].ToString());
                 ListItem item = ddlIndicadores.Items.FindByValue(idKpi.ToString());
                 if (item != null)
@@ -1126,9 +1142,9 @@ namespace AplicacionSIPA1.Operativa
                     limpiarCNuevaMeta();
                     //txtAccion.Focus();
                 }
-                
+
                 filtrarGridPlanO(idMeta.ToString());
-                
+
             }
             catch (Exception ex)
             {
@@ -1269,7 +1285,7 @@ namespace AplicacionSIPA1.Operativa
 
         protected void chkCronograma_CheckedChanged(object sender, EventArgs e)
         {
-            if(chkCronograma.Checked)
+            if (chkCronograma.Checked)
                 txtM1.Text = txtM2.Text = txtM3.Text = txtM4.Text = txtM5.Text = txtM6.Text = txtM7.Text = txtM8.Text = txtM9.Text = txtM10.Text = txtM11.Text = txtM12.Text = "X";
             else
                 txtM1.Text = txtM2.Text = txtM3.Text = txtM4.Text = txtM5.Text = txtM6.Text = txtM7.Text = txtM8.Text = txtM9.Text = txtM10.Text = txtM11.Text = txtM12.Text = string.Empty;
@@ -1284,7 +1300,7 @@ namespace AplicacionSIPA1.Operativa
                 limpiarNListado();
                 if (idAccion > 0)
                 {
-                    
+
                 }
             }
             else
@@ -1398,7 +1414,7 @@ namespace AplicacionSIPA1.Operativa
 
                 lblAccion.Text = ddlAcciones.SelectedItem.Text;
                 lblReglonMod.Text = dsResultado.Tables["BUSQUEDA"].Rows[0]["NO_RENGLON"].ToString();
-                
+
                 planAccionLN.DdlFinanciamiento(dropFuenteFMod);
                 string idFinanciamiento = dsResultado.Tables["BUSQUEDA"].Rows[0]["ID_TIPO_FINANCIAMIENTO"].ToString();
                 ListItem item = dropFuenteFMod.Items.FindByValue(idFinanciamiento);
@@ -1407,14 +1423,14 @@ namespace AplicacionSIPA1.Operativa
 
                 txtMontoMod.Text = dsResultado.Tables["BUSQUEDA"].Rows[0]["MONTO"].ToString();
 
-                ScriptManager.RegisterClientScriptBlock(this, typeof(System.Web.UI.Page), "verPanelModalReglon", "verPanelModalReglon();", true);    
+                ScriptManager.RegisterClientScriptBlock(this, typeof(System.Web.UI.Page), "verPanelModalReglon", "verPanelModalReglon();", true);
 
-                
+
             }
             catch (Exception ex)
             {
                 lblError.Text = "gridRenglon(). " + ex.Message;
-            } 
+            }
         }
 
         protected void chkAccion_CheckedChanged(object sender, EventArgs e)
@@ -1465,7 +1481,7 @@ namespace AplicacionSIPA1.Operativa
                 int idDetalleAccion = 0;
                 int.TryParse(gridRenglon.SelectedValue.ToString(), out idDetalleAccion);
 
-                if(idDetalleAccion == 0)
+                if (idDetalleAccion == 0)
                     throw new Exception("Seleccione un renglón presupuestario");
 
                 if (dropFuenteFMod.SelectedValue.Equals("0"))
@@ -1480,7 +1496,7 @@ namespace AplicacionSIPA1.Operativa
 
                 string mensaje = "";
                 DataSet dsResultado = new DataSet();
-                
+
                 int idAccion = 0;
                 int idPoa = 0;
                 int idDep = 0;
@@ -1512,7 +1528,7 @@ namespace AplicacionSIPA1.Operativa
                 decimal.TryParse(dsPptoRenglon.Tables["BUSQUEDA"].Rows[0]["COSTO_POA"].ToString(), out montoActual);
                 decimal diferenciaNuevoMontoPptoDispoDep = (pptoDisponibleDep + montoActual) - nuevoMonto;
 
-                if(diferenciaNuevoMontoPptoDispoDep < 0)
+                if (diferenciaNuevoMontoPptoDispoDep < 0)
                     throw new Exception("El monto máximo debe ser igual o menor al monto disponible: " + String.Format(CultureInfo.InvariantCulture, "Q.{0:0,0.00}", (pptoDisponibleDep + montoActual)));
 
                 accionDetEN.Id_Detalle = idDetAccion;

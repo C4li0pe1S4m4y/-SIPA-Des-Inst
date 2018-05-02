@@ -50,7 +50,7 @@
 
 
 /*MENU personalizado*/
-#menuDiv_EW {
+/*#menuDiv_EW {
 	padding: 0 140px 0 140px; 
     text-align: left;
     height: 30px;
@@ -71,28 +71,28 @@
     margin: 0px auto 10px auto;
 }
 /*menu principal sin seleccionar*/
-.menu_EW{
+/*.menu_EW{
 	background: #2c3e50; 
 	background: linear-gradient(top, #2c3e50 0%, #2c3e50 100%);  
 	background: -moz-linear-gradient(top, #5f6975 0%, #2c3e50 100%); 
 	background: -webkit-linear-gradient(top, #2c3e50 0%,#2c3e50 100%); 
 	/*box-shadow: 0px 0px 9px rgba(0,0,0,0.15);*/
-	padding: 0 20px;
+	/*padding: 0 20px;
 	/*border-radius: 10px;*/  
-	list-style: none;
+	/*list-style: none;
 	position: relative;
 	display: inline-table;
     text-indent: 5px;
-    text-transform: uppercase;
-}
-	.menu_EW ul:after {
+    text-transform: uppercase;*/
+
+	/*.menu_EW ul:after {
 		content: ""; clear: both; display: inline ;
 	}    
 .menu_EW ul li {
 	float: left;
-}
-/*cuando se selecciona el menu principal*/
-	.menu_EW ul li:hover {
+}*/
+/*/*cuando se selecciona el menu principal*/
+	/*.menu_EW ul li:hover {
 		background: #2c3e50 ;
 		background: linear-gradient(top, #fff 0%,  #fff 40%);
 		background: -moz-linear-gradient(top,  #fff 0%,  #fff 40%);
@@ -101,19 +101,19 @@
 	}
 		.menu_EW ul li:hover a {
 			color:#339976 ;
-		}
+		}*/
 	
 /*menu principal*/
-	.menu_EW ul li a {
+	/*.menu_EW ul li a {
 		display: compact ; padding: 25px 40px;
 		color: #fff ; text-decoration: none;
-	}    
+	}*/    
 /*submenu del principal desplegado*/
-.menu_EW ul ul {
+/*.menu_EW ul ul {
 	background: #FFF; border-radius: 0px; padding: 0;
 	position: relative ; top: 100%;
-}
-	.menu_EW ul ul li {
+}*/
+	/*.menu_EW ul ul li {
 		float: none; 
 		
         border-top: 1px solid #575f6a;
@@ -134,7 +134,7 @@
 			}
 .menu_EW ul ul ul {
 	position: relative; left: 100%; top:0;
-}
+}*/
 
 
 

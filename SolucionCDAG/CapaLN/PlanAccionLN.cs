@@ -753,6 +753,28 @@ namespace CapaLN
             return dsResultado;
         }
 
+        public DataSet PptoPoaDependencia(int unidad, int anio)
+        {
+            DataSet dsResultado = armarDsResultado();
+            ObjAD = new PlanAccionAD();
+
+            try
+            {
+                DataTable dt = ObjAD.PptoPoaDependecias(unidad, anio);
+                dt.TableName = "BUSQUEDA";
+                dsResultado.Tables.Add(dt);
+                dsResultado.Tables[0].Rows[0]["ERRORES"] = false;
+            }
+            catch (Exception ex)
+            {
+                dsResultado.Tables[0].Rows[0]["MSG_ERROR"] = " CapaLN.PptoPoa(). " + ex.Message;
+            }
+
+            return dsResultado;
+        }
+
+        
+
         public DataSet PptoDep(int idPoa, int idDependencia)
         {
             DataSet dsResultado = armarDsResultado();
