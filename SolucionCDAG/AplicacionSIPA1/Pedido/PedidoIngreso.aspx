@@ -3,7 +3,7 @@
 
 
 <asp:Content ID="Content2" runat="server" ContentPlaceHolderID="head">
-   
+
     <style type="text/css">
         .auto-style3 {
             width: 84px;
@@ -18,9 +18,11 @@
         .auto-style3 {
             width: 11px;
         }
+
         .auto-style6 {
             width: 22%;
         }
+
         .auto-style7 {
             width: 7%;
         }
@@ -271,6 +273,52 @@
                             <td class="auto-style6">&nbsp;</td>
                         </tr>
                         <tr>
+                            <td style="width: 5%">&nbsp;</td>
+                            <td style="width: 5%"><strong>Subproducto</strong></td>
+                            <td style="width: 5%">&nbsp;</td>
+                            <td style="width: 5%">&nbsp;</td>
+                            <td style="width: 5%">&nbsp;</td>
+                            <td style="width: 5%">&nbsp;</td>
+                            <td style="width: 5%">&nbsp;</td>
+                            <td style="width: 5%">&nbsp;</td>
+                            <td style="width: 5%">&nbsp;</td>
+                            <td style="width: 5%">&nbsp;</td>
+                            <td style="width: 5%">&nbsp;</td>
+                            <td class="auto-style3">&nbsp;</td>
+                            <td style="width: 5%">&nbsp;</td>
+                            <td style="width: 5%">&nbsp;</td>
+                            <td style="width: 5%">&nbsp;</td>
+                            <td style="width: 5%">&nbsp;</td>
+                            <td style="width: 5%">&nbsp;</td>
+                            <td class="auto-style7">&nbsp;</td>
+                            <td style="width: 5%">&nbsp;</td>
+                            <td class="auto-style6">&nbsp;</td>
+                        </tr>
+                        <tr>
+                            <td style="width: 5%">&nbsp;</td>
+                            <td colspan="10" class="auto-style4">
+                                <asp:DropDownList ID="ddlSubproducto" runat="server" AutoPostBack="true" CssClass="form-control"></asp:DropDownList>
+                            </td>
+                            <td style="width: 5%">&nbsp;</td>
+                            <td style="width: 5%">&nbsp;</td>
+                            <td style="width: 5%">&nbsp;</td>
+                            <td style="width: 5%">&nbsp;</td>
+                            <td style="width: 5%">&nbsp;</td>
+                            <td style="width: 5%">&nbsp;</td>
+                            <td style="width: 5%">&nbsp;</td>
+                            <td style="width: 5%">&nbsp;</td>
+                            <td style="width: 5%">&nbsp;</td>
+                            <td class="auto-style3">&nbsp;</td>
+                            <td style="width: 5%">&nbsp;</td>
+                            <td style="width: 5%">&nbsp;</td>
+                            <td style="width: 5%">&nbsp;</td>
+                            <td style="width: 5%">&nbsp;</td>
+                            <td style="width: 5%">&nbsp;</td>
+                            <td class="auto-style7">&nbsp;</td>
+                            <td style="width: 5%">&nbsp;</td>
+                            <td class="auto-style6">&nbsp;</td>
+                        </tr>
+                        <tr>
                             <td>&nbsp;</td>
                             <td colspan="6">Pac:<strong><asp:Label ID="lblErrorPac" runat="server" ForeColor="Red" Style="font-size: medium">*</asp:Label>
                             </strong></td>
@@ -316,23 +364,27 @@
                         </tr>
                         <tr>
                             <td>&nbsp;</td>
-                            <td colspan="2"><asp:Label runat="server" ID="lblCodigoInsumo" Text="Codigo de Insimo"></asp:Label> </td>
+                            <td colspan="2">
+                                <asp:Label runat="server" ID="lblCodigoInsumo" Text="Codigo de Insimo"></asp:Label>
+                            </td>
                             <td colspan="3"><strong>
                                 <asp:TextBox ID="txtCodigoInsumo" runat="server" TextMode="Number" CssClass="form-control"></asp:TextBox>
                             </strong></td>
-                            
+
                             <td colspan="4">
-                                
+
                                 <asp:Button ID="btInsumo" runat="server" OnClick="OnclickBtnInsumo" UseSubmitBehavior="false" CssClass="btn btn-info" Text="Busqueda I" />
                             </td>
-                            <td colspan="2"><asp:Label runat="server" ID="lblCodigoPresentacion" Text="Codigo de Presentacion"></asp:Label> </td>
+                            <td colspan="2">
+                                <asp:Label runat="server" ID="lblCodigoPresentacion" Text="Codigo de Presentacion"></asp:Label>
+                            </td>
                             <td colspan="3"><strong>
-                                <asp:TextBox ID="txtCodigoPresentacion" TextMode="Number" runat="server" CssClass="form-control" ></asp:TextBox>
+                                <asp:TextBox ID="txtCodigoPresentacion" TextMode="Number" runat="server" CssClass="form-control"></asp:TextBox>
                             </strong></td>
-                            
+
                             <td colspan="3">
-                                
-                                <asp:Button ID="btnCodigoPresentacion" runat="server" OnClick="btnCodigoPresentacion_Click" UseSubmitBehavior="false"  CssClass="btn btn-info" Text="Busqueda P" />
+
+                                <asp:Button ID="btnCodigoPresentacion" runat="server" OnClick="btnCodigoPresentacion_Click" UseSubmitBehavior="false" CssClass="btn btn-info" Text="Busqueda P" />
                             </td>
                         </tr>
                         <tr>
@@ -379,7 +431,7 @@
                             <td class="auto-style6">&nbsp;</td>
                         </tr>
                         <tr>
-                              <td>&nbsp;</td>
+                            <td>&nbsp;</td>
                             <td>&nbsp;</td>
                             <td colspan="3">Presentacion</td>
                             <td colspan="3">Cantidad Unidad</td>
@@ -397,7 +449,7 @@
                             <td colspan="3">
                                 <asp:TextBox ID="txtCantidadMedida" runat="server" CssClass="form-control" Enabled="false"></asp:TextBox>
                             </td>
-                            
+
                             <td colspan="3">
                                 <asp:TextBox ID="txtCantidad" runat="server" BackColor="#FFFF99" class="form-control" Font-Size="Large" MaxLength="10" Style="text-align: right" required="true" Width="100%"></asp:TextBox>
                             </td>
@@ -455,7 +507,7 @@
                             <td style="width: 5%">&nbsp;</td>
                             <td style="width: 5%">&nbsp;</td>
                             <td colspan="16" style="text-align: center">
-                                <asp:Button ID="btnEnviar" runat="server" class="btn btn-info" Text="Enviar" ValidationGroup="grpDatos" Width="120px" OnClick="btnEnviar_Click" OnClientClick="javascript:if(!confirm('¿Desea ENVIAR este registro?'))return false" />
+                                <asp:Button ID="btnEnviar" runat="server" class="btn btn-info" Text="Enviar" ValidationGroup="grpDatos" Width="120px" OnClick="btnEnviar_Click" UseSubmitBehavior="false" OnClientClick="javascript:if(!confirm('¿Desea ENVIAR este registro?'))return false" />
                                 <asp:Button ID="btnAnular" runat="server" class="btn btn-danger" Text="Anular" Width="120px" OnClick="btnAnular_Click" Visible="False" OnClientClick="javascript:if(!confirm('¿Desea ANULAR este registro?'))return false" />
                             </td>
                             <td style="width: 5%">&nbsp;</td>

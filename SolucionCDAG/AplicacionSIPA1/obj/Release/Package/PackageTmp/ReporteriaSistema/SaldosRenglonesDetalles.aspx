@@ -56,10 +56,10 @@
     </div>
     <div class="row">
         <div class="col-md-1"></div>
-        <div class="col-sm-8">
+        <div class="col-sm-9">
             <label>Estados</label>
             <br />
-            <asp:CheckBoxList ID="chkEstados" runat="server"  RepeatDirection="Horizontal" ></asp:CheckBoxList>
+            <asp:CheckBoxList CssClass="form-control" ID="chkEstados" runat="server"  RepeatDirection="Horizontal" ></asp:CheckBoxList>
         </div>
 
         <div class="col-sm-2">

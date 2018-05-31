@@ -185,7 +185,7 @@ namespace CapaAD
             MySqlDataAdapter sqlAdapter;
             conectar = new ConexionBD();
 
-            string idPedido, idPoa, idAccion, idTipoPedido, idSolicitante, idJefe, justificacion, destino, idFand, idTipoAnexo, usuario;
+            string idPedido, idPoa, idAccion, idTipoPedido, idSolicitante, idJefe, justificacion, destino, idFand, idTipoAnexo, usuario,id_producto;
             idPedido = ObjEN.ID_PEDIDO.ToString();
             idPoa = ObjEN.ID_POA.ToString();
             idAccion = ObjEN.ID_ACCION.ToString();
@@ -197,12 +197,12 @@ namespace CapaAD
             idFand = ObjEN.ID_FAND.ToString();
             idTipoAnexo = ObjEN.ID_TIPO_ANEXO.ToString();
             usuario = ObjEN.USUARIO;
-
+            id_producto = ObjEN.id_subproducto.ToString();
 
             if (destino.Equals("1"))
                 idFand = "null";
 
-            query = "CALL sp_iue_pedido(" + idPedido + ", " + idPoa + ", " + idAccion + ", " + idTipoPedido + ", " + idSolicitante + ", " + idJefe + ", '" + justificacion + "', " + idFand + ", " + idTipoAnexo + ", 0, 0, '', 0, 0, 0, 0, 0, 0, 0, '" + usuario + "', 1,null,null,null);";
+            query = "CALL sp_iue_pedido(" + idPedido + ", " + idPoa + ", " + idAccion + ", " + idTipoPedido + ", " + idSolicitante + ", " + idJefe + ", '" + justificacion + "', " + idFand + ", " + idTipoAnexo + ", 0, 0, '', 0, 0, 0, 0, 0, 0, 0, '" + usuario + "', 1,null,null,null,"+id_producto+");";
 
             dt = armarDsResultado().Tables[0].Copy();
             dtEnc = armarDsResultado().Tables[0].Copy();
@@ -1110,7 +1110,7 @@ namespace CapaAD
             conectar = new ConexionBD();
             DataTable dt = new DataTable();
             string query = "CALL sp_iue_pedido(" + idPedido + ", 0, 0, 0, 0, 0, '',0 , 0, 0, 0, '', 0, 0, 0, 0, 0, 0, " + idTipoSalida + ", '" + usuario + "', 3,'"
-                 + ip + "','" + mac + "','" + pc + "');";
+                 + ip + "','" + mac + "','" + pc + "',0);";
             conectar.AbrirConexion();
             MySqlDataAdapter consulta = new MySqlDataAdapter(query, conectar.conectar);
             consulta.Fill(dt);
@@ -1139,7 +1139,7 @@ namespace CapaAD
             conectar = new ConexionBD();
             DataTable dt = new DataTable();
             string query = "CALL sp_iue_pedido(" + idPedido + ", 0, 0, 0, 0, 0, '',0 , 0, 0, 0, '', 0, 0, 0, 0, 0, 0, " + idTipoDocumento + ", '" + usuario + "', 4 ,'"
-                 + ip + "','" + mac + "','" + pc + "');";
+                 + ip + "','" + mac + "','" + pc + "',0);";
             conectar.AbrirConexion();
             MySqlDataAdapter consulta = new MySqlDataAdapter(query, conectar.conectar);
             consulta.Fill(dt);
@@ -1153,7 +1153,7 @@ namespace CapaAD
             conectar = new ConexionBD();
             DataTable dt = new DataTable();
             string query = "CALL sp_iue_pedido(" + idPedido + ", 0, 0, 0, 0, 0, '',0 , 0, 0, 0, '" + observaciones + "', 0, 0, 0, 0, 0, 0, " + idTipoDocumento + ", '" + usuario + "', 5 ,'"
-                 + ip + "','" + mac + "','" + pc + "');";
+                 + ip + "','" + mac + "','" + pc + "',0);";
             conectar.AbrirConexion();
             MySqlDataAdapter consulta = new MySqlDataAdapter(query, conectar.conectar);
             consulta.Fill(dt);
@@ -1168,7 +1168,7 @@ namespace CapaAD
             conectar = new ConexionBD();
             DataTable dt = new DataTable();
             string query = "CALL sp_iue_pedido(" + idPedido + ", 0, 0, 0, 0, 0, '',0 , 0, 0, 0, '" + observaciones + "', 0, 0, 0, 0, 0, 0, " + idTipoSalida + ", '" + usuario + "', 6 ,'"
-                 + ip + "','" + mac + "','" + pc + "');";
+                 + ip + "','" + mac + "','" + pc + "',0);";
             conectar.AbrirConexion();
             MySqlDataAdapter consulta = new MySqlDataAdapter(query, conectar.conectar);
             consulta.Fill(dt);
@@ -1197,7 +1197,7 @@ namespace CapaAD
             conectar = new ConexionBD();
 
             string query = "CALL sp_iue_pedido(" + idPedido + ", 0, 0, 0, 0, 0, '',0 , 0, 0, 0, '" + observaciones + "', 0, 0, 0, 0, 0, 0, " + idTipoSalida + ", '" + usuario + "', 7,'"
-                 + ip + "','" + mac + "','" + pc + "');";
+                 + ip + "','" + mac + "','" + pc + "',0);";
             conectar.AbrirConexion();
             MySqlDataAdapter consulta = new MySqlDataAdapter(query, conectar.conectar);
             consulta.Fill(dt);
@@ -1226,7 +1226,7 @@ namespace CapaAD
             conectar = new ConexionBD();
             DataTable dt = new DataTable();
             string query = "CALL sp_iue_pedido(" + idPedido + ", 0, 0, 0, 0, 0, '',0 , 0, 0, 0, '" + observaciones + "', 0, 0, 0, 0, 0, 0, " + idTipoSalida + ", '" + usuario + "', 8 ,'"
-                 + ip + "','" + mac + "','" + pc + "');";
+                 + ip + "','" + mac + "','" + pc + "',0);";
             conectar.AbrirConexion();
             MySqlDataAdapter consulta = new MySqlDataAdapter(query, conectar.conectar);
             consulta.Fill(dt);
@@ -1240,7 +1240,7 @@ namespace CapaAD
             conectar = new ConexionBD();
             DataTable dt = new DataTable();
             string query = "CALL sp_iue_pedido(" + idPedido + ", 0, 0, 0, 0, 0, '',0 , 0, 0, 0, '" + observaciones + "', 0, 0, 0, 0, 0, 0, " + idTipoSalida + ", '" + usuario + "', 17 ,'"
-                 + ip + "','" + mac + "','" + pc + "');";
+                 + ip + "','" + mac + "','" + pc + "',0);";
             conectar.AbrirConexion();
             MySqlDataAdapter consulta = new MySqlDataAdapter(query, conectar.conectar);
             consulta.Fill(dt);
@@ -1270,7 +1270,7 @@ namespace CapaAD
                 conectar = new ConexionBD();
 
                 string query = "CALL sp_iue_pedido(" + idPedido + ", 0, 0, 0, 0, 0, '',0 , 0, 0, 0, '" + observaciones + "', 0, 0, 0, 0, 0, 0, " + idTipoSalida + ", '" + usuario + "', 9,'"
-                + ip + "','" + mac + "','" + pc + "');";
+                + ip + "','" + mac + "','" + pc + "',0);";
                 conectar.AbrirConexion();
                 MySqlDataAdapter consulta = new MySqlDataAdapter(query, conectar.conectar);
                 consulta.Fill(dt);
@@ -1301,7 +1301,7 @@ namespace CapaAD
             conectar = new ConexionBD();
             DataTable dt = new DataTable();
             string query = "CALL sp_iue_pedido(" + idPedido + ", 0, 0, 0, 0, 0, '',0 , 0, 0, 0, '', 0, 0, 0, 0, 0, 0, " + idTipoSalida + ", '" + usuario + "', 10 ,'"
-                 + ip + "','" + mac + "','" + pc + "');";
+                 + ip + "','" + mac + "','" + pc + "',0);";
             conectar.AbrirConexion();
             MySqlDataAdapter consulta = new MySqlDataAdapter(query, conectar.conectar);
             consulta.Fill(dt);
@@ -1315,7 +1315,7 @@ namespace CapaAD
             conectar = new ConexionBD();
             DataTable dt = new DataTable();
             string query = "CALL sp_iue_pedido(" + idPedido + ", 0, 0, 0, 0, 0, '',0 , 0, 0, 0, '" + observaciones + "', 0, 0, 0, 0, 0, 0, " + idTipoSalida + ", '" + usuario + "', 11 ,'"
-                 + ip + "','" + mac + "','" + pc + "');";
+                 + ip + "','" + mac + "','" + pc + "',0);";
             conectar.AbrirConexion();
             MySqlDataAdapter consulta = new MySqlDataAdapter(query, conectar.conectar);
             consulta.Fill(dt);
@@ -1329,7 +1329,7 @@ namespace CapaAD
             conectar = new ConexionBD();
             DataTable dt = new DataTable();
             string query = "CALL sp_iue_pedido(" + idPedido + ", 0, 0, 0, 0, 0, '',0 , 0, 0, 0, '', 0, 0, 0, 0, " + idTecnico + ", 0, " + idTipoSalida + ", '" + usuario + "', 12,'"
-                 + ip + "','" + mac + "','" + pc + "');";
+                 + ip + "','" + mac + "','" + pc + "',0);";
             conectar.AbrirConexion();
             MySqlDataAdapter consulta = new MySqlDataAdapter(query, conectar.conectar);
             consulta.Fill(dt);
@@ -1352,7 +1352,7 @@ namespace CapaAD
             string idTipoSalida = dsDetalles.Tables[0].Rows[0]["VID_TIPO_DOCUMENTO"].ToString();
 
             query = "CALL sp_iue_pedido(" + idPedido + ", 0, 0, 0, 0, 0, '',0 , 0, 0, 0, '', 0, 0, 0, 0, 0, 0, " + idTipoSalida + ", '', -1,'"
-                 + ip + "','" + mac + "','" + pc + "');";
+                 + ip + "','" + mac + "','" + pc + "',0);";
 
             dt = armarDsResultado().Tables[0].Copy();
             dtEnc = armarDsResultado().Tables[0].Copy();
@@ -1475,7 +1475,7 @@ namespace CapaAD
             string idTipoSalida = dsDetalles.Tables[0].Rows[0]["VID_TIPO_DOCUMENTO"].ToString();
 
             query = "CALL sp_iue_pedido(" + idPedido + ", 0, 0, 0, 0, 0, '',0 , 0, 0, 0, '', 0, 0, 0, 0, 0, 0, " + idTipoSalida + ", '', 13,'"
-                + ip + "','" + mac + "','" + pc + "');";
+                + ip + "','" + mac + "','" + pc + "',0);";
 
             dt = armarDsResultado().Tables[0].Copy();
             dtEnc = armarDsResultado().Tables[0].Copy();
@@ -1625,7 +1625,7 @@ namespace CapaAD
             conectar = new ConexionBD();
             DataTable dt = new DataTable();
             string query = "CALL sp_iue_pedido(" + idPedido + ", 0, 0, 0, 0, 0, '',0 , 0, 0, 0, '" + observaciones + "', 0, 0, 0, 0, 0, 0, " + idTipoSalida + ", '" + usuario + "', 14,'"
-                + ip + "','" + mac + "','" + pc + "');";
+                + ip + "','" + mac + "','" + pc + "',0);";
             conectar.AbrirConexion();
             MySqlDataAdapter consulta = new MySqlDataAdapter(query, conectar.conectar);
             consulta.Fill(dt);
@@ -1640,7 +1640,7 @@ namespace CapaAD
             DataTable dt = new DataTable();
 
             string query = "CALL sp_iue_pedido(" + idPedido + ", 0, 0, 0, 0, 0, '',0 , 0, 0, 0, '" + observaciones + "', 0, 0, 0, 0, 0, 0, " + idTipoSalida + ", '" + usuario + "', 15,'"
-                 + ip + "','" + mac + "','" + pc + "');";
+                 + ip + "','" + mac + "','" + pc + "',0);";
             conectar.AbrirConexion();
             MySqlDataAdapter consulta = new MySqlDataAdapter(query, conectar.conectar);
             consulta.Fill(dt);
@@ -1654,7 +1654,7 @@ namespace CapaAD
             conectar = new ConexionBD();
             DataTable dt = new DataTable();
             string query = "CALL sp_iue_pedido(" + idPedido + ", 0, 0, 0, 0, 0, '',0 , 0, 0, 0, '" + observaciones + "', 0, 0, 0, 0, 0, 0, " + idTipoSalida + ", '" + usuario + "', 15,'"
-               + ip + "','" + mac + "','" + pc + "');";
+               + ip + "','" + mac + "','" + pc + "',0);";
             conectar.AbrirConexion();
             MySqlDataAdapter consulta = new MySqlDataAdapter(query, conectar.conectar);
             consulta.Fill(dt);
@@ -1666,7 +1666,7 @@ namespace CapaAD
         {
             conectar = new ConexionBD();
             DataTable tabla = new DataTable();
-            string query = "CALL sp_iue_pedido(" + id + ", 0, 0, 0, 0, 0, '',0 , 0, 0, 0, '', 0, 0, 0, 0, 0, 0, 0, '', 2,null,null,null);";
+            string query = "CALL sp_iue_pedido(" + id + ", 0, 0, 0, 0, 0, '',0 , 0, 0, 0, '', 0, 0, 0, 0, 0, 0, 0, '', 2,null,null,null,0);";
             conectar.AbrirConexion();
             MySqlDataAdapter consulta = new MySqlDataAdapter(query, conectar.conectar);
             consulta.Fill(tabla);
@@ -2077,15 +2077,13 @@ namespace CapaAD
             conectar.CerrarConexion();
             return tabla;
         }
-        public DataTable DdlSubproducto(int pedido)
+        public DataTable DdlSubproducto(int idUnidad)
         {
             conectar = new ConexionBD();
             DataTable tabla = new DataTable();
             conectar.AbrirConexion();
-            string query = string.Format("SELECT id_subproducto id,subproducto FROM ccl_subproducto where id_unidad ="+
-                " (select u.id_padre from sipa_pedidos p "+
-                " inner join ccl_unidades u on u.id_unidad = p.id_unidad" +
-                " where id_pedido = {0});", pedido);
+            string query = string.Format("SELECT id_subproducto id,concat(codigo,'-',subproducto) subproducto FROM ccl_subproducto where id_unidad ={0};"
+                , idUnidad);
             MySqlDataAdapter consulta = new MySqlDataAdapter(query, conectar.conectar);
             consulta.Fill(tabla);
             conectar.CerrarConexion();
@@ -2104,6 +2102,20 @@ namespace CapaAD
             conectar.CerrarConexion();
             return tabla;
         }
+        public DataTable InformacionProductoSub(int id)
+        {
+            conectar = new ConexionBD();
+            DataTable tabla = new DataTable();
+            string query = String.Format(" select pro.id_producto,concat(pro.resultado,' ', pro.codigo,' ',sub.codigo) codigo,sub.subproducto from ccl_subproducto sub "+
+                "inner join sipa_pedidos p on p.id_subproducto = sub.id_subproducto "+
+                "inner join ccl_productos pro on pro.id_producto = sub.id_producto "+
+                "where id_pedido = {0}; ", id);
+            conectar.AbrirConexion();
+            MySqlDataAdapter consulta = new MySqlDataAdapter(query, conectar.conectar);
+            consulta.Fill(tabla);
+            conectar.CerrarConexion();
+            return tabla;
+        }
 
 
         public DataTable InformacionDetallePedidoPpto(string id)
@@ -2116,6 +2128,78 @@ namespace CapaAD
             consulta.Fill(tabla);
             conectar.CerrarConexion();
             return tabla;
+        }
+
+        public DataTable InformacionPedidoCompras(int no,int anio)
+        {
+            conectar = new ConexionBD();
+            DataTable tabla = new DataTable();
+            string query = String.Format("select u.Unidad,p.id_pedido,p.id_tipo_anexo, "+
+               " (select unidad from ccl_unidades where id_padre = u.id_padre and id_unidad = id_padre) padre,"+
+                "date_format(p.fecha_pedido, '%Y-%m-%d') fecha_ingreso,date_format(p.fecha_ingreso_compras, '%Y-%m-%d') fecha_ingreso_compras, " +
+                "date_format(p.Fecha_Asignacion_Tecnico, '%Y-%m-%d') fecha_tecnico,e.nombres,p.Justificacion,tp.nombre tipo_compra, concat('Q.', format(sum(pd.costo_pedido),4)) costo_pedido, " +
+                "p.id_centro_costo,pac.id_modalidad,date_format(p.fecha_act, '%Y-%m-%d') fecha_modificacion, p.acta_negociacion,p.notas,p.fecha_traslado_visa,p.Fecha_retorno, " +
+                "(select date_format(ap.fecha_aprobacion_ppto,'%d/%m/%Y') from sipa_ajuste_pedido ap where ap.id_pedido = p.id_pedido and ap.anio_solicitud = p.anio_solicitud ) fecha_ampliacion  " +
+                " from sipa_pedidos p "+
+                "inner join ccl_unidades u on u.id_unidad = p.id_unidad "+
+                "inner join ccl_empleados e on e.id_empleado = p.id_tecnico "+
+                "inner join sipa_tipo_pedido tp on tp.id_tipo_pedido = p.id_tipo_pedido "+
+                "inner join sipa_pedido_detalle pd on pd.id_pedido = p.id_pedido "+
+                "inner join sipa_pac pac on pac.id_pac = pd.id_pac "+
+                "where p.no_solicitud = {0} and p.anio_solicitud = {1} and pac.anio = {1};",no,anio);
+            conectar.AbrirConexion();
+            MySqlDataAdapter consulta = new MySqlDataAdapter(query, conectar.conectar);
+            consulta.Fill(tabla);
+            conectar.CerrarConexion();
+            return tabla;
+        }
+
+
+        public DataTable InformacionPedidoComprasDetalle(int no, int anio)
+        {
+            conectar = new ConexionBD();
+            DataTable tabla = new DataTable();
+            string query = String.Format("select pd.id_pedido_detalle,pd.descripcion,da.no_renglon,pd.cantidad, concat('Q.',format(pd.costo_u_pedido,2)) costo_u_pedido ," +
+            "concat('Q.',format((pd.costo_pedido * 1.12),2)) monto, concat('Q.',format(pd.costo_pedido,2)) costo_pedido ,pd.id_estatus_compras,pd.id_proveedor, " +
+            "pd.fecha_traslado_orden,pd.no_orden_compra,pd.fecha_orden_compra,pd.fecha_ingreso_BS,pd.fecha_traslado_almacen, pd.costo_u_compras, pd.cantidad_compras,pd.costo_real subtotal," +
+            "CASE WHEN (SELECT spe2.ajuste FROM sipa_pedidos spe2 WHERE spe2.id_pedido = pd.id_pedido) = 0 "+ 
+                    " THEN 'N/A' " +
+                    "ELSE CONCAT(pd.costo_pedido, '+', pd.ajuste_monto, '=', pd.costo_estimado) "+
+                " END ajuste "+
+            "from sipa_pedido_detalle pd " +
+            "inner join sipa_detalles_accion da on da.id_detalle = pd.id_detalle_accion "+
+            "inner join sipa_pedidos p on p.id_pedido = pd.id_pedido "+
+            "where p.no_solicitud = {0} and p.anio_solicitud = {1} and p.id_estado_pedido in (10,12);", no,anio);
+            conectar.AbrirConexion();
+            MySqlDataAdapter consulta = new MySqlDataAdapter(query, conectar.conectar);
+            consulta.Fill(tabla);
+            conectar.CerrarConexion();
+            return tabla;
+        }
+
+        public DataTable DdlEstatusCompras()
+        {
+            conectar = new ConexionBD();
+            DataTable tabla = new DataTable();
+            string query = String.Format("select id_estado id, nombre texto from ccl_estatus_compras;");
+            conectar.AbrirConexion();
+            MySqlDataAdapter consulta = new MySqlDataAdapter(query, conectar.conectar);
+            consulta.Fill(tabla);
+            conectar.CerrarConexion();
+            return tabla;
+        }
+
+
+        public DataSet AlmacenarDatosTecnico(string encabezado, string id)
+        {
+            DataSet dsResultado = new DataSet();
+            conectar = new ConexionBD();
+            string query = string.Format("Update sipa_pedidos SET "+ encabezado +" fecha_act= now()  WHERE id_pedido ={0}",id);
+            conectar.AbrirConexion();
+            MySqlDataAdapter consulta = new MySqlDataAdapter(query, conectar.conectar);
+            consulta.Fill(dsResultado);
+            conectar.CerrarConexion();
+            return dsResultado;
         }
     }
 }

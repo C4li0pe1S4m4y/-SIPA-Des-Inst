@@ -19,19 +19,19 @@ editando este archivo MSBuild. Para conocer más acerca de esto, visite http://g
       <publishTime>07/02/2015 13:57:48</publishTime>
     </File>
     <File Include="bin/AplicacionSIPA1.dll">
-      <publishTime>04/25/2018 15:35:15</publishTime>
+      <publishTime>05/08/2018 09:17:33</publishTime>
     </File>
     <File Include="bin/AplicacionSIPA1.dll.config">
       <publishTime>04/20/2018 15:31:08</publishTime>
     </File>
     <File Include="bin/CapaAD.dll">
-      <publishTime>04/25/2018 15:35:10</publishTime>
+      <publishTime>05/08/2018 09:17:27</publishTime>
     </File>
     <File Include="bin/CapaEN.dll">
-      <publishTime>04/25/2018 15:35:10</publishTime>
+      <publishTime>05/08/2018 09:17:27</publishTime>
     </File>
     <File Include="bin/CapaLN.dll">
-      <publishTime>04/25/2018 15:35:11</publishTime>
+      <publishTime>05/08/2018 09:17:28</publishTime>
     </File>
     <File Include="bin/CrystalDecisions.CrystalReports.Engine.dll">
       <publishTime>07/12/2016 12:01:32</publishTime>
@@ -91,7 +91,7 @@ editando este archivo MSBuild. Para conocer más acerca de esto, visite http://g
       <publishTime>06/29/2017 09:52:15</publishTime>
     </File>
     <File Include="Compras/FechaTraslado.aspx">
-      <publishTime>04/24/2018 09:26:14</publishTime>
+      <publishTime>05/02/2018 16:01:41</publishTime>
     </File>
     <File Include="Compras/IngresoInsumo.aspx">
       <publishTime>04/23/2018 16:08:41</publishTime>
@@ -130,7 +130,7 @@ editando este archivo MSBuild. Para conocer más acerca de esto, visite http://g
       <publishTime>12/08/2017 15:22:29</publishTime>
     </File>
     <File Include="Content/bootstrap.css">
-      <publishTime>04/13/2018 11:21:42</publishTime>
+      <publishTime>05/03/2018 09:43:25</publishTime>
     </File>
     <File Include="Content/bootstrap.css.map">
       <publishTime>11/06/2014 10:21:54</publishTime>
@@ -358,7 +358,7 @@ editando este archivo MSBuild. Para conocer más acerca de esto, visite http://g
       <publishTime>12/13/2017 15:44:00</publishTime>
     </File>
     <File Include="css/utilities.css">
-      <publishTime>04/13/2018 11:48:19</publishTime>
+      <publishTime>05/02/2018 11:21:42</publishTime>
     </File>
     <File Include="dashboard.aspx">
       <publishTime>10/28/2017 11:36:06</publishTime>
@@ -994,7 +994,7 @@ editando este archivo MSBuild. Para conocer más acerca de esto, visite http://g
       <publishTime>07/26/2017 09:55:27</publishTime>
     </File>
     <File Include="Operativa/VerPlan.aspx">
-      <publishTime>07/20/2017 15:26:37</publishTime>
+      <publishTime>05/02/2018 10:52:48</publishTime>
     </File>
     <File Include="Operativa/VoBoN1.aspx">
       <publishTime>04/11/2018 11:04:07</publishTime>
@@ -1129,7 +1129,7 @@ editando este archivo MSBuild. Para conocer más acerca de esto, visite http://g
       <publishTime>06/16/2017 15:15:33</publishTime>
     </File>
     <File Include="Pedido/PedidoIngreso.aspx">
-      <publishTime>04/12/2018 09:16:45</publishTime>
+      <publishTime>05/02/2018 12:36:09</publishTime>
     </File>
     <File Include="Pedido/PedidoListado.aspx">
       <publishTime>04/11/2018 15:08:22</publishTime>
@@ -1159,7 +1159,7 @@ editando este archivo MSBuild. Para conocer más acerca de esto, visite http://g
       <publishTime>04/11/2018 15:33:29</publishTime>
     </File>
     <File Include="Pedido/VoBo3Ppto.aspx">
-      <publishTime>04/25/2018 14:58:00</publishTime>
+      <publishTime>04/26/2018 10:28:10</publishTime>
     </File>
     <File Include="Pedido/VoBo3PptoRecodificacion.aspx">
       <publishTime>04/11/2018 15:52:43</publishTime>
@@ -1204,7 +1204,7 @@ editando este archivo MSBuild. Para conocer más acerca de esto, visite http://g
       <publishTime>08/02/2017 12:26:24</publishTime>
     </File>
     <File Include="Principal.Master">
-      <publishTime>04/13/2018 11:01:18</publishTime>
+      <publishTime>05/03/2018 09:46:37</publishTime>
     </File>
     <File Include="Reporte.xsc">
       <publishTime>10/17/2017 08:59:54</publishTime>
@@ -1264,7 +1264,7 @@ editando este archivo MSBuild. Para conocer más acerca de esto, visite http://g
       <publishTime>04/19/2018 16:11:50</publishTime>
     </File>
     <File Include="ReporteriaSistema/SaldosRenglonesDetalles.aspx">
-      <publishTime>04/12/2018 10:37:28</publishTime>
+      <publishTime>05/03/2018 12:29:48</publishTime>
     </File>
     <File Include="ReporteriaSistema/SaldosRenglonesDetalles2.aspx">
       <publishTime>04/10/2018 09:13:08</publishTime>
@@ -1291,10 +1291,10 @@ editando este archivo MSBuild. Para conocer más acerca de esto, visite http://g
       <publishTime>03/02/2018 11:34:32</publishTime>
     </File>
     <File Include="Reportes/dsSipa.xsc">
-      <publishTime>04/25/2018 10:04:39</publishTime>
+      <publishTime>04/27/2018 09:01:37</publishTime>
     </File>
     <File Include="Reportes/dsSipa.xss">
-      <publishTime>04/25/2018 10:04:39</publishTime>
+      <publishTime>04/27/2018 09:01:37</publishTime>
     </File>
     <File Include="Reportes/DS_ADQUISICIONES.xsc">
       <publishTime>10/12/2016 18:57:46</publishTime>
@@ -1333,13 +1333,13 @@ editando este archivo MSBuild. Para conocer más acerca de esto, visite http://g
       <publishTime>10/12/2016 19:47:30</publishTime>
     </File>
     <File Include="Reportes/rptCOMFOR06.rdlc">
-      <publishTime>04/23/2018 09:26:35</publishTime>
+      <publishTime>05/04/2018 11:28:23</publishTime>
     </File>
     <File Include="Reportes/rptCOM_FOR_64.rdlc">
       <publishTime>06/08/2017 15:28:27</publishTime>
     </File>
     <File Include="Reportes/rptFINFOR23.rdlc">
-      <publishTime>04/25/2018 12:10:16</publishTime>
+      <publishTime>05/02/2018 15:04:10</publishTime>
     </File>
     <File Include="Reportes/rptGasto.rdlc">
       <publishTime>02/14/2018 11:06:04</publishTime>
@@ -1354,7 +1354,7 @@ editando este archivo MSBuild. Para conocer más acerca de esto, visite http://g
       <publishTime>03/15/2018 15:00:47</publishTime>
     </File>
     <File Include="Reportes/rptRequisicion.rdlc">
-      <publishTime>04/23/2018 08:30:57</publishTime>
+      <publishTime>05/04/2018 11:38:54</publishTime>
     </File>
     <File Include="Reportes/rptVale.rdlc">
       <publishTime>03/21/2017 14:33:19</publishTime>

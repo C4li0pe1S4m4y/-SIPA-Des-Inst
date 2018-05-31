@@ -12,13 +12,13 @@ using System.Data;
 
 namespace CapaLN
 {
-   public class PlanEstrategicoLN
+    public class PlanEstrategicoLN
     {
-       PlanEstrategicoAD ObjAD;
-       
+        PlanEstrategicoAD ObjAD;
+
         public void DdlAnio(DropDownList drop)
         {
-            
+
             drop.ClearSelection();
             drop.Items.Clear();
             drop.AppendDataBoundItems = true;
@@ -53,7 +53,7 @@ namespace CapaLN
 
             if (anioIni > 0)
             {
-                ListItemCollection list = new ListItemCollection();                
+                ListItemCollection list = new ListItemCollection();
                 for (int i = anioIni; i <= anioFin; i++)
                     list.Add(new ListItem(i.ToString(), i.ToString()));
 
@@ -120,7 +120,7 @@ namespace CapaLN
                 drop.DataValueField = "id";
             }
 
-            drop.DataBind();            
+            drop.DataBind();
         }
 
         public void DdlIndicadores_X_Objetivo(DropDownList drop, int idObjetivo)
@@ -160,7 +160,7 @@ namespace CapaLN
                 drop.DataTextField = "texto";
                 drop.DataValueField = "id";
             }
-            
+
             drop.DataBind();
         }
 
@@ -204,14 +204,14 @@ namespace CapaLN
             grid.DataBind();
         }
 
-        public DataSet AlmacenarPlanEstrategico(EjesEN ObjEN,string usuario)
+        public DataSet AlmacenarPlanEstrategico(EjesEN ObjEN, string usuario)
         {
             DataSet dsResultado = armarDsResultado();
 
             ObjAD = new PlanEstrategicoAD();
             try
             {
-                DataTable dt = ObjAD.AlmacenarPlanEstrategico(ObjEN,usuario);
+                DataTable dt = ObjAD.AlmacenarPlanEstrategico(ObjEN, usuario);
 
                 if (!bool.Parse(dt.Rows[0]["RESULTADO"].ToString()))
                     throw new Exception(dt.Rows[0]["MENSAJE"].ToString());
@@ -224,9 +224,9 @@ namespace CapaLN
             {
                 if (ex.Message == "There is no row at position 0. ")
                 {
-                    dsResultado.Tables[0].Rows[0]["MSG_ERROR"] = " CapaLN.AlmacenarPlanEstrategico(). El usuario no tiene los permisos necesariios " ;
+                    dsResultado.Tables[0].Rows[0]["MSG_ERROR"] = " CapaLN.AlmacenarPlanEstrategico(). El usuario no tiene los permisos necesariios ";
                 }
-               
+
             }
 
             return dsResultado;
@@ -242,9 +242,9 @@ namespace CapaLN
                 DataTable dt = ObjAD.AlmacenarObjetivo(ObjEN);
 
                 if (!bool.Parse(dt.Rows[0]["RESULTADO"].ToString()))
-                    throw new Exception(dt.Rows[0]["MENSAJE"].ToString());                
+                    throw new Exception(dt.Rows[0]["MENSAJE"].ToString());
 
-                dsResultado.Tables[0].Rows[0]["ERRORES"] = false; 
+                dsResultado.Tables[0].Rows[0]["ERRORES"] = false;
                 dsResultado.Tables[0].Rows[0]["MSG_ERROR"] = string.Empty;
                 dsResultado.Tables[0].Rows[0]["VALOR"] = dt.Rows[0]["MENSAJE"].ToString();
             }
@@ -253,7 +253,7 @@ namespace CapaLN
                 dsResultado.Tables[0].Rows[0]["MSG_ERROR"] = " CapaLN.AlmacenarObjetivo(). " + ex.Message;
             }
 
-            return dsResultado;   
+            return dsResultado;
         }
 
         public DataSet AlmacenarIndicador(IndEstrategicosEN ObjEN)
@@ -280,7 +280,7 @@ namespace CapaLN
             return dsResultado;
         }
 
-        public DataSet AlmacenarMeta(MetasEstrategicasEN ObjEN,string usuario)
+        public DataSet AlmacenarMeta(MetasEstrategicasEN ObjEN, string usuario)
         {
             DataSet dsResultado = armarDsResultado();
 
@@ -422,7 +422,7 @@ namespace CapaLN
             ObjAD = new PlanEstrategicoAD();
             try
             {
-                DataTable dt = ObjAD.EliminarPlanEstrategico(id,usuario);
+                DataTable dt = ObjAD.EliminarPlanEstrategico(id, usuario);
 
                 if (!bool.Parse(dt.Rows[0]["RESULTADO"].ToString()))
                     throw new Exception(dt.Rows[0]["MENSAJE"].ToString());
@@ -498,7 +498,7 @@ namespace CapaLN
 
                 dsResultado.Tables[0].Rows[0]["ERRORES"] = "false";
                 dsResultado.Tables[0].Rows[0]["MSG_ERROR"] = string.Empty;
-                dsResultado.Tables[0].Rows[0]["VALOR"] = id; 
+                dsResultado.Tables[0].Rows[0]["VALOR"] = id;
             }
             catch (Exception ex)
             {
@@ -507,5 +507,167 @@ namespace CapaLN
 
             return dsResultado;
         }
+
+        public DataSet ListadoSubProductos()
+        {
+            DataSet dsResultado = armarDsResultado();
+            ObjAD = new PlanEstrategicoAD();
+            try
+            {
+                DataTable dt = ObjAD.ListadoSubProductos();
+                dt.TableName = "BUSQUEDA";
+                dsResultado.Tables.Add(dt);
+                dsResultado.Tables[0].Rows[0]["ERRORES"] = false;
+            }
+            catch (Exception ex)
+            {
+                dsResultado.Tables[0].Rows[0]["MSG_ERROR"] = " CapaLN.InformacionPlanEstrategico(). " + ex.Message;
+            }
+
+            return dsResultado;
+        }
+
+        public DataSet BusquedaProducto(string producto)
+        {
+            DataSet dsResultado = armarDsResultado();
+            ObjAD = new PlanEstrategicoAD();
+            try
+            {
+                DataTable dt = ObjAD.BusquedaProducto(producto);
+                if (dt.Rows.Count == 0)
+                    throw new Exception("No se encontro Codigo");
+                dt.TableName = "BUSQUEDA";
+                dsResultado.Tables.Add(dt);
+                dsResultado.Tables[0].Rows[0]["ERRORES"] = false;
+            }
+            catch (Exception ex)
+            {
+                dsResultado.Tables[0].Rows[0]["MSG_ERROR"] = " CapaLN.InformacionPlanEstrategico(). " + ex.Message;
+            }
+
+            return dsResultado;
+        }
+        public DataSet BusquedaSubProducto(string Subproducto)
+        {
+            DataSet dsResultado = armarDsResultado();
+            ObjAD = new PlanEstrategicoAD();
+            try
+            {
+                DataTable dt = ObjAD.BusquedaSubProducto(Subproducto);
+                if (dt.Rows.Count == 0)
+                    throw new Exception("No se encontro Codigo");
+                dt.TableName = "BUSQUEDA";
+                dsResultado.Tables.Add(dt);
+                dsResultado.Tables[0].Rows[0]["ERRORES"] = false;
+            }
+            catch (Exception ex)
+            {
+                dsResultado.Tables[0].Rows[0]["MSG_ERROR"] = " CapaLN.InformacionPlanEstrategico(). " + ex.Message;
+            }
+
+            return dsResultado;
+        }
+
+        public DataSet IngresarProducto(string nombre, string resultado, string codigo, int id)
+        {
+            DataSet dsResultado = armarDsResultado();
+            ObjAD = new PlanEstrategicoAD();
+            try
+            {
+                DataTable dt = new DataTable();
+                if (id > 0)
+                    dt = ObjAD.ActualizarProducto(nombre, resultado, codigo, id);
+                else
+                    dt = ObjAD.IngresarProducto(nombre,resultado,codigo);
+
+
+                dt.TableName = "BUSQUEDA";
+                dsResultado.Tables.Add(dt);
+                dsResultado.Tables[0].Rows[0]["ERRORES"] = false;
+            }
+            catch (Exception ex)
+            {
+                dsResultado.Tables[0].Rows[0]["MSG_ERROR"] = " CapaLN.InformacionPlanEstrategico(). " + ex.Message;
+            }
+
+            return dsResultado;
+        }
+
+        public DataSet EliminarProducto(string id)
+        {
+            DataSet dsResultado = armarDsResultado();
+            ObjAD = new PlanEstrategicoAD();
+            try
+            {
+                DataTable dt = ObjAD.EliminarProducto(id);
+                dt.TableName = "BUSQUEDA";
+                dsResultado.Tables.Add(dt);
+                dsResultado.Tables[0].Rows[0]["ERRORES"] = false;
+            }
+            catch (Exception ex)
+            {
+                dsResultado.Tables[0].Rows[0]["MSG_ERROR"] = " CapaLN.InformacionPlanEstrategico(). " + ex.Message;
+            }
+
+            return dsResultado;
+        }
+
+        public void ddlProducto(DropDownList drop)
+        {
+
+            drop.ClearSelection();
+            drop.Items.Clear();
+            drop.AppendDataBoundItems = true;
+            drop.Items.Add("<< Elija un valor >>");
+            drop.Items[0].Value = "0";
+            ObjAD = new PlanEstrategicoAD();
+            drop.DataSource = ObjAD.DdlProductos();
+            drop.DataTextField = "texto";
+            drop.DataValueField = "id";
+            drop.DataBind();
+        }
+
+        public DataSet IngresarSubProducto(string id_producto,string id_unidad,string subproducto,string codigo,string monto,int id,string user)
+        {
+            DataSet dsResultado = armarDsResultado();
+            ObjAD = new PlanEstrategicoAD();
+            try
+            {
+                DataTable dt = new DataTable();
+                if (id > 0)
+                    dt = ObjAD.ActualizarSubProducto(id_producto, id_unidad, subproducto, codigo, monto, id, user);
+                else
+                    dt = ObjAD.IngresarSubProducto(id_producto, id_unidad, subproducto, codigo, monto,user);
+
+                dt.TableName = "BUSQUEDA";
+                dsResultado.Tables.Add(dt);
+                dsResultado.Tables[0].Rows[0]["ERRORES"] = false;
+            }
+            catch (Exception ex)
+            {
+                dsResultado.Tables[0].Rows[0]["MSG_ERROR"] = " CapaLN.InformacionPlanEstrategico(). " + ex.Message;
+            }
+
+            return dsResultado;
+        }
+        public DataSet EliminarSubProducto(int id)
+        {
+            DataSet dsResultado = armarDsResultado();
+            ObjAD = new PlanEstrategicoAD();
+            try
+            {
+                DataTable dt = ObjAD.EliminarSubproducto(id);
+                dt.TableName = "BUSQUEDA";
+                dsResultado.Tables.Add(dt);
+                dsResultado.Tables[0].Rows[0]["ERRORES"] = false;
+            }
+            catch (Exception ex)
+            {
+                dsResultado.Tables[0].Rows[0]["MSG_ERROR"] = " CapaLN.InformacionPlanEstrategico(). " + ex.Message;
+            }
+
+            return dsResultado;
+        }
+
     }
 }

@@ -301,6 +301,15 @@ namespace AplicacionSIPA1.Pedido {
         protected global::System.Web.UI.WebControls.RadioButtonList rblAnexos;
         
         /// <summary>
+        /// Control ddlSubproducto.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.DropDownList ddlSubproducto;
+        
+        /// <summary>
         /// Control lblErrorPac.
         /// </summary>
         /// <remarks>

@@ -63,8 +63,7 @@
                             <td style="width: 5%">&nbsp;</td>
                             <td style="width: 5%">&nbsp;</td>
                             <td colspan="8">Año:</td>
-                            <td colspan="8">
-                                Unidad:</td>
+                            <td colspan="8">Unidad:</td>
                             <td style="width: 5%">&nbsp;</td>
                             <td style="width: 5%">&nbsp;</td>
                         </tr>
@@ -80,6 +79,28 @@
                             </td>
                             <td colspan="8">
                                 <asp:DropDownList ID="ddlUnidades" runat="server" AutoPostBack="True" class="form-control" OnSelectedIndexChanged="ddlUnidades_SelectedIndexChanged" Width="100%">
+                                </asp:DropDownList>
+                            </td>
+                            <td style="width: 5%">&nbsp;</td>
+                            <td style="width: 5%">&nbsp;</td>
+                        </tr>
+                         <tr>
+                            <td style="width: 5%">&nbsp;</td>
+                            <td style="width: 5%">&nbsp;</td>
+                            <td colspan="8">Dependecia:</td>
+                            <td colspan="8">Jefatura/Unidad:</td>
+                            <td style="width: 5%">&nbsp;</td>
+                            <td style="width: 5%">&nbsp;</td>
+                        </tr>
+                         <tr>
+                             <td style="width: 5%">&nbsp;</td>
+                            <td style="width: 5%">&nbsp;</td>
+                            <td colspan="8">
+                                <asp:DropDownList ID="ddlDependencia" runat="server" OnSelectedIndexChanged="ddlDependencia_SelectedIndexChanged" class="form-control" AutoPostBack="True"  Width="100%">
+                                </asp:DropDownList>
+                            </td>
+                            <td colspan="8">
+                                <asp:DropDownList ID="ddlJefatura" runat="server" AutoPostBack="True" class="form-control"  Width="100%">
                                 </asp:DropDownList>
                             </td>
                             <td style="width: 5%">&nbsp;</td>

@@ -309,5 +309,24 @@ namespace CapaLN
             return ObjAD.Correlativo(anio);
         }
 
+        public void DdlCentroCosto(DropDownList drop)
+        {
+            drop.ClearSelection();
+            drop.Items.Clear();
+
+            drop.AppendDataBoundItems = true;
+            drop.Items.Add("<< Elija un valor >>");
+            drop.Items[0].Value = "0";
+
+            ObjAD = new PlanAnualAD();
+            drop.DataSource = ObjAD.DdlCentroCosto();
+            drop.DataTextField = "texto";
+            drop.DataValueField = "id";
+            drop.DataBind();
+
+            if (drop.Items.Count == 2)
+                drop.Items.RemoveAt(0);
+        }
+
     }
 }

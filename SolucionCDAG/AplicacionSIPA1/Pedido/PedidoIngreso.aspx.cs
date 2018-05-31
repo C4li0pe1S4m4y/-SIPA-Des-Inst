@@ -47,7 +47,8 @@ namespace AplicacionSIPA1.Pedido
                         string noSolicitud = "";
                         DataSet dsResultado;
                         pInsumoLN = new PedidosLN();
-                        int idUnidad,dependencia = 0;
+                        int dependencia = 0;
+                        int idUnidad,idProducto = 0;
                         if (dep !=null)
                         {
                              dsResultado = pInsumoLN.InformacionPedido(idEncabezado, 0, 0, "", 16);
@@ -62,6 +63,7 @@ namespace AplicacionSIPA1.Pedido
                             
                             int.TryParse(dsResultado.Tables["BUSQUEDA"].Rows[0]["ID_UNIDAD"].ToString(), out dependencia);
                             int.TryParse(dsResultado.Tables["BUSQUEDA"].Rows[0]["dunidad"].ToString(), out idUnidad);
+                            
                         }
                         else
                         {
@@ -77,10 +79,10 @@ namespace AplicacionSIPA1.Pedido
                            
                             int.TryParse(dsResultado.Tables["BUSQUEDA"].Rows[0]["ID_UNIDAD"].ToString(), out idUnidad);
                         }
-                       
 
-                        
 
+
+                        int.TryParse(dsResultado.Tables["BUSQUEDA"].Rows[0]["id_subproducto"].ToString(), out idProducto);
                         noSolicitud = dsResultado.Tables["BUSQUEDA"].Rows[0]["NO_ANIO_SOLICITUD"].ToString();
 
                         int anio, idAccion, idTipoPedido, idSolicitante, idJefe, idFand, idTipoAnexo = 0;
@@ -106,6 +108,12 @@ namespace AplicacionSIPA1.Pedido
                         {
                             ddlUnidades.SelectedValue = idUnidad.ToString();
                             ddlUnidades_SelectedIndexChanged(sender, e);
+                        }
+                        item = ddlSubproducto.Items.FindByValue(idProducto.ToString());
+                        if (item != null)
+                        {
+                            ddlSubproducto.SelectedValue = idProducto.ToString();
+                            
                         }
                         item = ddlDependencia.Items.FindByValue(dependencia.ToString());
                         if (item != null)
@@ -206,10 +214,12 @@ namespace AplicacionSIPA1.Pedido
 
                 if (ddlUnidades.Items.Count == 1)
                 {
+                    pInsumoLN = new PedidosLN();
+                    pInsumoLN.DdlSubproducto(ddlSubproducto, int.Parse(ddlUnidades.SelectedValue));
                     if (!ddlAnios.SelectedValue.Equals("0"))
                     {
                         validarPoaIngresoPedido(int.Parse(ddlUnidades.SelectedValue), int.Parse(ddlAnios.SelectedValue));
-                        
+                       
                     }
                 }
 
@@ -398,7 +408,8 @@ namespace AplicacionSIPA1.Pedido
                     planOperativoLN = new PlanOperativoLN();
                     planOperativoLN.DdlDependencias(ddlDependencia, id_unidad);
                     validarPoaIngresoPedido(idUnidad, anio);
-                   
+                    pInsumoLN = new PedidosLN();
+                    pInsumoLN.DdlSubproducto(ddlSubproducto, int.Parse(ddlUnidades.SelectedValue));
                 }
                 else
                     lblIdPoa.Text = "0";
@@ -606,7 +617,12 @@ namespace AplicacionSIPA1.Pedido
                     lblErrorSolicitante.Text = "Seleccione un valor. ";
                     lblError.Text += "Seleccione un solicitante. ";
                 }
-                
+                if (ddlSubproducto.SelectedValue.Equals("0") || ddlSubproducto.Items.Count == 0)
+                {
+                    
+                    lblError.Text += "Seleccione un SubProducto. ";
+                }
+
                 if (ddlJefes.SelectedValue.Equals("0") || ddlJefes.Items.Count == 0)
                 {
                     lblErrorJefe.Text = "Seleccione un valor. ";
@@ -894,9 +910,17 @@ namespace AplicacionSIPA1.Pedido
                     pInsumoEN.ID_FAND = int.Parse(ddlFADN.SelectedValue);
                     pInsumoEN.ID_TIPO_ANEXO = int.Parse(rblAnexos.SelectedValue);
                     pInsumoEN.USUARIO = Session["usuario"].ToString();
-                    pInsumoEN.Codigo_Insumo = int.Parse(txtCodigoInsumo.Text);
-                    pInsumoEN.Codigo_Presentacion = int.Parse(txtCodigoPresentacion.Text);
-
+                    pInsumoEN.id_subproducto = int.Parse(ddlSubproducto.SelectedValue);
+                    if (ddlTipoPedido.SelectedValue=="1")
+                    {
+                        pInsumoEN.Codigo_Insumo = 0;
+                        pInsumoEN.Codigo_Presentacion = 0;
+                    }
+                    else
+                    {
+                        pInsumoEN.Codigo_Insumo = int.Parse(txtCodigoInsumo.Text);
+                        pInsumoEN.Codigo_Presentacion = int.Parse(txtCodigoPresentacion.Text);
+                    }
                     int idPac, idUnidadMedida = 0;
 
                     int.TryParse(ddlPac.SelectedValue, out idPac);

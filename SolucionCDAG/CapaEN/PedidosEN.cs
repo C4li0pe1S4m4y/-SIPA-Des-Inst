@@ -33,7 +33,9 @@ namespace CapaEN
         public string TOTAL_EN_LETRAS { get; set; }
 
         public string USUARIO { get; set; }
-        
+
+        public int id_subproducto { get; set; }
+
         //DETALLE DEL PEDIDO
         public int ID_PEDIDO_DETALLE { get; set; }
         public decimal CANTIDAD_ESTIMADA { get; set; }

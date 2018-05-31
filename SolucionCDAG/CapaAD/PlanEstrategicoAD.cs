@@ -307,5 +307,126 @@ namespace CapaAD
                 return false;
             }
         }
+
+        public DataTable ListadoSubProductos()
+        {
+            conectar = new ConexionBD();
+            DataTable tabla = new DataTable();
+            string query = String.Format("SELECT id_subproducto id, concat(pro.resultado,'-',pro.codigo) producto, sub.codigo, sub.subproducto FROM ccl_subproducto sub "+
+                            " inner join ccl_productos pro on sub.id_producto = pro.id_producto; ");
+            conectar.AbrirConexion();
+            MySqlDataAdapter consulta = new MySqlDataAdapter(query, conectar.conectar);
+            consulta.Fill(tabla);
+            conectar.CerrarConexion();
+            return tabla;
+        }
+
+        public DataTable BusquedaProducto(string producto)
+        {
+            conectar = new ConexionBD();
+            DataTable tabla = new DataTable();
+            string query = String.Format("SELECT id_producto, producto,resultado,codigo FROM ccl_productos where codigo = '{0}'",producto);
+            conectar.AbrirConexion();
+            MySqlDataAdapter consulta = new MySqlDataAdapter(query, conectar.conectar);
+            consulta.Fill(tabla);
+            conectar.CerrarConexion();
+            return tabla;
+        }
+
+        public DataTable ActualizarProducto(string nombre, string resultado, string codigo, int id)
+        {
+            conectar = new ConexionBD();
+            DataTable tabla = new DataTable();
+            string query = String.Format("UPDATE ccl_productos SET producto = '{0}', resultado = '{1}', codigo = '{2}' where id_producto = '{3}'", 
+                nombre,resultado,codigo, id);
+            conectar.AbrirConexion();
+            MySqlDataAdapter consulta = new MySqlDataAdapter(query, conectar.conectar);
+            consulta.Fill(tabla);
+            conectar.CerrarConexion();
+            return tabla;
+        }
+
+        public DataTable IngresarProducto(string nombre, string resultado, string codigo)
+        {
+            conectar = new ConexionBD();
+            DataTable tabla = new DataTable();
+            string query = String.Format("Insert Into ccl_productos (producto,resultado,codigo,fecha_ingreso) "+
+                " Values('{0}','{1}','{2}',now()); ",
+                 nombre,resultado,codigo);
+            conectar.AbrirConexion();
+            MySqlDataAdapter consulta = new MySqlDataAdapter(query, conectar.conectar);
+            consulta.Fill(tabla);
+            conectar.CerrarConexion();
+            return tabla;
+        }
+        public DataTable EliminarProducto(string id)
+        {
+            conectar = new ConexionBD();
+            DataTable tabla = new DataTable();
+            string query = String.Format("Delete from ccl_productos where id_producto={0};",id);
+            conectar.AbrirConexion();
+            MySqlDataAdapter consulta = new MySqlDataAdapter(query, conectar.conectar);
+            consulta.Fill(tabla);
+            conectar.CerrarConexion();
+            return tabla;
+        }
+
+        public DataTable DdlProductos()
+        {
+            conectar = new ConexionBD();
+            DataTable tabla = new DataTable();
+            conectar.AbrirConexion();
+            MySqlDataAdapter consulta = new MySqlDataAdapter("select id_producto id, concat(codigo,'-',producto)texto from ccl_productos;", conectar.conectar);
+            consulta.Fill(tabla);
+            conectar.CerrarConexion();
+            return tabla;
+        }
+        public DataTable IngresarSubProducto(string id_producto, string id_unidad, string subproducto, string codigo, string monto,string user)
+        {
+            conectar = new ConexionBD();
+            DataTable tabla = new DataTable();
+            string query = String.Format("Insert Into ccl_subproducto (id_producto,id_unidad,subproducto,codigo,monto,fecha_mod,usuario_ing)" +
+                "Values({0},{1},'{2}','{3}',{4},now(),'{5}')",id_producto,id_unidad,subproducto,codigo,monto,user);
+            conectar.AbrirConexion();
+            MySqlDataAdapter consulta = new MySqlDataAdapter(query, conectar.conectar);
+            consulta.Fill(tabla);
+            conectar.CerrarConexion();
+            return tabla;
+        }
+        public DataTable ActualizarSubProducto(string id_producto, string id_unidad, string subproducto, string codigo, string monto,int id,string user)
+        {
+            conectar = new ConexionBD();
+            DataTable tabla = new DataTable();
+            string query = String.Format("UPDATE ccl_subproducto SET id_producto={0},id_unidad={1},subproducto = '{2}',codigo='{3}',monto={4},fecha_mod = now(),usuario_ing='{6}' "+ 
+                " where id_subproducto = {5};", id_producto, id_unidad, subproducto, codigo, monto,id,user);
+            conectar.AbrirConexion();
+            MySqlDataAdapter consulta = new MySqlDataAdapter(query, conectar.conectar);
+            consulta.Fill(tabla);
+            conectar.CerrarConexion();
+            return tabla;
+        }
+        public DataTable BusquedaSubProducto(string Subproducto)
+        {
+            conectar = new ConexionBD();
+            DataTable tabla = new DataTable();
+            string query = String.Format("SELECT id_producto,id_unidad, Subproducto,codigo,monto FROM ccl_subproducto where id_subproducto = '{0}'", Subproducto);
+            conectar.AbrirConexion();
+            MySqlDataAdapter consulta = new MySqlDataAdapter(query, conectar.conectar);
+            consulta.Fill(tabla);
+            conectar.CerrarConexion();
+            return tabla;
+        }
+        public DataTable EliminarSubproducto(int id)
+        {
+            conectar = new ConexionBD();
+            DataTable tabla = new DataTable();
+            string query = String.Format("Delete from ccl_subproducto where id_subproducto={0};", id);
+            conectar.AbrirConexion();
+            MySqlDataAdapter consulta = new MySqlDataAdapter(query, conectar.conectar);
+            consulta.Fill(tabla);
+            conectar.CerrarConexion();
+            return tabla;
+        }
+
     }
 }

@@ -507,9 +507,15 @@ namespace AplicacionSIPA1.Pedido
                         RD2.Value = dResultado.Tables[1];
                         RD2.Name = "DataSet2";
 
+                        dsResultado = pInsumoLN.InformacionProductoSub(idEncabezado);
+                        ReportDataSource RD3 = new ReportDataSource();
+                        RD3.Value = dsResultado.Tables[1];
+                        RD3.Name = "DataSet3";
+
                         rViewer.LocalReport.DataSources.Clear();
                         rViewer.LocalReport.DataSources.Add(RD);
                         rViewer.LocalReport.DataSources.Add(RD2);
+                        rViewer.LocalReport.DataSources.Add(RD3);
                         rViewer.LocalReport.ReportEmbeddedResource = "\\Reportes/rptRequisicion.rdlc";
                         rViewer.LocalReport.ReportPath = @"Reportes\\rptRequisicion.rdlc";
                         rViewer.LocalReport.Refresh();

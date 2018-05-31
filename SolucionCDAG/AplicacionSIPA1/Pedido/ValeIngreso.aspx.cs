@@ -948,9 +948,9 @@ namespace AplicacionSIPA1.Pedido
             }
 
             decimal nuevoTotalVale = (montoVale - montoValeDetalle) + subTotal;
-
-            if (nuevoTotalVale > 1000)
-                throw new Exception("El valor Maximo del Vale es de Q 1,000.00, este vale sobrepasa el limite ");
+            decimal valor_maximo = Convert.ToDecimal(1500.01);
+            if (nuevoTotalVale >= valor_maximo)
+                throw new Exception("El valor Maximo del Vale es de Q 1500.00, este vale sobrepasa el limite ");
 
             pptoValido = true;
             return pptoValido;

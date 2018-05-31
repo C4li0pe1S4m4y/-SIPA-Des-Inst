@@ -129,6 +129,7 @@
     <Content Include="css\main.css" />
     <Content Include="css\util.css" />
     <Content Include="Error.aspx" />
+    <Content Include="Estrategia\CatalagoSubproducto.aspx" />
     <Content Include="fonts\font-awesome-4.7.0\css\font-awesome.css" />
     <Content Include="fonts\font-awesome-4.7.0\css\font-awesome.min.css" />
     <Content Include="fonts\font-awesome-4.7.0\fonts\fontawesome-webfont.svg" />
@@ -747,6 +748,13 @@
     </Compile>
     <Compile Include="Error.aspx.designer.cs">
       <DependentUpon>Error.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Estrategia\CatalagoSubproducto.aspx.cs">
+      <DependentUpon>CatalagoSubproducto.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Estrategia\CatalagoSubproducto.aspx.designer.cs">
+      <DependentUpon>CatalagoSubproducto.aspx</DependentUpon>
     </Compile>
     <Compile Include="Inicio.aspx.cs">
       <DependentUpon>Inicio.aspx</DependentUpon>

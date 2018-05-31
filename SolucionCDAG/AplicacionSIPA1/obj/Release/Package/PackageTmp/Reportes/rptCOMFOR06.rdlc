@@ -762,7 +762,7 @@
         <Top>0.57832cm</Top>
         <Left>0cm</Left>
         <Height>1.2cm</Height>
-        <Width>17.09607cm</Width>
+        <Width>17.09606cm</Width>
         <ZIndex>10</ZIndex>
         <Style>
           <Border>
@@ -1220,7 +1220,7 @@
             <Paragraph>
               <TextRuns>
                 <TextRun>
-                  <Value>Fecha de aprobacion: 20/04/2018</Value>
+                  <Value>Fecha de aprobacion: 03/05/2018</Value>
                   <Style>
                     <FontFamily>TImes New Roman</FontFamily>
                     <FontWeight>Normal</FontWeight>

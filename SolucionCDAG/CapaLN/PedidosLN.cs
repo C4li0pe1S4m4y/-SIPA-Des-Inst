@@ -317,6 +317,8 @@ namespace CapaLN
             }
         }
 
+     
+
         public void DdlCriterios(DropDownList drop, int vOpcion)
         {
             drop.ClearSelection();
@@ -1922,6 +1924,25 @@ namespace CapaLN
 
             return dsResultado;
         }
+        public DataSet InformacionProductoSub(int id)
+        {
+            DataSet dsResultado = armarDsResultado();
+            ObjAD = new PedidosAD();
+
+            try
+            {
+                DataTable dt = ObjAD.InformacionProductoSub(id);
+                dt.TableName = "BUSQUEDA";
+                dsResultado.Tables.Add(dt);
+                dsResultado.Tables[0].Rows[0]["ERRORES"] = false;
+            }
+            catch (Exception ex)
+            {
+                dsResultado.Tables[0].Rows[0]["MSG_ERROR"] = " CapaLN.InformacionPedido(). " + ex.Message;
+            }
+
+            return dsResultado;
+        }
 
         public DataSet InformacionDetallePedidoPpto(string id)
         {
@@ -1943,5 +1964,85 @@ namespace CapaLN
             return dsResultado;
         }
 
+        public DataSet InformacionPedidoCompras(int no,int anio)
+        {
+            DataSet dsResultado = armarDsResultado();
+            ObjAD = new PedidosAD();
+
+            try
+            {
+                DataTable dt = ObjAD.InformacionPedidoCompras(no,anio);
+                dt.TableName = "BUSQUEDA";
+                dsResultado.Tables.Add(dt);
+                dsResultado.Tables[0].Rows[0]["ERRORES"] = false;
+            }
+            catch (Exception ex)
+            {
+                dsResultado.Tables[0].Rows[0]["MSG_ERROR"] = " CapaLN.InformacionPedido(). " + ex.Message;
+            }
+
+            return dsResultado;
+        }
+
+        public DataSet InformacionPedidoComprasDetalle(int no, int anio)
+        {
+            DataSet dsResultado = armarDsResultado();
+            ObjAD = new PedidosAD();
+
+            try
+            {
+                DataTable dt = ObjAD.InformacionPedidoComprasDetalle(no, anio);
+                dt.TableName = "BUSQUEDA";
+                dsResultado.Tables.Add(dt);
+                dsResultado.Tables[0].Rows[0]["ERRORES"] = false;
+            }
+            catch (Exception ex)
+            {
+                dsResultado.Tables[0].Rows[0]["MSG_ERROR"] = " CapaLN.InformacionPedido(). " + ex.Message;
+            }
+
+            return dsResultado;
+        }
+        //Nuevo de COMPRAS
+        public void DdlEstatusCompras(DropDownList drop)
+        {
+            drop.ClearSelection();
+            drop.Items.Clear();
+
+            drop.AppendDataBoundItems = true;
+            drop.Items.Add("<< Elija un valor >>");
+            drop.Items[0].Value = "0";
+            ObjAD = new PedidosAD();
+            drop.DataSource = ObjAD.DdlEstatusCompras();
+            drop.DataTextField = "texto";
+            drop.DataValueField = "id";
+
+            drop.DataBind();
+
+            if (drop.Items.Count == 2)
+            {
+                drop.Items.RemoveAt(0);
+                drop.SelectedIndex = 0;
+            }
+        }
+
+        public DataSet AlmacenarDatosTecnico(string encabezado,string id)
+        {
+            DataSet dsResultado = armarDsResultado();
+
+            ObjAD = new PedidosAD();
+            try
+            {
+                DataSet ds = ObjAD.AlmacenarDatosTecnico(encabezado,id);
+
+                return ds;
+            }
+            catch (Exception ex)
+            {
+                dsResultado.Tables[0].Rows[0]["MSG_ERROR"] = " CapaLN.AsignarValorReal(). " + ex.Message;
+            }
+
+            return dsResultado;
+        }
     }
 }

@@ -398,5 +398,18 @@ namespace CapaAD
             return result;
         }
 
+        public DataTable DdlCentroCosto()
+        {
+            conectar = new ConexionBD();
+            DataTable tabla = new DataTable();
+            conectar.AbrirConexion();
+            string query = string.Format("select id_centro_contro id, concat(id_centro_contro,'-',lugar,'-',nombre)texto from ccl_centro_costos;");
+            MySqlDataAdapter consulta = new MySqlDataAdapter(query, conectar.conectar);
+            consulta.Fill(tabla);
+            conectar.CerrarConexion();
+            return tabla;
+        }
+
+
     }
 }

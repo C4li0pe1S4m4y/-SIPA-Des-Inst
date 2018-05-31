@@ -738,7 +738,7 @@ namespace AplicacionSIPA1.Operativa
                         planAccionLN = new PlanAccionLN();
                         DataSet dsPpto = planAccionLN.PptoPoa(idPoa, int.Parse(ddlDependencias.SelectedValue));
 
-                        decimal disponible = decimal.Parse(dsPpto.Tables["BUSQUEDA"].Rows[0]["DISPONIBLE_DEPENDENCIA"].ToString());
+                        decimal disponible = decimal.Parse(dsPpto.Tables["BUSQUEDA"].Rows[0]["DISPONIBLE_UNIDAD"].ToString());
                         decimal monto = 0;
                         decimal.TryParse(txtMonto.Text, out monto);
 

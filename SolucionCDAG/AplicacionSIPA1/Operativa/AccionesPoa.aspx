@@ -909,7 +909,7 @@
                                             <td style="width: 5%">&nbsp;</td>
                                             <td style="width: 5%">&nbsp;</td>
                                             <td colspan="15">
-                                                <asp:GridView ID="gridRenglon" runat="server" AutoGenerateColumns="False" BackColor="White" BorderColor="#CCCCCC" BorderStyle="Solid" BorderWidth="1px" CellPadding="5" CellSpacing="1" DataKeyNames="ID" ForeColor="Black" GridLines="Vertical" OnRowDataBound="gridRenglon_RowDataBound" OnRowDeleting="gridRenglon_RowDeleting" OnSelectedIndexChanged="gridRenglon_SelectedIndexChanged" PageSize="50" ShowFooter="True" Width="100%" CssClass="table table-hover table-responsive">
+                                                <asp:GridView ID="gridRenglon" runat="server" AutoGenerateColumns="False" BackColor="White" BorderColor="#CCCCCC" BorderStyle="Solid" BorderWidth="1px" CellPadding="5" CellSpacing="1" DataKeyNames="ID" ForeColor="Black" GridLines="Vertical" OnRowDataBound="gridRenglon_RowDataBound" OnRowDeleting="gridRenglon_RowDeleting" OnSelectedIndexChanged="gridRenglon_SelectedIndexChanged" PageSize="50" ShowFooter="True" Width="100%" CssClass="table table-hover ">
                                                     <AlternatingRowStyle BackColor="#CEEFFF" ForeColor="#333333" />
                                                     <Columns>
                                                         <asp:CommandField ButtonType="Image" SelectImageUrl="~/img/24_bits/accept.png" ShowSelectButton="True">

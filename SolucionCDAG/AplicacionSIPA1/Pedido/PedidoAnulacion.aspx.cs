@@ -165,7 +165,7 @@ namespace AplicacionSIPA1.Pedido
 
                         if (!ddlUnidades.SelectedValue.Equals("0"))
                             filtro += " AND id_unidad = " + ddlUnidades.SelectedValue;
-
+                       
                         if (!rblTipoDocto.SelectedValue.Equals("0"))
                             filtro += " AND id_tipo_documento = " + rblTipoDocto.SelectedValue;
 
@@ -414,7 +414,12 @@ namespace AplicacionSIPA1.Pedido
 
                 lblErrorPoa.Text = string.Empty;
                 if (anio > 0 && idUnidad > 0)
+                {
                     validarPoaAprobacionPedido(idUnidad, anio);
+                    pOperativoLN = new PlanOperativoLN();
+                    pOperativoLN.DdlDependencias(ddlDependencia, idUnidad.ToString());
+                }
+                    
                 else
                     lblIdPoa.Text = "0";
 
@@ -862,6 +867,41 @@ namespace AplicacionSIPA1.Pedido
             catch (Exception ex)
             {
                 lblError.Text = "btnReactivar(). " + ex.Message;
+            }
+        }
+
+        protected void ddlDependencia_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            try
+            {
+                limpiarControlesError();
+                int anio = 0;
+                int idUnidad = 0;
+
+                int.TryParse(ddlAnios.SelectedValue, out anio);
+                int.TryParse(ddlDependencia.SelectedValue, out idUnidad);
+
+                lblErrorPoa.Text = string.Empty;
+                if (anio > 0 && idUnidad > 0)
+                {
+                    validarPoaAprobacionPedido(idUnidad, anio);
+                   
+                }
+
+                else
+                    lblIdPoa.Text = "0";
+
+                int idPoa = 0;
+                int.TryParse(lblIdPoa.Text, out idPoa);
+
+                pAccionLN = new PlanAccionLN();
+                pAccionLN.DdlAccionesPoa(ddlAcciones, idPoa);
+                ddlAcciones.Items[0].Text = "<< Todas las acciones >>";
+                NuevaAprobacion();
+            }
+            catch (Exception ex)
+            {
+                lblError.Text = "ddlUnidades_SelectedIndexChanged(). " + ex.Message;
             }
         }
     }

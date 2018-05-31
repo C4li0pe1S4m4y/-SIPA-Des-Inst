@@ -65,7 +65,7 @@
     <form class="form-horizontal form-control-range" id="form1" runat="server">
 
 
-        <nav class="navbar navbar-inverse navbar-static-top   gradiant "  style="color: white"  role="navigation">
+        <nav class="navbar navbar-inverse navbar-static-top  gradiant navsc " style="color: white" role="navigation">
             <div class="container-header">
 
                 <div class="navbar-form ">
@@ -107,18 +107,22 @@
             <asp:ScriptManager ID="ScriptManager1" runat="server" EnableScriptGlobalization="True"></asp:ScriptManager>
         </div>
 
-        <div style="background-color:azure" >
-            <asp:ContentPlaceHolder ID="ContentPlaceHolder2"  runat="server">
+        <div style="background-color: azure">
+
+            <asp:ContentPlaceHolder ID="ContentPlaceHolder2" runat="server">
             </asp:ContentPlaceHolder>
         </div>
 
-         <div style="background-color:ghostwhite">
-           <asp:ContentPlaceHolder ID="ContentPlaceHolder3" runat="server">
-            <asp:UpdatePanel ID="UpdatePanel1" runat="server">
-            </asp:UpdatePanel>
-        </asp:ContentPlaceHolder>
+        <div style="background-color: ghostwhite">
+            <br />
+            <br />
+            <br />
+            <asp:ContentPlaceHolder ID="ContentPlaceHolder3" runat="server">
+                <asp:UpdatePanel ID="UpdatePanel1" runat="server">
+                </asp:UpdatePanel>
+            </asp:ContentPlaceHolder>
         </div>
-        
+
 
 
 

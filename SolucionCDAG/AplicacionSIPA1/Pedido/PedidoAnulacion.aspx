@@ -84,6 +84,24 @@
                 </tr>
                 <tr>
                     <td style="height: 18px">&nbsp;</td>
+                    <td colspan="9" style="height: 18px">Dependencia:</td>
+                    <td colspan="9" style="height: 18px">Jefatura:</td>
+                    <td style="width: 5%; height: 18px;">&nbsp;</td>
+                </tr>
+                <tr>
+                    <td style="height: 18px">&nbsp;</td>
+                    <td colspan="9" style="height: 18px">
+                        <asp:DropDownList ID="ddlDependencia" runat="server" AutoPostBack="True" class="form-control" OnSelectedIndexChanged="ddlDependencia_SelectedIndexChanged" Width="100%">
+                        </asp:DropDownList>
+                    </td>
+                    <td colspan="9" style="height: 18px">
+                        <asp:DropDownList ID="ddlUndiad" runat="server" AutoPostBack="True" class="form-control"  Width="100%">
+                        </asp:DropDownList>
+                    </td>
+                    <td style="width: 5%; height: 18px;">&nbsp;</td>
+                </tr>
+                <tr>
+                    <td style="height: 18px">&nbsp;</td>
                     <td style="height: 18px">&nbsp;</td>
                     <td style="height: 18px">&nbsp;</td>
                     <td style="height: 18px">&nbsp;</td>

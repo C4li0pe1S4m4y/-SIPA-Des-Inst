@@ -96,7 +96,9 @@ namespace AplicacionSIPA1.Operativa
                 if (ddlAnios.SelectedValue.Equals("0") == false)
                     stringBuilder.Append(" AND t.anio = " + ddlAnios.SelectedValue);
 
-                if (ddlUnidades.SelectedValue.Equals("0") == false)
+                if  (ddlDependencia.SelectedValue.Equals("0") == false && ddlDependencia.Items.Count > 0)
+                    stringBuilder.Append(" AND t.id_unidad = " + ddlDependencia.SelectedValue);
+                else if (ddlUnidades.SelectedValue.Equals("0") == false)
                     stringBuilder.Append(" AND t.id_unidad = " + ddlUnidades.SelectedValue);
                 else
                 {
@@ -149,16 +151,16 @@ namespace AplicacionSIPA1.Operativa
             try
             {
                 limpiarControlesError();
-                filtrarGrid();
+                
                 int idPlan = int.Parse(ddlPlanes.SelectedValue);
                 int anio = int.Parse(ddlAnios.SelectedValue);
                 int idUnidad = int.Parse(ddlUnidades.SelectedValue);
 
                 lblTechoD.Text = lblTechoU.Text = lblDisponibleD.Text = lblDisponibleU.Text = String.Format(CultureInfo.InvariantCulture, "Q.{0:0,0.00}", 0);
-
+                
                 if (anio > 0 && idUnidad > 0)
                     validarPoa(idUnidad, anio);
-
+                
                 int idPoa = 0;
                 int.TryParse(lblIdPoa.Text, out idPoa);
                 planAccionLN.DdlAccionesPoa(ddlAcciones, idPoa);
@@ -166,6 +168,10 @@ namespace AplicacionSIPA1.Operativa
 
                 filtrarGrid();
                 generarReporte();
+                planOperativoLN = new PlanOperativoLN();
+                planOperativoLN.DdlDependencias(ddlDependencia, idUnidad.ToString());
+                if (ddlDependencia.Items.Count == 1)
+                    ddlDependencia_SelectedIndexChanged(sender, e);
             }
             catch (Exception ex)
             {
@@ -427,6 +433,35 @@ namespace AplicacionSIPA1.Operativa
             catch (Exception ex)
             {
                 lblError.Text = "btnVerReporte(). " + ex.Message;
+            }
+        }
+
+        protected void ddlDependencia_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            try
+            {
+                limpiarControlesError();
+                filtrarGrid();
+                int idPlan = int.Parse(ddlPlanes.SelectedValue);
+                int anio = int.Parse(ddlAnios.SelectedValue);
+                int idUnidad = int.Parse(ddlDependencia.SelectedValue);
+
+                lblTechoD.Text = lblTechoU.Text = lblDisponibleD.Text = lblDisponibleU.Text = String.Format(CultureInfo.InvariantCulture, "Q.{0:0,0.00}", 0);
+                
+                if (anio > 0 && idUnidad > 0)
+                    validarPoa(idUnidad, anio);
+                
+                int idPoa = 0;
+                int.TryParse(lblIdPoa.Text, out idPoa);
+                planAccionLN.DdlAccionesPoa(ddlAcciones, idPoa);
+                ddlAcciones.Items[0].Text = "<< Mostrar todo >>";
+
+                filtrarGrid();
+                generarReporte();
+            }
+            catch (Exception ex)
+            {
+                lblError.Text = "ddlUnidades_SelectedIndexChanged(). " + ex.Message;
             }
         }
     }

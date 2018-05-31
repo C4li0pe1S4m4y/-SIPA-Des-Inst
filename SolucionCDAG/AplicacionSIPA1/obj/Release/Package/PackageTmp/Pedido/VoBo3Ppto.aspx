@@ -328,7 +328,7 @@
                 <tr>
                     <td class="auto-style3"></td>
                     <td colspan="8" class="auto-style4">
-                        <asp:DropDownList ID="ddlSubproducto" runat="server" CssClass="form-control"></asp:DropDownList>
+                        <asp:DropDownList ID="ddlSubproducto" runat="server" AutoPostBack="true" OnSelectedIndexChanged="ddlSubproducto_SelectedIndexChanged" CssClass="form-control"></asp:DropDownList>
                     </td>
                     <td class="auto-style3"></td>
                     <td class="auto-style3">

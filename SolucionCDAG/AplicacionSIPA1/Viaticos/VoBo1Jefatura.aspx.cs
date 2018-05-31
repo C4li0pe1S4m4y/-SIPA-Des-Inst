@@ -90,7 +90,8 @@ namespace AplicacionSIPA1.Viaticos
                 pOperativoLN = new PlanOperativoLN();
                 pOperativoLN.DdlUnidades(ddlUnidades, Session["Usuario"].ToString().ToLower());
                 //uUsuariosLN.dropUnidad(ddlUnidades);
-
+                pOperativoLN = new PlanOperativoLN();
+                pOperativoLN.DdlDependencias(ddlDependencias, ddlUnidades.SelectedValue);
                 if (ddlUnidades.Items.Count == 1)
                 {
                     if (!ddlAnios.SelectedValue.Equals("0"))

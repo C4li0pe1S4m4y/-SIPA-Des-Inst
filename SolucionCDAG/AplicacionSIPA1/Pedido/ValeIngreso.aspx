@@ -3,6 +3,12 @@
 
 
 <asp:Content ID="Content2" runat="server" ContentPlaceHolderID="head">
+    <style type="text/css">
+        .auto-style3 {
+            text-align: left;
+            font-size: medium;
+        }
+    </style>
 </asp:Content>
 <asp:Content ID="Content1" runat="server" contentplaceholderid="ContentPlaceHolder3">
     <asp:UpdatePanel ID="UpdatePanel1" runat="server">
@@ -366,7 +372,7 @@
                 <tr>
                     <td>&nbsp;</td>
                     <td class="text-right" style="font-size: medium"><strong>Nota:</strong></td>
-                    <td colspan="16" class="text-left">El monto máximo de solicitud por vale es de Q 892.86, exceptuando los casos en los cuales se vaya a realizar compras a Pequeños Contribuyentes para los cuales el monto será de Q1,0000.00</td>
+                    <td colspan="16" class="auto-style3" style="color:orange">  <strong>El monto máximo de solicitud por vale es de Q.1,500.00</strong></td>
                     <td>&nbsp;</td>
                     <td style="width: 5%">&nbsp;</td>
                 </tr>
