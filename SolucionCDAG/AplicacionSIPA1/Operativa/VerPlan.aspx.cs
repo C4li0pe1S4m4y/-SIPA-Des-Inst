@@ -78,10 +78,11 @@ namespace AplicacionSIPA1.Operativa
                     planAccionLN.DdlAccionesPoa(ddlAcciones, idPoa);
                     ddlAcciones.Items[0].Text = "<< Mostrar todo >>";
                     ddlUnidades.SelectedValue =  Convert.ToString(Request.QueryString["unidad"]);
-                
+                    ddlUnidades_SelectedIndexChanged(sender, e);
                     rblMostrar.SelectedValue = "1";
                     rblMostrar_SelectedIndexChanged(sender, e);
-
+                    if((Request.QueryString["dep"]) !=null)
+                        ddlDependencias.SelectedValue = Convert.ToString(Request.QueryString["dep"]);
                     filtrarGridPlan();
                     generarReporte();
                 }
@@ -117,7 +118,15 @@ namespace AplicacionSIPA1.Operativa
                 }
                 else
                 {
-                    planAccionLN.GridPlan(gridPlan, idUnidad, idPoa);
+                    if (int.Parse(ddlDependencias.SelectedValue) > 0)
+                    {
+                        validarPoa(int.Parse(ddlDependencias.SelectedValue), int.Parse(ddlAnios.SelectedValue));
+                        int.TryParse(lblIdPoa.Text, out idPoa);
+                        planAccionLN.GridPlan(gridPlan,int.Parse(ddlDependencias.SelectedValue), idPoa);
+                    }
+                    else
+                        planAccionLN.GridPlan(gridPlan, idUnidad, idPoa);
+
                 }
                 string filtro = string.Empty;
 
@@ -128,7 +137,7 @@ namespace AplicacionSIPA1.Operativa
                 dv.Sort = "cod_ee asc";
 
                 filtro = " anio = " + ddlAnios.SelectedValue;
-                filtro = " id_unidad =" + ddlUnidades.SelectedValue;
+                //filtro = " id_unidad =" + ddlUnidades.SelectedValue;
                 if (!ddlAcciones.SelectedValue.Equals("0"))
                     filtro += " AND id_accion = " + ddlAcciones.SelectedValue;
                 
@@ -166,13 +175,13 @@ namespace AplicacionSIPA1.Operativa
 
                 DataSet dsResultado = new DataSet();
                 planAccionLN = new PlanAccionLN();
-                if (ddlDependencias.SelectedIndex <= 0)
+                if (/*ddlDependencias.SelectedIndex <= 0*/ false)
                 {
                     dsResultado = planAccionLN.InformacionAccionDetallesCompleto(idPoa, 0, "", 2,anio);
                 }
                 else
                 {
-                    dsResultado = planAccionLN.InformacionAccionDetalles(idPoa, 0, "", 2);
+                    dsResultado = planAccionLN.InformacionAccionDetallesMeg(idPoa);
                 }
                 gridRenglonesUnidad.DataSource = dsResultado.Tables["BUSQUEDA"];
                 gridRenglonesUnidad.DataBind();

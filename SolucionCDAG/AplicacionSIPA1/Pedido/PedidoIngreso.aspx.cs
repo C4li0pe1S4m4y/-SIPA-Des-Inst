@@ -48,10 +48,10 @@ namespace AplicacionSIPA1.Pedido
                         DataSet dsResultado;
                         pInsumoLN = new PedidosLN();
                         int dependencia = 0;
-                        int idUnidad,idProducto = 0;
-                        if (dep !=null)
+                        int idUnidad, idProducto = 0;
+                        if (dep != null)
                         {
-                             dsResultado = pInsumoLN.InformacionPedido(idEncabezado, 0, 0, "", 16);
+                            dsResultado = pInsumoLN.InformacionPedido(idEncabezado, 0, 0, "", 16);
                             if (bool.Parse(dsResultado.Tables["RESULTADO"].Rows[0]["ERRORES"].ToString()))
                                 throw new Exception(dsResultado.Tables["RESULTADO"].Rows[0]["MSG_ERROR"].ToString());
 
@@ -60,10 +60,10 @@ namespace AplicacionSIPA1.Pedido
 
                             if (dsResultado.Tables[0].Rows.Count == 0)
                                 throw new Exception("No existe información del pedido");
-                            
+
                             int.TryParse(dsResultado.Tables["BUSQUEDA"].Rows[0]["ID_UNIDAD"].ToString(), out dependencia);
                             int.TryParse(dsResultado.Tables["BUSQUEDA"].Rows[0]["dunidad"].ToString(), out idUnidad);
-                            
+
                         }
                         else
                         {
@@ -76,7 +76,7 @@ namespace AplicacionSIPA1.Pedido
 
                             if (dsResultado.Tables[0].Rows.Count == 0)
                                 throw new Exception("No existe información del pedido");
-                           
+
                             int.TryParse(dsResultado.Tables["BUSQUEDA"].Rows[0]["ID_UNIDAD"].ToString(), out idUnidad);
                         }
 
@@ -88,7 +88,7 @@ namespace AplicacionSIPA1.Pedido
                         int anio, idAccion, idTipoPedido, idSolicitante, idJefe, idFand, idTipoAnexo = 0;
 
                         int.TryParse(dsResultado.Tables["BUSQUEDA"].Rows[0]["ANIO"].ToString(), out anio);
-                        
+
                         int.TryParse(dsResultado.Tables["BUSQUEDA"].Rows[0]["ID_ACCION"].ToString(), out idAccion);
                         int.TryParse(dsResultado.Tables["BUSQUEDA"].Rows[0]["ID_TIPO_PEDIDO"].ToString(), out idTipoPedido);
                         int.TryParse(dsResultado.Tables["BUSQUEDA"].Rows[0]["ID_SOLICITANTE"].ToString(), out idSolicitante);
@@ -113,7 +113,7 @@ namespace AplicacionSIPA1.Pedido
                         if (item != null)
                         {
                             ddlSubproducto.SelectedValue = idProducto.ToString();
-                            
+
                         }
                         item = ddlDependencia.Items.FindByValue(dependencia.ToString());
                         if (item != null)
@@ -166,7 +166,7 @@ namespace AplicacionSIPA1.Pedido
                         lblIdPedido.Text = idEncabezado.ToString();
                         lblNoPedido.Text = noSolicitud;
 
-                       
+
                     }
                 }
                 catch (Exception ex)
@@ -219,7 +219,7 @@ namespace AplicacionSIPA1.Pedido
                     if (!ddlAnios.SelectedValue.Equals("0"))
                     {
                         validarPoaIngresoPedido(int.Parse(ddlUnidades.SelectedValue), int.Parse(ddlAnios.SelectedValue));
-                       
+
                     }
                 }
 
@@ -291,7 +291,7 @@ namespace AplicacionSIPA1.Pedido
 
                 pInsumoLN = new PedidosLN();
                 pInsumoLN.DdlPacsxAccion(ddlPac, idAccion);
-                
+
                 lblNoDet.Text = "0";
                 lblRenglonPpto.Text = txtDescripcion.Text = txtCantidad.Text = txtCosto.Text = txtCodigoInsumo.Text = txtCodigoPresentacion.Text =
                     txtUnidadesMedida.Text = txtCantidadMedida.Text = string.Empty;
@@ -463,9 +463,9 @@ namespace AplicacionSIPA1.Pedido
                     btnCodigoPresentacion.Visible = true;
                     btInsumo.Visible = true;
                 }
-               
+
                 pInsumoLN = new PedidosLN();
-               
+
             }
             catch (Exception ex)
             {
@@ -490,7 +490,7 @@ namespace AplicacionSIPA1.Pedido
                     pInsumoLN.DdlFand(ddlFADN, 1);
                     ddlFADN.Enabled = true;
                 }
-                    
+
             }
             catch (Exception ex)
             {
@@ -536,7 +536,7 @@ namespace AplicacionSIPA1.Pedido
 
                 pAnualLN = new PlanAnualLN();
                 DataSet dsResultado = pAnualLN.InformacionPac(idPac, int.Parse(ddlAnios.SelectedValue));
-                
+
                 if (bool.Parse(dsResultado.Tables[0].Rows[0]["ERRORES"].ToString()))
                     throw new Exception("No se CONSULTÓ la informaciónd el PAC: " + dsResultado.Tables[0].Rows[0]["MSG_ERROR"].ToString());
 
@@ -619,7 +619,7 @@ namespace AplicacionSIPA1.Pedido
                 }
                 if (ddlSubproducto.SelectedValue.Equals("0") || ddlSubproducto.Items.Count == 0)
                 {
-                    
+
                     lblError.Text += "Seleccione un SubProducto. ";
                 }
 
@@ -628,13 +628,13 @@ namespace AplicacionSIPA1.Pedido
                     lblErrorJefe.Text = "Seleccione un valor. ";
                     lblError.Text += "Seleccione un Subgerente/Director. ";
                 }
-                
+
                 if (ddlTipoPedido.SelectedValue.Equals("0") || ddlTipoPedido.Items.Count == 0)
                 {
                     lblErrorTipoPedido.Text = "Seleccione un valor. ";
                     lblError.Text += "Seleccione un tipo de pedido. ";
                 }
-                
+
                 if (rblTipoDestino.SelectedValue.Equals("2"))
                 {
                     if (ddlFADN.SelectedValue.Equals("0") || ddlFADN.Items.Count == 0)
@@ -679,7 +679,7 @@ namespace AplicacionSIPA1.Pedido
                         lblError.Text += "Ingrese una descripción del Bien/Servicio. ";
                     }
 
-                 
+
 
                     funciones = new FuncionesVarias();
                     decimal cantidad = 0;
@@ -711,8 +711,8 @@ namespace AplicacionSIPA1.Pedido
                     {
                         lblErrorMonto.Text = "Ingrese un monto válido. ";
                         lblError.Text += "Ingrese un monto válido. ";
-                    }       
-                }                
+                    }
+                }
 
                 if (lblError.Text.Equals(string.Empty))
                     controlesValidos = true;
@@ -739,9 +739,9 @@ namespace AplicacionSIPA1.Pedido
                 //btnAnular.Visible = btnEnviar.Visible = btnGuardar.Visible = btnLimpiarC.Visible = gridDet.Columns[0].Visible = gridDet.Columns[1].Visible = true;
                 lblIdPoa.Text = "0";
 
-                pOperativoLN = new PlanOperativoLN();                
+                pOperativoLN = new PlanOperativoLN();
                 DataSet dsPoa = pOperativoLN.DatosPoaUnidad(idUnidad, anio);
-                
+
                 if (dsPoa.Tables.Count == 0)
                     throw new Exception("Error al consultar el presupuesto.");
 
@@ -780,7 +780,7 @@ namespace AplicacionSIPA1.Pedido
                 lblErrorPoa.Text = lblError.Text = "Error: " + ex.Message;
             }
             btnAnular.Visible = false;
-            return poaValido;            
+            return poaValido;
         }
 
         protected bool validarEstadoPedido(int idPedido)
@@ -809,7 +809,7 @@ namespace AplicacionSIPA1.Pedido
 
                     pInsumoLN = new PedidosLN();
                     dsResultado = pInsumoLN.InformacionPedido(idPedido, 0, 0, "", 2);
-                    
+
                     if (bool.Parse(dsResultado.Tables["RESULTADO"].Rows[0]["ERRORES"].ToString()))
                         throw new Exception(dsResultado.Tables["RESULTADO"].Rows[0]["MSG_ERROR"].ToString());
 
@@ -884,23 +884,41 @@ namespace AplicacionSIPA1.Pedido
             limpiarControlesError();
         }
 
+        /// <summary>
+        /// Almacena los datos de una requisicon, 
+        /// </summary>
+        /// <remarks>
+        /// Se almacena el encabezado y el detalle de una requisicion (Items).
+        /// Tablas en base de datos:
+        ///     -sipa_pedidos
+        ///     -sipa_pedido_detalle
+        /// </remarks>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         protected void btnGuardar_Click(object sender, EventArgs e)
         {
             try
             {
-               
+
 
 
                 if (validarControlesABC())
                 {
                     int idPedido = 0;
                     int.TryParse(lblIdPedido.Text, out idPedido);
+                    //if (idPedido > 0)
+                    //{
+                    //    pInsumoEN = new PedidosEN();
+                    //    DataSet dsUsuario = pInsumoLN.UsuarioRequisicion(idPedido.ToString());
+                    //    if (Session["usuario"].ToString() != dsUsuario.Tables[0].Rows[0]["usuario_ing"].ToString())
+                    //        throw new Exception("No se INSERTÓ/ACTUALIZÓ el pedido: USUARIO DISTINTO AL INGRESADO") ;
 
+                    //}
                     pInsumoEN = new PedidosEN();
 
                     pInsumoEN.ID_PEDIDO = idPedido;
                     pInsumoEN.ID_POA = int.Parse(lblIdPoa.Text);
-                    
+
                     pInsumoEN.ID_ACCION = int.Parse(ddlAcciones.SelectedValue);
                     pInsumoEN.ID_SOLICITANTE = int.Parse(ddlSolicitantes.SelectedValue);
                     pInsumoEN.ID_JEFE_DIRECCION = int.Parse(ddlJefes.SelectedValue);
@@ -911,7 +929,7 @@ namespace AplicacionSIPA1.Pedido
                     pInsumoEN.ID_TIPO_ANEXO = int.Parse(rblAnexos.SelectedValue);
                     pInsumoEN.USUARIO = Session["usuario"].ToString();
                     pInsumoEN.id_subproducto = int.Parse(ddlSubproducto.SelectedValue);
-                    if (ddlTipoPedido.SelectedValue=="1")
+                    if (ddlTipoPedido.SelectedValue == "1")
                     {
                         pInsumoEN.Codigo_Insumo = 0;
                         pInsumoEN.Codigo_Presentacion = 0;
@@ -952,30 +970,67 @@ namespace AplicacionSIPA1.Pedido
                     {
                         if (validarEstadoPedido(idPedido))
                         {
-                            pInsumoLN = new PedidosLN();
-                            DataSet dsResultado = pInsumoLN.AlmacenarPedido(pInsumoEN,Session["usuario"].ToString());
+                            if (idPedido > 0)
+                            {
+                                pInsumoLN = new PedidosLN();
+                                DataSet usuarioIngreso = pInsumoLN.UsuarioRequisicion(idPedido.ToString());
+                                if (pInsumoEN.USUARIO.Equals(usuarioIngreso.Tables[0].Rows[0]["usuario_ing"].ToString()))
+                                {
+                                    pInsumoLN = new PedidosLN();
+                                    DataSet dsResultado = pInsumoLN.AlmacenarPedido(pInsumoEN, Session["usuario"].ToString());
 
-                            if (bool.Parse(dsResultado.Tables[0].Rows[0]["ERRORES"].ToString()))
-                                throw new Exception("No se INSERTÓ/ACTUALIZÓ el pedido: " + dsResultado.Tables[0].Rows[0]["MSG_ERROR"].ToString());
+                                    if (bool.Parse(dsResultado.Tables[0].Rows[0]["ERRORES"].ToString()))
+                                        throw new Exception("No se INSERTÓ/ACTUALIZÓ el pedido: " + dsResultado.Tables[0].Rows[0]["MSG_ERROR"].ToString());
 
-                            
-                            int.TryParse(dsResultado.Tables[0].Rows[0]["VALOR"].ToString(), out idPedido);
-                            lblIdPedido.Text = idPedido.ToString();
 
-                            dsResultado = pInsumoLN.InformacionPedido(idPedido, 0, 0, "", 2);
+                                    int.TryParse(dsResultado.Tables[0].Rows[0]["VALOR"].ToString(), out idPedido);
+                                    lblIdPedido.Text = idPedido.ToString();
 
-                            if (bool.Parse(dsResultado.Tables[0].Rows[0]["ERRORES"].ToString()))
-                                throw new Exception("No se CONSULTÓ el pedido: " + dsResultado.Tables[0].Rows[0]["MSG_ERROR"].ToString());
+                                    dsResultado = pInsumoLN.InformacionPedido(idPedido, 0, 0, "", 2);
 
-                            lblNoPedido.Text = dsResultado.Tables["BUSQUEDA"].Rows[0]["NO_ANIO_SOLICITUD"].ToString();
+                                    if (bool.Parse(dsResultado.Tables[0].Rows[0]["ERRORES"].ToString()))
+                                        throw new Exception("No se CONSULTÓ el pedido: " + dsResultado.Tables[0].Rows[0]["MSG_ERROR"].ToString());
 
-                            NuevoPedidoDet();
-                            filtrarGridPpto();
-                            lblSuccess.Text = "Pedido No. " + lblNoPedido.Text + " ALMACENADO/MODIFICADO exitosamente: ";
-                            //FormsAuthentication.RedirectFromLoginPage(this.lblSuccess.Text,false);
-                            ///Response.Redirect("~/Pedido/NoPedido.aspx?No=" + lblNoPedido.Text + "&msg=" + lblSuccess.Text + "&acc=Ingresado corretamente");
-                            btnGuardar.Visible = true;   
+                                    lblNoPedido.Text = dsResultado.Tables["BUSQUEDA"].Rows[0]["NO_ANIO_SOLICITUD"].ToString();
 
+                                    NuevoPedidoDet();
+                                    filtrarGridPpto();
+                                    lblSuccess.Text = "Pedido No. " + lblNoPedido.Text + " ALMACENADO/MODIFICADO exitosamente: ";
+                                    //FormsAuthentication.RedirectFromLoginPage(this.lblSuccess.Text,false);
+                                    ///Response.Redirect("~/Pedido/NoPedido.aspx?No=" + lblNoPedido.Text + "&msg=" + lblSuccess.Text + "&acc=Ingresado corretamente");
+                                    btnGuardar.Visible = true;
+                                }
+                                else
+                                {
+                                    lblError.Text = "El usuario que ingreso la requisicion no coincide con el que tiene iniciada la sesion";
+                                }
+                            }
+                            else
+                            {
+                                pInsumoLN = new PedidosLN();
+                                DataSet dsResultado = pInsumoLN.AlmacenarPedido(pInsumoEN, Session["usuario"].ToString());
+
+                                if (bool.Parse(dsResultado.Tables[0].Rows[0]["ERRORES"].ToString()))
+                                    throw new Exception("No se INSERTÓ/ACTUALIZÓ el pedido: " + dsResultado.Tables[0].Rows[0]["MSG_ERROR"].ToString());
+
+
+                                int.TryParse(dsResultado.Tables[0].Rows[0]["VALOR"].ToString(), out idPedido);
+                                lblIdPedido.Text = idPedido.ToString();
+
+                                dsResultado = pInsumoLN.InformacionPedido(idPedido, 0, 0, "", 2);
+
+                                if (bool.Parse(dsResultado.Tables[0].Rows[0]["ERRORES"].ToString()))
+                                    throw new Exception("No se CONSULTÓ el pedido: " + dsResultado.Tables[0].Rows[0]["MSG_ERROR"].ToString());
+
+                                lblNoPedido.Text = dsResultado.Tables["BUSQUEDA"].Rows[0]["NO_ANIO_SOLICITUD"].ToString();
+
+                                NuevoPedidoDet();
+                                filtrarGridPpto();
+                                lblSuccess.Text = "Pedido No. " + lblNoPedido.Text + " ALMACENADO/MODIFICADO exitosamente: ";
+                                //FormsAuthentication.RedirectFromLoginPage(this.lblSuccess.Text,false);
+                                ///Response.Redirect("~/Pedido/NoPedido.aspx?No=" + lblNoPedido.Text + "&msg=" + lblSuccess.Text + "&acc=Ingresado corretamente");
+                                btnGuardar.Visible = true;
+                            }
                         }
                     }
                 }
@@ -994,7 +1049,7 @@ namespace AplicacionSIPA1.Pedido
 
             decimal saldoPac, saldoRenglon, montoDetPedido = 0;
 
-            if (idPac>0)
+            if (idPac > 0)
             {
                 //INFORMACIÓN DEL PLAN ANUAL DE COMPRAS
                 DataSet dsInformacionPac = pAnualLN.InformacionPac(idPac, int.Parse(ddlAnios.SelectedValue));
@@ -1042,7 +1097,7 @@ namespace AplicacionSIPA1.Pedido
                 if (bool.Parse(dsInformacionDetPedido.Tables["RESULTADO"].Rows[0]["ERRORES"].ToString()))
                     throw new Exception(dsInformacionDetPedido.Tables["RESULTADO"].Rows[0]["MSG_ERROR"].ToString());
 
-                
+
                 decimal.TryParse(dsInformacionPac.Tables["ENCABEZADO"].Rows[0]["SALDO"].ToString(), out saldoPac);
                 decimal.TryParse(dsInformacionRenglon.Tables["BUSQUEDA"].Rows[0]["SALDO_POA"].ToString(), out saldoRenglon);
 
@@ -1140,8 +1195,10 @@ namespace AplicacionSIPA1.Pedido
 
         protected void btnListado_Click(object sender, EventArgs e)
         {
-            
-            Response.Redirect("~/Pedido/PedidoListado.aspx?Anio=" + ddlAnios.SelectedItem.Value + "&unidad=" + ddlUnidades.SelectedItem.Value);
+            if (int.Parse(ddlDependencia.SelectedValue) < 1)
+                Response.Redirect("~/Pedido/PedidoListado.aspx?Anio=" + ddlAnios.SelectedItem.Value + "&unidad=" + ddlUnidades.SelectedItem.Value);
+            else
+                Response.Redirect("~/Pedido/PedidoListado.aspx?Anio=" + ddlAnios.SelectedItem.Value + "&unidad=" + ddlUnidades.SelectedItem.Value + "&dep=" + ddlDependencia.SelectedValue);
         }
 
         protected void ddlSolicitantes_SelectedIndexChanged(object sender, EventArgs e)
@@ -1196,7 +1253,7 @@ namespace AplicacionSIPA1.Pedido
                     ddlPac.SelectedValue = idPac.ToString();
                     ddlPac_SelectedIndexChanged(sender, e);
                 }
-                    
+
 
                 int correlativo = 0;
                 int.TryParse(gridDet.DataKeys[gridDet.SelectedIndex].Values["NUMERO"].ToString(), out correlativo);
@@ -1208,12 +1265,12 @@ namespace AplicacionSIPA1.Pedido
                 int.TryParse(dsResultado.Tables["BUSQUEDA"].Rows[0]["ID_UNIDAD_MEDIDA"].ToString(), out idUnidadMedida);
                 //item = ddlUnidadesMedida.Items.FindByValue(idUnidadMedida.ToString());
 
-               
+
                 //if (item != null)
                 //    ddlUnidadesMedida.SelectedValue = idUnidadMedida.ToString();
 
                 txtCantidad.Text = dsResultado.Tables["BUSQUEDA"].Rows[0]["CANTIDAD"].ToString();
-                
+
                 decimal costo = 0;
                 decimal.TryParse(dsResultado.Tables["BUSQUEDA"].Rows[0]["COSTO_ESTIMADO"].ToString(), out costo);
                 txtCosto.Text = String.Format(CultureInfo.InvariantCulture, "Q.{0:0,0.00}", costo);
@@ -1264,7 +1321,7 @@ namespace AplicacionSIPA1.Pedido
                 }
                 else
                     throw new Exception("Se necesita al menos un detalle");
-                    //btnAnular_Click(new Object(), new EventArgs());
+                //btnAnular_Click(new Object(), new EventArgs());
             }
             catch (Exception ex)
             {
@@ -1280,7 +1337,7 @@ namespace AplicacionSIPA1.Pedido
                 int idPedido = 0;
                 int.TryParse(lblIdPedido.Text, out idPedido);
 
-                if (idPedido  == 0)
+                if (idPedido == 0)
                     throw new Exception("No existe Bien/Servicio para eliminar");
 
                 pInsumoLN = new PedidosLN();
@@ -1396,8 +1453,8 @@ namespace AplicacionSIPA1.Pedido
 
                             //7 - RECHAZADO POR PRESUPUESTO, 9 - RECHAZADO MESA DE ENTRADA DE COMPRAS/PPTO, 18 - RECHAZADO TÉCNICO DE COMPRAS/PPTO
                             if (idEstadoPedido == 7 || idEstadoPedido == 9 || idEstadoPedido == 18)
-                                dsResultado = pInsumoLN.AprobacionEncargado(idPedido, 1, "Realizada por el sistema", Session["usuario"].ToString(),ip[0],ip[1],ip[2]);
-                            
+                                dsResultado = pInsumoLN.AprobacionEncargado(idPedido, 1, "Realizada por el sistema", Session["usuario"].ToString(), ip[0], ip[1], ip[2]);
+
                             //RECHAZADO POR MESA DE ENTRADA
                             /*else if (idEstadoPedido == 9)
                             {
@@ -1422,7 +1479,7 @@ namespace AplicacionSIPA1.Pedido
 
                             //CUALQUIER OTRO ESTADO
                             else
-                                dsResultado = pInsumoLN.EnviarPedidoARevision(idPedido, 1, Session["usuario"].ToString(),ip[0],ip[1],ip[2]);
+                                dsResultado = pInsumoLN.EnviarPedidoARevision(idPedido, 1, Session["usuario"].ToString(), ip[0], ip[1], ip[2]);
 
                             //AGREGADO ENVIAR EL PEDIDO A CODIFICACIÓN DE PRESUPUESTO CUANDO SEA RECHAZADO POR PPTO, COMPRAS Y EVITAR QUE VUELVA A RECORRER EL CICLO COMPLETO
 
@@ -1431,7 +1488,7 @@ namespace AplicacionSIPA1.Pedido
 
                             string estadoActual, mensaje = "";
                             dsResultado = pInsumoLN.InformacionPedido(idPedido, 0, 0, "", 2);
-                           
+
                             if (bool.Parse(dsResultado.Tables["RESULTADO"].Rows[0]["ERRORES"].ToString()))
                                 throw new Exception(dsResultado.Tables["RESULTADO"].Rows[0]["MSG_ERROR"].ToString());
 
@@ -1445,7 +1502,7 @@ namespace AplicacionSIPA1.Pedido
                             EnvioDeCorreos objEC = new EnvioDeCorreos();
                             //Quitar comentario para enviar correos 
                             //objEC.EnvioCorreo(planOperativoLN.ObtenerCorreoxUsuario(datostecnico[1].ToString().Trim()), "Nueva Requiscion Ingresada", " Requisicion No.  " + idPedido + ", " + mensaje, ddlSolicitantes.SelectedItem.ToString());
-                            
+
 
 
                             if (idEstadoPedido == 6)
@@ -1511,7 +1568,7 @@ namespace AplicacionSIPA1.Pedido
 
         protected void btnPrueba_Click(object sender, EventArgs e)
         {
-         
+
         }
 
         protected void ddlDependencia_SelectedIndexChanged(object sender, EventArgs e)
@@ -1569,7 +1626,7 @@ namespace AplicacionSIPA1.Pedido
 
                 if (anio > 0 && idUnidad > 0)
                 {
-                   
+
                     validarPoaIngresoPedido(idUnidad, anio);
                 }
 
@@ -1595,12 +1652,12 @@ namespace AplicacionSIPA1.Pedido
             try
             {
                 limpiarControlesError();
-                
+
                 if (!string.IsNullOrEmpty(txtCodigoInsumo.Text))
                 {
                     pInsumoLN = new PedidosLN();
                     DataSet dsResultado = pInsumoLN.BusquedaInsumo(txtCodigoInsumo.Text);
-                    txtDescripcion.Text = dsResultado.Tables["BUSQUEDA"].Rows[0]["Nombre"].ToString() +". " + dsResultado.Tables["BUSQUEDA"].Rows[0]["caracteristicas"].ToString();
+                    txtDescripcion.Text = dsResultado.Tables["BUSQUEDA"].Rows[0]["Nombre"].ToString() + ". " + dsResultado.Tables["BUSQUEDA"].Rows[0]["caracteristicas"].ToString();
                 }
             }
             catch (Exception ex)
@@ -1617,7 +1674,7 @@ namespace AplicacionSIPA1.Pedido
                 if (!string.IsNullOrEmpty(txtCodigoPresentacion.Text) && !string.IsNullOrEmpty(txtCodigoInsumo.Text))
                 {
                     pInsumoLN = new PedidosLN();
-                    DataSet dsResultado = pInsumoLN.BusquedaPresentacion(txtCodigoPresentacion.Text,txtCodigoInsumo.Text);
+                    DataSet dsResultado = pInsumoLN.BusquedaPresentacion(txtCodigoPresentacion.Text, txtCodigoInsumo.Text);
                     txtUnidadesMedida.Text = dsResultado.Tables["BUSQUEDA"].Rows[0]["Presentacion"].ToString();
                     txtCantidadMedida.Text = dsResultado.Tables["BUSQUEDA"].Rows[0]["cantidad_unidad"].ToString();
                 }

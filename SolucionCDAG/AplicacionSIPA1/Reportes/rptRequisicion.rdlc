@@ -2443,7 +2443,7 @@
           <Paragraph>
             <TextRuns>
               <TextRun>
-                <Value>NUMERO DE CONSOLIDADO</Value>
+                <Value>NUMERO DE CONSOLIDACIÓN</Value>
                 <Style>
                   <FontFamily>TImes New Roman</FontFamily>
                   <FontSize>8pt</FontSize>
@@ -2457,7 +2457,7 @@
         </Paragraphs>
         <rd:DefaultName>Textbox56</rd:DefaultName>
         <Top>18.27122cm</Top>
-        <Left>8.94645cm</Left>
+        <Left>8.82463cm</Left>
         <Height>0.6cm</Height>
         <Width>8.30086cm</Width>
         <ZIndex>28</ZIndex>

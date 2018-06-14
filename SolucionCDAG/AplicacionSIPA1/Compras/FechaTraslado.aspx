@@ -72,7 +72,7 @@
         </div>
         <div class="col-sm-2">
             <br />
-            <asp:LinkButton ID="lbAnexo" runat="server" CssClass="link-style btn-warning" Text='<%# Eval("tipo_anexo") %>' OnClick="lbAnexo_Click" >
+            <asp:LinkButton ID="lbAnexo" runat="server" CssClass="link-style btn-warning" Text='<%# Eval("tipo_anexo") %>' OnClick="lbAnexo_Click">
                 Anexos
             </asp:LinkButton>
         </div>
@@ -128,7 +128,7 @@
                         </div>
                         <div class="col-sm-3">
                             <label>Modalidad de Compra</label>
-                            <asp:DropDownList ID="ddlModalidadCompra" ReadOnly="true" runat="server" CssClass="form-control dropdown-select" ></asp:DropDownList>
+                            <asp:DropDownList ID="ddlModalidadCompra" ReadOnly="true" runat="server" CssClass="form-control dropdown-select"></asp:DropDownList>
 
                         </div>
                         <div class="col-sm-3">
@@ -153,7 +153,7 @@
                             <label>Centro de Costo</label>
                             <asp:DropDownList ID="ddlCentroCosto" runat="server" CssClass="form-control"></asp:DropDownList>
                         </div>
-                        
+
 
                         <div class="col-sm-3">
                             <label>Acta Negociacion</label>
@@ -183,7 +183,7 @@
 
     <div>
 
-        <asp:GridView ID="gvDetalle" runat="server" AutoGenerateColumns="False" BackColor="White" BorderColor="#CCCCCC" BorderStyle="Solid" BorderWidth="1px" CellPadding="5"
+        <asp:GridView ID="gvDetalle" runat="server" AutoGenerateColumns="False" DataKeyNames="ID" BackColor="White" BorderColor="#CCCCCC" BorderStyle="Solid" BorderWidth="1px" CellPadding="5"
             CellSpacing="1" Font-Size="Small" ForeColor="Black" GridLines="Vertical" HorizontalAlign="Center" PageSize="12" ShowFooter="True" Width="125%" CssClass="auto-style4" OnRowDataBound="gvDetalle_RowDataBound">
             <AlternatingRowStyle BackColor="#CEEFFF" ForeColor="#333333" />
             <Columns>
@@ -237,7 +237,6 @@
                     <ItemTemplate>
                         <div class="text-right">
                             <asp:TextBox ID="txtCantidadReal" runat="server" Style="text-align: right" CssClass="form-control" Text='<%# Bind("cantidad_compras") %>' Width="50px"></asp:TextBox>
-
                         </div>
                     </ItemTemplate>
                     <HeaderStyle BorderStyle="Inset" HorizontalAlign="Center" VerticalAlign="Middle" />
@@ -340,6 +339,16 @@
                     <HeaderStyle BorderStyle="Inset" HorizontalAlign="Center" VerticalAlign="Middle" />
                     <ItemStyle BorderStyle="Inset" HorizontalAlign="Center" VerticalAlign="Middle" />
                 </asp:TemplateField>
+                <asp:TemplateField HeaderText="Fecha Ingreso B/S">
+                    <EditItemTemplate>
+                        <asp:TextBox ID="TextBox2" runat="server"></asp:TextBox>
+                    </EditItemTemplate>
+                    <ItemTemplate>
+                        <asp:TextBox ID="txtFechaIngresoBS" runat="server" CssClass="form-control" TextMode="Date"></asp:TextBox>
+                    </ItemTemplate>
+                    <HeaderStyle BorderStyle="Inset" HorizontalAlign="Center" VerticalAlign="Middle" />
+                    <ItemStyle BorderStyle="Inset" HorizontalAlign="Center" VerticalAlign="Middle" />
+                </asp:TemplateField>
                 <asp:TemplateField HeaderText="Seleccionar">
                     <ItemTemplate>
                         <asp:CheckBox ID="chkItem" runat="server" />
@@ -366,7 +375,7 @@
     <div class="row">
         <div class="col-sm-1"></div>
         <div class="col-sm-4">
-            <asp:Label ID="lblError" runat="server" Style="color:red" CssClass="form-check-label" Text="hola"></asp:Label>
+            <asp:Label ID="lblError" runat="server" Style="color: red" CssClass="form-check-label" Text="hola"></asp:Label>
         </div>
     </div>
     <div class="row">
@@ -403,13 +412,13 @@
         <div class="col-sm-3"></div>
         <div class="col-sm-2">
             <br />
-            <asp:LinkButton ID="btnGuardar" runat="server" Text="Guardar" OnClick="btnGuardar_Click" CssClass="btn btn-success" Width="100%" Height="60%" >
+            <asp:LinkButton ID="btnGuardar" runat="server" Text="Guardar" OnClick="btnGuardar_Click" CssClass="btn btn-success" Width="100%" Height="60%">
                 Guardar&nbsp<span class="glyphicon glyphicon-ok-sign" aria-hidden="true"></span>
             </asp:LinkButton>
         </div>
         <div class="col-sm-2">
             <br />
-            <asp:LinkButton ID="btnListado" runat="server" Text="Listado" CssClass="btn btn-info" Width="100%" Height="60%" >
+            <asp:LinkButton ID="btnListado" runat="server" Text="Listado" CssClass="btn btn-info" Width="100%" Height="60%">
                Listado&nbsp <span class="glyphicon glyphicon-list-alt" aria-hidden="true"></span>
             </asp:LinkButton>
         </div>

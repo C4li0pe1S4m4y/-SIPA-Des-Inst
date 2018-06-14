@@ -13,6 +13,8 @@
                 <tr>
                     <td style="width: 5%; background-color: #006600;">
                         <asp:Label ID="lblPlanE" runat="server" Text="*"></asp:Label>
+                        <asp:Label ID="lblidanio" runat="server" Visible="false"></asp:Label>
+                        <asp:Label ID="lblidunidad" runat="server" Visible="false"></asp:Label>
                     </td>
                     <td style="width: 5%; background-color: #006600;"><strong>
                         <asp:Label ID="lblErrorPlan" runat="server" ForeColor="Red" style="font-size: medium" Visible="False">*</asp:Label>

@@ -179,3 +179,20 @@ C:\Users\user Dell\Documents\GitHub\-SIPA-Des-Inst\SolucionCDAG\AplicacionSIPA1\
 C:\Users\user Dell\Documents\GitHub\-SIPA-Des-Inst\SolucionCDAG\AplicacionSIPA1\obj\Debug\RdlCompile.compiled
 C:\Users\user Dell\Documents\GitHub\-SIPA-Des-Inst\SolucionCDAG\AplicacionSIPA1\obj\Debug\AplicacionSIPA1.dll
 C:\Users\user Dell\Documents\GitHub\-SIPA-Des-Inst\SolucionCDAG\AplicacionSIPA1\obj\Debug\AplicacionSIPA1.pdb
+C:\Users\user Dell\Documents\Trabajo\SIPA Archivos\PRODUCCION V2\SolucionCDAG\SIPA\AplicacionSIPA1\bin\CrystalDecisions.CrystalReports.Engine.dll
+C:\Users\user Dell\Documents\Trabajo\SIPA Archivos\PRODUCCION V2\SolucionCDAG\SIPA\AplicacionSIPA1\bin\CrystalDecisions.ReportSource.dll
+C:\Users\user Dell\Documents\Trabajo\SIPA Archivos\PRODUCCION V2\SolucionCDAG\SIPA\AplicacionSIPA1\bin\CrystalDecisions.Shared.dll
+C:\Users\user Dell\Documents\Trabajo\SIPA Archivos\PRODUCCION V2\SolucionCDAG\SIPA\AplicacionSIPA1\bin\CrystalDecisions.Web.dll
+C:\Users\user Dell\Documents\Trabajo\SIPA Archivos\PRODUCCION V2\SolucionCDAG\SIPA\AplicacionSIPA1\bin\CrystalDecisions.ReportAppServer.DataDefModel.dll
+C:\Users\user Dell\Documents\Trabajo\SIPA Archivos\PRODUCCION V2\SolucionCDAG\SIPA\AplicacionSIPA1\bin\CrystalDecisions.ReportAppServer.ClientDoc.dll
+C:\Users\user Dell\Documents\Trabajo\SIPA Archivos\PRODUCCION V2\SolucionCDAG\SIPA\AplicacionSIPA1\bin\CrystalDecisions.ReportAppServer.ReportDefModel.dll
+C:\Users\user Dell\Documents\Trabajo\SIPA Archivos\PRODUCCION V2\SolucionCDAG\SIPA\AplicacionSIPA1\bin\CrystalDecisions.ReportAppServer.Controllers.dll
+C:\Users\user Dell\Documents\Trabajo\SIPA Archivos\PRODUCCION V2\SolucionCDAG\SIPA\AplicacionSIPA1\bin\CrystalDecisions.ReportAppServer.CommLayer.dll
+C:\Users\user Dell\Documents\Trabajo\SIPA Archivos\PRODUCCION V2\SolucionCDAG\SIPA\AplicacionSIPA1\bin\CrystalDecisions.ReportAppServer.DataSetConversion.dll
+C:\Users\user Dell\Documents\Trabajo\SIPA Archivos\PRODUCCION V2\SolucionCDAG\SIPA\AplicacionSIPA1\bin\CrystalDecisions.ReportAppServer.Prompting.dll
+C:\Users\user Dell\Documents\Trabajo\SIPA Archivos\PRODUCCION V2\SolucionCDAG\SIPA\AplicacionSIPA1\bin\CrystalDecisions.ReportAppServer.XmlSerialize.dll
+C:\Users\user Dell\Documents\Trabajo\SIPA Archivos\PRODUCCION V2\SolucionCDAG\SIPA\AplicacionSIPA1\bin\CrystalDecisions.ReportAppServer.CubeDefModel.dll
+C:\Users\user Dell\Documents\Trabajo\SIPA Archivos\PRODUCCION V2\SolucionCDAG\SIPA\AplicacionSIPA1\bin\CrystalDecisions.ReportAppServer.CommonObjectModel.dll
+C:\Users\user Dell\Documents\Trabajo\SIPA Archivos\PRODUCCION V2\SolucionCDAG\SIPA\AplicacionSIPA1\bin\CrystalDecisions.ReportAppServer.ObjectFactory.dll
+C:\Users\user Dell\Documents\Trabajo\SIPA Archivos\PRODUCCION V2\SolucionCDAG\SIPA\AplicacionSIPA1\bin\CrystalDecisions.ReportAppServer.CommonControls.dll
+C:\Users\user Dell\Documents\Trabajo\SIPA Archivos\PRODUCCION V2\SolucionCDAG\SIPA\AplicacionSIPA1\bin\stdole.dll

@@ -14,6 +14,18 @@ namespace CapaAD
         ConexionBD conectar;
 
         //EMPLEADOS
+        public DataTable DataReportePrueba()
+        {
+            conectar = new ConexionBD();
+            DataTable tabla = new DataTable("select 1 as campo1, 2 as campo2, 3 as campo3, 4 as campo4 from dual");
+            conectar.AbrirConexion();
+            MySqlDataAdapter consulta = new MySqlDataAdapter("select 1 as campo1, 2 as campo2, 3 as campo3, 4 as campo4 from dual", conectar.conectar);
+            consulta.Fill(tabla);
+            conectar.CerrarConexion();
+            return tabla;
+        }
+
+
         public DataTable DdlSolicitantes(string usuario, int idUnidad)
         {
             conectar = new ConexionBD();
@@ -1754,6 +1766,8 @@ namespace CapaAD
             return tabla;
         }
 
+      
+
         public DataTable InformacionPedidoDep(int id, int id2, int id3, string criterio, int opcion)
         {
             conectar = new ConexionBD();
@@ -2159,7 +2173,7 @@ namespace CapaAD
         {
             conectar = new ConexionBD();
             DataTable tabla = new DataTable();
-            string query = String.Format("select pd.id_pedido_detalle,pd.descripcion,da.no_renglon,pd.cantidad, concat('Q.',format(pd.costo_u_pedido,2)) costo_u_pedido ," +
+            string query = String.Format("select pd.id_pedido_detalle ID,pd.descripcion,da.no_renglon,pd.cantidad, concat('Q.',format(pd.costo_u_pedido,2)) costo_u_pedido ," +
             "concat('Q.',format((pd.costo_pedido * 1.12),2)) monto, concat('Q.',format(pd.costo_pedido,2)) costo_pedido ,pd.id_estatus_compras,pd.id_proveedor, " +
             "pd.fecha_traslado_orden,pd.no_orden_compra,pd.fecha_orden_compra,pd.fecha_ingreso_BS,pd.fecha_traslado_almacen, pd.costo_u_compras, pd.cantidad_compras,pd.costo_real subtotal," +
             "CASE WHEN (SELECT spe2.ajuste FROM sipa_pedidos spe2 WHERE spe2.id_pedido = pd.id_pedido) = 0 "+ 
@@ -2195,6 +2209,58 @@ namespace CapaAD
             DataSet dsResultado = new DataSet();
             conectar = new ConexionBD();
             string query = string.Format("Update sipa_pedidos SET "+ encabezado +" fecha_act= now()  WHERE id_pedido ={0}",id);
+            conectar.AbrirConexion();
+            MySqlDataAdapter consulta = new MySqlDataAdapter(query, conectar.conectar);
+            consulta.Fill(dsResultado);
+            conectar.CerrarConexion();
+            return dsResultado;
+        }
+        public DataSet AlmacenarDatosTecnicoDetalle(string encabezado, string id)
+        {
+            DataSet dsResultado = new DataSet();
+            conectar = new ConexionBD();
+            string query = string.Format("Update sipa_pedido_detalle SET " + encabezado + " fecha_act= now()  WHERE id_pedido_detalle ={0}", id);
+            conectar.AbrirConexion();
+            MySqlDataAdapter consulta = new MySqlDataAdapter(query, conectar.conectar);
+            consulta.Fill(dsResultado);
+            conectar.CerrarConexion();
+            return dsResultado;
+        }
+
+        /// <summary>
+        /// Obtiene el usuario que creo la requisicion.
+        /// </summary>
+        /// <remarks>
+        /// Tabla a consultar:
+        ///     -sipa_pedido
+        /// </remarks>
+        /// <param name="id"></param>
+        /// <returns>Dataset con el nombre del usuario</returns>
+        public DataSet UsuarioRequisicon(string id)
+        {
+            DataSet dsResultado = new DataSet();
+            conectar = new ConexionBD();
+            string query = string.Format("select usuario_ing from sipa_pedidos where id_pedido={0}", id);
+            conectar.AbrirConexion();
+            MySqlDataAdapter consulta = new MySqlDataAdapter(query, conectar.conectar);
+            consulta.Fill(dsResultado);
+            conectar.CerrarConexion();
+            return dsResultado;
+        }
+        /// <summary>
+        ///  Obtiene el usuario que creo la especificacion de una requisicion.
+        /// </summary>
+        /// <remarks>
+        /// Tabla a consultar:
+        ///     -sipa_especificaciones_pedido
+        /// </remarks>
+        /// <param name="id"></param>
+        /// <returns>Dataset con el nombre del usuario</returns>
+        public DataSet UsuarioRequisiconEsp(string id)
+        {
+            DataSet dsResultado = new DataSet();
+            conectar = new ConexionBD();
+            string query = string.Format("select usuario_ing from sipa_especificaciones_pedido where id_pedido={0}", id);
             conectar.AbrirConexion();
             MySqlDataAdapter consulta = new MySqlDataAdapter(query, conectar.conectar);
             consulta.Fill(dsResultado);

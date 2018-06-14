@@ -146,9 +146,12 @@ namespace AplicacionSIPA1.Operativa.Seguimiento
                 gridDet.DataSource = null;
                 gridDet.DataBind();
                 gridDet.SelectedIndex = -1;
-
+                DataSet dsResultado = new DataSet();
                 sSeguimientoLN = new SeguimientoLN();
-                DataSet dsResultado = sSeguimientoLN.InformacionSeguimientos(idPoa, mes, "", 1);
+                if (int.Parse(ddlDependencia.SelectedValue)>0)
+                    dsResultado = sSeguimientoLN.InformacionSeguimientos(idPoa, mes, "", 1);
+                else
+                    dsResultado = sSeguimientoLN.InformacionSeguimientosCompleto(idPoa, mes, "", 1, int.Parse(ddlAnios.SelectedValue));
 
                 if (bool.Parse(dsResultado.Tables["RESULTADO"].Rows[0]["ERRORES"].ToString()))
                     throw new Exception(dsResultado.Tables["RESULTADO"].Rows[0]["MSG_ERROR"].ToString());
@@ -843,7 +846,9 @@ namespace AplicacionSIPA1.Operativa.Seguimiento
                 if (idSeguimiento > 0)
                 {
                     sSeguimientoLN = new SeguimientoLN();
-                    DataSet dsResultado = sSeguimientoLN.InformacionSeguimientos(0, 0, " AND a.id_seguimiento_cmi = " + idSeguimiento.ToString(), 2);
+                    DataSet dsResultado = new DataSet();
+                    if (ddlUnidades.SelectedValue.Equals("29"))
+                        dsResultado = sSeguimientoLN.InformacionSeguimientos(0, 0, " AND a.id_unidad =29, a.anio=2018 and a.mes= " + ddlMeses.SelectedValue, 2);
 
                     if (bool.Parse(dsResultado.Tables["RESULTADO"].Rows[0]["ERRORES"].ToString()))
                         throw new Exception(dsResultado.Tables["RESULTADO"].Rows[0]["MSG_ERROR"].ToString());

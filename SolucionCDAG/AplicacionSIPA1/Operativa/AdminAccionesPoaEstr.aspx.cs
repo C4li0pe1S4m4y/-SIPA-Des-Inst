@@ -435,8 +435,8 @@ namespace AplicacionSIPA1.Operativa
                 limpiarCNuevaMeta(); 
                 //txtAccion.Focus();
 
-                obtenerPresupuesto(int.Parse(lblIdPoa.Text), int.Parse(ddlDependencias.SelectedValue));
-                ddlDependencias.ClearSelection();
+                obtenerPresupuesto(int.Parse(lblIdPoa.Text), int.Parse(ddlUnidades.SelectedValue));
+                //ddlDependencias.ClearSelection();
 
                 int vValue = int.Parse(ddlAcciones.SelectedValue);
                 if (vValue > 0)
@@ -444,7 +444,7 @@ namespace AplicacionSIPA1.Operativa
                     planAccionLN = new PlanAccionLN();
                     DataSet dsResultado = planAccionLN.InformacionAccion(vValue);
 
-                    ddlDependencias.SelectedValue = dsResultado.Tables["BUSQUEDA"].Rows[0]["ID_DEPENDENCIA"].ToString();
+                    //ddlDependencias.SelectedValue = dsResultado.Tables["BUSQUEDA"].Rows[0]["ID_DEPENDENCIA"].ToString();
                     txtCodigo.Text = dsResultado.Tables["BUSQUEDA"].Rows[0]["CODIGO"].ToString();
                     txtAccion.Text = dsResultado.Tables["BUSQUEDA"].Rows[0]["ACCION"].ToString();
 

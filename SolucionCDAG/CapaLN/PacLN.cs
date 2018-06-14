@@ -164,6 +164,7 @@ namespace CapaLN
             pacAD = new PacAD();
             return pacAD.ModificarPac(pacEN);
         }
+
         public int ModificarPacDetalle(PacEN pacEN)
         {
             pacAD = new PacAD();

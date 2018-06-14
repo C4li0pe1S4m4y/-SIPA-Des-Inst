@@ -18,7 +18,7 @@ namespace AplicacionSIPA1.Operativa.Seguimiento
         private PlanOperativoLN pOperativoLN;
         private PlanAccionLN pAccionLN;
         private PlanAnualLN pAnualLN;
-        
+
         private SeguimientoLN sSeguimientoLN;
         private SEGUIMIENTOS_CMI sSeguimientoEN;
         private SEGUIMIENTOS_CMI_DET sSeguimientoEN_DET;
@@ -147,7 +147,13 @@ namespace AplicacionSIPA1.Operativa.Seguimiento
                 gridDet.SelectedIndex = -1;
 
                 sSeguimientoLN = new SeguimientoLN();
-                DataSet dsResultado = sSeguimientoLN.InformacionSeguimientos(idPoa, mes, "", 1);
+                DataSet dsResultado = new DataSet();
+                sSeguimientoLN = new SeguimientoLN();
+                if (int.Parse(ddlDependencia.SelectedValue) > 0)
+                    dsResultado = sSeguimientoLN.InformacionSeguimientos(idPoa, mes, "", 1);
+                else
+                    dsResultado = sSeguimientoLN.InformacionSeguimientosCompleto(idPoa, mes, "", 1, int.Parse(ddlAnios.SelectedValue));
+
 
                 if (bool.Parse(dsResultado.Tables["RESULTADO"].Rows[0]["ERRORES"].ToString()))
                     throw new Exception(dsResultado.Tables["RESULTADO"].Rows[0]["MSG_ERROR"].ToString());
@@ -311,7 +317,7 @@ namespace AplicacionSIPA1.Operativa.Seguimiento
 
             try
             {
-                
+
 
                 string observaciones = "";
                 observaciones = txtObser.Text;
@@ -346,9 +352,9 @@ namespace AplicacionSIPA1.Operativa.Seguimiento
                 btnAprobar.Visible = btnRechazar.Visible = gridDet.Columns[0].Visible = gridDet.Columns[1].Visible = false;
                 lblIdPoa.Text = "0";
 
-                pOperativoLN = new PlanOperativoLN();                
+                pOperativoLN = new PlanOperativoLN();
                 DataSet dsPoa = pOperativoLN.DatosPoaUnidad(idUnidad, anio);
-                
+
                 if (dsPoa.Tables.Count == 0)
                     throw new Exception("Error al consultar el presupuesto.");
 
@@ -377,7 +383,7 @@ namespace AplicacionSIPA1.Operativa.Seguimiento
             {
                 lblErrorPoa.Text = lblError.Text = "Error: " + ex.Message;
             }
-            return poaValido;            
+            return poaValido;
         }
 
         protected bool validarEstadoSeguimiento(int idSeguimiento)
@@ -416,7 +422,7 @@ namespace AplicacionSIPA1.Operativa.Seguimiento
 
                     sSeguimientoLN = new SeguimientoLN();
                     dsResultado = sSeguimientoLN.InformacionSeguimientos(0, 0, criterio, 2);
-                    
+
                     if (bool.Parse(dsResultado.Tables["RESULTADO"].Rows[0]["ERRORES"].ToString()))
                         throw new Exception(dsResultado.Tables["RESULTADO"].Rows[0]["MSG_ERROR"].ToString());
 
@@ -501,7 +507,7 @@ namespace AplicacionSIPA1.Operativa.Seguimiento
                         //EnvioDeCorreos envio = new EnvioDeCorreos();
                         //envio.EnvioCorreo("alfredo.ochoa@cdag.com.gt", "Nueva Requisicion: " + lblNoPedido.Text, mensaje);
 
-                        Response.Redirect("~/Operativa/Seguimiento/NoSeguimiento.aspx?No=" + lblNoSeguimientoCmi.Text + "&msg=SUBGERENCIA" + "&acc=" + lblSuccess.Text);
+                        Response.Redirect("~/Operativa/Seguimiento/No1Seguimiento.aspx?No=" + lblNoSeguimientoCmi.Text + "&msg=SUBGERENCIA" + "&acc=" + lblSuccess.Text);
                     }
                 }
             }
@@ -712,7 +718,7 @@ namespace AplicacionSIPA1.Operativa.Seguimiento
 
                 pOperativoLN = new PlanOperativoLN();
                 pOperativoLN.DdlMeses(ddlMeses);
-                
+
                 pAccionLN = new PlanAccionLN();
                 ddlMeses.Items[0].Text = "<< Elija un valor >>";
 
@@ -721,6 +727,19 @@ namespace AplicacionSIPA1.Operativa.Seguimiento
             catch (Exception ex)
             {
                 lblError.Text = "ddlUnidades_SelectedIndexChanged(). " + ex.Message;
+            }
+        }
+
+        protected void gridDet_RowDataBound(object sender, GridViewRowEventArgs e)
+        {
+            if (e.Row.RowType == DataControlRowType.DataRow)
+
+            {
+
+                if (e.Row.RowIndex == 0)
+
+                    e.Row.Style.Add("height", "40px");
+
             }
         }
     }

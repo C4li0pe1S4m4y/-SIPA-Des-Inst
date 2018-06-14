@@ -133,6 +133,68 @@ namespace AplicacionSIPA1.Compras
             try
             {
                 AlmacenarEncabezado();
+                System.Text.StringBuilder stringBuilder = new System.Text.StringBuilder();
+                //Detalle Pedido
+                decimal cantidad, costoUnitario, subTotal, sumCantidad, sumCosto, sumSubtotal;
+                sumCantidad = 0;
+                sumCosto = 0;
+                sumSubtotal = 0;
+                for (int i = 0; i < gvDetalle.Rows.Count; i++)
+                {
+                    DropDownList ddlProveedor, ddlEstadoCompmras;
+                    TextBox txtCantidad, txtCosto, txtCostoReal, txtNoOrden, txtFechaOrden, txtFechaTrasladoOC, 
+                        txtFactura, txtFechaFactura, txtFechaTrasladoAlmacen,txtFechaIngresoSB;
+                    cantidad = 0;
+                    costoUnitario = 0;
+                    subTotal = 0;
+
+                    txtCantidad = new TextBox();
+                    txtCosto = new TextBox();
+                    txtCostoReal = new TextBox();
+                    ddlProveedor = new DropDownList();
+                    ddlEstadoCompmras = new DropDownList();
+                    txtNoOrden = txtFechaOrden = new TextBox();
+
+                    txtCantidad = (gvDetalle.Rows[i].FindControl("txtCantidadReal") as TextBox);
+                    txtCostoReal = (gvDetalle.Rows[i].FindControl("txtCostoUReal") as TextBox);
+                    ddlProveedor = (gvDetalle.Rows[i].FindControl("ddlProveedor") as DropDownList);
+                    ddlEstadoCompmras = (gvDetalle.Rows[i].FindControl("ddlEstatus") as DropDownList);
+                    txtNoOrden = (gvDetalle.Rows[i].FindControl("txtOrdenCompra") as TextBox);
+                    txtFechaOrden = (gvDetalle.Rows[i].FindControl("txtFechaOrdenCompra") as TextBox);
+                    txtFechaTrasladoOC = (gvDetalle.Rows[i].FindControl("txtFechaTrasladoOC") as TextBox);
+                    txtFactura = (gvDetalle.Rows[i].FindControl("txtFactura") as TextBox);
+                    txtFechaFactura = (gvDetalle.Rows[i].FindControl("txtFechaFactura") as TextBox);
+                    txtFechaTrasladoAlmacen = (gvDetalle.Rows[i].FindControl("txtFechaTrasladoAlmacen") as TextBox);
+                    txtFechaIngresoSB = (gvDetalle.Rows[i].FindControl("txtFechaIngresoBS") as TextBox);
+
+                    if (!ddlProveedor.SelectedValue.Equals("0"))
+                        stringBuilder.Append("id_proveeor = '" + ddlProveedor.SelectedValue + "', ");
+                    if (!ddlEstadoCompmras.SelectedValue.Equals("0") )
+                        stringBuilder.Append("id_estatus_compras = '" + ddlEstadoCompmras.SelectedValue + "', ");
+                    if (!string.IsNullOrEmpty(txtNoOrden.Text))
+                        stringBuilder.Append("no_orden_compra = '" + txtNoOrden.Text + "', ");
+                    if (!string.IsNullOrEmpty(txtFechaOrden.Text))
+                        stringBuilder.Append("fecha_orden_compra = '" + txtFechaOrden.Text + "', ");
+                    if (!string.IsNullOrEmpty(txtFechaTrasladoOC.Text))
+                        stringBuilder.Append("fecha_traslado_orden = '" + txtFechaTrasladoOC.Text + "', ");
+                    if (!string.IsNullOrEmpty(txtFactura.Text))
+                        stringBuilder.Append("factura = '" + txtFactura.Text + "', ");
+                    if (!string.IsNullOrEmpty(txtFechaFactura.Text))
+                        stringBuilder.Append("fecha_factura = '" + txtFechaFactura.Text + "', ");
+                    if (!string.IsNullOrEmpty(txtFechaTrasladoAlmacen.Text))
+                        stringBuilder.Append("fecha_traslado_almacen = '" + txtFechaTrasladoAlmacen.Text + "', ");
+                    if (!string.IsNullOrEmpty(txtFechaIngresoSB.Text))
+                        stringBuilder.Append("txtFechaIngresoBS = '" + txtFechaIngresoSB.Text + "', ");
+
+                    if (!string.IsNullOrEmpty(stringBuilder.ToString()))
+                    {
+                        pInsumoLN = new PedidosLN();
+                        DataSet dsResultado = new DataSet();
+                        dsResultado = pInsumoLN.AlmacenarDatosTecnicoDetalle(stringBuilder.ToString(),  gvDetalle.DataKeys[i].Value.ToString());
+                    }
+                    else
+                        lblError.Text = "No se tienen ningun dato a ingresar";
+                }
             }
             catch (Exception ex)
             {

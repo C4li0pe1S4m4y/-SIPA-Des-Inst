@@ -472,14 +472,14 @@ namespace CapaLN
             return dsResultado;
         }
 
-        public DataSet RollBackAlmacenarDetalleTransferencias(string usuario, string accion,decimal monto)
+        public DataSet RollBackAlmacenarDetalleTransferencias(string usuario, string accion, decimal monto)
         {
             DataSet dsResultado = armarDsResultado();
 
             ObjAD = new PlanAccionAD();
             try
             {
-                DataTable dt = ObjAD.RollBackAlmacenarDetalleTransferencias(usuario,accion,monto);
+                DataTable dt = ObjAD.RollBackAlmacenarDetalleTransferencias(usuario, accion, monto);
 
                 if (!bool.Parse(dt.Rows[0]["RESULTADO"].ToString()))
                     throw new Exception(dt.Rows[0]["MENSAJE"].ToString());
@@ -571,13 +571,46 @@ namespace CapaLN
 
             return dsResultado;
         }
-        public DataSet InformacionAccionDetallesCompleto(int id, int id2, string criterio, int opcion,int anio)
+
+        public DataSet InformacionAccionDetallesMeg(int id)
         {
             DataSet dsResultado = armarDsResultado();
             ObjAD = new PlanAccionAD();
             try
             {
-                DataTable dt = ObjAD.InformacionAccionDetallesCompleto(id, id2, criterio, opcion,anio);
+                DataTable dt = ObjAD.InformacionAccionDetallesMontos(id);
+                dt.PrimaryKey = new DataColumn[] { dt.Columns["id_renglon"] };
+                DataTable dt2 = ObjAD.InformacionAccionDetallesSaldos(id);
+                dt.Merge(dt2);
+                dt.Columns.Add("Saldo", typeof(decimal));
+                foreach (DataRow row in dt.Rows)
+                {
+                    decimal tempValueIn1stColumn = 0;
+                    decimal.TryParse(row["monto"].ToString(),out tempValueIn1stColumn);
+                    decimal tempValueIn2ndColumn = 0;
+                    decimal.TryParse(row["codificado"].ToString(), out tempValueIn2ndColumn);
+                    decimal saldo = tempValueIn1stColumn - tempValueIn2ndColumn; 
+                    row.SetField("Saldo", saldo);
+                }
+
+                dt.TableName = "BUSQUEDA";
+                dsResultado.Tables.Add(dt);
+                dsResultado.Tables[0].Rows[0]["ERRORES"] = false;
+            }
+            catch (Exception ex)
+            {
+                dsResultado.Tables[0].Rows[0]["MSG_ERROR"] = " CapaLN.InformacionAccionDetalles(). " + ex.Message;
+            }
+
+            return dsResultado;
+        }
+        public DataSet InformacionAccionDetallesCompleto(int id, int id2, string criterio, int opcion, int anio)
+        {
+            DataSet dsResultado = armarDsResultado();
+            ObjAD = new PlanAccionAD();
+            try
+            {
+                DataTable dt = ObjAD.InformacionAccionDetallesCompleto(id, id2, criterio, opcion, anio);
                 dt.TableName = "BUSQUEDA";
                 dsResultado.Tables.Add(dt);
                 dsResultado.Tables[0].Rows[0]["ERRORES"] = false;
@@ -773,7 +806,7 @@ namespace CapaLN
             return dsResultado;
         }
 
-        
+
 
         public DataSet PptoDep(int idPoa, int idDependencia)
         {
@@ -929,14 +962,14 @@ namespace CapaLN
         }
 
         //REGION GESFOR2 FINAL
-        public DataSet CostoEstimado(int unidad,int anio)
+        public DataSet CostoEstimado(int unidad, int anio)
         {
             DataSet dsResultado = armarDsResultado();
             ObjAD = new PlanAccionAD();
 
             try
             {
-                DataTable dt = ObjAD.CostoEstimado(unidad,anio);
+                DataTable dt = ObjAD.CostoEstimado(unidad, anio);
                 dt.TableName = "BUSQUEDA";
                 dsResultado.Tables.Add(dt);
                 dsResultado.Tables[0].Rows[0]["ERRORES"] = false;
@@ -955,7 +988,7 @@ namespace CapaLN
             ObjAD = new PlanAccionAD();
             try
             {
-                DataTable dt = ObjAD.InformacionPorCuatrimestre(anio,cuatrimestre);
+                DataTable dt = ObjAD.InformacionPorCuatrimestre(anio, cuatrimestre);
                 dt.TableName = "BUSQUEDA";
                 dsResultado.Tables.Add(dt);
                 dsResultado.Tables[0].Rows[0]["ERRORES"] = false;

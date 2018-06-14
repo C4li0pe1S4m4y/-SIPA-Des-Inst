@@ -138,6 +138,206 @@
     <Content Include="fonts\montserrat\OFL.txt" />
     <Content Include="img\glyphicons-halflings-white.png" />
     <Content Include="img\glyphicons-halflings.png" />
+    <Content Include="img\PNG_32x32_black\alarm-clock-icon_32x32px.png" />
+    <Content Include="img\PNG_32x32_black\arrow-down-icon_32x32px.png" />
+    <Content Include="img\PNG_32x32_black\arrow-left-icon_32x32px.png" />
+    <Content Include="img\PNG_32x32_black\arrow-right-icon_32x32px.png" />
+    <Content Include="img\PNG_32x32_black\arrow-up-icon_32x32px.png" />
+    <Content Include="img\PNG_32x32_black\bar-graph-icon_32x32px.png" />
+    <Content Include="img\PNG_32x32_black\battery-charging-icon_32x32px.png" />
+    <Content Include="img\PNG_32x32_black\battery-empty-icon_32x32px.png" />
+    <Content Include="img\PNG_32x32_black\battery-full-icon_32x32px.png" />
+    <Content Include="img\PNG_32x32_black\battery-low-icon_32x32px.png" />
+    <Content Include="img\PNG_32x32_black\battery-medium-icon_32x32px.png" />
+    <Content Include="img\PNG_32x32_black\bed-icon_32x32px.png" />
+    <Content Include="img\PNG_32x32_black\bike-icon_32x32px.png" />
+    <Content Include="img\PNG_32x32_black\binoculars-icon_32x32px.png" />
+    <Content Include="img\PNG_32x32_black\bookmark-add-icon_32x32px.png" />
+    <Content Include="img\PNG_32x32_black\bookmark-delete-icon_32x32px.png" />
+    <Content Include="img\PNG_32x32_black\bookmark-edit-icon_32x32px.png" />
+    <Content Include="img\PNG_32x32_black\bookmark-icon_32x32px.png" />
+    <Content Include="img\PNG_32x32_black\briefcase-icon_32x32px.png" />
+    <Content Include="img\PNG_32x32_black\calculator-icon_32x32px.png" />
+    <Content Include="img\PNG_32x32_black\calendar-icon_32x32px.png" />
+    <Content Include="img\PNG_32x32_black\camera-icon_32x32px.png" />
+    <Content Include="img\PNG_32x32_black\camping-icon_32x32px.png" />
+    <Content Include="img\PNG_32x32_black\car-icon_32x32px.png" />
+    <Content Include="img\PNG_32x32_black\cash-icon_32x32px.png" />
+    <Content Include="img\PNG_32x32_black\cd-icon_32x32px.png" />
+    <Content Include="img\PNG_32x32_black\chain-link-broken-icon_32x32px.png" />
+    <Content Include="img\PNG_32x32_black\chain-link-icon_32x32px.png" />
+    <Content Include="img\PNG_32x32_black\check-icon_32x32px.png" />
+    <Content Include="img\PNG_32x32_black\clapboard-icon_32x32px.png" />
+    <Content Include="img\PNG_32x32_black\clipboard-icon_32x32px.png" />
+    <Content Include="img\PNG_32x32_black\close-fullscreen-icon_32x32px.png" />
+    <Content Include="img\PNG_32x32_black\comment-delete-icon_32x32px.png" />
+    <Content Include="img\PNG_32x32_black\comment-edit-icon_32x32px.png" />
+    <Content Include="img\PNG_32x32_black\comment-icon_32x32px.png" />
+    <Content Include="img\PNG_32x32_black\comment-new-icon_32x32px.png" />
+    <Content Include="img\PNG_32x32_black\credit-card-icon_32x32px.png" />
+    <Content Include="img\PNG_32x32_black\database-icon_32x32px.png" />
+    <Content Include="img\PNG_32x32_black\document-delete-icon_32x32px.png" />
+    <Content Include="img\PNG_32x32_black\document-edit-icon_32x32px.png" />
+    <Content Include="img\PNG_32x32_black\document-icon_32x32px.png" />
+    <Content Include="img\PNG_32x32_black\document-new-02-icon_32x32px.png" />
+    <Content Include="img\PNG_32x32_black\document-new-icon_32x32px.png" />
+    <Content Include="img\PNG_32x32_black\dollar-icon_32x32px.png" />
+    <Content Include="img\PNG_32x32_black\download-icon_32x32px.png" />
+    <Content Include="img\PNG_32x32_black\equalizer-icon_32x32px.png" />
+    <Content Include="img\PNG_32x32_black\euro-icon_32x32px.png" />
+    <Content Include="img\PNG_32x32_black\fast-forwardicon_32x32px.png" />
+    <Content Include="img\PNG_32x32_black\favorite-add-icon_32x32px.png" />
+    <Content Include="img\PNG_32x32_black\favorite-delete-icon_32x32px.png" />
+    <Content Include="img\PNG_32x32_black\favorite-icon_32x32px.png" />
+    <Content Include="img\PNG_32x32_black\film-reel-icon_32x32px.png" />
+    <Content Include="img\PNG_32x32_black\film-strip-icon_32x32px.png" />
+    <Content Include="img\PNG_32x32_black\flower-icon_32x32px.png" />
+    <Content Include="img\PNG_32x32_black\folder-add-icon_32x32px.png" />
+    <Content Include="img\PNG_32x32_black\folder-delete-icon_32x32px.png" />
+    <Content Include="img\PNG_32x32_black\folder-edit-icon_32x32px.png" />
+    <Content Include="img\PNG_32x32_black\folder-icon_32x32px.png" />
+    <Content Include="img\PNG_32x32_black\fork-and-spoon-icon_32x32px.png" />
+    <Content Include="img\PNG_32x32_black\gas-pump-icon_32x32px.png" />
+    <Content Include="img\PNG_32x32_black\gavel-icon_32x32px.png" />
+    <Content Include="img\PNG_32x32_black\gift-icon_32x32px.png" />
+    <Content Include="img\PNG_32x32_black\globe-icon_32x32px.png" />
+    <Content Include="img\PNG_32x32_black\graduation-cap-icon_32x32px.png" />
+    <Content Include="img\PNG_32x32_black\handicap-icon_32x32px.png" />
+    <Content Include="img\PNG_32x32_black\hd-icon_32x32px.png" />
+    <Content Include="img\PNG_32x32_black\headphones-icon_32x32px.png" />
+    <Content Include="img\PNG_32x32_black\home-02-icon_32x32px.png" />
+    <Content Include="img\PNG_32x32_black\home-icon_32x32px.png" />
+    <Content Include="img\PNG_32x32_black\hummer-icon_32x32px.png" />
+    <Content Include="img\PNG_32x32_black\information-icon_32x32px.png" />
+    <Content Include="img\PNG_32x32_black\iphone-icon_32x32px.png" />
+    <Content Include="img\PNG_32x32_black\ipod-icon_32x32px.png" />
+    <Content Include="img\PNG_32x32_black\jet-icon_32x32px.png" />
+    <Content Include="img\PNG_32x32_black\key-icon_32x32px.png" />
+    <Content Include="img\PNG_32x32_black\laptop-icon_32x32px.png" />
+    <Content Include="img\PNG_32x32_black\legal-scales-icon_32x32px.png" />
+    <Content Include="img\PNG_32x32_black\lightbulb-icon_32x32px.png" />
+    <Content Include="img\PNG_32x32_black\location-marker-icon_32x32px.png" />
+    <Content Include="img\PNG_32x32_black\lock-closed-icon_32x32px.png" />
+    <Content Include="img\PNG_32x32_black\lock-open-icon_32x32px.png" />
+    <Content Include="img\PNG_32x32_black\mail-delete-icon_32x32px.png" />
+    <Content Include="img\PNG_32x32_black\mail-forward-icon_32x32px.png" />
+    <Content Include="img\PNG_32x32_black\mail-icon_32x32px.png" />
+    <Content Include="img\PNG_32x32_black\mail-new_message-icon_32x32px.png" />
+    <Content Include="img\PNG_32x32_black\mail-opened-02-icon_32x32px.png" />
+    <Content Include="img\PNG_32x32_black\mail-opened-icon_32x32px.png" />
+    <Content Include="img\PNG_32x32_black\mailbox-icon_32x32px.png" />
+    <Content Include="img\PNG_32x32_black\man-icon_32x32px.png" />
+    <Content Include="img\PNG_32x32_black\map-icon_32x32px.png" />
+    <Content Include="img\PNG_32x32_black\microphone-icon_32x32px.png" />
+    <Content Include="img\PNG_32x32_black\minus-icon_32x32px.png" />
+    <Content Include="img\PNG_32x32_black\mouse-icon_32x32px.png" />
+    <Content Include="img\PNG_32x32_black\mug-icon_32x32px.png" />
+    <Content Include="img\PNG_32x32_black\music-note-02-icon_32x32px.png" />
+    <Content Include="img\PNG_32x32_black\music-note-icon_32x32px.png" />
+    <Content Include="img\PNG_32x32_black\open-eject-icon_32x32px.png" />
+    <Content Include="img\PNG_32x32_black\open-fullscreen-icon_32x32px.png" />
+    <Content Include="img\PNG_32x32_black\paintbrush-icon_32x32px.png" />
+    <Content Include="img\PNG_32x32_black\paintbucket-icon_32x32px.png" />
+    <Content Include="img\PNG_32x32_black\paintroller-icon_32x32px.png" />
+    <Content Include="img\PNG_32x32_black\palm-tree-icon_32x32px.png" />
+    <Content Include="img\PNG_32x32_black\paperclip-icon_32x32px.png" />
+    <Content Include="img\PNG_32x32_black\pause-icon_32x32px.png" />
+    <Content Include="img\PNG_32x32_black\pensil-icon_32x32px.png" />
+    <Content Include="img\PNG_32x32_black\photo-add-icon_32x32px.png" />
+    <Content Include="img\PNG_32x32_black\photo-delete-icon_32x32px.png" />
+    <Content Include="img\PNG_32x32_black\photo-edit-icon_32x32px.png" />
+    <Content Include="img\PNG_32x32_black\photo-icon_32x32px.png" />
+    <Content Include="img\PNG_32x32_black\picnic-table-icon_32x32px.png" />
+    <Content Include="img\PNG_32x32_black\play-icon_32x32px.png" />
+    <Content Include="img\PNG_32x32_black\plug-icon_32x32px.png" />
+    <Content Include="img\PNG_32x32_black\plus-icon_32x32px.png" />
+    <Content Include="img\PNG_32x32_black\podcast-icon_32x32px.png" />
+    <Content Include="img\PNG_32x32_black\pound-icon_32x32px.png" />
+    <Content Include="img\PNG_32x32_black\power-icon_32x32px.png" />
+    <Content Include="img\PNG_32x32_black\print-icon_32x32px.png" />
+    <Content Include="img\PNG_32x32_black\pushpin-icon_32x32px.png" />
+    <Content Include="img\PNG_32x32_black\puzzle-piece-icon_32x32px.png" />
+    <Content Include="img\PNG_32x32_black\qoutation-mark-icon_32x32px.png" />
+    <Content Include="img\PNG_32x32_black\question-mark-icon_32x32px.png" />
+    <Content Include="img\PNG_32x32_black\record-icon_32x32px.png" />
+    <Content Include="img\PNG_32x32_black\recycle-icon_32x32px.png" />
+    <Content Include="img\PNG_32x32_black\refresh-02-icon_32x32px.png" />
+    <Content Include="img\PNG_32x32_black\refresh-icon_32x32px.png" />
+    <Content Include="img\PNG_32x32_black\repeat-icon_32x32px.png" />
+    <Content Include="img\PNG_32x32_black\rewind-icon_32x32px.png" />
+    <Content Include="img\PNG_32x32_black\rocket-icon_32x32px.png" />
+    <Content Include="img\PNG_32x32_black\roller-skate-icon_32x32px.png" />
+    <Content Include="img\PNG_32x32_black\router-icon_32x32px.png" />
+    <Content Include="img\PNG_32x32_black\rss-icon_32x32px.png" />
+    <Content Include="img\PNG_32x32_black\safe-icon_32x32px.png" />
+    <Content Include="img\PNG_32x32_black\sailboat-icon_32x32px.png" />
+    <Content Include="img\PNG_32x32_black\save-disk-icon_32x32px.png" />
+    <Content Include="img\PNG_32x32_black\scissors-icon_32x32px.png" />
+    <Content Include="img\PNG_32x32_black\search-icon_32x32px.png" />
+    <Content Include="img\PNG_32x32_black\settings-02-icon_32x32px.png" />
+    <Content Include="img\PNG_32x32_black\settings-icon_32x32px.png" />
+    <Content Include="img\PNG_32x32_black\ship-icon_32x32px.png" />
+    <Content Include="img\PNG_32x32_black\shopping-basket-add-02-icon_32x32px.png" />
+    <Content Include="img\PNG_32x32_black\shopping-basket-add-icon_32x32px.png" />
+    <Content Include="img\PNG_32x32_black\shopping-basket-icon_32x32px.png" />
+    <Content Include="img\PNG_32x32_black\shopping-basket-remove-02-icon_32x32px.png" />
+    <Content Include="img\PNG_32x32_black\shopping-basket-remove-icon_32x32px.png" />
+    <Content Include="img\PNG_32x32_black\shopping-cart-add-02-icon_32x32px.png" />
+    <Content Include="img\PNG_32x32_black\shopping-cart-add-icon_32x32px.png" />
+    <Content Include="img\PNG_32x32_black\shopping-cart-icon_32x32px.png" />
+    <Content Include="img\PNG_32x32_black\shopping-cart-remove-02-icon_32x32px.png" />
+    <Content Include="img\PNG_32x32_black\shopping-cart-remove-icon_32x32px.png" />
+    <Content Include="img\PNG_32x32_black\shuffle-icon_32x32px.png" />
+    <Content Include="img\PNG_32x32_black\skip-ahead-icon_32x32px.png" />
+    <Content Include="img\PNG_32x32_black\skip-back-icon_32x32px.png" />
+    <Content Include="img\PNG_32x32_black\star-icon_32x32px.png" />
+    <Content Include="img\PNG_32x32_black\stop-icon_32x32px.png" />
+    <Content Include="img\PNG_32x32_black\support-icon_32x32px.png" />
+    <Content Include="img\PNG_32x32_black\tag-icon_32x32px.png" />
+    <Content Include="img\PNG_32x32_black\tags-icon_32x32px.png" />
+    <Content Include="img\PNG_32x32_black\target-02-icon_32x32px.png" />
+    <Content Include="img\PNG_32x32_black\target-icon_32x32px.png" />
+    <Content Include="img\PNG_32x32_black\telephone-icon_32x32px.png" />
+    <Content Include="img\PNG_32x32_black\textsize-down-icon_32x32px.png" />
+    <Content Include="img\PNG_32x32_black\textsize-up-icon_32x32px.png" />
+    <Content Include="img\PNG_32x32_black\thermometer-icon_32x32px.png" />
+    <Content Include="img\PNG_32x32_black\thumb-down-icon_32x32px.png" />
+    <Content Include="img\PNG_32x32_black\thumb-up-icon_32x32px.png" />
+    <Content Include="img\PNG_32x32_black\trash-icon_32x32px.png" />
+    <Content Include="img\PNG_32x32_black\tree-icon_32x32px.png" />
+    <Content Include="img\PNG_32x32_black\trophy-icon_32x32px.png" />
+    <Content Include="img\PNG_32x32_black\truck-icon_32x32px.png" />
+    <Content Include="img\PNG_32x32_black\tv-icon_32x32px.png" />
+    <Content Include="img\PNG_32x32_black\umbrella-icon_32x32px.png" />
+    <Content Include="img\PNG_32x32_black\upload-icon_32x32px.png" />
+    <Content Include="img\PNG_32x32_black\user-add-icon_32x32px.png" />
+    <Content Include="img\PNG_32x32_black\user-delete-icon_32x32px.png" />
+    <Content Include="img\PNG_32x32_black\user-edit-icon_32x32px.png" />
+    <Content Include="img\PNG_32x32_black\user-icon_32x32px.png" />
+    <Content Include="img\PNG_32x32_black\users-icon_32x32px.png" />
+    <Content Include="img\PNG_32x32_black\vcard-icon_32x32px.png" />
+    <Content Include="img\PNG_32x32_black\video-camera-icon_32x32px.png" />
+    <Content Include="img\PNG_32x32_black\volume-high-icon_32x32px.png" />
+    <Content Include="img\PNG_32x32_black\volume-low-icon_32x32px.png" />
+    <Content Include="img\PNG_32x32_black\volume-medium-icon_32x32px.png" />
+    <Content Include="img\PNG_32x32_black\volume-mute-02-icon_32x32px.png" />
+    <Content Include="img\PNG_32x32_black\volume-mute-icon_32x32px.png" />
+    <Content Include="img\PNG_32x32_black\weather-cloudy-icon_32x32px.png" />
+    <Content Include="img\PNG_32x32_black\weather-lightning-icon_32x32px.png" />
+    <Content Include="img\PNG_32x32_black\weather-partly-cloudy-icon_32x32px.png" />
+    <Content Include="img\PNG_32x32_black\weather-rain-icon_32x32px.png" />
+    <Content Include="img\PNG_32x32_black\weather-snow-icon_32x32px.png" />
+    <Content Include="img\PNG_32x32_black\weather-sunny-icon_32x32px.png" />
+    <Content Include="img\PNG_32x32_black\wifi-high-icon_32x32px.png" />
+    <Content Include="img\PNG_32x32_black\wifi-icon_32x32px.png" />
+    <Content Include="img\PNG_32x32_black\wifi-low-icon_32x32px.png" />
+    <Content Include="img\PNG_32x32_black\wifi-medium-icon_32x32px.png" />
+    <Content Include="img\PNG_32x32_black\woman-icon_32x32px.png" />
+    <Content Include="img\PNG_32x32_black\wrench-icon_32x32px.png" />
+    <Content Include="img\PNG_32x32_black\x-icon_32x32px.png" />
+    <Content Include="img\PNG_32x32_black\yen-icon_32x32px.png" />
+    <Content Include="img\PNG_32x32_black\zoom-in-icon_32x32px.png" />
+    <Content Include="img\PNG_32x32_black\zoom-out-icon_32x32px.png" />
     <Content Include="Inicio.aspx" />
     <Content Include="Estrategia\PlanesEstrategicos.aspx" />
     <Content Include="Estrategia\PlanesEstrategicosB.aspx" />
@@ -146,7 +346,39 @@
     <Content Include="Financiero\MesaEntradaFinanciero.aspx" />
     <Content Include="img\cargar.gif" />
     <Content Include="img\logoBcoGuate.jpg" />
+    <Content Include="js\allInOne.js" />
+    <Content Include="js\allStrings_cs.js" />
+    <Content Include="js\allStrings_da.js" />
+    <Content Include="js\allStrings_de.js" />
+    <Content Include="js\allStrings_en.js" />
+    <Content Include="js\allStrings_es.js" />
+    <Content Include="js\allStrings_fi.js" />
+    <Content Include="js\allStrings_fr.js" />
+    <Content Include="js\allStrings_hu.js" />
+    <Content Include="js\allStrings_it.js" />
+    <Content Include="js\allStrings_ja.js" />
+    <Content Include="js\allStrings_ko.js" />
+    <Content Include="js\allStrings_nb.js" />
+    <Content Include="js\allStrings_nl.js" />
+    <Content Include="js\allStrings_pl.js" />
+    <Content Include="js\allStrings_pt.js" />
+    <Content Include="js\allStrings_ru.js" />
+    <Content Include="js\allStrings_sk.js" />
+    <Content Include="js\allStrings_sv.js" />
+    <Content Include="js\allStrings_th.js" />
+    <Content Include="js\allStrings_tr.js" />
+    <Content Include="js\allStrings_zh_CN.js" />
+    <Content Include="js\allStrings_zh_TW.js" />
+    <Content Include="js\crv.js" />
+    <Content Include="js\gridviewscroll.js" />
+    <Content Include="js\jquery-1.10.2.min.js" />
+    <Content Include="js\jquery-1.11.2.min.js" />
+    <Content Include="js\lightbox-2.6.min.js" />
     <Content Include="js\main.js" />
+    <Content Include="js\modernizr.custom.js" />
+    <Content Include="js\parameterUIController-compressed.js" />
+    <Content Include="js\processindicator.js" />
+    <Content Include="js\promptengine-compressed.js" />
     <Content Include="Operativa\AdminAccionesPoaPpto.aspx" />
     <Content Include="Operativa\AdminPlanOperativo.aspx" />
     <Content Include="Operativa\Modificaciones\GESFOR2Listado.aspx" />
@@ -177,12 +409,15 @@
     <Content Include="ReporteriaSistema\cargar.gif" />
     <Content Include="ReporteriaSistema\EstadosDocumentos.aspx" />
     <Content Include="ReporteriaSistema\Pedidos\HistorialEstados.aspx" />
+    <Content Include="ReporteriaSistema\ReporteFinanciero.aspx" />
     <Content Include="ReporteriaSistema\ReportePedidos.aspx" />
     <Content Include="ReporteriaSistema\SaldosRenglones.aspx" />
     <Content Include="ReporteriaSistema\SaldosRenglonesCuatrimestres.aspx" />
     <Content Include="ReporteriaSistema\SaldosRenglonesDetalles.aspx" />
     <Content Include="ReporteriaSistema\SaldosRenglonesDetalles2.aspx" />
     <Content Include="ReporteriaSistema\SalidasBusqueda.aspx" />
+    <Content Include="Reporteria\prueba2.aspx" />
+    <Content Include="Reporteria\ReporteCristal.aspx" />
     <Content Include="Reporteria\SaldosRenglonesPen.aspx" />
     <Content Include="Reportes\frmReporte.aspx" />
     <Content Include="packages.config" />
@@ -269,6 +504,17 @@
     <Content Include="fonts\poppins\Poppins-SemiBoldItalic.ttf" />
     <Content Include="fonts\poppins\Poppins-Thin.ttf" />
     <Content Include="fonts\poppins\Poppins-ThinItalic.ttf" />
+    <Content Include="Reportes\datosCristal.xsc">
+      <DependentUpon>datosCristal.xsd</DependentUpon>
+    </Content>
+    <None Include="Reportes\datosCristal.xsd">
+      <SubType>Designer</SubType>
+      <Generator>MSDataSetGenerator</Generator>
+      <LastGenOutput>datosCristal.Designer.cs</LastGenOutput>
+    </None>
+    <Content Include="Reportes\datosCristal.xss">
+      <DependentUpon>datosCristal.xsd</DependentUpon>
+    </Content>
     <None Include="Scripts\jquery-1.7.1-vsdoc.js" />
     <Content Include="Scripts\jquery-1.7.1.js" />
     <Content Include="Scripts\jquery-1.7.1.min.js" />
@@ -415,7 +661,6 @@
     <Content Include="Content\NoImagen.jpg" />
     <Content Include="Estrategia\Ingreso.aspx" />
     <Content Include="img\logoEnc.png" />
-    <Content Include="js\jquery-1.11.2.min.js" />
     <Content Include="Operativa\AccionesPoa.aspx" />
     <Content Include="Operativa\AsignarAnalista.aspx" />
     <Content Include="Operativa\CodificarPoa.aspx" />
@@ -499,8 +744,6 @@
     <Content Include="css\img\print.png" />
     <Content Include="img\save.png" />
     <Content Include="Inicio1.aspx" />
-    <Content Include="js\lightbox-2.6.min.js" />
-    <Content Include="js\modernizr.custom.js" />
     <Content Include="Login.aspx" />
     <Content Include="Pac\PacVoBo2.aspx" />
     <Content Include="Pac\IngresarPac.aspx" />
@@ -545,6 +788,11 @@
     </Content>
     <Content Include="Reportes\rptGasto.rdlc" />
     <EmbeddedResource Include="Reportes\ActaCompras.rdlc" />
+    <EmbeddedResource Include="Reportes\reportePrueba.rpt">
+      <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
+      <LastGenOutput>reportePrueba.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Reportes\rptFinanciero.rdlc" />
     <EmbeddedResource Include="Reportes\rptCatalogoInsumos.rdlc" />
     <EmbeddedResource Include="Reportes\SaldosRenglonesDet.rdlc" />
     <Content Include="Reportes\Actas.xsc">
@@ -764,6 +1012,13 @@
       <DependentUpon>Inicio.aspx</DependentUpon>
     </Compile>
     <Compile Include="Numlet.cs" />
+    <Compile Include="Operativa\Seguimiento\NoSeguimiento.aspx.cs">
+      <DependentUpon>NoSeguimiento.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Operativa\Seguimiento\NoSeguimiento.aspx.designer.cs">
+      <DependentUpon>NoSeguimiento.aspx</DependentUpon>
+    </Compile>
     <Compile Include="Pac\GuardarMoPac.aspx.cs">
       <DependentUpon>GuardarMoPac.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -792,6 +1047,13 @@
     <Compile Include="ReporteriaSistema\EstadosDocumentos.aspx.designer.cs">
       <DependentUpon>EstadosDocumentos.aspx</DependentUpon>
     </Compile>
+    <Compile Include="ReporteriaSistema\ReporteFinanciero.aspx.cs">
+      <DependentUpon>ReporteFinanciero.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="ReporteriaSistema\ReporteFinanciero.aspx.designer.cs">
+      <DependentUpon>ReporteFinanciero.aspx</DependentUpon>
+    </Compile>
     <Compile Include="ReporteriaSistema\SaldosRenglonesCuatrimestres.aspx.cs">
       <DependentUpon>SaldosRenglonesCuatrimestres.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -805,6 +1067,20 @@
     </Compile>
     <Compile Include="ReporteriaSistema\SaldosRenglonesDetalles2.aspx.designer.cs">
       <DependentUpon>SaldosRenglonesDetalles2.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Reporteria\prueba2.aspx.cs">
+      <DependentUpon>prueba2.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Reporteria\prueba2.aspx.designer.cs">
+      <DependentUpon>prueba2.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Reporteria\ReporteCristal.aspx.cs">
+      <DependentUpon>ReporteCristal.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Reporteria\ReporteCristal.aspx.designer.cs">
+      <DependentUpon>ReporteCristal.aspx</DependentUpon>
     </Compile>
     <Compile Include="Reportes\Actas.Designer.cs">
       <AutoGen>True</AutoGen>
@@ -946,13 +1222,6 @@
     </Compile>
     <Compile Include="Operativa\Seguimiento\No1Seguimiento.aspx.designer.cs">
       <DependentUpon>No1Seguimiento.aspx</DependentUpon>
-    </Compile>
-    <Compile Include="Operativa\Seguimiento\NoSeguimiento.aspx.cs">
-      <DependentUpon>NoSeguimiento.aspx</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
-    </Compile>
-    <Compile Include="Operativa\Seguimiento\NoSeguimiento.aspx.designer.cs">
-      <DependentUpon>NoSeguimiento.aspx</DependentUpon>
     </Compile>
     <Compile Include="Operativa\Seguimiento\SeguimientoIngreso.aspx.cs">
       <DependentUpon>SeguimientoIngreso.aspx</DependentUpon>
@@ -1127,6 +1396,11 @@
     <Compile Include="Reporteria\SaldosRenglonesPen.aspx.designer.cs">
       <DependentUpon>SaldosRenglonesPen.aspx</DependentUpon>
     </Compile>
+    <Compile Include="Reportes\datosCristal.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>datosCristal.xsd</DependentUpon>
+    </Compile>
     <Compile Include="Reportes\dsEstados.Designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
@@ -1163,6 +1437,12 @@
     </Compile>
     <Compile Include="Reportes\frmReporte.aspx.designer.cs">
       <DependentUpon>frmReporte.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Reportes\reportePrueba.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>reportePrueba.rpt</DependentUpon>
+      <SubType>Component</SubType>
     </Compile>
     <Compile Include="Reportes\RequisicionesEstados.Designer.cs">
       <AutoGen>True</AutoGen>
@@ -1738,6 +2018,7 @@
     <Service Include="{C0C07587-41A7-46C8-8FBD-3F9C8EBE2DDC}" />
   </ItemGroup>
   <ItemGroup>
+    <Folder Include="aspnet_client\" />
     <Folder Include="Compras\ArchivoPdf\" />
     <Folder Include="Operativa\Seguimiento\ArchivoPDF\" />
     <Folder Include="Pedido\xxx\" />

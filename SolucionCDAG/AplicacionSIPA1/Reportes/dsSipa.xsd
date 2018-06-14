@@ -2,10 +2,11 @@
 <xs:schema id="dsSipa" targetNamespace="http://tempuri.org/dsSipa.xsd" xmlns:mstns="http://tempuri.org/dsSipa.xsd" xmlns="http://tempuri.org/dsSipa.xsd" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata" xmlns:msprop="urn:schemas-microsoft-com:xml-msprop" attributeFormDefault="qualified" elementFormDefault="qualified">
   <xs:annotation>
     <xs:appinfo source="urn:schemas-microsoft-com:xml-msdatasource">
-      <DataSource DefaultConnectionIndex="1" FunctionsComponentName="QueriesTableAdapter" Modifier="AutoLayout, AnsiClass, Class, Public" SchemaSerializationMode="IncludeSchema" xmlns="urn:schemas-microsoft-com:xml-msdatasource">
+      <DataSource DefaultConnectionIndex="2" FunctionsComponentName="QueriesTableAdapter" Modifier="AutoLayout, AnsiClass, Class, Public" SchemaSerializationMode="IncludeSchema" xmlns="urn:schemas-microsoft-com:xml-msdatasource">
         <Connections>
           <Connection AppSettingsObjectName="Web.config" AppSettingsPropertyName="dbcdagsipaConnectionString2" ConnectionStringObject="" IsAppSettingsProperty="true" Modifier="Assembly" Name="dbcdagsipaConnectionString2 (Web.config)" ParameterPrefix="@" PropertyReference="AppConfig.System.Configuration.ConfigurationManager.0.ConnectionStrings.dbcdagsipaConnectionString2.ConnectionString" Provider="MySql.Data.MySqlClient" />
           <Connection AppSettingsObjectName="Web.config" AppSettingsPropertyName="dbcdagsipaConnectionString1" ConnectionStringObject="" IsAppSettingsProperty="true" Modifier="Assembly" Name="dbcdagsipaConnectionString1 (Web.config)" ParameterPrefix="@" PropertyReference="AppConfig.System.Configuration.ConfigurationManager.0.ConnectionStrings.dbcdagsipaConnectionString1.ConnectionString" Provider="MySql.Data.MySqlClient" />
+          <Connection AppSettingsObjectName="Web.config" AppSettingsPropertyName="dbcdagsipaConnectionString3" ConnectionStringObject="" IsAppSettingsProperty="true" Modifier="Assembly" Name="dbcdagsipaConnectionString3 (Web.config)" ParameterPrefix="@" PropertyReference="AppConfig.System.Configuration.ConfigurationManager.0.ConnectionStrings.dbcdagsipaConnectionString3.ConnectionString" Provider="MySql.Data.MySqlClient" />
         </Connections>
         <Tables>
           <TableAdapter BaseClass="System.ComponentModel.Component" DataAccessorModifier="AutoLayout, AnsiClass, Class, Public" DataAccessorName="ccl_catalogoTableAdapter" GeneratorDataComponentClassName="ccl_catalogoTableAdapter" Name="ccl_catalogo" UserDataComponentName="ccl_catalogoTableAdapter">
@@ -129,6 +130,37 @@ FROM     ccl_subproducto</CommandText>
               <Mapping SourceColumn="id_producto" DataSetColumn="id_producto" />
               <Mapping SourceColumn="codigo" DataSetColumn="codigo" />
               <Mapping SourceColumn="subproducto" DataSetColumn="subproducto" />
+            </Mappings>
+            <Sources />
+          </TableAdapter>
+          <TableAdapter BaseClass="System.ComponentModel.Component" DataAccessorModifier="AutoLayout, AnsiClass, Class, Public" DataAccessorName="reporte_pedidoTableAdapter" GeneratorDataComponentClassName="reporte_pedidoTableAdapter" Name="reporte_pedido" UserDataComponentName="reporte_pedidoTableAdapter">
+            <MainSource>
+              <DbSource ConnectionRef="dbcdagsipaConnectionString3 (Web.config)" DbObjectType="Unknown" FillMethodModifier="Public" FillMethodName="Fill" GenerateMethods="Both" GenerateShortCommands="false" GeneratorGetMethodName="GetData" GeneratorSourceName="Fill" GetMethodModifier="Public" GetMethodName="GetData" QueryType="Rowset" ScalarCallRetval="System.Object, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" UseOptimisticConcurrency="false" UserGetMethodName="GetData" UserSourceName="Fill">
+                <SelectCommand>
+                  <DbCommand CommandType="Text" ModifiedByUser="true">
+                    <CommandText>SELECT p.fecha_ing, CONCAT(p.anio_solicitud, '-', p.no_solicitud) AS No_Requisicion, ac.accion, p.Justificacion, pd.Descripcion, da.no_renglon, pd.costo_pedido, pd.costo_real, pd.costo_pedido - pd.costo_real AS saldo, 
+                 CONCAT(p.id_estado_pedido, '-', ep.nombre_estado) AS estado
+FROM    sipa_pedidos p INNER JOIN
+                 sipa_acciones ac ON ac.id_accion = p.id_accion INNER JOIN
+                 sipa_pedido_detalle pd ON pd.id_pedido = p.id_pedido INNER JOIN
+                 sipa_detalles_accion da ON pd.id_detalle_accion = da.id_detalle INNER JOIN
+                 sipa_estados_pedido ep ON ep.id_estado_pedido = p.id_estado_pedido</CommandText>
+                    <Parameters />
+                  </DbCommand>
+                </SelectCommand>
+              </DbSource>
+            </MainSource>
+            <Mappings>
+              <Mapping SourceColumn="fecha_ing" DataSetColumn="fecha_ing" />
+              <Mapping SourceColumn="No_Requisicion" DataSetColumn="No_Requisicion" />
+              <Mapping SourceColumn="accion" DataSetColumn="accion" />
+              <Mapping SourceColumn="Descripcion" DataSetColumn="Descripcion" />
+              <Mapping SourceColumn="no_renglon" DataSetColumn="no_renglon" />
+              <Mapping SourceColumn="costo_pedido" DataSetColumn="costo_pedido" />
+              <Mapping SourceColumn="costo_real" DataSetColumn="costo_real" />
+              <Mapping SourceColumn="saldo" DataSetColumn="saldo" />
+              <Mapping SourceColumn="estado" DataSetColumn="estado" />
+              <Mapping SourceColumn="Justificacion" DataSetColumn="Justificacion" />
             </Mappings>
             <Sources />
           </TableAdapter>
@@ -389,6 +421,58 @@ FROM     ccl_subproducto</CommandText>
                 <xs:simpleType>
                   <xs:restriction base="xs:string">
                     <xs:maxLength value="300" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+            </xs:sequence>
+          </xs:complexType>
+        </xs:element>
+        <xs:element name="reporte_pedido" msprop:Generator_TableClassName="reporte_pedidoDataTable" msprop:Generator_TableVarName="tablereporte_pedido" msprop:Generator_RowChangedName="reporte_pedidoRowChanged" msprop:Generator_TablePropName="reporte_pedido" msprop:Generator_RowDeletingName="reporte_pedidoRowDeleting" msprop:Generator_RowChangingName="reporte_pedidoRowChanging" msprop:Generator_RowEvHandlerName="reporte_pedidoRowChangeEventHandler" msprop:Generator_RowDeletedName="reporte_pedidoRowDeleted" msprop:Generator_RowClassName="reporte_pedidoRow" msprop:Generator_UserTableName="reporte_pedido" msprop:Generator_RowEvArgName="reporte_pedidoRowChangeEvent">
+          <xs:complexType>
+            <xs:sequence>
+              <xs:element name="fecha_ing" msprop:Generator_ColumnVarNameInTable="columnfecha_ing" msprop:Generator_ColumnPropNameInRow="fecha_ing" msprop:Generator_ColumnPropNameInTable="fecha_ingColumn" msprop:Generator_UserColumnName="fecha_ing" type="xs:dateTime" />
+              <xs:element name="No_Requisicion" msprop:Generator_ColumnVarNameInTable="columnNo_Requisicion" msprop:Generator_ColumnPropNameInRow="No_Requisicion" msprop:Generator_ColumnPropNameInTable="No_RequisicionColumn" msprop:Generator_UserColumnName="No_Requisicion" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="23" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="accion" msprop:Generator_ColumnVarNameInTable="columnaccion" msprop:Generator_ColumnPropNameInRow="accion" msprop:Generator_ColumnPropNameInTable="accionColumn" msprop:Generator_UserColumnName="accion" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="800" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="Descripcion" msprop:Generator_ColumnVarNameInTable="columnDescripcion" msprop:Generator_ColumnPropNameInRow="Descripcion" msprop:Generator_ColumnPropNameInTable="DescripcionColumn" msprop:Generator_UserColumnName="Descripcion" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="1000" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="no_renglon" msprop:Generator_ColumnVarNameInTable="columnno_renglon" msprop:Generator_ColumnPropNameInRow="no_renglon" msprop:Generator_ColumnPropNameInTable="no_renglonColumn" msprop:Generator_UserColumnName="no_renglon">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="5" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="costo_pedido" msprop:Generator_ColumnVarNameInTable="columncosto_pedido" msprop:Generator_ColumnPropNameInRow="costo_pedido" msprop:Generator_ColumnPropNameInTable="costo_pedidoColumn" msprop:Generator_UserColumnName="costo_pedido" type="xs:decimal" minOccurs="0" />
+              <xs:element name="costo_real" msprop:Generator_ColumnVarNameInTable="columncosto_real" msprop:Generator_ColumnPropNameInRow="costo_real" msprop:Generator_ColumnPropNameInTable="costo_realColumn" msprop:Generator_UserColumnName="costo_real" type="xs:decimal" minOccurs="0" />
+              <xs:element name="saldo" msprop:Generator_ColumnVarNameInTable="columnsaldo" msprop:Generator_ColumnPropNameInRow="saldo" msprop:Generator_ColumnPropNameInTable="saldoColumn" msprop:Generator_UserColumnName="saldo" type="xs:decimal" minOccurs="0" />
+              <xs:element name="estado" msprop:Generator_ColumnVarNameInTable="columnestado" msprop:Generator_ColumnPropNameInRow="estado" msprop:Generator_ColumnPropNameInTable="estadoColumn" msprop:Generator_UserColumnName="estado" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="262" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="Justificacion" msprop:Generator_ColumnVarNameInTable="columnJustificacion" msprop:Generator_ColumnPropNameInRow="Justificacion" msprop:Generator_ColumnPropNameInTable="JustificacionColumn" msprop:Generator_UserColumnName="Justificacion" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="1000" />
                   </xs:restriction>
                 </xs:simpleType>
               </xs:element>

@@ -85,6 +85,8 @@ namespace AplicacionSIPA1.Pedido.Ajustes
                     {
                         validarPoaIngresoPedido(int.Parse(ddlUnidades.SelectedValue), int.Parse(ddlAnios.SelectedValue));
                     }
+                    planOperativoLN = new PlanOperativoLN();
+                    planOperativoLN.DdlDependencias(ddlDependencias, ddlUnidades.SelectedValue);
                 }
 
                 int idPoa = 0;

@@ -135,6 +135,25 @@ namespace CapaLN
             dt = reportesAD.HistorialMovimiento(opcion,par,anio);
             return dt;
         }    
-        
+
+        /// <summary>
+        /// Funcion para ReporteFinanciero.aspx
+        /// Selecciona el listado de requisiciones, por año, unidad y accion. Muestra el valor real de las requisiciones
+        /// <para>0</para>
+        /// </summary>
+        /// <returns>Query para agregar datos.</returns>
+        public string queryReporteFinanciero()
+        {
+            string query = "SELECT p.fecha_ing, CONCAT(p.no_solicitud, '-', p.anio_solicitud) AS No_Requisicion, fn_codigo_accion(ac.id_accion, 0, '', 2) accion,p.justificacion  ,pd.Descripcion, " +
+                " da.no_renglon, pd.costo_pedido, pd.costo_real, pd.costo_pedido - pd.costo_real AS saldo, CONCAT(p.id_estado_pedido, '-', ep.nombre_estado) AS estado " +
+                " FROM sipa_pedidos p " +
+                " INNER JOIN sipa_acciones ac ON ac.id_accion = p.id_accion " +
+                " INNER JOIN sipa_pedido_detalle pd ON pd.id_pedido = p.id_pedido " +
+                " INNER JOIN sipa_detalles_accion da ON pd.id_detalle_accion = da.id_detalle " +
+                " INNER JOIN sipa_estados_pedido ep ON ep.id_estado_pedido = p.id_estado_pedido " +
+                " INNER JOIN ccl_unidades u on u.id_unidad = p.id_unidad "+
+                " Where p.id_pedido >0";
+            return query;
+        }
     }
 }

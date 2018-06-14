@@ -221,6 +221,8 @@ namespace AplicacionSIPA1.Operativa.Seguimiento
                 int.TryParse(lblIdPoa.Text, out idPoa);
 
                 pOperativoLN = new PlanOperativoLN();
+                pOperativoLN.DdlDependencias(ddlDependencia, idUnidad.ToString());
+                pOperativoLN = new PlanOperativoLN();
                 pOperativoLN.DdlMeses(ddlMeses);
                 pAccionLN = new PlanAccionLN();
                 ddlMeses.Items[0].Text = "<< Elija un valor >>";
@@ -904,6 +906,39 @@ namespace AplicacionSIPA1.Operativa.Seguimiento
             catch (Exception ex)
             {
                 lblError.Text = "chkFiltroColumnas(). " + ex.Message;
+            }
+        }
+
+        protected void ddlDependencia_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            try
+            {
+                limpiarControlesError();
+                NuevoSeguimientoEnc();
+
+                int anio = 0;
+                int idUnidad = 0;
+
+                int.TryParse(ddlAnios.SelectedValue, out anio);
+                int.TryParse(ddlDependencia.SelectedValue, out idUnidad);
+
+                if (anio > 0 && idUnidad > 0)
+                    validarPoaIngresoSeguimiento(idUnidad, anio);
+
+                int idPoa = 0;
+                int.TryParse(lblIdPoa.Text, out idPoa);
+
+               
+                pOperativoLN = new PlanOperativoLN();
+                pOperativoLN.DdlMeses(ddlMeses);
+                pAccionLN = new PlanAccionLN();
+                ddlMeses.Items[0].Text = "<< Elija un valor >>";
+
+                NuevoSeguimientoDet();
+            }
+            catch (Exception ex)
+            {
+                lblError.Text = "ddlUnidades_SelectedIndexChanged(). " + ex.Message;
             }
         }
     }

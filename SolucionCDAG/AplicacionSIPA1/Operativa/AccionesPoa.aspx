@@ -1256,7 +1256,7 @@
                     <td style="width: 5%">&nbsp;</td>
                     <td style="width: 5%">&nbsp;</td>
                     
-                    <td style="width: 5%">
+                    <td colspan="8">
                         <label style="color:darkorange">Ahora solo se tiene que agregar el monto que se desea debitar en la casilla del DEBITO. </label>
                     </td>
                     <td style="width: 5%">&nbsp;</td>

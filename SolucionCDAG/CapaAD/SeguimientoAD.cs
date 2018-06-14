@@ -593,32 +593,61 @@ namespace CapaAD
            conectar.CerrarConexion();
            return tabla;
        }
+        public DataTable InformacionSeguimientosCompleto(int id, int id2, string criterio, int opcion, int anio)
+        {
 
-       /*public DataTable InformacionTiposCasos(int id, int id2, string criterio, int opcion)
-       {
-           conectar = new ConexionBD();
-           DataTable tabla = new DataTable();
-           string query = String.Format("CALL sp_slctTiposCasos({0}, {1}, '{2}', {3});", id, id2, criterio, opcion);
-           conectar.AbrirConexion();
-           MySqlDataAdapter consulta = new MySqlDataAdapter(query, conectar.conectar);
-           consulta.Fill(tabla);
-           conectar.CerrarConexion();
-           return tabla;
-       }
+            conectar = new ConexionBD();
+            conectar.AbrirConexion();
+            string permiso = string.Format("SELECT 	 pu.id_Poa FROM sipa_poa pu right outer JOIN ccl_unidades u ON pu.id_Unidad = u.id_Unidad WHERE pu.anio = {1}" +
+                "   and u.codigo_unidad = (select codigo_unidad from ccl_unidades  where id_unidad = (select id_unidad from sipa_poa where id_Poa = {0}));", id, anio);
+            MySqlCommand cmd = new MySqlCommand(permiso, conectar.conectar);
+            List<string> id_poas = new List<string>();
+            MySqlDataReader dr = cmd.ExecuteReader();
+            while (dr.Read())
+            {
 
-       public DataTable InformacionAsignaciones(int id, int id2, string criterio, int opcion)
-       {
-           conectar = new ConexionBD();
-           DataTable tabla = new DataTable();
-           string query = String.Format("CALL sp_slctAsignaciones({0}, {1}, '{2}', {3});", id, id2, criterio, opcion);
-           conectar.AbrirConexion();
-           MySqlDataAdapter consulta = new MySqlDataAdapter(query, conectar.conectar);
-           consulta.Fill(tabla);
-           conectar.CerrarConexion();
-           return tabla;
-       }*/
-       
-       private DataSet armarDsResultado()
+                id_poas.Add(dr.GetString("id_poa"));
+            }
+            dr.Close();
+            cmd.Dispose();
+            DataTable tabla = new DataTable();
+            for (int i = 0; i < id_poas.Count; i++)
+            {
+                string query = string.Format("CALL sp_slctSeguimientos({0}, {1}, '{2}', {3});", id_poas[i], id2, criterio, opcion);
+                MySqlDataAdapter consulta = new MySqlDataAdapter(query, conectar.conectar);
+                consulta.Fill(tabla);
+            }
+
+            conectar.CerrarConexion();
+            return tabla;
+        }
+
+
+        /*public DataTable InformacionTiposCasos(int id, int id2, string criterio, int opcion)
+        {
+            conectar = new ConexionBD();
+            DataTable tabla = new DataTable();
+            string query = String.Format("CALL sp_slctTiposCasos({0}, {1}, '{2}', {3});", id, id2, criterio, opcion);
+            conectar.AbrirConexion();
+            MySqlDataAdapter consulta = new MySqlDataAdapter(query, conectar.conectar);
+            consulta.Fill(tabla);
+            conectar.CerrarConexion();
+            return tabla;
+        }
+
+        public DataTable InformacionAsignaciones(int id, int id2, string criterio, int opcion)
+        {
+            conectar = new ConexionBD();
+            DataTable tabla = new DataTable();
+            string query = String.Format("CALL sp_slctAsignaciones({0}, {1}, '{2}', {3});", id, id2, criterio, opcion);
+            conectar.AbrirConexion();
+            MySqlDataAdapter consulta = new MySqlDataAdapter(query, conectar.conectar);
+            consulta.Fill(tabla);
+            conectar.CerrarConexion();
+            return tabla;
+        }*/
+
+        private DataSet armarDsResultado()
        {
            DataSet ds = new DataSet();
            DataTable dt = new DataTable("RESULTADO");

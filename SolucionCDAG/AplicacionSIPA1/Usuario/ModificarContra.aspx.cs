@@ -74,7 +74,7 @@ namespace AplicacionSIPA1.Usuario
                                 if (usuarioL.ModificaPass(usuarioE, ((Label)Master.FindControl("lblUsuario")).Text))
                                 {
                                     this.lblSuccess.Visible = true;
-                                    this.lblSuccess.ForeColor = System.Drawing.Color.White;
+                                    this.lblSuccess.ForeColor = System.Drawing.Color.Green;
                                     this.lblSuccess.Text = "La contraseña fue Actualizada correctamente ";
                                 }
                                 else

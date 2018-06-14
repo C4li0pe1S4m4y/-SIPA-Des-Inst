@@ -293,6 +293,12 @@ namespace CapaAD
             conectar.CerrarConexion();
             return NoIngreso;
         }
+        /// <summary>
+        /// Almacena las modificaciones al detalle de un PAC. 
+        /// Tablas de update: sipa_pac_detalles.
+        /// </summary>
+        /// <param name="pacEN"></param>
+        /// <returns>Numero de PAC modificado.</returns>
         public int ModificarPacDetalle(PacEN pacEN)
         {
             int NoIngreso;

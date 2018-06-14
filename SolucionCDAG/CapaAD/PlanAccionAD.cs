@@ -377,6 +377,43 @@ namespace CapaAD
             conectar.CerrarConexion();
             return tabla;
         }
+        public DataTable InformacionAccionDetallesMontos(int id)
+        {
+            conectar = new ConexionBD();
+            DataTable tabla = new DataTable();
+            string query = String.Format("select da.id_detalle id, COALESCE(SUM(da.monto), 0) MONTO,CONCAT(da.no_renglon, ' - ', r.Descripcion) no_renglon,CONCAT(f.codigo, ' - ', f.descripcion) fuente_financiamiento, 'N/A' insumo, da.no_renglon id_renglon " +
+                "from sipa_detalles_accion da " +
+                "inner join sipa_renglones r on r.No_Renglon = da.no_renglon " +
+                "inner join sipa_tipos_financiamiento f on f.id_tipo = da.id_tipo_financiamiento " +
+                "where (SELECT aa.id_poa FROM sipa_acciones aa WHERE aa.id_accion = da.id_accion) = {0} "+
+                "group by da.no_renglon;", id);
+            conectar.AbrirConexion();
+            MySqlDataAdapter consulta = new MySqlDataAdapter(query, conectar.conectar);
+            consulta.Fill(tabla);
+            conectar.CerrarConexion();
+            return tabla;
+        }
+        public DataTable InformacionAccionDetallesSaldos(int id)
+        {
+            conectar = new ConexionBD();
+            DataTable tabla = new DataTable();
+            string query = String.Format("select t.id_renglon,t.codificado "+
+                "from(select da.id_detalle id, CONCAT(da.no_renglon) id_renglon, CONCAT(f.codigo, ' - ', f.descripcion) fuente_financiamiento, "+
+                "COALESCE(SUM(up.gasto), 0)codificado, 'N/A' insumo "+
+                "from sipa_detalles_accion da "+
+                "inner join unionpedido up on da.id_detalle = up.id_detalle_accion "+
+                "inner join sipa_renglones r on r.No_Renglon = da.no_renglon "+
+                "inner join sipa_tipos_financiamiento f on f.id_tipo = da.id_tipo_financiamiento "+
+                "where (SELECT aa.id_poa FROM sipa_acciones aa WHERE aa.id_accion = da.id_accion) = {0} "+
+                "and up.estado_financiero = 1 "+
+                "AND up.id_detalle_accion = da.id_detalle "+
+                "group by da.no_renglon)t; ", id);
+            conectar.AbrirConexion();
+            MySqlDataAdapter consulta = new MySqlDataAdapter(query, conectar.conectar);
+            consulta.Fill(tabla);
+            conectar.CerrarConexion();
+            return tabla;
+        }
 
         //DEVUELVE LA INFORMACIÓN, UN DETALLE DE ACCIÓN
         public DataTable InformacionAccionRenglon(int idDetalleAccion)

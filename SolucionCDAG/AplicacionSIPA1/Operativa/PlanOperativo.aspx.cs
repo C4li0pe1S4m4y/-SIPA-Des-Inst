@@ -1340,8 +1340,11 @@ namespace AplicacionSIPA1.Operativa
 
         protected void btnRevisarPlan_Click(object sender, EventArgs e)
         {
-            Response.Redirect("VerPlan.aspx?Anio=" + ddlAnios.SelectedItem.Value + "&unidad=" + ddlUnidades.SelectedItem.Value);
-          
+            if (int.Parse(ddlDependencias.SelectedValue) > 1)
+                Response.Redirect("VerPlan.aspx?Anio=" + ddlAnios.SelectedItem.Value + "&unidad=" + ddlUnidades.SelectedItem.Value + "&dep=" + ddlDependencias.SelectedValue);
+            else
+                Response.Redirect("VerPlan.aspx?Anio=" + ddlAnios.SelectedItem.Value + "&unidad=" + ddlUnidades.SelectedItem.Value);
+
         }
 
         protected void ddlMetasE_SelectedIndexChanged(object sender, EventArgs e)

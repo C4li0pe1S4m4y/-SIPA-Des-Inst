@@ -327,6 +327,27 @@ namespace CapaLN
             return dsResultado;
         }
 
+        public DataSet InformacionSeguimientosCompleto(int id, int id2, string criterio, int opcion,int anio)
+        {
+            DataSet dsResultado = armarDsResultado();
+            ObjAD = new SeguimientoAD();
+
+            try
+            {
+                DataTable dt = ObjAD.InformacionSeguimientosCompleto(id, id2, criterio, opcion,anio);
+
+                dt.TableName = "BUSQUEDA";
+                dsResultado.Tables.Add(dt);
+                dsResultado.Tables[0].Rows[0]["ERRORES"] = false;
+            }
+            catch (Exception ex)
+            {
+                dsResultado.Tables[0].Rows[0]["MSG_ERROR"] = " CapaLN.InformacionSeguimientos(). " + ex.Message;
+            }
+
+            return dsResultado;
+        }
+
         public DataSet armarDsResultado()
         {
             DataSet ds = new DataSet();

@@ -90,9 +90,18 @@ namespace AplicacionSIPA1.Pedido
                 string usuario = Session["Usuario"].ToString().ToLower();
                 pOperativoLN.DdlUnidades(ddlUnidades, usuario);
                 ddlUnidades.SelectedValue = Convert.ToString(Request.QueryString["unidad"]);
+                pOperativoLN = new PlanOperativoLN();
+                if ((Request.QueryString["unidad"]) != null)
+                    pOperativoLN.DdlDependencias(ddlDependencia, Convert.ToString(Request.QueryString["unidad"]));
+
+                if (Request.QueryString["dep"] != null)
+                    ddlDependencia.SelectedValue = Convert.ToString(Request.QueryString["dep"]);
                 if (!ddlAnios.SelectedValue.Equals("0"))
                 {
-                    validarPoaListadoPedido(int.Parse(ddlUnidades.SelectedValue), int.Parse(ddlAnios.SelectedValue));
+                    if (ddlDependencia.Items.Count > 0 && int.Parse(ddlDependencia.SelectedValue) > 1)
+                        validarPoaListadoPedido(int.Parse(ddlDependencia.SelectedValue), int.Parse(ddlAnios.SelectedValue));
+                    else
+                        validarPoaListadoPedido(int.Parse(ddlUnidades.SelectedValue), int.Parse(ddlAnios.SelectedValue));
                 }
 
                 int idPoa = 0;

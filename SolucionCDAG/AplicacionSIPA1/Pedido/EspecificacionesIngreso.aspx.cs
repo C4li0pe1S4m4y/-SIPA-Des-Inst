@@ -67,7 +67,8 @@ namespace AplicacionSIPA1.Pedido
                         lblNoAnexo.Text = dsResultado.Tables["BUSQUEDA"].Rows[0]["ID_ANEXO"].ToString();
                         lblFecha.Text = dsResultado.Tables["BUSQUEDA"].Rows[0]["FECHA_PEDIDO"].ToString();
                         lblUnidad.Text = dsResultado.Tables["BUSQUEDA"].Rows[0]["UNIDAD_ADMINISTRATIVA"].ToString();
-
+                        lblidunidad.Text = dsResultado.Tables["BUSQUEDA"].Rows[0]["id_unidad"].ToString();
+                        lblidanio.Text = dsResultado.Tables["BUSQUEDA"].Rows[0]["ANIO_SOLICITUD"].ToString();
                         filtrarGridDetalles(idEncabezado);
 
                         btnGuardar.Visible = true;
@@ -186,62 +187,85 @@ namespace AplicacionSIPA1.Pedido
             return dt;
         }
 
+        /// <summary>
+        /// Boton para almacenar las especificaciones de un vale o requisicion
+        /// </summary>
+        /// <remarks>
+        /// Se modifico la funcion para que solo almacene los datos si el usuario que ingreso es el mismo que modifica
+        /// Tablas en base de datos: 
+        ///  - sipa_especificaciones_pedido
+        ///  - sipa_especificaciones_pedido_detalle
+        /// </remarks>
+        /// 
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         protected void btnGuardar_Click(object sender, EventArgs e)
         {
             try
             {
+                
+
                 int idPedido, idEspecificacion = 0;
                 int.TryParse(lblIdPedido.Text.Split('-')[0].Trim(), out idPedido);
                 int.TryParse(lblNoAnexo.Text, out idEspecificacion);
-
                 pInsumoEN = new PedidosEN();
 
                 pInsumoEN.ID_ESPECIFICACION = idEspecificacion;
                 pInsumoEN.ID_PEDIDO = idPedido;
                 pInsumoEN.USUARIO = Session["usuario"].ToString();
-
-                if (lblTipoDocumento.Text.Equals("R"))
-                    pInsumoEN.VID_TIPO_DOCUMENTO = "1";
-                else if(lblTipoDocumento.Text.Equals("V"))
-                    pInsumoEN.VID_TIPO_DOCUMENTO = "2";
-
-                DataTable dtDetalles = armarDtDetalles();
-                int filas = gridDet.Rows.Count;
-
-                for (int i = 0; i < gridDet.Rows.Count; i++)
-                {
-                    string idEspecificacionDetalle = gridDet.DataKeys[i].Values[0].ToString();
-                    string idPedidoDetalle = gridDet.DataKeys[i].Values[1].ToString();
-                    TextBox txtDescripcionEspecifica = gridDet.Rows[i].FindControl("txtDescripcionE") as TextBox;
-                    string usuario = Session["usuario"].ToString();
-
-                    Label lblObservaciones = (Label)gridDet.Rows[i].FindControl("lblObservaciones");
-
-                    DataRow dr = dtDetalles.NewRow();
-                    dr["ID_ESPECIFICACION"] = idEspecificacion;
-                    dr["ID_ESPECIFICACION_DETALLE"] = gridDet.DataKeys[i].Values[0].ToString();
-                    dr["ID_PEDIDO_DETALLE"] = gridDet.DataKeys[i].Values[1].ToString();
-                    dr["DESCRIPCION_ESPECIFICA"] = (gridDet.Rows[i].FindControl("txtDescripcionE") as TextBox).Text;
-                    dr["USUARIO"] = Session["usuario"].ToString();
-
-                    dtDetalles.Rows.Add(dr);
-                }
-
+                //Nuevo
                 pInsumoLN = new PedidosLN();
-                DataSet dsResultado = pInsumoLN.AlmacenarEspecificacion(pInsumoEN, dtDetalles);
+                DataSet usuarioIngreso = pInsumoLN.UsuarioRequisicion(idPedido.ToString());
+                //
+                if (pInsumoEN.USUARIO.Equals(usuarioIngreso.Tables[0].Rows[0]["usuario_ing"].ToString()))
+                {
 
-                if (bool.Parse(dsResultado.Tables[0].Rows[0]["ERRORES"].ToString()))
-                    throw new Exception("No se INSERTARON/ACTUALIZARON las especificaciones: " + dsResultado.Tables[0].Rows[0]["MSG_ERROR"].ToString());
+                   
+
+                    if (lblTipoDocumento.Text.Equals("R"))
+                        pInsumoEN.VID_TIPO_DOCUMENTO = "1";
+                    else if (lblTipoDocumento.Text.Equals("V"))
+                        pInsumoEN.VID_TIPO_DOCUMENTO = "2";
+
+                    DataTable dtDetalles = armarDtDetalles();
+                    int filas = gridDet.Rows.Count;
+
+                    for (int i = 0; i < gridDet.Rows.Count; i++)
+                    {
+                        string idEspecificacionDetalle = gridDet.DataKeys[i].Values[0].ToString();
+                        string idPedidoDetalle = gridDet.DataKeys[i].Values[1].ToString();
+                        TextBox txtDescripcionEspecifica = gridDet.Rows[i].FindControl("txtDescripcionE") as TextBox;
+                        string usuario = Session["usuario"].ToString();
+
+                        Label lblObservaciones = (Label)gridDet.Rows[i].FindControl("lblObservaciones");
+
+                        DataRow dr = dtDetalles.NewRow();
+                        dr["ID_ESPECIFICACION"] = idEspecificacion;
+                        dr["ID_ESPECIFICACION_DETALLE"] = gridDet.DataKeys[i].Values[0].ToString();
+                        dr["ID_PEDIDO_DETALLE"] = gridDet.DataKeys[i].Values[1].ToString();
+                        dr["DESCRIPCION_ESPECIFICA"] = (gridDet.Rows[i].FindControl("txtDescripcionE") as TextBox).Text;
+                        dr["USUARIO"] = Session["usuario"].ToString();
+
+                        dtDetalles.Rows.Add(dr);
+                    }
+
+                    pInsumoLN = new PedidosLN();
+                    DataSet dsResultado = pInsumoLN.AlmacenarEspecificacion(pInsumoEN, dtDetalles);
+
+                    if (bool.Parse(dsResultado.Tables[0].Rows[0]["ERRORES"].ToString()))
+                        throw new Exception("No se INSERTARON/ACTUALIZARON las especificaciones: " + dsResultado.Tables[0].Rows[0]["MSG_ERROR"].ToString());
 
 
-                int.TryParse(dsResultado.Tables[0].Rows[0]["VALOR"].ToString(), out idEspecificacion);
-                lblNoAnexo.Text = idEspecificacion.ToString();
+                    int.TryParse(dsResultado.Tables[0].Rows[0]["VALOR"].ToString(), out idEspecificacion);
+                    lblNoAnexo.Text = idEspecificacion.ToString();
 
-                generarReporte(idPedido);
-                
-                lblError.Text = string.Empty;
-                lblSuccess.Text = "Especificaciones ALMACENADAS/MODIFICADAS exitosamente: ";
+                    generarReporte(idPedido);
 
+                    lblError.Text = string.Empty;
+                    lblSuccess.Text = "Especificaciones ALMACENADAS/MODIFICADAS exitosamente: ";
+                }
+                else
+                    lblError.Text = "El usuario que ingreso la requisicion no coincide con el que tiene iniciada la sesion";
             }
             catch (Exception ex)
             {
@@ -354,9 +378,16 @@ namespace AplicacionSIPA1.Pedido
         protected void btnListado_Click(object sender, EventArgs e)
         {
             if (lblTipoDocumento.Text.Equals("V"))
-                Response.Redirect("~/Pedido/ValeListado.aspx");
+                if (int.Parse(lblidunidad.Text) < 36)
+                    Response.Redirect("~/Pedido/ValeListado.aspx?Anio=" + lblidanio.Text + "&unidad=" + lblidunidad.Text);
+                else
+                    Response.Redirect("~/Pedido/ValeListado.aspx?Anio=" + lblidanio.Text + "&unidad=29" + "&dep=" + lblidunidad.Text);
             else if (lblTipoDocumento.Text.Equals("R"))
-                Response.Redirect("~/Pedido/PedidoListado.aspx");
+                if(int.Parse(lblidunidad.Text)<36)
+                    Response.Redirect("~/Pedido/PedidoListado.aspx?Anio=" + lblidanio.Text + "&unidad=" + lblidunidad.Text);
+                else
+                    Response.Redirect("~/Pedido/PedidoListado.aspx?Anio=" + lblidanio.Text + "&unidad=29"  + "&dep="+lblidunidad.Text);
+
         }
     }
 }

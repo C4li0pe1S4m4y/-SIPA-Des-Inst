@@ -1432,7 +1432,11 @@ namespace AplicacionSIPA1.Operativa
 
         protected void btnNuevaB_Click(object sender, EventArgs e)
         {
-            Response.Redirect("VerPlan.aspx?Anio=" + ddlAnios.SelectedItem.Value + "&unidad=" + ddlUnidades.SelectedItem.Value);
+            if(int.Parse(ddlDependen.SelectedValue)>1)
+                Response.Redirect("VerPlan.aspx?Anio=" + ddlAnios.SelectedItem.Value + "&unidad=" + ddlUnidades.SelectedItem.Value+ "&dep="+ddlDependen.SelectedValue);
+            else
+                Response.Redirect("VerPlan.aspx?Anio=" + ddlAnios.SelectedItem.Value + "&unidad=" + ddlUnidades.SelectedItem.Value);
+
         }
 
         protected void chkCronograma_CheckedChanged(object sender, EventArgs e)
@@ -1520,7 +1524,18 @@ namespace AplicacionSIPA1.Operativa
                 lblError.Text = "gridRenglon(). " + ex.Message;
             } 
         }
-
+        /// <summary>
+        /// Selecciona un renglon para realizar una traslado de fondos a otro renglon.
+        /// </summary>
+        /// <remarks>
+        /// Se realiza una transacion entre dos renglones presupuestarios, todo se realiza en la misma accion.
+        /// Tener en cuenta el saldo disponible del renglon que se realizara el debito
+        /// Tablas en base de datos:
+        ///     - sipa_acciones_detalle
+        ///     - sipa_acciones_mod (bitacora)
+        /// </remarks>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         protected void gridRenglon_SelectedIndexChanged(object sender, EventArgs e)
         {
             try
@@ -1569,6 +1584,7 @@ namespace AplicacionSIPA1.Operativa
                     ddlRenglonOrigen.SelectedValue = idDetalle.ToString();
                     ddlRenglonOrigen_SelectedIndexChanged(sender, e);
                 }
+                txtDebito.Focus();
             }
             catch (Exception ex)
             {

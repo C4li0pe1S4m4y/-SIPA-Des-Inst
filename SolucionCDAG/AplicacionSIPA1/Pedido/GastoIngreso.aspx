@@ -486,7 +486,7 @@
                     <td style="width: 5%">&nbsp;</td>
                     <td colspan="18">
                         <asp:GridView ID="gridSaldos" runat="server" AutoGenerateColumns="False" BackColor="White" BorderColor="#CCCCCC" BorderStyle="Solid" BorderWidth="1px" CellPadding="5" CellSpacing="1" DataKeyNames="ID" ForeColor="Black" GridLines="Vertical" HorizontalAlign="Center" Width="100%"
-                            CssClass="table table-hover table-responsive">
+                            CssClass="table table-hover ">
                             <AlternatingRowStyle BackColor="#CEEFFF" ForeColor="#333333" />
                             <Columns>
                                 <asp:BoundField DataField="ID" HeaderText="ID" Visible="False">

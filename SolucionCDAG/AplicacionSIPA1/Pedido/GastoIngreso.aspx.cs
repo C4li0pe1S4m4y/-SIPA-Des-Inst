@@ -889,7 +889,11 @@ namespace AplicacionSIPA1.Pedido
 
         protected void btnListado_Click(object sender, EventArgs e)
         {
-            Response.Redirect("~/Pedido/GastoListado.aspx?Anio=" + ddlAnios.SelectedItem.Value + "&unidad=" + ddlUnidades.SelectedItem.Value);
+            if (int.Parse(ddlDependencia.SelectedValue) < 1)
+                Response.Redirect("~/Pedido/GastoListado.aspx?Anio=" + ddlAnios.SelectedItem.Value + "&unidad=" + ddlUnidades.SelectedItem.Value);
+            else
+                Response.Redirect("~/Pedido/GastoListado.aspx?Anio=" + ddlAnios.SelectedItem.Value + "&unidad=" + ddlUnidades.SelectedItem.Value + "&dep=" + ddlDependencia.SelectedValue);
+            
         }
 
         protected void ddlSolicitantes_SelectedIndexChanged(object sender, EventArgs e)

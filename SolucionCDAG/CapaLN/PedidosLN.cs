@@ -2044,5 +2044,63 @@ namespace CapaLN
 
             return dsResultado;
         }
+        public DataSet AlmacenarDatosTecnicoDetalle(string encabezado, string id)
+        {
+            DataSet dsResultado = armarDsResultado();
+
+            ObjAD = new PedidosAD();
+            try
+            {
+                DataSet ds = ObjAD.AlmacenarDatosTecnicoDetalle(encabezado, id);
+
+                return ds;
+            }
+            catch (Exception ex)
+            {
+                dsResultado.Tables[0].Rows[0]["MSG_ERROR"] = " CapaLN.AsignarValorReal(). " + ex.Message;
+            }
+
+            return dsResultado;
+        }
+
+        public DataSet UsuarioRequisicion( string id)
+        {
+            DataSet dsResultado = armarDsResultado();
+
+            ObjAD = new PedidosAD();
+            try
+            {
+                DataSet ds = ObjAD.UsuarioRequisicon(id);
+
+                return ds;
+            }
+            catch (Exception ex)
+            {
+                dsResultado.Tables[0].Rows[0]["MSG_ERROR"] = " CapaLN.AsignarValorReal(). " + ex.Message;
+            }
+
+            return dsResultado;
+        }
+
+        public DataSet UsuarioRequisicionEsp(string id)
+        {
+            DataSet dsResultado = armarDsResultado();
+
+            ObjAD = new PedidosAD();
+            try
+            {
+                DataSet ds = ObjAD.UsuarioRequisiconEsp(id);
+
+                return ds;
+            }
+            catch (Exception ex)
+            {
+                dsResultado.Tables[0].Rows[0]["MSG_ERROR"] = " CapaLN.AsignarValorReal(). " + ex.Message;
+            }
+
+            return dsResultado;
+        }
+
+
     }
 }
