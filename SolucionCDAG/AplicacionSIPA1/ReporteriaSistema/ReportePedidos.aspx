@@ -39,6 +39,36 @@
     
     <br />
     <asp:Label runat="server" ID="lblErrorPoa" />
+     <div class="row">
+        <div class="col-md-1"></div>
+        <div class="col-sm-4">
+            <label>Tipo de Documento</label>
+            <br />
+            <asp:CheckBoxList ID="chkTiposSalida" Width="100%" runat="server"  CssClass="form-control" RepeatDirection="Horizontal">
+                <asp:ListItem Selected="True" Value="1">Requisiciones</asp:ListItem>
+                <asp:ListItem Selected="True" Value="2">Vales</asp:ListItem>
+                <asp:ListItem Selected="True" Value="3">Gastos y Transferencias</asp:ListItem>
+                <asp:ListItem Selected="True" Value="4">Viáticos</asp:ListItem>
+            </asp:CheckBoxList>
+        </div>
+       <div class="col-sm-1">
+            <label>No.Requesicion</label>
+            <asp:TextBox ID="txtNoReq" runat="server" CssClass="form-control" Width="100%"></asp:TextBox>
+        </div>
+
+        <div class="col-sm-2">
+            <label>Justificación</label>
+            <asp:TextBox ID="txtJustificacion" runat="server" CssClass="form-control" Width="100%"></asp:TextBox>
+        </div>
+        <div class="col-sm-2">
+            <label>Descripcion</label>
+            <asp:TextBox ID="txtDescripcion" runat="server" CssClass="form-control" Width="100%"></asp:TextBox>
+        </div>
+        <div class="col-sm-1">
+            <br />
+            <asp:ImageButton ID="btnBusqueda" runat="server" ImageUrl="~/img/24_bits/find.png" OnClick="btnBusqueda_Click" Height="28px" Width="33px" />
+        </div>
+    </div>
     <div class="row">
         <div style="text-align: center;">
             <span>

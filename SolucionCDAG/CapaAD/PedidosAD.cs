@@ -7,6 +7,7 @@ using MySql.Data.MySqlClient;
 using System.Data;
 using CapaEN;
 
+
 namespace CapaAD
 {
     public class PedidosAD
@@ -2266,6 +2267,62 @@ namespace CapaAD
             consulta.Fill(dsResultado);
             conectar.CerrarConexion();
             return dsResultado;
+        }
+
+        public DataTable CMIModificaciones(string filtros)
+        {
+            conectar = new ConexionBD();
+            DataTable tabla = new DataTable();
+            string query = string.Format ("select ac.id_accion, ee.eje_estrategico,oe.objetivo_estrategico,op.nombre objetivo_operativo,ko.nombre KPI,mo.nombre Meta,ac.accion, " +
+                       " (select sum(dam.monto_nuevo) "+
+                            "from sipa_detalle_accion_mod dam "+
+                            "where isnull(dam.monto_anterior) and da.id_detalle = dam.id_detalle) Presupuesto, "+
+                            "(select(damD.monto_nuevo - damD.monto_anterior) "+
+                                "from sipa_detalle_accion_mod damD "+
+                                "inner join sipa_detalles_accion daD on daD.id_detalle = damD.id_detalle "+
+                                "inner join sipa_acciones acD on acD.id_accion = daD.id_accion " +
+                                "where id_financiamiento_anterior = 1 and id_financiamiento_nuevo = 1 and damD.id_modificacion = dam.id_modificacion " +
+                                "group by damD.id_modificacion) modificacion, " +
+                    "sum(da.monto) Presupueto_vigente from sipa_detalle_accion_mod dam " +
+                    "inner join sipa_detalles_accion da on da.id_detalle = dam.id_detalle " +
+                    "inner join sipa_acciones ac on ac.id_accion = da.id_accion " +
+                    "inner join sipa_objetivos_operativos op on op.id_objetivo_operativo = ac.id_objetivo_operativo " +
+                    "inner join sipa_objetivos_estrategicos oe on oe.id_objetivo_estrategico = op.id_objetivo_estrategico " +
+                    "inner join sipa_ejes_estrategicos ee on ee.id_eje_estrategico = oe.id_eje_estrategico " +
+                    "inner join sipa_kpi_operativos ko on ko.id_objetivo_operativo = op.id_objetivo_operativo " +
+                    "inner join sipa_metas_operativas mo on mo.id_kpi_operativo = ko.id_kpi_operativo " +
+                    "where ac.id_poa = {0} " +
+                    "group by dam.id_modificacion " +
+                    "order by ac.id_accion, dam.id_modificacion;  ",filtros);
+            conectar.AbrirConexion();
+            MySqlDataAdapter consulta = new MySqlDataAdapter(query, conectar.conectar);
+            consulta.Fill(tabla);
+            conectar.CerrarConexion();
+            return tabla;
+        }
+        public DataTable CMIModificacionesAnalista(string id)
+        {
+            conectar = new ConexionBD();
+            DataTable tabla = new DataTable();
+            conectar.AbrirConexion();
+            string query = string.Format("select ee.eje_estrategico,oe.objetivo_estrategico,op.nombre objetivo_operativo,ko.nombre KPI,mo.nombre Meta,ac.accion, " +
+                        "(select sum(dam.monto_nuevo) " +
+                         "   from sipa_detalle_accion_mod dam " +
+                         "   where isnull(dam.monto_anterior) and da.id_detalle = dam.id_detalle) Presupuesto " +
+                         ", sum(da.monto) Presupueto_Vigente,0 as Modificacion  from sipa_detalle_accion_mod dam " +
+                         " inner join sipa_detalles_accion da on da.id_detalle = dam.id_detalle " +
+                         " inner join sipa_acciones ac on ac.id_accion = da.id_accion " +
+                         " inner join sipa_objetivos_operativos op on op.id_objetivo_operativo = ac.id_objetivo_operativo " +
+                         " inner join sipa_objetivos_estrategicos oe on oe.id_objetivo_estrategico = op.id_objetivo_estrategico " +
+                         " inner join sipa_ejes_estrategicos ee on ee.id_eje_estrategico = oe.id_eje_estrategico " +
+                         " inner join sipa_kpi_operativos ko on ko.id_objetivo_operativo = op.id_objetivo_operativo " +
+                         " inner join sipa_metas_operativas mo on mo.id_kpi_operativo = ko.id_kpi_operativo " +
+                         " where ac.id_poa = {0} " +
+                                  " group by ac.id_accion; ", id);
+            MySqlDataAdapter consulta = new MySqlDataAdapter(query, conectar.conectar);
+            consulta.Fill(tabla);
+            conectar.CerrarConexion();
+            return tabla;
         }
     }
 }

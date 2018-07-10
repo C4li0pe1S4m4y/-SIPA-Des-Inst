@@ -79,7 +79,7 @@ ORDER BY no_solicitud, documento, fecha_comparacion_anterior</CommandText>
   <xs:element name="dsEstados" msdata:IsDataSet="true" msdata:UseCurrentLocale="true" msprop:EnableTableAdapterManager="true" msprop:Generator_DataSetName="dsEstados" msprop:Generator_UserDSName="dsEstados">
     <xs:complexType>
       <xs:choice minOccurs="0" maxOccurs="unbounded">
-        <xs:element name="Estados" msprop:Generator_TableClassName="EstadosDataTable" msprop:Generator_TableVarName="tableEstados" msprop:Generator_TablePropName="Estados" msprop:Generator_RowDeletingName="EstadosRowDeleting" msprop:Generator_RowChangingName="EstadosRowChanging" msprop:Generator_RowEvHandlerName="EstadosRowChangeEventHandler" msprop:Generator_RowDeletedName="EstadosRowDeleted" msprop:Generator_UserTableName="Estados" msprop:Generator_RowChangedName="EstadosRowChanged" msprop:Generator_RowEvArgName="EstadosRowChangeEvent" msprop:Generator_RowClassName="EstadosRow">
+        <xs:element name="Estados" msprop:Generator_TableClassName="EstadosDataTable" msprop:Generator_TableVarName="tableEstados" msprop:Generator_RowChangedName="EstadosRowChanged" msprop:Generator_TablePropName="Estados" msprop:Generator_RowDeletingName="EstadosRowDeleting" msprop:Generator_RowChangingName="EstadosRowChanging" msprop:Generator_RowEvHandlerName="EstadosRowChangeEventHandler" msprop:Generator_RowDeletedName="EstadosRowDeleted" msprop:Generator_RowClassName="EstadosRow" msprop:Generator_UserTableName="Estados" msprop:Generator_RowEvArgName="EstadosRowChangeEvent">
           <xs:complexType>
             <xs:sequence>
               <xs:element name="documento" msprop:Generator_ColumnVarNameInTable="columndocumento" msprop:Generator_ColumnPropNameInRow="documento" msprop:Generator_ColumnPropNameInTable="documentoColumn" msprop:Generator_UserColumnName="documento" minOccurs="0">
@@ -137,6 +137,13 @@ ORDER BY no_solicitud, documento, fecha_comparacion_anterior</CommandText>
                   </xs:restriction>
                 </xs:simpleType>
               </xs:element>
+            </xs:sequence>
+          </xs:complexType>
+        </xs:element>
+        <xs:element name="Monto_ejecutado" msprop:Generator_TableClassName="Monto_ejecutadoDataTable" msprop:Generator_TableVarName="tableMonto_ejecutado" msprop:Generator_TablePropName="Monto_ejecutado" msprop:Generator_RowDeletingName="Monto_ejecutadoRowDeleting" msprop:Generator_RowChangingName="Monto_ejecutadoRowChanging" msprop:Generator_RowEvHandlerName="Monto_ejecutadoRowChangeEventHandler" msprop:Generator_RowDeletedName="Monto_ejecutadoRowDeleted" msprop:Generator_UserTableName="Monto_ejecutado" msprop:Generator_RowChangedName="Monto_ejecutadoRowChanged" msprop:Generator_RowEvArgName="Monto_ejecutadoRowChangeEvent" msprop:Generator_RowClassName="Monto_ejecutadoRow">
+          <xs:complexType>
+            <xs:sequence>
+              <xs:element name="gasto" msprop:Generator_ColumnVarNameInTable="columngasto" msprop:Generator_ColumnPropNameInRow="gasto" msprop:Generator_ColumnPropNameInTable="gastoColumn" msprop:Generator_UserColumnName="gasto" type="xs:string" minOccurs="0" />
             </xs:sequence>
           </xs:complexType>
         </xs:element>

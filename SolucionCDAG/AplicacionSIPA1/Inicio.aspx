@@ -47,9 +47,14 @@
                     <rsweb:ReportDataSource DataSourceId="SqlDataSource4" Name="DataSet4" />
                     <rsweb:ReportDataSource DataSourceId="SqlDataSource5" Name="DataSet5" />
                     <rsweb:ReportDataSource DataSourceId="SqlDataSource6" Name="DataSet6" />
+                    <rsweb:ReportDataSource DataSourceId="SqlDataSource7" Name="DataSet7" />
                 </DataSources>
             </LocalReport>
         </rsweb:ReportViewer>
+
+        
+
+        <asp:SqlDataSource ID="SqlDataSource7" runat="server" ConnectionString="<%$ ConnectionStrings:dbcdagsipaConnectionString3 %>" ProviderName="<%$ ConnectionStrings:dbcdagsipaConnectionString3.ProviderName %>" SelectCommand="SELECT SUM(up.gasto) AS Gasto FROM unionpedido up INNER JOIN sipa_detalles_accion d ON up.id_detalle_accion = d.id_detalle INNER JOIN sipa_acciones aa ON aa.id_accion = d.id_accion INNER JOIN sipa_poa poa ON poa.id_poa = aa.id_poa WHERE(up.estado_financiero = 1) AND up.id_estado_pedido IN (12) AND poa.id_poa IN(59) ;"></asp:SqlDataSource>
 
         
 

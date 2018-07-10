@@ -168,6 +168,8 @@ C:\Users\user Dell\Documents\GitHub\-SIPA-Des-Inst\SolucionCDAG\CapaLN\bin\Debug
 C:\Users\user Dell\Documents\GitHub\-SIPA-Des-Inst\SolucionCDAG\CapaLN\bin\Debug\MySql.Data.dll
 C:\Users\user Dell\Documents\GitHub\-SIPA-Des-Inst\SolucionCDAG\CapaLN\bin\Debug\CapaAD.pdb
 C:\Users\user Dell\Documents\GitHub\-SIPA-Des-Inst\SolucionCDAG\CapaLN\bin\Debug\CapaEN.pdb
-C:\Users\user Dell\Documents\GitHub\-SIPA-Des-Inst\SolucionCDAG\CapaLN\obj\Debug\CapaLN.csprojResolveAssemblyReference.cache
 C:\Users\user Dell\Documents\GitHub\-SIPA-Des-Inst\SolucionCDAG\CapaLN\obj\Debug\CapaLN.dll
 C:\Users\user Dell\Documents\GitHub\-SIPA-Des-Inst\SolucionCDAG\CapaLN\obj\Debug\CapaLN.pdb
+C:\Users\user Dell\Documents\GitHub\-SIPA-Des-Inst\SolucionCDAG\CapaLN\obj\Debug\CapaLN.csprojAssemblyReference.cache
+C:\Users\user Dell\Documents\GitHub\-SIPA-Des-Inst\SolucionCDAG\CapaLN\obj\Debug\CapaLN.csproj.CoreCompileInputs.cache
+C:\Users\user Dell\Documents\GitHub\-SIPA-Des-Inst\SolucionCDAG\CapaLN\obj\Debug\CapaLN.csproj.CopyComplete

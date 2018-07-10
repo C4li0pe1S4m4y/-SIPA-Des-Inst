@@ -779,8 +779,8 @@ namespace AplicacionSIPA1.Operativa
                 else if (estadoPoa.Equals("9"))
                 {
                     lblErrorPoa.Text = lblError.Text = string.Empty;
-
-                    btnGuardar.Visible = btnEliminarIndicador.Visible = btnEliminarMeta.Visible = btnEliminarObjetivo.Visible = false;
+                    btnGuardar.Visible = true;
+                    btnEliminarIndicador.Visible = btnEliminarMeta.Visible = btnEliminarObjetivo.Visible = false;
                 }
                 else
                 {

@@ -267,6 +267,18 @@
                     <HeaderStyle BorderStyle="Inset" HorizontalAlign="Center" VerticalAlign="Middle" />
                     <ItemStyle BorderStyle="Inset" HorizontalAlign="Center" VerticalAlign="Middle" />
                 </asp:TemplateField>
+                <asp:TemplateField HeaderText="IVA">
+                    <EditItemTemplate>
+                        <asp:TextBox ID="TextBox3" runat="server" Font-Bold="True" Text='<%# Bind("subtotal") %>'></asp:TextBox>
+                    </EditItemTemplate>
+                    <ItemTemplate>
+                        <div class="text-right">
+                            <asp:Label ID="lblIVA" runat="server" Font-Bold="True" Text='<%# Bind("subtotal", "Q.{0:0,0.00}") %>'></asp:Label>
+                        </div>
+                    </ItemTemplate>
+                    <HeaderStyle BorderStyle="Inset" HorizontalAlign="Center" VerticalAlign="Middle" />
+                    <ItemStyle BorderStyle="Inset" HorizontalAlign="Center" VerticalAlign="Middle" />
+                </asp:TemplateField>
                 <asp:TemplateField HeaderText="Proveedor">
                     <EditItemTemplate>
                         <asp:TextBox ID="TextBox2" runat="server"></asp:TextBox>
@@ -369,13 +381,13 @@
         <div class="col-sm-6"></div>
         <div class="col-sm-2">
             <br />
-            <asp:Button ID="btnCalcular" runat="server" Text="Calcular" CssClass="btn btn-success" Width="80%" />
+            <asp:Button ID="btnCalcular" runat="server" Text="Calcular" CssClass="btn btn-success" Width="80%" OnClick="btnCalcular_Click" />
         </div>
     </div>
     <div class="row">
         <div class="col-sm-1"></div>
         <div class="col-sm-4">
-            <asp:Label ID="lblError" runat="server" Style="color: red" CssClass="form-check-label" Text="hola"></asp:Label>
+            <asp:Label ID="lblError" runat="server" Style="color: red" CssClass="form-check-label" ></asp:Label>
         </div>
     </div>
     <div class="row">
@@ -433,9 +445,17 @@
 
     <br />
     <br />
+   <div class="row">
+       <div class="col-sm-1"></div>
+       <div class="col-sm-2">
+           <label>Trasaldo a CUR</label>
+           <br />
+           <asp:ImageButton ID="btnTrasladoCur" runat="server" ImageUrl="~/img/pgn/traslado.png" />
+       </div>
+   </div> 
+
+    
     <br />
-
-
-    <div class="modal open" id="myModal" hidden="hidden">
-    </div>
+    <br />
+   
 </asp:Content>

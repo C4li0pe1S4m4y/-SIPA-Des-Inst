@@ -207,7 +207,7 @@ namespace AplicacionSIPA1.Presupuesto
                         stringBuilder.Append(ddlUnidades.Items[i].Value.ToString());
 
                         if (i < cantidad)
-                            stringBuilder.Append(", ");
+                            stringBuilder.Append(", "); 
                     }
 
                     stringBuilder.Append(")");
