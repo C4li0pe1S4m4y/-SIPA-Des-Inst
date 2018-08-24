@@ -50,6 +50,12 @@ namespace AplicacionSIPA1.Compras
                         txtNombre.Text = dsResultado.Tables["BUSQUEDA"].Rows[0]["NOMBRE_PROVEEDOR"].ToString();
                         txtDireccion.Text = dsResultado.Tables["BUSQUEDA"].Rows[0]["DIRECCION"].ToString();
                         txtTel.Text = dsResultado.Tables["BUSQUEDA"].Rows[0]["TELEFONO"].ToString();
+                        ddlRegimen.SelectedValue = dsResultado.Tables["BUSQUEDA"].Rows[0]["id_regimen_impuesto"].ToString();
+                        txtNombreContacto.Text = dsResultado.Tables["BUSQUEDA"].Rows[0]["Nombre_Contacto"].ToString();
+                        txtTelefonoContacto.Text = dsResultado.Tables["BUSQUEDA"].Rows[0]["Telefono_Contacto"].ToString();
+                        txtEmail.Text = dsResultado.Tables["BUSQUEDA"].Rows[0]["Email"].ToString();
+                        txtGiroComercial.Text = dsResultado.Tables["BUSQUEDA"].Rows[0]["Giro_comercial"].ToString();
+                        txtEspecializacion.Text = dsResultado.Tables["BUSQUEDA"].Rows[0]["Especializacion"].ToString();
                         int estado;
 
                         int.TryParse(dsResultado.Tables["BUSQUEDA"].Rows[0]["ACTIVO"].ToString(), out estado);
@@ -165,7 +171,12 @@ namespace AplicacionSIPA1.Compras
                     enProveedores.vdireccion = txtDireccion.Text;
                     enProveedores.vtelefono = txtTel.Text;
                     enProveedores.vactivo = int.Parse(ddlEstado.SelectedValue);
-                    
+                    enProveedores.idRegimen = int.Parse(ddlRegimen.SelectedValue);
+                    enProveedores.NombreContacto = txtNombreContacto.Text;
+                    enProveedores.TelefonoConctacto = txtTelefonoContacto.Text;
+                    enProveedores.Email = txtEmail.Text;
+                    enProveedores.GiroNegocio = txtGiroComercial.Text;
+                    enProveedores.Especializacion = txtEspecializacion.Text;
                     if (true)
                     {
                         lnProveedores = new PedidosLN();

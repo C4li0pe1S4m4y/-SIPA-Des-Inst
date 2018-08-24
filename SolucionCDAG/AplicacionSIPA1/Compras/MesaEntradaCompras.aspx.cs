@@ -1,14 +1,8 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text.RegularExpressions;
-using System.Web;
-using System.Web.UI;
-using System.Web.UI.WebControls;
+﻿using CapaLN;
+using System;
 using System.Data;
 using System.Globalization;
-using CapaLN;
-using CapaEN;
+using System.Web.UI.WebControls;
 
 namespace AplicacionSIPA1.Compras
 {
@@ -107,7 +101,7 @@ namespace AplicacionSIPA1.Compras
 
                 pInsumoLN = new PedidosLN();
                 pInsumoLN.RblEstadosPedido(rblEstadosPedido);
-                rblEstadosPedido.SelectedValue = "8";
+                rblEstadosPedido.SelectedValue = "14";
                 rblEstadosPedido_SelectedIndexChanged(new Object(), new EventArgs());
 
             }
@@ -262,12 +256,12 @@ namespace AplicacionSIPA1.Compras
                     decimal.TryParse(sSubtotal, out totalPedido);
 
                     gridDetalle.FooterRow.Cells[3].Text = "Totales";
-                    gridDetalle.FooterRow.Cells[5].Text = cantidadArticulos.ToString();
-                    gridDetalle.FooterRow.Cells[7].Text = String.Format(CultureInfo.InvariantCulture, "Q.{0:0,0.00}", totalPedido);
+                    gridDetalle.FooterRow.Cells[6].Text = cantidadArticulos.ToString();
+                    gridDetalle.FooterRow.Cells[8].Text = String.Format(CultureInfo.InvariantCulture, "Q.{0:0,0.00}", totalPedido);
 
                     decimal totalPedidoAnual = 0;
                     decimal.TryParse(dsResultado.Tables["BUSQUEDA"].Compute("SUM(TOTAL_PEDIDO_MULTIANUAL)", "").ToString(), out totalPedidoAnual);
-                    gridDetalle.FooterRow.Cells[8].Text = String.Format(CultureInfo.InvariantCulture, "Q.{0:0,0.00}", totalPedidoAnual);
+                    gridDetalle.FooterRow.Cells[9].Text = String.Format(CultureInfo.InvariantCulture, "Q.{0:0,0.00}", totalPedidoAnual);
                 }
                 else
                 {
@@ -515,18 +509,18 @@ namespace AplicacionSIPA1.Compras
                     int.TryParse(dsResultado.Tables["BUSQUEDA"].Rows[0]["ID_ESTADO_PEDIDO"].ToString(), out idEstado);
 
                     //EL PEDIDO NO ESTÁ EN ESTADO APROBACIÓN DE SUBGERENTE/DIRECTOR DE UNIDAD
-                    if (idEstado == 8)
+                    if (idEstado == 14)
                     {
                         btnAprobar.Visible = btnRechazar.Visible = true;
                         lblErrorPoa.Text = lblError.Text = string.Empty;
                         pedidoValido = true;
                     }
-                    else if (idEstado == 16)
-                    {
-                        btnAprobar.Visible = btnRechazar.Visible = true;
-                        lblErrorPoa.Text = lblError.Text = "La REQUISICIÓN/VALE/GASTO seleccionado se encuentra en estado: " + estadoPedido + ": " + dsResultado.Tables["BUSQUEDA"].Rows[0]["OBSERVACIONES"].ToString();
-                        pedidoValido = true;
-                    }
+                    //else if (idEstado == 18)
+                    //{
+                    //    btnAprobar.Visible = btnRechazar.Visible = true;
+                    //    lblErrorPoa.Text = lblError.Text = "La REQUISICIÓN/VALE/GASTO seleccionado se encuentra en estado: " + estadoPedido + ": " + dsResultado.Tables["BUSQUEDA"].Rows[0]["OBSERVACIONES"].ToString();
+                    //    pedidoValido = true;
+                    //}
                     else
                     {
                         btnAprobar.Visible = btnRechazar.Visible = false;

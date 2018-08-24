@@ -158,7 +158,7 @@ namespace AplicacionSIPA1.Pedido
                             rblAnexos.SelectedValue = idTipoAnexo.ToString();
 
                         txtJustificacion.Text = dsResultado.Tables["BUSQUEDA"].Rows[0]["JUSTIFICACION"].ToString();
-
+                        txtJustificacion.Text = txtJustificacion.Text.Replace("`", "\'");
                         filtrarGridDetalles(idEncabezado);
                         validarEstadoPedido(idEncabezado);
                         ddlUnidades.Enabled = /*ddlTipoPedido.Enabled = ddlAcciones.Enabled = */false;
@@ -650,7 +650,7 @@ namespace AplicacionSIPA1.Pedido
                 }
 
                 string justificacion = txtJustificacion.Text;
-                justificacion = justificacion.Replace('\'', ' ').Replace(';', ' ');
+                justificacion = justificacion.Replace('\'', '`').Replace(';', ' ');
                 justificacion = justificacion.Trim();
                 txtJustificacion.Text = justificacion;
 
@@ -669,7 +669,7 @@ namespace AplicacionSIPA1.Pedido
                     }
 
                     string s1 = txtDescripcion.Text;
-                    s1 = s1.Replace('\'', ' ').Replace(';', ' ');
+                    s1 = s1.Replace('\'', '`').Replace(';', ' ');
                     s1 = s1.Trim();
                     txtDescripcion.Text = s1;
 
@@ -831,14 +831,14 @@ namespace AplicacionSIPA1.Pedido
                         lblErrorPoa.Text = lblError.Text = "";
                         pedidoValido = true;
                     }//EL PEDIDO ESTÁ EN ESTADO RECHAZADO BODEGA, RECHAZADO SUB/DIR, RECHAZADO PPTO, RECHAZADO TECNICO COMPRAS/PPTO SE PUEDE MODIFICAR
-                    else if (idEstadoPedido == 3 || idEstadoPedido == 5 || idEstadoPedido == 7 || idEstadoPedido == 9 || idEstadoPedido == 18)
+                    else if (idEstadoPedido == 3 || idEstadoPedido == 5 || idEstadoPedido == 7 || idEstadoPedido == 9 || idEstadoPedido == 11 || idEstadoPedido == 13 || idEstadoPedido ==15 || idEstadoPedido==17 || idEstadoPedido == 19)
                     {
                         btnAnular.Visible = btnEnviar.Visible = btnGuardar.Visible = btnLimpiarC.Visible = gridDet.Columns[0].Visible = gridDet.Columns[1].Visible = true;
                         lblErrorPoa.Text = lblError.Text = "El PEDIDO seleccionado se encuenta en estado: " + lblEstadoPedido.Text + ", por: " + dsResultado.Tables["BUSQUEDA"].Rows[0]["OBSERVACIONES"].ToString();
                         pedidoValido = true;
 
                     }//EL PEDIDO ESTÁ EN ESTADO APROBACIÓN BODEGA, APROBACIÓN SUB/DIR, APROBACIÓN FINANCIERO, CODIFICADO FINANCIERO, ANULADO Y NO SE PUEDE MODIFICAR
-                    else if (idEstadoPedido == 2 || idEstadoPedido == 4 || idEstadoPedido == 6 || idEstadoPedido == 8 || idEstadoPedido == 10)
+                    else if (idEstadoPedido == 2 || idEstadoPedido == 4 || idEstadoPedido == 6 || idEstadoPedido == 8 || idEstadoPedido == 10 || idEstadoPedido == 12 || idEstadoPedido == 14 || idEstadoPedido == 16)
                     {
                         btnAnular.Visible = btnEnviar.Visible = btnGuardar.Visible = btnLimpiarC.Visible = gridDet.Columns[0].Visible = gridDet.Columns[1].Visible = false;
                         lblErrorPoa.Text = lblError.Text = "El PEDIDO seleccionado se encuenta en estado: " + lblEstadoPedido.Text + " y no se puede modificar ";
@@ -847,7 +847,7 @@ namespace AplicacionSIPA1.Pedido
                 }
 
                 //EL PEDIDO ESTÁ EN ESTADO INGRESADO, RECHAZADO BODEGA, RECHAZADO SUB/DIR, RECHAZADO FINANCIERO, SE PUEDE MODIFICAR
-                if (idEstadoPedido == 0 || idEstadoPedido == 1 || idEstadoPedido == 3 || idEstadoPedido == 5 || idEstadoPedido == 7 || idEstadoPedido == 9)
+                if (idEstadoPedido == 3 || idEstadoPedido == 5 || idEstadoPedido == 7 || idEstadoPedido == 9 || idEstadoPedido == 11 || idEstadoPedido == 13 || idEstadoPedido == 15 || idEstadoPedido == 17 || idEstadoPedido == 19)
                 {
                     pInsumoLN = new PedidosLN();
                     dsResultado = pInsumoLN.InformacionPermisos(0, 0, Session["usuario"].ToString(), 1);
@@ -1279,7 +1279,8 @@ namespace AplicacionSIPA1.Pedido
                 txtCodigoInsumo.Text = dsResultado.Tables["BUSQUEDA"].Rows[0]["CODIGO_INSUMO"].ToString();
                 //Codigo de Presentacion 
                 txtCodigoPresentacion.Text = dsResultado.Tables["BUSQUEDA"].Rows[0]["CODIGO_PRESENTACION"].ToString();
-                btnCodigoPresentacion_Click(sender, e);
+                if (txtCodigoPresentacion.Text != "0")
+                    btnCodigoPresentacion_Click(sender, e);
             }
             catch (Exception ex)
             {

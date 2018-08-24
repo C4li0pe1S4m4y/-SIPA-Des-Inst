@@ -175,6 +175,14 @@
                             <label>Notas</label>
                             <asp:TextBox ID="txtNotas" runat="server" CssClass="auto-style3" TextMode="MultiLine" Width="100%" Height="50%" />
                         </div>
+                        <div class="col-sm-3">
+                            <label>Ingreso a Inventarios</label>
+                            <asp:TextBox ID="txtIngresoInventarios" runat="server" CssClass="form-control" TextMode="Date"></asp:TextBox>
+                        </div>
+                        <div class="col-sm-3">
+                            <label>Traslado a Inventarios</label>
+                            <asp:TextBox ID="txtTrasladoInventarios" runat="server" CssClass="form-control" TextMode="Date"></asp:TextBox>
+                        </div>
                     </div>
                 </div>
             </div>
@@ -192,6 +200,14 @@
                     <ItemStyle BorderStyle="Inset" HorizontalAlign="Center" VerticalAlign="Middle" />
                 </asp:BoundField>
                 <asp:BoundField DataField="descripcion" HeaderText="DESCRIPCIÓN">
+                    <HeaderStyle BorderStyle="Inset" HorizontalAlign="Center" VerticalAlign="Middle" />
+                    <ItemStyle BorderStyle="Inset" HorizontalAlign="Center" VerticalAlign="Middle" />
+                </asp:BoundField>
+                <asp:BoundField DataField="codigo_insumo" HeaderText="Cod. Insumo">
+                    <HeaderStyle BorderStyle="Inset" HorizontalAlign="Center" VerticalAlign="Middle" />
+                    <ItemStyle BorderStyle="Inset" HorizontalAlign="Center" VerticalAlign="Middle" />
+                </asp:BoundField>
+                <asp:BoundField DataField="codigo_presentacion" HeaderText="Cod. Presentacion">
                     <HeaderStyle BorderStyle="Inset" HorizontalAlign="Center" VerticalAlign="Middle" />
                     <ItemStyle BorderStyle="Inset" HorizontalAlign="Center" VerticalAlign="Middle" />
                 </asp:BoundField>
@@ -220,9 +236,7 @@
                     <ItemStyle BorderStyle="Inset" HorizontalAlign="Center" VerticalAlign="Middle" />
                 </asp:BoundField>
                 <asp:TemplateField HeaderText="Estatus">
-                    <EditItemTemplate>
-                        <asp:TextBox ID="TextBox2" runat="server"></asp:TextBox>
-                    </EditItemTemplate>
+
                     <ItemTemplate>
                         <asp:DropDownList ID="ddlEstatus" runat="server" class="form-control" data-placeholder="Busque Tipo Docto...." Width="135px" Style="font-size: smaller">
                         </asp:DropDownList>
@@ -238,6 +252,16 @@
                         <div class="text-right">
                             <asp:TextBox ID="txtCantidadReal" runat="server" Style="text-align: right" CssClass="form-control" Text='<%# Bind("cantidad_compras") %>' Width="50px"></asp:TextBox>
                         </div>
+                    </ItemTemplate>
+                    <HeaderStyle BorderStyle="Inset" HorizontalAlign="Center" VerticalAlign="Middle" />
+                    <ItemStyle BorderStyle="Inset" HorizontalAlign="Center" VerticalAlign="Middle" />
+                </asp:TemplateField>
+                <asp:TemplateField HeaderText="Fecha Cotizacion">
+                    <EditItemTemplate>
+                        <asp:TextBox ID="TextBox2" runat="server"></asp:TextBox>
+                    </EditItemTemplate>
+                    <ItemTemplate>
+                        <asp:TextBox ID="txtFechaCotizacion" runat="server" CssClass="form-control" TextMode="Date" Text='<%# Bind("fecha_cotizacion") %>'></asp:TextBox>
                     </ItemTemplate>
                     <HeaderStyle BorderStyle="Inset" HorizontalAlign="Center" VerticalAlign="Middle" />
                     <ItemStyle BorderStyle="Inset" HorizontalAlign="Center" VerticalAlign="Middle" />
@@ -291,12 +315,12 @@
                     <HeaderStyle BorderStyle="Inset" HorizontalAlign="Center" VerticalAlign="Middle" />
                     <ItemStyle BorderStyle="Inset" HorizontalAlign="Center" VerticalAlign="Middle" />
                 </asp:TemplateField>
-                <asp:TemplateField HeaderText="Fecha T. Orden C.">
+                <asp:TemplateField HeaderText="Orden Compra">
                     <EditItemTemplate>
                         <asp:TextBox ID="TextBox2" runat="server"></asp:TextBox>
                     </EditItemTemplate>
                     <ItemTemplate>
-                        <asp:TextBox ID="txtFechaTrasladoOC" runat="server" CssClass="form-control" TextMode="Date"></asp:TextBox>
+                        <asp:TextBox ID="txtOrdenCompra" runat="server" CssClass="form-control" Text='<%# Bind("no_orden_compra") %>'></asp:TextBox>
                     </ItemTemplate>
                     <HeaderStyle BorderStyle="Inset" HorizontalAlign="Center" VerticalAlign="Middle" />
                     <ItemStyle BorderStyle="Inset" HorizontalAlign="Center" VerticalAlign="Middle" />
@@ -306,17 +330,18 @@
                         <asp:TextBox ID="TextBox2" runat="server"></asp:TextBox>
                     </EditItemTemplate>
                     <ItemTemplate>
-                        <asp:TextBox ID="txtFechaOrdenCompra" runat="server" CssClass="form-control" TextMode="Date"></asp:TextBox>
+                        <asp:TextBox ID="txtFechaOrdenCompra" runat="server" CssClass="form-control" TextMode="Date" Text='<%# Bind("fecha_orden_compra") %>'></asp:TextBox>
                     </ItemTemplate>
                     <HeaderStyle BorderStyle="Inset" HorizontalAlign="Center" VerticalAlign="Middle" />
                     <ItemStyle BorderStyle="Inset" HorizontalAlign="Center" VerticalAlign="Middle" />
                 </asp:TemplateField>
-                <asp:TemplateField HeaderText="Orden Compra">
+                <asp:TemplateField HeaderText="Fecha T. Orden C.">
                     <EditItemTemplate>
                         <asp:TextBox ID="TextBox2" runat="server"></asp:TextBox>
                     </EditItemTemplate>
                     <ItemTemplate>
-                        <asp:TextBox ID="txtOrdenCompra" runat="server" CssClass="form-control"></asp:TextBox>
+                        <asp:TextBox ID="txtFechaTrasladoOC" runat="server" TextMode="Date" Text='<%# Bind("fecha_traslado_orden") %>'></asp:TextBox>
+
                     </ItemTemplate>
                     <HeaderStyle BorderStyle="Inset" HorizontalAlign="Center" VerticalAlign="Middle" />
                     <ItemStyle BorderStyle="Inset" HorizontalAlign="Center" VerticalAlign="Middle" />
@@ -326,7 +351,7 @@
                         <asp:TextBox ID="TextBox2" runat="server"></asp:TextBox>
                     </EditItemTemplate>
                     <ItemTemplate>
-                        <asp:TextBox ID="txtFactura" runat="server" CssClass="form-control"></asp:TextBox>
+                        <asp:TextBox ID="txtFactura" runat="server" CssClass="form-control" Text='<%# Bind("Factura") %>'></asp:TextBox>
                     </ItemTemplate>
                     <HeaderStyle BorderStyle="Inset" HorizontalAlign="Center" VerticalAlign="Middle" />
                     <ItemStyle BorderStyle="Inset" HorizontalAlign="Center" VerticalAlign="Middle" />
@@ -336,7 +361,7 @@
                         <asp:TextBox ID="TextBox2" runat="server"></asp:TextBox>
                     </EditItemTemplate>
                     <ItemTemplate>
-                        <asp:TextBox ID="txtFechaFactura" runat="server" CssClass="form-control" TextMode="Date"></asp:TextBox>
+                        <asp:TextBox ID="txtFechaFactura" runat="server" CssClass="form-control" TextMode="Date" Text='<%# Bind("fecha_factura") %>'></asp:TextBox>
                     </ItemTemplate>
                     <HeaderStyle BorderStyle="Inset" HorizontalAlign="Center" VerticalAlign="Middle" />
                     <ItemStyle BorderStyle="Inset" HorizontalAlign="Center" VerticalAlign="Middle" />
@@ -346,7 +371,7 @@
                         <asp:TextBox ID="TextBox2" runat="server"></asp:TextBox>
                     </EditItemTemplate>
                     <ItemTemplate>
-                        <asp:TextBox ID="txtFechaTrasladoAlmacen" runat="server" CssClass="form-control" TextMode="Date"></asp:TextBox>
+                        <asp:TextBox ID="txtFechaTrasladoAlmacen" runat="server" CssClass="form-control" TextMode="Date" Text='<%# Bind("fecha_traslado_almacen") %>'></asp:TextBox>
                     </ItemTemplate>
                     <HeaderStyle BorderStyle="Inset" HorizontalAlign="Center" VerticalAlign="Middle" />
                     <ItemStyle BorderStyle="Inset" HorizontalAlign="Center" VerticalAlign="Middle" />
@@ -356,7 +381,27 @@
                         <asp:TextBox ID="TextBox2" runat="server"></asp:TextBox>
                     </EditItemTemplate>
                     <ItemTemplate>
-                        <asp:TextBox ID="txtFechaIngresoBS" runat="server" CssClass="form-control" TextMode="Date"></asp:TextBox>
+                        <asp:TextBox ID="txtFechaIngresoBS" runat="server" CssClass="form-control" TextMode="Date" Text='<%# Bind("fecha_ingreso_BS") %>'></asp:TextBox>
+                    </ItemTemplate>
+                    <HeaderStyle BorderStyle="Inset" HorizontalAlign="Center" VerticalAlign="Middle" />
+                    <ItemStyle BorderStyle="Inset" HorizontalAlign="Center" VerticalAlign="Middle" />
+                </asp:TemplateField>
+                <asp:TemplateField HeaderText="F.Traslado F.Rotativo">
+                    <EditItemTemplate>
+                        <asp:TextBox ID="TextBox2" runat="server"></asp:TextBox>
+                    </EditItemTemplate>
+                    <ItemTemplate>
+                        <asp:TextBox ID="txtFechaFondoRotativo" runat="server" CssClass="form-control" TextMode="Date" Text='<%# Bind("txtFechaFondoRotativo") %>'></asp:TextBox>
+                    </ItemTemplate>
+                    <HeaderStyle BorderStyle="Inset" HorizontalAlign="Center" VerticalAlign="Middle" />
+                    <ItemStyle BorderStyle="Inset" HorizontalAlign="Center" VerticalAlign="Middle" />
+                </asp:TemplateField>
+                <asp:TemplateField HeaderText="Fecha Razonamiento">
+                    <EditItemTemplate>
+                        <asp:TextBox ID="TextBox2" runat="server"></asp:TextBox>
+                    </EditItemTemplate>
+                    <ItemTemplate>
+                        <asp:TextBox ID="txtFechaRazonamiento" runat="server" CssClass="form-control" TextMode="Date" Text='<%# Bind("fecha_razonamiento") %>'></asp:TextBox>
                     </ItemTemplate>
                     <HeaderStyle BorderStyle="Inset" HorizontalAlign="Center" VerticalAlign="Middle" />
                     <ItemStyle BorderStyle="Inset" HorizontalAlign="Center" VerticalAlign="Middle" />
@@ -387,7 +432,7 @@
     <div class="row">
         <div class="col-sm-1"></div>
         <div class="col-sm-4">
-            <asp:Label ID="lblError" runat="server" Style="color: red" CssClass="form-check-label" ></asp:Label>
+            <asp:Label ID="lblError" runat="server" Style="color: red" CssClass="form-check-label"></asp:Label>
         </div>
     </div>
     <div class="row">
@@ -418,6 +463,7 @@
             <label>Fecha Factura</label>
             <asp:TextBox ID="txtFechaFacturaT" runat="server" Enabled="false" Width="100%" CssClass="form-control" TextMode="Date"></asp:TextBox>
         </div>
+
     </div>
     <div class="row">
 
@@ -445,17 +491,57 @@
 
     <br />
     <br />
-   <div class="row">
-       <div class="col-sm-1"></div>
-       <div class="col-sm-2">
-           <label>Trasaldo a CUR</label>
-           <br />
-           <asp:ImageButton ID="btnTrasladoCur" runat="server" ImageUrl="~/img/pgn/traslado.png" />
-       </div>
-   </div> 
+    <div class="row">
+        <div class="col-sm-1"></div>
+        <div class="col-sm-1">
+            <label>Trasaldo a CUR</label>
+            <br />
+            <asp:ImageButton ID="btnTrasladoCur" runat="server" ImageUrl="~/img/pgn/price-tag-4.png" Height="60%" Width="90%" OnClick="btnTrasladoCur_Click" />
+        </div>
+        <div class="col-sm-1">
+            <label>Traslado Almacen</label>
+            <br />
+            <asp:ImageButton ID="btnTrasladoAlmacen" runat="server" ImageUrl="~/img/pgn/bag-5.png" Height="60%" Width="90%" OnClick="btnTrasladoAlmacen_Click" />
+        </div>
+        <div class="col-sm-1">
+            <label style="font-size: 11px">Traslado Partida Ppto</label>
+            <br />
+            <asp:ImageButton ID="btnTrasladoPartidaPpto" runat="server" ImageUrl="~/img/pgn/price-tag.png" Height="60%" Width="90%" OnClick="btnTrasladoPartidaPpto_Click" />
+        </div>
+        <div class="col-sm-1">
+            <label>Para Pago</label>
+            <br />
+            <asp:ImageButton ID="btnTrasladoPago" runat="server" ImageUrl="~/img/pgn/money.png" Height="60%" Width="90%" OnClick="btnTrasladoPago_Click" />
+        </div>
+        <div class="col-sm-1">
+            <label style="font-size: 11px">Razonamineto Fac.</label>
+            <br />
+            <asp:ImageButton ID="btnRazonamientoFac" runat="server" ImageUrl="~/img/pgn/receipt.png" Height="60%" Width="90%" OnClick="btnRazonamientoFac_Click" />
+        </div>
+        <div class="col-sm-1">
+            <label>Imprimir Contr.</label>
+            <br />
+            <asp:ImageButton ID="btnImprimirContra" runat="server" ImageUrl="~/img/pgn/barcode.png" Height="60%" Width="90%" OnClick="btnImprimirContra_Click" />
+        </div>
+        <div class="col-sm-1">
+            <label>Ch. Fondo R.</label>
+            <br />
+            <asp:ImageButton ID="btnChequeFondo" runat="server" ImageUrl="~/img/pgn/check.png" Height="60%" Width="90%" OnClick="btnChequeFondo_Click" />
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-sm-1"></div>
+        <div class="col-sm-3">
+            <label>Observaciones</label>
+            <asp:TextBox ID="txtObservacionesRazonamiento" runat="server" CssClass="form-control" Visible="false"></asp:TextBox>
+        </div>
+        <div class="col-sm-2">
+            <br />
+            <asp:Button ID="btnRazonamiento" runat="server" CssClass="btn btn-primary" Text="Imprimir" Visible="false" OnClick="btnRazonamiento_Click"/>
+        </div>
+    </div>
 
-    
     <br />
     <br />
-   
+
 </asp:Content>

@@ -15,10 +15,10 @@ namespace CapaLN
     public class PlanOperativoLN
     {
         PlanOperativoAD ObjAD;
-       
+
         public void DdlAnio(DropDownList drop)
         {
-            
+
             drop.ClearSelection();
             drop.Items.Clear();
             drop.AppendDataBoundItems = true;
@@ -75,7 +75,7 @@ namespace CapaLN
             drop.DataValueField = "id";
             drop.DataBind();
 
-          
+
         }
         public void DdlDependenciasmUnidad(DropDownList drop, string id)
         {
@@ -92,7 +92,7 @@ namespace CapaLN
 
 
         }
-        public void DdlDependenciasxAnalista(DropDownList drop, string usuario,int anio,int id)
+        public void DdlDependenciasxAnalista(DropDownList drop, string usuario, int anio, int id)
         {
             drop.ClearSelection();
             drop.Items.Clear();
@@ -100,7 +100,7 @@ namespace CapaLN
             drop.Items.Add("<< Elija un valor >>");
             drop.Items[0].Value = "0";
             ObjAD = new PlanOperativoAD();
-            drop.DataSource = ObjAD.DdlDependenciasxAnalista(usuario,anio,id);
+            drop.DataSource = ObjAD.DdlDependenciasxAnalista(usuario, anio, id);
             drop.DataTextField = "texto";
             drop.DataValueField = "id";
             drop.DataBind();
@@ -309,18 +309,18 @@ namespace CapaLN
         public void GridCodificacionCompleto(GridView grid, int idPoa)
         {
             ObjAD = new PlanOperativoAD();
-            grid.DataSource = ObjAD.GridPlanCompleto(29,idPoa,2018);
+            grid.DataSource = ObjAD.GridPlanCompleto(29, idPoa, 2018);
             grid.DataBind();
         }
 
-        public DataSet AlmacenarObjetivo(ObjOperativosEN ObjEN, string usuario,string ip,string mac,string pc)
+        public DataSet AlmacenarObjetivo(ObjOperativosEN ObjEN, string usuario, string ip, string mac, string pc)
         {
             DataSet dsResultado = armarDsResultado();
 
             ObjAD = new PlanOperativoAD();
             try
             {
-                DataTable dt = ObjAD.AlmacenarObjetivo(ObjEN, usuario,ip,mac,pc);
+                DataTable dt = ObjAD.AlmacenarObjetivo(ObjEN, usuario, ip, mac, pc);
 
                 if (!bool.Parse(dt.Rows[0]["RESULTADO"].ToString()))
                     throw new Exception(dt.Rows[0]["MENSAJE"].ToString());
@@ -369,7 +369,7 @@ namespace CapaLN
             ObjAD = new PlanOperativoAD();
             try
             {
-                DataTable dt = ObjAD.AlmacenarMeta(ObjEN,usuario);
+                DataTable dt = ObjAD.AlmacenarMeta(ObjEN, usuario);
 
                 if (!bool.Parse(dt.Rows[0]["RESULTADO"].ToString()))
                     throw new Exception(dt.Rows[0]["MENSAJE"].ToString());
@@ -573,13 +573,13 @@ namespace CapaLN
             return dsResultado;
         }
 
-        public DataSet ActualizarEstadoPoa(int idPoa, int idEstado, int anio, string idUsuario, string usuarioAsignado, string usuario, string observaciones,string ip,string mac,string pc,string tipo,string boton)
+        public DataSet ActualizarEstadoPoa(int idPoa, int idEstado, int anio, string idUsuario, string usuarioAsignado, string usuario, string observaciones, string ip, string mac, string pc, string tipo, string boton)
         {
             DataSet dsResultado = armarDsResultado();
             ObjAD = new PlanOperativoAD();
             try
             {
-                DataTable dt = ObjAD.ActualizarEstadoPoa(idPoa, idEstado, anio, idUsuario, usuarioAsignado, usuario, observaciones,ip,mac,pc,tipo,boton);
+                DataTable dt = ObjAD.ActualizarEstadoPoa(idPoa, idEstado, anio, idUsuario, usuarioAsignado, usuario, observaciones, ip, mac, pc, tipo, boton);
 
                 if (!bool.Parse(dt.Rows[0]["RESULTADO"].ToString()))
                     throw new Exception(dt.Rows[0]["MENSAJE"].ToString());
@@ -634,7 +634,7 @@ namespace CapaLN
             try
             {
                 ObjAD = new PlanOperativoAD();
-                DataTable dt = ObjAD.DependenciasFaltantes(anio,idUnidad);
+                DataTable dt = ObjAD.DependenciasFaltantes(anio, idUnidad);
                 DataSet ds = new DataSet();
                 ds.Tables.Add(dt);
                 return ds;
@@ -648,13 +648,13 @@ namespace CapaLN
         public string ObtenerCorreo(int unidad, int menu)
         {
             ObjAD = new PlanOperativoAD();
-            return ObjAD.ObtenerCorreo(unidad,menu);
+            return ObjAD.ObtenerCorreo(unidad, menu);
         }
 
-        public bool CantidadDePresupuestos(int anio,int unidad)
+        public bool CantidadDePresupuestos(int anio, int unidad)
         {
             ObjAD = new PlanOperativoAD();
-            return ObjAD.CantidadPpto(anio,unidad);
+            return ObjAD.CantidadPpto(anio, unidad);
         }
         public string ObtenerCorreoxUsuario(string idempleado)
         {
@@ -668,7 +668,7 @@ namespace CapaLN
             return ObjAD.ProductoxUnidad(unidad);
         }
 
-        public void ddlSubproducto(DropDownList drop,int idUnidad)
+        public void ddlSubproducto(DropDownList drop, int idUnidad)
         {
             drop.ClearSelection();
             drop.Items.Clear();
@@ -696,6 +696,127 @@ namespace CapaLN
             drop.DataSource = ObjAD.DdlPedidoCompras(anio);
             drop.DataTextField = "texto";
             drop.DataValueField = "id";
+            drop.DataBind();
+            if (drop.Items.Count == 2)
+                drop.Items.RemoveAt(0);
+        }
+        /// <summary>
+        /// Obtiene los Datos del seguiminieto 
+        /// </summary>
+        /// <param name="idUnidad"></param>
+        /// <param name="anio"></param>
+        /// <param name="cuatrimestre"></param>
+        /// <returns></returns>
+        public DataSet AvanceCuatrimestral(string idUnidad, string anio, int cuatrimestre)
+        {
+            DataTable dt1 = new DataTable();
+            DataTable dt2, dt3,dt4,dt5;
+            DataSet ds = new DataSet();
+            ObjAD = new PlanOperativoAD();
+            if (cuatrimestre == 1)
+            {
+                dt1 = ObjAD.obtenerAvanceUno(idUnidad, anio, cuatrimestre.ToString(), "1", "1");
+                dt1.Constraints.Add("pk", dt1.Columns[0], true);
+                dt2 = ObjAD.obtenerAvance(idUnidad, anio, cuatrimestre.ToString(), "2", "2");
+                dt2.Constraints.Add("pk", dt2.Columns[0], true);
+                dt3 = ObjAD.obtenerAvance(idUnidad, anio, cuatrimestre.ToString(), "3", "3");
+                dt3.Constraints.Add("pk", dt3.Columns[0], true);
+                dt4 = ObjAD.obtenerAvance(idUnidad, anio, cuatrimestre.ToString(), "4", "4");
+                dt4.Constraints.Add("pk", dt4.Columns[0], true);
+                dt5 = ObjAD.obtenerAvanceCuatrimestral(idUnidad, anio, cuatrimestre.ToString(), "1", "4");
+                dt5.Constraints.Add("pk", dt5.Columns[0], true);
+                dt1.Merge(dt2);
+                dt1.Merge(dt3);
+                dt1.Merge(dt4);
+                dt1.Merge(dt5);
+            }
+            else if (cuatrimestre == 2)
+            {
+                dt1 = ObjAD.obtenerAvanceUno(idUnidad, anio, cuatrimestre.ToString(), "5", "1");
+                dt1.Constraints.Add("pk", dt1.Columns[0], true);
+                dt2 = ObjAD.obtenerAvance(idUnidad, anio, cuatrimestre.ToString(), "6", "2");
+                dt2.Constraints.Add("pk", dt2.Columns[0], true);
+                dt3 = ObjAD.obtenerAvance(idUnidad, anio, cuatrimestre.ToString(), "7", "3");
+                dt3.Constraints.Add("pk", dt3.Columns[0], true);
+                dt4 = ObjAD.obtenerAvance(idUnidad, anio, cuatrimestre.ToString(), "8", "4");
+                dt4.Constraints.Add("pk", dt4.Columns[0], true);
+                dt5 = ObjAD.obtenerAvanceCuatrimestral(idUnidad, anio, cuatrimestre.ToString(), "5", "4");
+                dt5.Constraints.Add("pk", dt5.Columns[0], true);
+                dt1.Merge(dt2);
+                dt1.Merge(dt3);
+                dt1.Merge(dt4);
+                dt1.Merge(dt5);
+            }
+            else if (cuatrimestre == 3)
+            {
+                dt1 = ObjAD.obtenerAvanceUno(idUnidad, anio, cuatrimestre.ToString(), "9", "1");
+                dt1.Constraints.Add("pk", dt1.Columns[0], true);
+                dt2 = ObjAD.obtenerAvance(idUnidad, anio, cuatrimestre.ToString(), "10", "2");
+                dt2.Constraints.Add("pk", dt2.Columns[0], true);
+                dt3 = ObjAD.obtenerAvance(idUnidad, anio, cuatrimestre.ToString(), "11", "3");
+                dt3.Constraints.Add("pk", dt3.Columns[0], true);
+                dt4 = ObjAD.obtenerAvance(idUnidad, anio, cuatrimestre.ToString(), "12", "4");
+                dt4.Constraints.Add("pk", dt4.Columns[0], true);
+                dt5 = ObjAD.obtenerAvanceCuatrimestral(idUnidad, anio, cuatrimestre.ToString(), "9", "4");
+                dt5.Constraints.Add("pk", dt5.Columns[0], true);
+                dt1.Merge(dt2);
+                dt1.Merge(dt3);
+                dt1.Merge(dt4);
+                dt1.Merge(dt5);
+            }
+            ds.Tables.Add(dt1);
+            return ds;
+        }
+
+        public DataSet ActulizarAvanceCuatrimestral(string observcion1, string observcion2, string observcion3, string observcion4,string resumen, string accion, int cuatrimestre,string avance)
+        {
+            DataTable dt1 = new DataTable();
+            
+            DataSet ds = new DataSet();
+            ObjAD = new PlanOperativoAD();
+            if (cuatrimestre == 1)
+            {
+                dt1 = ObjAD.actualizarAvanceCuatrimestral(observcion1,accion,"1");
+                dt1 = ObjAD.actualizarAvanceCuatrimestral(observcion2, accion, "2");
+                dt1 = ObjAD.actualizarAvanceCuatrimestral(observcion3, accion, "3");
+                dt1 = ObjAD.actualizarAvanceCuatrimestral(observcion4, accion, "4");
+                dt1 = ObjAD.actualizarAvanceCuatrimestralResumen(resumen,avance, accion, "1");
+            }
+            else if (cuatrimestre == 2)
+            {
+                dt1 = ObjAD.actualizarAvanceCuatrimestral(observcion1, accion, "5");
+                dt1 = ObjAD.actualizarAvanceCuatrimestral(observcion2, accion, "6");
+                dt1 = ObjAD.actualizarAvanceCuatrimestral(observcion3, accion, "7");
+                dt1 = ObjAD.actualizarAvanceCuatrimestral(observcion4, accion, "8");
+                dt1 = ObjAD.actualizarAvanceCuatrimestralResumen(resumen, avance, accion, "2");
+            }
+            else if (cuatrimestre == 3)
+            {
+                dt1 = ObjAD.actualizarAvanceCuatrimestral(observcion1, accion, "9");
+                dt1 = ObjAD.actualizarAvanceCuatrimestral(observcion2, accion, "10");
+                dt1 = ObjAD.actualizarAvanceCuatrimestral(observcion3, accion, "11");
+                dt1 = ObjAD.actualizarAvanceCuatrimestral(observcion4, accion, "12");
+                dt1 = ObjAD.actualizarAvanceCuatrimestralResumen(resumen, avance, accion, "3");
+            }
+            ds.Tables.Add(dt1);
+            return ds;
+        }
+        /// <summary>
+        /// Drop de Analistas Ppto
+        /// </summary>
+        /// <param name="drop"></param>
+        /// <param name="usuario"></param>
+        public void DdlUsuarioPpto(DropDownList drop)
+        {
+            drop.ClearSelection();
+            drop.Items.Clear();
+            drop.AppendDataBoundItems = true;
+            drop.Items.Add("<< Elija un valor >>");
+            drop.Items[0].Value = "0";
+            ObjAD = new PlanOperativoAD();
+            drop.DataSource = ObjAD.DdlUsuarioPpto();
+            drop.DataTextField = "nombres";
+            drop.DataValueField = "id_empleado";
             drop.DataBind();
             if (drop.Items.Count == 2)
                 drop.Items.RemoveAt(0);

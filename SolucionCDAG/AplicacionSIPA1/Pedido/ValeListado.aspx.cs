@@ -408,7 +408,7 @@ namespace AplicacionSIPA1.Pedido
                     int idEstado = 0;
                     int.TryParse(dsResultado.Tables["BUSQUEDA"].Rows[0]["ID_ESTADO_VALE"].ToString(), out idEstado);
 
-                if (idEstado == 8)                    
+                if (idEstado == 14)                    
                     if (idEncabezado > 0)
                         {
 

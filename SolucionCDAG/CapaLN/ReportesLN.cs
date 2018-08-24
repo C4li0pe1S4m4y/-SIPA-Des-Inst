@@ -155,5 +155,68 @@ namespace CapaLN
                 " Where p.id_pedido >0";
             return query;
         }
+
+        public DataSet ReportePpto(string filtros)
+        {
+            reportesAD = new ReportesAD();
+            DataSet dsResultado = new DataSet();
+            DataTable dt1 = reportesAD.ReportePptoCantidad(filtros);
+            DataTable dt2 = reportesAD.ReportePpto(filtros);
+            dsResultado.Tables.Add(dt1);
+            dsResultado.Tables.Add(dt2);
+            return dsResultado;
+        }
+
+        public DataSet TrasladoCUR(string no, string anio, string det)
+        {
+            reportesAD = new ReportesAD();
+            DataSet dt = new DataSet();
+
+            dt = reportesAD.TrasladoCUR(no,anio,det);
+            return dt;
+        }
+
+        public DataSet TrasladoAlmacen(string no, string anio, string det,int modalidad)
+        {
+            reportesAD = new ReportesAD();
+            DataSet dt = new DataSet();
+            
+            dt = reportesAD.TrasladoAlmacen(no, anio, det);
+            
+            return dt;
+        }
+
+        public DataTable GruposRenglones(string no)
+        {
+            reportesAD = new ReportesAD();
+            DataTable dt = new DataTable();
+
+            dt = reportesAD.GruposPresupuestarios(no);
+
+            return dt;
+        }
+
+        public DataTable ReporteCuatrimestre(string id)
+        {
+            DataTable dt = new DataTable();
+            reportesAD = new ReportesAD();
+            try
+            {
+                dt = reportesAD.Cuatrimestre1(id);
+                dt.PrimaryKey = new DataColumn[] { dt.Columns["Modalidad"] };
+                DataTable dt2 = reportesAD.Cuatrimestre2(id);
+                DataTable dt3 = reportesAD.Cuatrimestre3(id);
+                dt.Merge(dt2);
+                dt.Merge(dt3);
+                dt.TableName = "BUSQUEDA";
+               
+            }
+            catch (Exception ex)
+            {
+                
+            }
+
+            return dt;
+        }
     }
 }

@@ -79,7 +79,7 @@
                         </div>
                         <div class="col-sm-3">
                             <br />
-                            <asp:Button ID="btnCargarArchivo"  runat="server" Text="Almacenar" OnClick="btnCargarArchivo_Click" UseSubmitBehavior="false" Width="100%" CssClass="btn btn-primary" />
+                            <asp:Button ID="btnCargarArchivo"  runat="server" Text="Cargar Archivo" OnClick="btnCargarArchivo_Click" UseSubmitBehavior="false" Width="100%" CssClass="btn btn-primary" />
                         </div>
                     </div>
 

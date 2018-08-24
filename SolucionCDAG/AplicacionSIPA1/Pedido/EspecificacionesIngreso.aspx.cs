@@ -203,7 +203,7 @@ namespace AplicacionSIPA1.Pedido
         {
             try
             {
-                
+
 
                 int idPedido, idEspecificacion = 0;
                 int.TryParse(lblIdPedido.Text.Split('-')[0].Trim(), out idPedido);
@@ -220,7 +220,7 @@ namespace AplicacionSIPA1.Pedido
                 if (pInsumoEN.USUARIO.Equals(usuarioIngreso.Tables[0].Rows[0]["usuario_ing"].ToString()))
                 {
 
-                   
+
 
                     if (lblTipoDocumento.Text.Equals("R"))
                         pInsumoEN.VID_TIPO_DOCUMENTO = "1";
@@ -243,7 +243,51 @@ namespace AplicacionSIPA1.Pedido
                         dr["ID_ESPECIFICACION"] = idEspecificacion;
                         dr["ID_ESPECIFICACION_DETALLE"] = gridDet.DataKeys[i].Values[0].ToString();
                         dr["ID_PEDIDO_DETALLE"] = gridDet.DataKeys[i].Values[1].ToString();
-                        dr["DESCRIPCION_ESPECIFICA"] = (gridDet.Rows[i].FindControl("txtDescripcionE") as TextBox).Text;
+                        dr["DESCRIPCION_ESPECIFICA"] = (gridDet.Rows[i].FindControl("txtDescripcionE") as TextBox).Text.Replace('\'', '`');
+                        dr["USUARIO"] = Session["usuario"].ToString();
+
+                        dtDetalles.Rows.Add(dr);
+                    }
+
+                    pInsumoLN = new PedidosLN();
+                    DataSet dsResultado = pInsumoLN.AlmacenarEspecificacion(pInsumoEN, dtDetalles);
+
+                    if (bool.Parse(dsResultado.Tables[0].Rows[0]["ERRORES"].ToString()))
+                        throw new Exception("No se INSERTARON/ACTUALIZARON las especificaciones: " + dsResultado.Tables[0].Rows[0]["MSG_ERROR"].ToString());
+
+
+                    int.TryParse(dsResultado.Tables[0].Rows[0]["VALOR"].ToString(), out idEspecificacion);
+                    lblNoAnexo.Text = idEspecificacion.ToString();
+
+                    generarReporte(idPedido);
+
+                    lblError.Text = string.Empty;
+                    lblSuccess.Text = "Especificaciones ALMACENADAS/MODIFICADAS exitosamente: ";
+                }
+                else if (lblTipoDocumento.Text.Equals("V"))
+                {
+                    if (lblTipoDocumento.Text.Equals("R"))
+                        pInsumoEN.VID_TIPO_DOCUMENTO = "1";
+                    else if (lblTipoDocumento.Text.Equals("V"))
+                        pInsumoEN.VID_TIPO_DOCUMENTO = "2";
+
+                    DataTable dtDetalles = armarDtDetalles();
+                    int filas = gridDet.Rows.Count;
+
+                    for (int i = 0; i < gridDet.Rows.Count; i++)
+                    {
+                        string idEspecificacionDetalle = gridDet.DataKeys[i].Values[0].ToString();
+                        string idPedidoDetalle = gridDet.DataKeys[i].Values[1].ToString();
+                        TextBox txtDescripcionEspecifica = gridDet.Rows[i].FindControl("txtDescripcionE") as TextBox;
+                        string usuario = Session["usuario"].ToString();
+
+                        Label lblObservaciones = (Label)gridDet.Rows[i].FindControl("lblObservaciones");
+
+                        DataRow dr = dtDetalles.NewRow();
+                        dr["ID_ESPECIFICACION"] = idEspecificacion;
+                        dr["ID_ESPECIFICACION_DETALLE"] = gridDet.DataKeys[i].Values[0].ToString();
+                        dr["ID_PEDIDO_DETALLE"] = gridDet.DataKeys[i].Values[1].ToString();
+                        dr["DESCRIPCION_ESPECIFICA"] = (gridDet.Rows[i].FindControl("txtDescripcionE") as TextBox).Text.Replace('\'', '`');
                         dr["USUARIO"] = Session["usuario"].ToString();
 
                         dtDetalles.Rows.Add(dr);
@@ -321,16 +365,29 @@ namespace AplicacionSIPA1.Pedido
 
                     dsResultado = pInsumoLN.InforamcionPresentacion(idEncabezado);
                     ReportDataSource RD3 = new ReportDataSource();
-                    RD3.Value = dsResultado.Tables[1];
-                    RD3.Name = "DataSet3";
+                    if (string.IsNullOrWhiteSpace(dsResultado.Tables[1].Rows[0]["presentacion"].ToString()))
+                    {
+                        rViewer.LocalReport.DataSources.Clear();
+                        rViewer.LocalReport.DataSources.Add(RD);
+                        rViewer.LocalReport.DataSources.Add(RD2);
+                        rViewer.LocalReport.ReportEmbeddedResource = "\\Reportes/rptCOMFOR06Servicio.rdlc";
+                        rViewer.LocalReport.ReportPath = @"Reportes\\rptCOMFOR06Servicio.rdlc";
+                        rViewer.LocalReport.Refresh();
+                    }
+                    else
+                    {
+                        RD3.Value = dsResultado.Tables[1];
+                        RD3.Name = "DataSet3";
 
-                    rViewer.LocalReport.DataSources.Clear();
-                    rViewer.LocalReport.DataSources.Add(RD);
-                    rViewer.LocalReport.DataSources.Add(RD2);
-                    rViewer.LocalReport.DataSources.Add(RD3);
-                    rViewer.LocalReport.ReportEmbeddedResource = "\\Reportes/rptCOMFOR06.rdlc";
-                    rViewer.LocalReport.ReportPath = @"Reportes\\rptCOMFOR06.rdlc";
-                    rViewer.LocalReport.Refresh();
+                        rViewer.LocalReport.DataSources.Clear();
+                        rViewer.LocalReport.DataSources.Add(RD);
+                        rViewer.LocalReport.DataSources.Add(RD2);
+                        rViewer.LocalReport.DataSources.Add(RD3);
+                        rViewer.LocalReport.ReportEmbeddedResource = "\\Reportes/rptCOMFOR06.rdlc";
+                        rViewer.LocalReport.ReportPath = @"Reportes\\rptCOMFOR06.rdlc";
+                        rViewer.LocalReport.Refresh();
+                    }
+                   
 
 
                     byte[] bytes = rViewer.LocalReport.Render(

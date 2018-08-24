@@ -45,7 +45,7 @@ namespace AplicacionSIPA1.ReporteriaSistema
                     throw new Exception(dsResultado.Tables["RESULTADO"].Rows[0]["MSG_ERROR"].ToString());
 
                 if (dsResultado.Tables["BUSQUEDA"].Rows.Count > 0)
-                { 
+                {
                     pOperativoLN.DdlUnidades(ddlUnidades);
                     pOperativoLN.DdlDependencias(ddlDependencia, ddlUnidades.SelectedValue);
                 }
@@ -90,14 +90,14 @@ namespace AplicacionSIPA1.ReporteriaSistema
                         ReportViewer1.LocalReport.Refresh();
                     }
                 }
-               
+
             }
         }
         protected void ddlAnios_SelectedIndexChanged(object sender, EventArgs e)
         {
-            if(ddlUnidades.SelectedValue != "0")
+            if (ddlUnidades.SelectedValue != "0")
                 validarPoa(int.Parse(ddlUnidades.SelectedValue), int.Parse(ddlAnios.SelectedValue));
-            if(ddlDependencia.SelectedValue != "0")
+            if (ddlDependencia.SelectedValue != "0")
                 validarPoa(int.Parse(ddlDependencia.SelectedValue), int.Parse(ddlAnios.SelectedValue));
             else if (ddlUnidades.SelectedValue == "0" && ddlDependencia.SelectedValue == "0")
                 lblError.Text = "Escoger la Dependencia para Visualizar los Datos";
@@ -154,10 +154,10 @@ namespace AplicacionSIPA1.ReporteriaSistema
 
             validarPoa(int.Parse(ddlUnidades.SelectedValue), int.Parse(ddlAnios.SelectedValue));
 
-                int idPoa = 0;
-                int.TryParse(lblPoa.Text, out idPoa);
-                pAccionLN = new PlanAccionLN();
-                pAccionLN.DdlAcciones(ddlAcciones, idPoa, 0, "", 3);
+            int idPoa = 0;
+            int.TryParse(lblPoa.Text, out idPoa);
+            pAccionLN = new PlanAccionLN();
+            pAccionLN.DdlAcciones(ddlAcciones, idPoa, 0, "", 3);
 
             System.Text.StringBuilder stringBuilder = new System.Text.StringBuilder();
             stringBuilder.Append(consulta());
@@ -203,7 +203,7 @@ namespace AplicacionSIPA1.ReporteriaSistema
         protected void ddlDependencia_SelectedIndexChanged(object sender, EventArgs e)
         {
             validarPoa(int.Parse(ddlDependencia.SelectedValue), int.Parse(ddlAnios.SelectedValue));
-            
+
             int idPoa = 0;
             int.TryParse(lblPoa.Text, out idPoa);
             pAccionLN = new PlanAccionLN();
@@ -211,7 +211,7 @@ namespace AplicacionSIPA1.ReporteriaSistema
             ddlAcciones.Items[0].Text = "<< TODAS >>";
             System.Text.StringBuilder stringBuilder = new System.Text.StringBuilder();
             stringBuilder.Append(consulta());
-            if(ddlDependencia.SelectedValue == "0")
+            if (ddlDependencia.SelectedValue == "0")
                 stringBuilder.Append(" AND id_padre = " + ddlUnidades.SelectedValue);
             else
                 stringBuilder.Append(" AND id_unidad = " + ddlDependencia.SelectedValue);
@@ -272,7 +272,7 @@ namespace AplicacionSIPA1.ReporteriaSistema
             }
             catch (Exception ex)
             {
-               // throw new Exception("validarPoa(). " + ex.Message);
+                // throw new Exception("validarPoa(). " + ex.Message);
             }
             return poaValido;
         }
@@ -412,9 +412,9 @@ namespace AplicacionSIPA1.ReporteriaSistema
                     stringBuilder.Append(" AND id_padre = " + ddlUnidades.SelectedValue);
                     stringBuilder.Append(" AND t.Año = " + ddlAnios.SelectedValue);
                 }
-               
+
             }
-               
+
             if (ddlAcciones.SelectedIndex > 0)
                 stringBuilder.Append(" AND id_accion = " + ddlAcciones.SelectedValue);
             string tiposSalida = "";
@@ -581,7 +581,7 @@ namespace AplicacionSIPA1.ReporteriaSistema
                 else
                 {
                     stringBuilder.Append(" AND id_padre = " + ddlUnidades.SelectedValue);
-                   
+
                 }
                 stringBuilder.Append(" AND t.Año = " + ddlAnios.SelectedValue);
             }
@@ -622,6 +622,6 @@ namespace AplicacionSIPA1.ReporteriaSistema
             }
 
             ReportViewer1.LocalReport.Refresh();
-        }        
+        }
     }
 }

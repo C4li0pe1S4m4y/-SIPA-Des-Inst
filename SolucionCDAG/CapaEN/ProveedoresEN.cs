@@ -17,5 +17,12 @@ namespace CapaEN
         public string vtelefono { get; set; }
         public int vactivo { get; set; }
         public string vusuario { get; set; }
+        public int idRegimen { get; set; }
+        public string NombreContacto { get; set; }
+        public string TelefonoConctacto { get; set; }
+        public string Email { get; set; }
+        public string GiroNegocio { get; set; }
+        public string Especializacion { get; set; }
+
     }
 }

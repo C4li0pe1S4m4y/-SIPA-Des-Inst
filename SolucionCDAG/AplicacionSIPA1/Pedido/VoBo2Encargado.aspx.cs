@@ -109,7 +109,7 @@ namespace AplicacionSIPA1.Pedido
 
                 pInsumoLN = new PedidosLN();
                 pInsumoLN.RblEstadosPedido(rblEstadosPedido);
-                rblEstadosPedido.SelectedValue = "4";
+                rblEstadosPedido.SelectedValue = "2";
                 rblEstadosPedido_SelectedIndexChanged(new Object(), new EventArgs());
 
             }
@@ -520,7 +520,7 @@ namespace AplicacionSIPA1.Pedido
                     int.TryParse(drPedido[0]["ID_ESTADO_PEDIDO"].ToString(), out idEstadoPedido);
 
                     //EL PEDIDO NO ESTÁ EN ESTADO APROBACIÓN DE SUBGERENTE/DIRECTOR DE UNIDAD
-                    if (idEstadoPedido != 4)
+                    if (idEstadoPedido != 2)
                     {
                         btnAprobar.Visible = btnRechazar.Visible = false;
                         lblErrorPoa.Text = lblError.Text = "El PEDIDO seleccionado se encuenta en estado: " + estadoPedido + " y no se puede modificar ";

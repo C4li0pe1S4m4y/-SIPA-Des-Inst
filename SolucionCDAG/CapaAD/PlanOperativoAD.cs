@@ -528,21 +528,30 @@ namespace CapaAD
 
         public string ObtenerCorreoxUsuario(string empleado)
         {
-            string correo = "";
-            conectar = new ConexionBD();
-            string permiso = string.Format(" call sp_CorreoxUsuario ('%"+empleado+"%') ");
-            conectar.AbrirConexion();
-            MySqlCommand cmd = new MySqlCommand(permiso, conectar.conectar);
-            MySqlDataReader dr = cmd.ExecuteReader();
-            while (dr.Read())
+            try
             {
-                correo = dr.GetString("email");
-                if (!string.IsNullOrEmpty(correo))
+                string correo = "";
+                conectar = new ConexionBD();
+                string permiso = string.Format(" call sp_CorreoxUsuario ('%" + empleado + "%') ");
+                conectar.AbrirConexion();
+                MySqlCommand cmd = new MySqlCommand(permiso, conectar.conectar);
+                MySqlDataReader dr = cmd.ExecuteReader();
+                while (dr.Read())
                 {
-                    return correo;
+                    correo = dr.GetString("email");
+                    if (!string.IsNullOrEmpty(correo))
+                    {
+                        return correo;
+                    }
                 }
+                return correo = "Correo no encontrado";
             }
-            return correo = "Correo no encontrado";
+            catch (Exception)
+            {
+                return "Correo no encontrado";
+                throw;
+            }
+           
         }
 
 
@@ -602,5 +611,88 @@ namespace CapaAD
             return tabla;
         }
 
+        public DataTable obtenerAvanceUno(string idUnidad, string anio, string cuatrimestre, string mes, string numero)
+        {
+            conectar = new ConexionBD();
+            DataTable tabla = new DataTable();
+            conectar.AbrirConexion();
+            string query = string.Format("Select d1.id_accion ID, d1.descripcion_avance_kpi descripcionM{4}, d1.observaciones_dge observacionesM{4}, concat(fn_codigo_accion(ac.id_accion, 0, '''', 1),'-',ac.accion) accion " +
+                 " from sipa_seguimientos_cmi s " +
+                 " inner join sipa_seguimientos_cmi_det d1 on d1.id_seguimiento_cmi = s.id_seguimiento_cmi" +
+                 " inner join sipa_acciones ac on ac.id_accion = d1.id_accion " +
+                 " where s.id_unidad ={0} and s.anio = {1} and no_cuatrimestre = {2} and mes = {3}", idUnidad, anio, cuatrimestre, mes, numero);
+            MySqlDataAdapter consulta = new MySqlDataAdapter(query, conectar.conectar);
+            consulta.Fill(tabla);
+            conectar.CerrarConexion();
+            return tabla;
+        }
+        public DataTable obtenerAvance(string idUnidad, string anio, string cuatrimestre,string mes,string numero )
+        {
+            conectar = new ConexionBD();
+            DataTable tabla = new DataTable();
+            conectar.AbrirConexion();
+            string query = string.Format("Select  d1.id_accion ID,d1.descripcion_avance_kpi descripcionM{4}, d1.observaciones_dge observacionesM{4} " +
+                 " from sipa_seguimientos_cmi s " +
+                 " inner join sipa_seguimientos_cmi_det d1 on d1.id_seguimiento_cmi = s.id_seguimiento_cmi " +
+                 " where id_unidad ={0} and anio = {1} and no_cuatrimestre = {2} and mes = {3}",idUnidad,anio,cuatrimestre,mes,numero);
+            MySqlDataAdapter consulta = new MySqlDataAdapter(query, conectar.conectar);
+            consulta.Fill(tabla);
+            conectar.CerrarConexion();
+            return tabla;
+        }
+        public DataTable obtenerAvanceCuatrimestral(string idUnidad, string anio, string cuatrimestre, string mes, string numero)
+        {
+            conectar = new ConexionBD();
+            DataTable tabla = new DataTable();
+            conectar.AbrirConexion();
+            string query = string.Format("Select  d1.id_accion ID,COALESCE(d1.avance_cuatrimestre1,' - ') avanceC1,COALESCE(d1.avance_cuatrimestre2,' - ') avanceC2,COALESCE(d1.avance_cuatrimestre3,' - ') avanceC3, " +
+                 " d1.avance_cuatrimestre{2} avance, d1.porcentaje_cuatrimestre{2} porcentaje" +
+                 " from sipa_seguimientos_cmi s " +
+                 " inner join sipa_seguimientos_cmi_det d1 on d1.id_seguimiento_cmi = s.id_seguimiento_cmi " +
+                 " where id_unidad ={0} and anio = {1} and no_cuatrimestre = {2} and mes = {3}", idUnidad, anio, cuatrimestre, mes, numero);
+            MySqlDataAdapter consulta = new MySqlDataAdapter(query, conectar.conectar);
+            consulta.Fill(tabla);
+            conectar.CerrarConexion();
+            return tabla;
+        }
+
+        public DataTable actualizarAvanceCuatrimestral(string observacion,string accion, string mes)
+        {
+            conectar = new ConexionBD();
+            DataTable tabla = new DataTable();
+            conectar.AbrirConexion();
+            string query = string.Format("UPDATE sipa_seguimientos_cmi_det d" +
+                " inner join sipa_seguimientos_cmi s on s.id_seguimiento_cmi = d.id_seguimiento_cmi "+
+                " SET d.observaciones_dge = '{0}' WHERE d.id_seguimiento_cmi_det > 0 and id_accion = {1} and s.mes = {2}; ",observacion,accion,mes);
+            MySqlDataAdapter consulta = new MySqlDataAdapter(query, conectar.conectar);
+            consulta.Fill(tabla);
+            conectar.CerrarConexion();
+            return tabla;
+        }
+
+        public DataTable actualizarAvanceCuatrimestralResumen(string observacion,string avance, string accion, string mes)
+        {
+            conectar = new ConexionBD();
+            DataTable tabla = new DataTable();
+            conectar.AbrirConexion();
+            string query = string.Format("UPDATE sipa_seguimientos_cmi_det d" +
+                " inner join sipa_seguimientos_cmi s on s.id_seguimiento_cmi = d.id_seguimiento_cmi " +
+                " SET d.avance_cuatrimestre{2} = '{0}',d.porcentaje_cuatrimestre{2} = '{3}' WHERE d.id_seguimiento_cmi_det > 0 and id_accion = {1} ; ", observacion,accion,mes,avance);
+            MySqlDataAdapter consulta = new MySqlDataAdapter(query, conectar.conectar);
+            consulta.Fill(tabla);
+            conectar.CerrarConexion();
+            return tabla;
+        }
+        public DataTable DdlUsuarioPpto()
+        {
+            conectar = new ConexionBD();
+            DataTable tabla = new DataTable();
+            conectar.AbrirConexion();
+            string query = string.Format("select id_empleado,nombres from ccl_empleados where id_puesto in(9,93);");
+            MySqlDataAdapter consulta = new MySqlDataAdapter(query, conectar.conectar);
+            consulta.Fill(tabla);
+            conectar.CerrarConexion();
+            return tabla;
+        }
     }
 }

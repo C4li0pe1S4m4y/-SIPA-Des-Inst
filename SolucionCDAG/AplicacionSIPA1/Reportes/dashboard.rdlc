@@ -586,7 +586,7 @@
           </Style>
         </ChartNoDataMessage>
         <DataSetName>DataSet1</DataSetName>
-        <Top>1.27167in</Top>
+        <Top>1.28556in</Top>
         <Left>0.32167in</Left>
         <Height>3.51667in</Height>
         <Width>5.41666in</Width>
@@ -1538,7 +1538,7 @@
         <ActionInfo>
           <Actions>
             <Action>
-              <Hyperlink>="http://localhost:49311/Pedido/PedidoListado.aspx"</Hyperlink>
+              <Hyperlink>="http://localhost:49311/Pedido/PedidoListado.aspx?Anio=2018&amp;unidad="&amp; First(Fields!id_unidad.Value, "DataSet2")</Hyperlink>
             </Action>
           </Actions>
         </ActionInfo>
@@ -1581,7 +1581,7 @@
         <ActionInfo>
           <Actions>
             <Action>
-              <Hyperlink>="http://localhost:49311/Viaticos/ViaticosListado.aspx"</Hyperlink>
+              <Hyperlink>="http://localhost:49311/Viaticos/ViaticosListado.aspx?Anio=2018&amp;unidad="&amp; First(Fields!id_unidad.Value, "DataSet2")</Hyperlink>
             </Action>
           </Actions>
         </ActionInfo>
@@ -1624,7 +1624,7 @@
         <ActionInfo>
           <Actions>
             <Action>
-              <Hyperlink>="http://localhost:49311/Pedido/ValeListado.aspx"</Hyperlink>
+              <Hyperlink>="http://localhost:49311/Pedido/ValeListado.aspx?Anio=2018&amp;unidad="&amp; First(Fields!id_unidad.Value, "DataSet2")</Hyperlink>
             </Action>
           </Actions>
         </ActionInfo>
@@ -1667,7 +1667,7 @@
         <ActionInfo>
           <Actions>
             <Action>
-              <Hyperlink>="http://localhost:49311/Pedido/GastoListado.aspx"</Hyperlink>
+              <Hyperlink>="http://localhost:49311/Pedido/GastoListado.aspx?Anio=2018&amp;unidad="&amp; First(Fields!id_unidad.Value, "DataSet2")</Hyperlink>
             </Action>
           </Actions>
         </ActionInfo>

@@ -1,8 +1,10 @@
 ﻿using CapaLN;
+using Microsoft.Reporting.WebForms;
 using System;
 using System.Collections.Generic;
 using System.Data;
 using System.Globalization;
+using System.IO;
 using System.Linq;
 using System.Web;
 using System.Web.UI;
@@ -18,6 +20,7 @@ namespace AplicacionSIPA1.Compras
         private PlanAnualLN pAnualLN;
         private FuncionesVarias funciones;
         private PlanOperativoLN pOperativoLN;
+        private ReportesLN pReportLN;
         protected void Page_Load(object sender, EventArgs e)
         {
             if (!IsPostBack)
@@ -70,6 +73,8 @@ namespace AplicacionSIPA1.Compras
                     string jScript = "javascript:window.open('ETVoBoN2.aspx?No=" + idpedido.Text + "&OptB=true&TipoD=R" + "', '_blank');";
                     lbAnexo.Attributes.Add("onclick", jScript);
                     lbAnexo.Text = dsResultado.Tables["Busqueda"].Rows[0]["id_tipo_anexo"].ToString();
+                    txtIngresoInventarios.Text = dsResultado.Tables["Busqueda"].Rows[0]["fecha_ingreso_inventarios"].ToString();
+                    txtTrasladoInventarios.Text = dsResultado.Tables["Busqueda"].Rows[0]["fecha_traslado_inventarios"].ToString();
                 }
 
 
@@ -156,7 +161,7 @@ namespace AplicacionSIPA1.Compras
                     {
                         DropDownList ddlProveedor, ddlEstadoCompmras;
                         TextBox txtCantidad, txtCosto, txtCostoReal, txtNoOrden, txtFechaOrden, txtFechaTrasladoOC,
-                            txtFactura, txtFechaFactura, txtFechaTrasladoAlmacen, txtFechaIngresoSB;
+                            txtFactura, txtFechaFactura, txtFechaTrasladoAlmacen, txtFechaIngresoSB, txtFTrasladoFRotativo, txtFechaCotizacion, txtFechaRazonamiento;
                         cantidad = 0;
                         costoUnitario = 0;
                         subTotal = 0;
@@ -182,9 +187,12 @@ namespace AplicacionSIPA1.Compras
                         txtFechaFactura = (gvDetalle.Rows[i].FindControl("txtFechaFactura") as TextBox);
                         txtFechaTrasladoAlmacen = (gvDetalle.Rows[i].FindControl("txtFechaTrasladoAlmacen") as TextBox);
                         txtFechaIngresoSB = (gvDetalle.Rows[i].FindControl("txtFechaIngresoBS") as TextBox);
+                        txtFTrasladoFRotativo = (gvDetalle.Rows[i].FindControl("txtFechaFondoRotativo") as TextBox);
+                        txtFechaCotizacion = (gvDetalle.Rows[i].FindControl("txtFechaCotizacion") as TextBox);
+                        txtFechaRazonamiento = (gvDetalle.Rows[i].FindControl("txtFechaRazonamiento") as TextBox);
                         //Costo real e IVA
-                        
-                        stringBuilder.Append(" costo_real =" + funciones.StringToDecimal(lblCostoReal.Text).ToString() +",");
+
+                        stringBuilder.Append(" costo_real =" + funciones.StringToDecimal(lblCostoReal.Text).ToString() + ",");
                         stringBuilder.Append(" IVA =" + funciones.StringToDecimal(lblIVA.Text).ToString() + ",");
 
                         if (!ddlProveedor.SelectedValue.Equals("0"))
@@ -204,20 +212,27 @@ namespace AplicacionSIPA1.Compras
                         if (!string.IsNullOrEmpty(txtFechaTrasladoAlmacen.Text))
                             stringBuilder.Append("fecha_traslado_almacen = '" + txtFechaTrasladoAlmacen.Text + "', ");
                         if (!string.IsNullOrEmpty(txtFechaIngresoSB.Text))
-                            stringBuilder.Append("txtFechaIngresoBS = '" + txtFechaIngresoSB.Text + "', ");
+                            stringBuilder.Append("fecha_ingreso_BS = '" + txtFechaIngresoSB.Text + "', ");
+                        if (!string.IsNullOrEmpty(txtFTrasladoFRotativo.Text))
+                            stringBuilder.Append("fecha_traslado_fondo_rotativo = '" + txtFTrasladoFRotativo.Text + "', ");
+                        if (!string.IsNullOrEmpty(txtFechaCotizacion.Text))
+                            stringBuilder.Append("fecha_cotizacion = '" + txtFechaCotizacion.Text + "', ");
+                        if (!string.IsNullOrEmpty(txtFechaRazonamiento.Text))
+                            stringBuilder.Append("fecha_razonamiento= '" + txtFechaRazonamiento.Text + "', ");
 
                         if (!string.IsNullOrEmpty(stringBuilder.ToString()))
                         {
                             pInsumoLN = new PedidosLN();
                             DataSet dsResultado = new DataSet();
                             dsResultado = pInsumoLN.AlmacenarDatosTecnicoDetalle(stringBuilder.ToString(), gvDetalle.DataKeys[i].Value.ToString());
-                            if(dsResultado!=null)
+                            if (dsResultado != null)
                                 ScriptManager.RegisterStartupScript(this, typeof(string), "Almacenado", "alert('Datos Almacenados Exitosamente');", true);
                             else
                                 lblError.Text = dsResultado.Tables["RESULTADO"].Rows[0]["ERRORES"].ToString();
                         }
                         else
                             lblError.Text = "No se tienen ningun dato a ingresar";
+
                     }
                 }
 
@@ -228,6 +243,29 @@ namespace AplicacionSIPA1.Compras
                 throw;
             }
 
+        }
+
+        public void GenerarTraslado(int op)
+        {
+            System.Text.StringBuilder stringBuilder = new System.Text.StringBuilder();
+            try
+            {
+                foreach (GridViewRow gvItem in gvDetalle.Rows)
+                {
+                    CheckBox chkItem = (CheckBox)gvItem.FindControl("chkItem");
+                    string ID = gvDetalle.DataKeys[gvItem.DataItemIndex].Value.ToString();
+                    if (chkItem.Checked)
+                    {
+                        stringBuilder.Append(ID + ",");
+                    }
+                }
+                if (stringBuilder.Length > 0)
+                    ImprimirTrasladoCur(stringBuilder.ToString().Remove(stringBuilder.Length - 1), op);
+            }
+            catch (Exception ex)
+            {
+                lblError.Text = "btnImprimir(). " + ex.Message;
+            }
         }
 
         private void AlmacenarEncabezado()
@@ -247,6 +285,10 @@ namespace AplicacionSIPA1.Compras
                     stringBuilder.Append("id_centro_costo = '" + txtFechaRetorno.Text + "', ");
                 if (!string.IsNullOrEmpty(txtNotas.Text))
                     stringBuilder.Append("notas = '" + txtNotas.Text + "', ");
+                if (!string.IsNullOrEmpty(txtIngresoInventarios.Text))
+                    stringBuilder.Append("fecha_ingreso_inventarios = '" + txtIngresoInventarios.Text + "', ");
+                if (!string.IsNullOrEmpty(txtTrasladoInventarios.Text))
+                    stringBuilder.Append("fecha_traslado_inventarios = '" + txtTrasladoInventarios.Text + "', ");
                 if (!string.IsNullOrEmpty(stringBuilder.ToString()))
                 {
                     pInsumoLN = new PedidosLN();
@@ -363,7 +405,7 @@ namespace AplicacionSIPA1.Compras
                                 ddlTipoDoctoCompra = (gvDetalle.Rows[i].FindControl("dropTipoDoctoDetalle") as DropDownList);
                                 txtNoOrden = (gvDetalle.Rows[i].FindControl("txtOrdenCompra") as TextBox);
                                 txtFechaOrden = (gvDetalle.Rows[i].FindControl("txtFechaOrdenCompra") as TextBox);
-                                
+
                             }
 
                             //string sCantidad = funciones.StringToDecimal(txtCantidad.Text).ToString();
@@ -443,21 +485,7 @@ namespace AplicacionSIPA1.Compras
 
                             (gvDetalle.Rows[i].FindControl("lblIVA") as Label).Text = String.Format(CultureInfo.InvariantCulture, "Q.{0:0,0.00}", (subTotal * decimal.Parse("1.12") - subTotal));
 
-                            if (subTotal > 0 && cantidad > 0)
-                            {
-                                if (int.Parse(txtNoOrden.Text) < 1)
-                                {
 
-                                    lblError.Text = "Se detectaron errores. ";
-                                }
-                                else
-                                {
-                                    if (chkConstantes.Checked)
-                                        (gvDetalle.Rows[i].FindControl("txtNoOrdenDetalle") as TextBox).Text = txtNoOrden.Text;
-
-
-                                }
-                            }
 
                             DataSet dsResultado = funciones.StringToFechaMySql(txtFechaOrden.Text);
 
@@ -473,7 +501,7 @@ namespace AplicacionSIPA1.Compras
                                     if (chkConstantes.Checked)
                                         (gvDetalle.Rows[i].FindControl("txtFechaOrdenDetalle") as TextBox).Text = txtFechaOrden.Text;
 
-                                  
+
                                 }
                             }
 
@@ -584,5 +612,415 @@ namespace AplicacionSIPA1.Compras
                 throw;
             }
         }
+
+        protected void btnTrasladoCur_Click(object sender, ImageClickEventArgs e)
+        {
+            GenerarTraslado(1);
+        }
+
+        private void ImprimirTrasladoCur(string ID, int op)
+        {
+            try
+            {
+                int idEncabezado = 0;
+
+
+                pInsumoLN = new PedidosLN();
+
+                if (!string.IsNullOrEmpty(ID))
+                {
+
+                    Warning[] warnings;
+                    string[] streamids;
+                    string mimeType;
+                    string encoding;
+                    string extension;
+
+                    ReportViewer rViewer = new ReportViewer();
+
+                    DataTable dt = new DataTable();
+                    GridView gridPlan = new GridView();
+
+                    ReportesLN reportes = new ReportesLN();
+                    DataSet dResultado = reportes.TrasladoCUR(txtNo.Text, ddlanio.SelectedValue, ID);
+
+
+                    ReportDataSource RD = new ReportDataSource();
+                    RD.Value = dResultado.Tables[0];
+                    RD.Name = "DataSet1";
+
+                    rViewer.LocalReport.DataSources.Clear();
+                    rViewer.LocalReport.DataSources.Add(RD);
+
+                    if (op == 1)
+                    {
+                        rViewer.LocalReport.ReportEmbeddedResource = "\\Reportes\\Compras/rptTrasladoCUR.rdlc";
+                        rViewer.LocalReport.ReportPath = @"Reportes\\Compras\\rptTrasladoCUR.rdlc";
+                    }
+                    else if (op == 2)
+                    {
+                        rViewer.LocalReport.ReportEmbeddedResource = "\\Reportes\\Compras/rptTrasladoPartidaPresupuestaria.rdlc";
+                        rViewer.LocalReport.ReportPath = @"Reportes\\Compras\\rptTrasladoPartidaPresupuestaria.rdlc";
+                    }
+                    else if (op == 3)
+                    {
+                        rViewer.LocalReport.ReportEmbeddedResource = "\\Reportes\\Compras/rptPago.rdlc";
+                        rViewer.LocalReport.ReportPath = @"Reportes\\Compras\\rptPago.rdlc";
+                    }
+                    else if (op == 4)
+                    {
+                        rViewer.LocalReport.ReportEmbeddedResource = "\\Reportes\\Compras/rptRazonamientoFactura.rdlc";
+                        rViewer.LocalReport.ReportPath = @"Reportes\\Compras\\rptRazonamientoFactura.rdlc";
+                    }
+                    else if (op == 5)
+                    {
+                        rViewer.LocalReport.ReportEmbeddedResource = "\\Reportes\\Compras/rptImprimirContraseña.rdlc";
+                        rViewer.LocalReport.ReportPath = @"Reportes\\Compras\\rptImprimirContraseña.rdlc";
+                    }
+                    else if (op == 6)
+                    {
+                        rViewer.LocalReport.ReportEmbeddedResource = "\\Reportes\\Compras/rptSolicitudChequeFR.rdlc";
+                        rViewer.LocalReport.ReportPath = @"Reportes\\Compras\\rptSolicitudChequeFR.rdlc";
+                    }
+
+                    rViewer.LocalReport.Refresh();
+
+
+                    byte[] bytes = rViewer.LocalReport.Render(
+                       "PDF", null, out mimeType, out encoding,
+                        out extension,
+                       out streamids, out warnings);
+
+                    string nombreReporte = "Traslado";
+
+                    Response.Buffer = true;
+                    Response.Clear();
+                    Response.ContentType = mimeType;
+                    Response.AddHeader("content-disposition", "attachment; filename=" + nombreReporte + ".pdf");
+                    Response.BinaryWrite(bytes); // create the file
+                    Response.Flush(); // send it to the client to download
+
+
+
+                }
+
+
+            }
+            catch (Exception ex)
+            {
+                lblError.Text = "btnImprimir(). " + ex.Message;
+            }
+        }
+
+        protected void btnTrasladoAlmacen_Click(object sender, ImageClickEventArgs e)
+        {
+            System.Text.StringBuilder stringBuilder = new System.Text.StringBuilder();
+            try
+            {
+                foreach (GridViewRow gvItem in gvDetalle.Rows)
+                {
+                    CheckBox chkItem = (CheckBox)gvItem.FindControl("chkItem");
+                    string ID = gvDetalle.DataKeys[gvItem.DataItemIndex].Value.ToString();
+                    if (chkItem.Checked)
+                    {
+                        stringBuilder.Append(ID + ",");
+                    }
+                }
+                if (stringBuilder.Length > 0)
+                    ImprimirTrasladoAlmacen(stringBuilder.ToString().Remove(stringBuilder.Length - 1));
+            }
+            catch (Exception ex)
+            {
+                lblError.Text = "btnImprimir(). " + ex.Message;
+            }
+        }
+
+        private void ImprimirTrasladoAlmacen(string ID)
+        {
+            try
+            {
+                int idEncabezado = 0;
+
+
+                pInsumoLN = new PedidosLN();
+
+                if (!string.IsNullOrEmpty(ID))
+                {
+
+                    Warning[] warnings;
+                    string[] streamids;
+                    string mimeType;
+                    string encoding;
+                    string extension;
+
+                    ReportViewer rViewer = new ReportViewer();
+
+                    DataTable dt = new DataTable();
+                    GridView gridPlan = new GridView();
+
+                    ReportesLN reportes = new ReportesLN();
+                    DataSet dResultado = reportes.TrasladoAlmacen(txtNo.Text, ddlanio.SelectedValue, ID, int.Parse(ddlModalidadCompra.SelectedValue));
+                    ReportDataSource RD = new ReportDataSource();
+                    RD.Value = dResultado.Tables[0];
+                    RD.Name = "DataSet1";
+                    DataSet dExtras = new DataSet();
+                    DataTable dTabla = new DataTable("RESULTADO");
+
+                    dTabla.Columns.Add("compra_directa", typeof(String));
+                    dExtras.Tables.Add(dTabla);
+
+                    DataRow dr = dExtras.Tables[0].NewRow();
+                    dExtras.Tables[0].Rows.Add(dr);
+                    if (ddlModalidadCompra.SelectedValue.Equals("8"))
+                        dExtras.Tables[0].Rows[0]["compra_directa"] = "No aplica fecha de vencimiento";
+                    else
+                        dExtras.Tables[0].Rows[0]["compra_directa"] = "    ";
+
+
+                    ReportDataSource RD2 = new ReportDataSource();
+                    RD2.Value = dExtras.Tables[0];
+                    RD2.Name = "DataSet2";
+
+                    rViewer.LocalReport.DataSources.Clear();
+                    rViewer.LocalReport.DataSources.Add(RD);
+                    rViewer.LocalReport.DataSources.Add(RD2);
+                    rViewer.LocalReport.ReportEmbeddedResource = "\\Reportes\\Compras/rptTrasladoAlmacen.rdlc";
+                    rViewer.LocalReport.ReportPath = @"Reportes\\Compras\\rptTrasladoAlmacen.rdlc";
+
+                    rViewer.LocalReport.Refresh();
+
+
+                    byte[] bytes = rViewer.LocalReport.Render(
+                       "PDF", null, out mimeType, out encoding,
+                        out extension,
+                       out streamids, out warnings);
+
+                    string nombreReporte = "rptTrasladoAlmacen";
+
+                    Response.Buffer = true;
+                    Response.Clear();
+                    Response.ContentType = mimeType;
+                    Response.AddHeader("content-disposition", "attachment; filename=" + nombreReporte + ".pdf");
+                    Response.BinaryWrite(bytes); // create the file
+                    Response.Flush(); // send it to the client to download
+
+
+
+                }
+
+
+            }
+            catch (Exception ex)
+            {
+                lblError.Text = "btnImprimir(). " + ex.Message;
+            }
+        }
+
+        protected void btnTrasladoPartidaPpto_Click(object sender, ImageClickEventArgs e)
+        {
+            GenerarTraslado(2);
+        }
+
+
+        protected void btnTrasladoPago_Click(object sender, ImageClickEventArgs e)
+        {
+            GenerarTraslado(3);
+        }
+
+        protected void btnRazonamientoFac_Click(object sender, ImageClickEventArgs e)
+        {
+            //GenerarTraslado(4);
+            txtObservacionesRazonamiento.Visible = true;
+            btnRazonamiento.Visible = true;
+            txtObservacionesRazonamiento.Focus();
+        }
+
+        protected void btnImprimirContra_Click(object sender, ImageClickEventArgs e)
+        {
+            GenerarTraslado(5);
+        }
+
+        protected void btnChequeFondo_Click(object sender, ImageClickEventArgs e)
+        {
+            System.Text.StringBuilder stringBuilder = new System.Text.StringBuilder();
+            string result = "";
+            try
+            {
+                int idEncabezado = 0;
+                foreach (GridViewRow gvItem in gvDetalle.Rows)
+                {
+                    CheckBox chkItem = (CheckBox)gvItem.FindControl("chkItem");
+                    string ID = gvDetalle.DataKeys[gvItem.DataItemIndex].Value.ToString();
+                    if (chkItem.Checked)
+                    {
+                        stringBuilder.Append(ID + ",");
+                    }
+                }
+                if (stringBuilder.Length > 0)
+                    result = stringBuilder.ToString().Remove(stringBuilder.Length - 1);
+
+                pInsumoLN = new PedidosLN();
+
+                if (!string.IsNullOrEmpty(result))
+                {
+
+                    Warning[] warnings;
+                    string[] streamids;
+                    string mimeType;
+                    string encoding;
+                    string extension;
+
+                    ReportViewer rViewer = new ReportViewer();
+
+                    DataTable dt = new DataTable();
+                    GridView gridPlan = new GridView();
+
+                    ReportesLN reportes = new ReportesLN();
+                    DataSet dResultado = reportes.TrasladoCUR(txtNo.Text, ddlanio.SelectedValue, result);
+                    ReportDataSource RD = new ReportDataSource();
+                    RD.Value = dResultado.Tables[0];
+                    RD.Name = "DataSet1";
+                    DataSet dExtras = new DataSet();
+                    DataTable dTabla = new DataTable("RESULTADO");
+
+                    dTabla.Columns.Add("compra_directa", typeof(String));
+                    dExtras.Tables.Add(dTabla);
+
+                    DataRow dr = dExtras.Tables[0].NewRow();
+                    dExtras.Tables[0].Rows.Add(dr);
+
+                    dExtras.Tables[0].Rows[0]["compra_directa"] = Session["usuario"].ToString();
+
+
+
+                    ReportDataSource RD2 = new ReportDataSource();
+                    RD2.Value = dExtras.Tables[0];
+                    RD2.Name = "DataSet2";
+
+                    rViewer.LocalReport.DataSources.Clear();
+                    rViewer.LocalReport.DataSources.Add(RD);
+                    rViewer.LocalReport.DataSources.Add(RD2);
+                    rViewer.LocalReport.ReportEmbeddedResource = "\\Reportes\\Compras/rptSolicitudChequeFR.rdlc";
+                    rViewer.LocalReport.ReportPath = @"Reportes\\Compras\\rptSolicitudChequeFR.rdlc";
+
+                    rViewer.LocalReport.Refresh();
+
+
+                    byte[] bytes = rViewer.LocalReport.Render(
+                       "WORDOPENXML", null, out mimeType, out encoding,
+                        out extension,
+                       out streamids, out warnings);
+
+                    string nombreReporte = "ChequeFondoRotativo";
+
+                    Response.Buffer = true;
+                    Response.Clear();
+                    Response.ContentType = mimeType;
+                    Response.AddHeader("content-disposition", "attachment; filename=" + nombreReporte + ".doc");
+                    Response.BinaryWrite(bytes); // create the file
+                    Response.Flush(); // send it to the client to download
+
+
+
+                }
+
+            }
+            catch (Exception ex)
+            {
+                lblError.Text = "btnImprimir(). " + ex.Message;
+            }
+        }
+
+        protected void btnRazonamiento_Click(object sender, EventArgs e)
+        {
+            System.Text.StringBuilder stringBuilder = new System.Text.StringBuilder();
+            string result = "";
+            try
+            {
+                int idEncabezado = 0;
+                foreach (GridViewRow gvItem in gvDetalle.Rows)
+                {
+                    CheckBox chkItem = (CheckBox)gvItem.FindControl("chkItem");
+                    string ID = gvDetalle.DataKeys[gvItem.DataItemIndex].Value.ToString();
+                    if (chkItem.Checked)
+                    {
+                        stringBuilder.Append(ID + ",");
+                    }
+                }
+                if (stringBuilder.Length > 0)
+                    result = stringBuilder.ToString().Remove(stringBuilder.Length - 1);
+
+                pInsumoLN = new PedidosLN();
+
+                if (!string.IsNullOrEmpty(result))
+                {
+
+                    Warning[] warnings;
+                    string[] streamids;
+                    string mimeType;
+                    string encoding;
+                    string extension;
+
+                    ReportViewer rViewer = new ReportViewer();
+
+                    DataTable dt = new DataTable();
+                    GridView gridPlan = new GridView();
+
+                    ReportesLN reportes = new ReportesLN();
+                    DataSet dResultado = reportes.TrasladoCUR(txtNo.Text, ddlanio.SelectedValue, result);
+                    ReportDataSource RD = new ReportDataSource();
+                    RD.Value = dResultado.Tables[0];
+                    RD.Name = "DataSet1";
+                    DataSet dExtras = new DataSet();
+                    DataTable dTabla = new DataTable("RESULTADO");
+
+                    dTabla.Columns.Add("compra_directa", typeof(String));
+                    dExtras.Tables.Add(dTabla);
+
+                    DataRow dr = dExtras.Tables[0].NewRow();
+                    dExtras.Tables[0].Rows.Add(dr);
+
+                    dExtras.Tables[0].Rows[0]["compra_directa"] = txtObservacionesRazonamiento.Text;
+
+
+
+                    ReportDataSource RD2 = new ReportDataSource();
+                    RD2.Value = dExtras.Tables[0];
+                    RD2.Name = "DataSet2";
+
+                    rViewer.LocalReport.DataSources.Clear();
+                    rViewer.LocalReport.DataSources.Add(RD);
+                    rViewer.LocalReport.DataSources.Add(RD2);
+                    rViewer.LocalReport.ReportEmbeddedResource = "\\Reportes\\Compras/rptRazonamientoFactura.rdlc";
+                    rViewer.LocalReport.ReportPath = @"Reportes\\Compras\\rptRazonamientoFactura.rdlc";
+
+                    rViewer.LocalReport.Refresh();
+
+
+                    byte[] bytes = rViewer.LocalReport.Render(
+                       "PDF", null, out mimeType, out encoding,
+                        out extension,
+                       out streamids, out warnings);
+
+                    string nombreReporte = "rptTrasladoAlmacen";
+
+                    Response.Buffer = true;
+                    Response.Clear();
+                    Response.ContentType = mimeType;
+                    Response.AddHeader("content-disposition", "attachment; filename=" + nombreReporte + ".pdf");
+                    Response.BinaryWrite(bytes); // create the file
+                    Response.Flush(); // send it to the client to download
+
+
+
+                }
+
+            }
+            catch (Exception ex)
+            {
+                lblError.Text = "btnImprimir(). " + ex.Message;
+            }
+        }
     }
-}
+} 
+    

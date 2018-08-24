@@ -107,7 +107,7 @@ namespace AplicacionSIPA1.Financiero
 
                 pInsumoLN = new PedidosLN();
                 pInsumoLN.RblEstadosPedido(this.rblEstadosPedido);
-                rblEstadosPedido.SelectedValue = "8";
+                rblEstadosPedido.SelectedValue = "14";
                 rblEstadosPedido_SelectedIndexChanged(new Object(), new EventArgs());
 
             }

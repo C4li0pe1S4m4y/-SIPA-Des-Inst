@@ -68,7 +68,7 @@ namespace AplicacionSIPA1.Pedido
                 pAnualLN = new PlanAnualLN();
 
                 pEstrategicoLN.DdlPlanes(ddlPlanes);
-              
+
                 int idPlan = 0;
                 int anioIni = 0;
                 int anioFin = 0;
@@ -94,9 +94,9 @@ namespace AplicacionSIPA1.Pedido
                 pOperativoLN.DdlUnidades(ddlUnidades, usuario);
                 ddlUnidades.SelectedValue = Convert.ToString(Request.QueryString["unidad"]);
                 planOperativoLN = new PlanOperativoLN();
-                if((Request.QueryString["unidad"])!=null)
+                if ((Request.QueryString["unidad"]) != null)
                     planOperativoLN.DdlDependencias(ddlDependencia, Convert.ToString(Request.QueryString["unidad"]));
-                
+
                 if (Request.QueryString["dep"] != null)
                     ddlDependencia.SelectedValue = Convert.ToString(Request.QueryString["dep"]);
                 //if (ddlUnidades.Items.Count == 1)
@@ -108,11 +108,11 @@ namespace AplicacionSIPA1.Pedido
                 //}
                 if (!ddlAnios.SelectedValue.Equals("0"))
                 {
-                    if (ddlDependencia.Items.Count>0 && int.Parse(ddlDependencia.SelectedValue) > 1)
+                    if (ddlDependencia.Items.Count > 0 && int.Parse(ddlDependencia.SelectedValue) > 1)
                         validarPoaListadoPedido(int.Parse(ddlDependencia.SelectedValue), int.Parse(ddlAnios.SelectedValue));
                     else
                         validarPoaListadoPedido(int.Parse(ddlUnidades.SelectedValue), int.Parse(ddlAnios.SelectedValue));
-                    
+
                 }
                 int idPoa = 0;
                 int.TryParse(lblIdPoa.Text, out idPoa);
@@ -164,9 +164,9 @@ namespace AplicacionSIPA1.Pedido
                     if (!ddlAcciones.SelectedValue.Equals("0"))
                         filtro += " AND id_accion = " + ddlAcciones.SelectedValue;
                     if (!string.IsNullOrEmpty(txtNoReq.Text))
-                        filtro += " AND no_solicitud =  " + txtNoReq.Text ;
+                        filtro += " AND no_solicitud =  " + txtNoReq.Text;
                     if (!ddlTipo.SelectedValue.Equals("0"))
-                        filtro += " AND tipo_pedido = '" + ddlTipo.SelectedValue + "'" ;
+                        filtro += " AND tipo_pedido = '" + ddlTipo.SelectedValue + "'";
                     if (!string.IsNullOrEmpty(txtJustificacion.Text))
                         filtro += " AND justificacion like '%" + txtJustificacion.Text + "%'";
                     dv.RowFilter = filtro;
@@ -178,7 +178,7 @@ namespace AplicacionSIPA1.Pedido
                     foreach (DataRow drDatos in drArray)
                     {
                         tMonto += decimal.Parse(stringToDecimalString(drDatos["total"].ToString()));
-                      
+
                     }
                     gridDet.FooterRow.Cells[7].Text = String.Format(CultureInfo.InvariantCulture, "Q.{0:0,0.00}", tMonto);
                 }
@@ -373,8 +373,8 @@ namespace AplicacionSIPA1.Pedido
             lblErrorPlan.Text = string.Empty;
             lblErrorAnio.Text = lblErrorUnidad.Text = string.Empty;
             lblError.Text = lblSuccess.Text = string.Empty;
-            
-           
+
+
 
         }
 
@@ -482,7 +482,7 @@ namespace AplicacionSIPA1.Pedido
                 int idEstado = 0;
                 int.TryParse(dsResultado.Tables["BUSQUEDA"].Rows[0]["ID_ESTADO_PEDIDO"].ToString(), out idEstado);
 
-                if (idEstado == 8)
+                if (idEstado == 14)
                     if (idEncabezado > 0)
                     {
 
@@ -522,10 +522,16 @@ namespace AplicacionSIPA1.Pedido
                         RD3.Value = dsResultado.Tables[1];
                         RD3.Name = "DataSet3";
 
+                        dsResultado = pInsumoLN.InformacionPreOrden(idEncabezado);
+                        ReportDataSource RD4 = new ReportDataSource();
+                        RD4.Value = dsResultado.Tables[1];
+                        RD4.Name = "DataSet4";
+
                         rViewer.LocalReport.DataSources.Clear();
                         rViewer.LocalReport.DataSources.Add(RD);
                         rViewer.LocalReport.DataSources.Add(RD2);
                         rViewer.LocalReport.DataSources.Add(RD3);
+                        rViewer.LocalReport.DataSources.Add(RD4);
                         rViewer.LocalReport.ReportEmbeddedResource = "\\Reportes/rptRequisicion.rdlc";
                         rViewer.LocalReport.ReportPath = @"Reportes\\rptRequisicion.rdlc";
                         rViewer.LocalReport.Refresh();
@@ -556,6 +562,7 @@ namespace AplicacionSIPA1.Pedido
                     }
                     else
                         linkB.Attributes.Clear();
+
             }
             catch (Exception ex)
             {
@@ -563,6 +570,118 @@ namespace AplicacionSIPA1.Pedido
             }
         }
 
+        public void generarReporte(int idEncabezado, int idTipoSalida)
+        {
+            try
+            {
+
+                if (idEncabezado > 0)
+                {
+
+                    Warning[] warnings;
+                    string[] streamids;
+                    string mimeType;
+                    string encoding;
+                    string extension;
+
+                    ReportViewer rViewer = new ReportViewer();
+
+                    DataTable dt = new DataTable();
+                    GridView gridPlan = new GridView();
+
+                    pInsumoLN = new PedidosLN();
+                    DataSet dsResultado = pInsumoLN.InformacionPedido(idEncabezado, idTipoSalida, 0, "ENCABEZADO", 12);
+
+                    if (bool.Parse(dsResultado.Tables[0].Rows[0]["ERRORES"].ToString()))
+                        throw new Exception("No se CONSULTÓ la información del encabezado: " + dsResultado.Tables[0].Rows[0]["MSG_ERROR"].ToString());
+
+                    string nombre = dsResultado.Tables[1].Rows[0]["analista_ppto"].ToString();
+                    ReportDataSource RD = new ReportDataSource();
+                    RD.Value = dsResultado.Tables[1];
+                    RD.Name = "DataSet1";
+
+                    if (idTipoSalida == 1)
+                        dsResultado = pInsumoLN.InformacionDetallePedidoPpto(idEncabezado.ToString());
+                    else if (idTipoSalida == 2)
+                        dsResultado = pInsumoLN.InformacionVale(idEncabezado, 0, 3);
+                    else if (idTipoSalida == 3)
+                        dsResultado = pInsumoLN.InformacionGasto(idEncabezado, 0, 3);
+
+                    if (bool.Parse(dsResultado.Tables[0].Rows[0]["ERRORES"].ToString()))
+                        throw new Exception("No se CONSULTÓ la información de los detalles: " + dsResultado.Tables[0].Rows[0]["MSG_ERROR"].ToString());
+
+                    ReportDataSource RD2 = new ReportDataSource();
+                    RD2.Value = dsResultado.Tables[1];
+                    RD2.Name = "DataSet2";
+
+                    dsResultado = pInsumoLN.InformacionProductoSub(1);
+                    ReportDataSource RD3 = new ReportDataSource();
+                    RD3.Value = dsResultado.Tables[1];
+                    RD3.Name = "DataSet3";
+
+                    rViewer.LocalReport.DataSources.Clear();
+                    rViewer.LocalReport.DataSources.Add(RD);
+                    rViewer.LocalReport.DataSources.Add(RD2);
+                    rViewer.LocalReport.DataSources.Add(RD3);
+                    if (nombre.Equals("DE LEON RUIZ HEDILMAR ISRAEL "))
+                    {
+                        rViewer.LocalReport.ReportEmbeddedResource = "\\Reportes/rptFINFOR23Hedi.rdlc";
+                        rViewer.LocalReport.ReportPath = @"Reportes\\rptFINFOR23Hedi.rdlc";
+                    }
+                    else if (nombre.Equals("ESCOBEDO DE LEON RITA GABRIELA "))
+                    {
+                        rViewer.LocalReport.ReportEmbeddedResource = "\\Reportes/rptFINFOR23Rita.rdlc";
+                        rViewer.LocalReport.ReportPath = @"Reportes\\rptFINFOR23Rita.rdlc";
+                    }
+                    else if (nombre.Equals("DIAZ FABIAN JUAN HUMBERTO "))
+                    {
+                        rViewer.LocalReport.ReportEmbeddedResource = "\\Reportes/rptFINFOR23Hedi.rdlc";
+                        rViewer.LocalReport.ReportPath = @"Reportes\\rptFINFOR23Hedi.rdlc";
+                    }
+                    else if (nombre.Equals("CORZO ROJAS RUTH ODILY "))
+                    {
+                        rViewer.LocalReport.ReportEmbeddedResource = "\\Reportes/rptFINFOR23Hedi.rdlc";
+                        rViewer.LocalReport.ReportPath = @"Reportes\\rptFINFOR23Hedi.rdlc";
+                    }
+                    else
+                    {
+                        rViewer.LocalReport.ReportEmbeddedResource = "\\Reportes/rptFINFOR23.rdlc";
+                        rViewer.LocalReport.ReportPath = @"Reportes\\rptFINFOR23.rdlc";
+                    }
+                    rViewer.LocalReport.Refresh();
+
+
+                    byte[] bytes = rViewer.LocalReport.Render(
+                       "PDF", null, out mimeType, out encoding,
+                        out extension,
+                       out streamids, out warnings);
+
+                    string nombreReporte = "FIN-FOR-23 ";
+
+                    string direccion = Server.MapPath("ArchivoPdf");
+                    direccion = (direccion + ("\\\\" + (""
+                                + (nombreReporte + ".pdf"))));
+
+                    FileStream fs = new FileStream(direccion,
+                       FileMode.Create);
+                    fs.Write(bytes, 0, bytes.Length);
+                    fs.Close();
+
+                    String reDireccion = "\\ArchivoPDF/";
+                    reDireccion += "\\" + "" + nombreReporte + ".pdf";
+
+
+                    string jScript = "javascript:window.open('" + reDireccion + "','REQUISICIONES'," + "'directories=no, location=no, menubar=no, scrollbars=yes, statusbar=no, tittlebar=no, width=750, height=400');";
+
+
+                }
+            }
+            catch (Exception ex)
+            {
+                lblError.Text = "btnVerReporte(). " + ex.Message;
+            }
+
+        }
         protected void LinkButton1_Click(object sender, EventArgs e)
         {
             GridViewRow grid = (GridViewRow)((Control)sender).Parent.Parent;
@@ -677,7 +796,141 @@ namespace AplicacionSIPA1.Pedido
             txtJustificacion.Text = string.Empty;
             ddlTipo.ClearSelection();
         }
+        /// <summary>
+        /// Partida Presupuestaria, FIN-FOR-23
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        protected void btnPpto_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                GridViewRow grid = (GridViewRow)((Control)sender).Parent.Parent;
+                int indice = grid.RowIndex;
+
+                gridDet.SelectedIndex = grid.RowIndex;
+
+                LinkButton linkB = new LinkButton();
+                linkB = (LinkButton)gridDet.Rows[indice].FindControl("btnPpto");
+
+                limpiarControlesError();
+
+                int idEncabezado = 0;
+                int.TryParse(gridDet.SelectedValue.ToString(), out idEncabezado);
+
+                pInsumoLN = new PedidosLN();
+
+                DataSet dsResultado = pInsumoLN.InformacionPedido(idEncabezado, 0, 0, "", 2);
+
+                if (bool.Parse(dsResultado.Tables["RESULTADO"].Rows[0]["ERRORES"].ToString()))
+                    throw new Exception(dsResultado.Tables["RESULTADO"].Rows[0]["MSG_ERROR"].ToString());
+
+                int idEstado = 0;
+                int.TryParse(dsResultado.Tables["BUSQUEDA"].Rows[0]["ID_ESTADO_PEDIDO"].ToString(), out idEstado);
+
+                if (idEstado == 14)
+                    if (idEncabezado > 0)
+                    {
+                        Warning[] warnings;
+                        string[] streamids;
+                        string mimeType;
+                        string encoding;
+                        string extension;
+
+                        ReportViewer rViewer = new ReportViewer();
+
+                        DataTable dt = new DataTable();
+                        GridView gridPlan = new GridView();
+
+                        pInsumoLN = new PedidosLN();
+                        dsResultado = pInsumoLN.InformacionPedido(idEncabezado, 1, 0, "ENCABEZADO", 12);
+
+                        if (bool.Parse(dsResultado.Tables[0].Rows[0]["ERRORES"].ToString()))
+                            throw new Exception("No se CONSULTÓ la información del encabezado: " + dsResultado.Tables[0].Rows[0]["MSG_ERROR"].ToString());
+
+                        string nombre = dsResultado.Tables[1].Rows[0]["analista_ppto"].ToString();
+                        ReportDataSource RD = new ReportDataSource();
+                        RD.Value = dsResultado.Tables[1];
+                        RD.Name = "DataSet1";
 
 
+                        dsResultado = pInsumoLN.InformacionDetallePedidoPpto(idEncabezado.ToString());
+                        if (bool.Parse(dsResultado.Tables[0].Rows[0]["ERRORES"].ToString()))
+                            throw new Exception("No se CONSULTÓ la información de los detalles: " + dsResultado.Tables[0].Rows[0]["MSG_ERROR"].ToString());
+
+                        ReportDataSource RD2 = new ReportDataSource();
+                        RD2.Value = dsResultado.Tables[1];
+                        RD2.Name = "DataSet2";
+
+                        dsResultado = pInsumoLN.InformacionProductoSub(idEncabezado);
+                        ReportDataSource RD3 = new ReportDataSource();
+                        RD3.Value = dsResultado.Tables[1];
+                        RD3.Name = "DataSet3";
+
+                        rViewer.LocalReport.DataSources.Clear();
+                        rViewer.LocalReport.DataSources.Add(RD);
+                        rViewer.LocalReport.DataSources.Add(RD2);
+                        rViewer.LocalReport.DataSources.Add(RD3);
+                        if (nombre.Equals("DE LEON RUIZ HEDILMAR ISRAEL "))
+                        {
+                            rViewer.LocalReport.ReportEmbeddedResource = "\\Reportes/rptFINFOR23Hedi.rdlc";
+                            rViewer.LocalReport.ReportPath = @"Reportes\\rptFINFOR23Hedi.rdlc";
+                        }
+                        else if (nombre.Equals("ESCOBEDO DE LEON RITA GABRIELA "))
+                        {
+                            rViewer.LocalReport.ReportEmbeddedResource = "\\Reportes/rptFINFOR23Rita.rdlc";
+                            rViewer.LocalReport.ReportPath = @"Reportes\\rptFINFOR23Rita.rdlc";
+                        }
+                        else if (nombre.Equals("DIAZ FABIAN JUAN HUMBERTO "))
+                        {
+                            rViewer.LocalReport.ReportEmbeddedResource = "\\Reportes/rptFINFOR23Juan.rdlc";
+                            rViewer.LocalReport.ReportPath = @"Reportes\\rptFINFOR23Hedi.rdlc";
+                        }
+                        else if (nombre.Equals("CORZO ROJAS RUTH ODILY "))
+                        {
+                            rViewer.LocalReport.ReportEmbeddedResource = "\\Reportes/rptFINFOR23Hedi.rdlc";
+                            rViewer.LocalReport.ReportPath = @"Reportes\\rptFINFOR23Hedi.rdlc";
+                        }
+                        else
+                        {
+                            rViewer.LocalReport.ReportEmbeddedResource = "\\Reportes/rptFINFOR23.rdlc";
+                            rViewer.LocalReport.ReportPath = @"Reportes\\rptFINFOR23.rdlc";
+                        }
+                        rViewer.LocalReport.Refresh();
+
+
+                        byte[] bytes = rViewer.LocalReport.Render(
+                           "PDF", null, out mimeType, out encoding,
+                            out extension,
+                           out streamids, out warnings);
+
+                        string nombreReporte = "FIN-FOR-23 ";
+
+                        string direccion = Server.MapPath("ArchivoPdf");
+                        direccion = (direccion + ("\\\\" + (""
+                                    + (nombreReporte + ".pdf"))));
+
+                        FileStream fs = new FileStream(direccion,
+                           FileMode.Create);
+                        fs.Write(bytes, 0, bytes.Length);
+                        fs.Close();
+
+                        String reDireccion = "\\ArchivoPDF/";
+                        reDireccion += "\\" + "" + nombreReporte + ".pdf";
+
+
+                        string jScript = "javascript:window.open('" + reDireccion + "','REQUISICIONES'," + "'directories=no, location=no, menubar=no, scrollbars=yes, statusbar=no, tittlebar=no, width=750, height=400');";
+
+                        linkB.Attributes.Add("onclick", jScript);
+                    }
+                    else
+                        linkB.Attributes.Clear();
+
+            }
+            catch (Exception ex)
+            {
+                lblError.Text = "btnImprimir(). " + ex.Message;
+            }
+        }
     }
 }

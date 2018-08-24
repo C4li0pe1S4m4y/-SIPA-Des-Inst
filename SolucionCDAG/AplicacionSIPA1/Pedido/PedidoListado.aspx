@@ -58,7 +58,7 @@
                 </div>
                 <div class="col-sm-1">
                     <label>Bien/Servicio</label>
-                    <asp:DropDownList ID="ddlTipo"  runat="server" CssClass="form-control" Width="100%"></asp:DropDownList>
+                    <asp:DropDownList ID="ddlTipo" runat="server" CssClass="form-control" Width="100%"></asp:DropDownList>
                 </div>
                 <div class="col-sm-3">
                     <label>Justificación</label>
@@ -95,8 +95,9 @@
                             <asp:TemplateField HeaderText="Opciones" ControlStyle-Width="25px">
                                 <ItemTemplate>
                                     <asp:LinkButton ID="btnConsultar" runat="server" OnClick="btnConsultar_Click"><asp:Image ImageUrl="~/img/24_bits/accept.png" runat="server" /></asp:LinkButton>
-                                    
-                                            <asp:LinkButton ID="btnImprimirr" runat="server" OnClick="btnImprimir_Click"><asp:Image ImageUrl="~/img/24_bits/download_page.png" runat="server" /></asp:LinkButton>
+
+                                    <asp:LinkButton ID="btnImprimirr" runat="server" OnClick="btnImprimir_Click"><asp:Image ImageUrl="~/img/24_bits/download_page.png" runat="server" /></asp:LinkButton>
+                                    <asp:LinkButton ID="btnPpto" runat="server" OnClick="btnPpto_Click"><asp:Image ImageUrl="~/img/24_bits/text_page.png" runat="server" /></asp:LinkButton>
                                 </ItemTemplate>
                                 <HeaderStyle BorderStyle="Inset" HorizontalAlign="Center" VerticalAlign="Middle" />
                                 <ItemStyle BorderStyle="Inset" HorizontalAlign="Center" VerticalAlign="Middle" />
@@ -181,8 +182,8 @@
 
         </ContentTemplate>
     </asp:UpdatePanel>
-     <asp:Label ID="lblIdPoa" runat="server" Style="font-size: medium" ForeColor="White">0</asp:Label>
-     <div class="row">
+    <asp:Label ID="lblIdPoa" runat="server" Style="font-size: medium" ForeColor="White">0</asp:Label>
+    <div class="row">
         <div class="col-sm-1">
             <asp:Label ID="lblPlanE" Visible="false" runat="server" Text="*"></asp:Label>
         </div>

@@ -403,7 +403,7 @@
                     <td style="width: 5%">&nbsp;</td>
                     <td style="width: 5%">&nbsp;</td>
                     <td colspan="16" style="text-align: center">
-                        <asp:Button ID="btnEnviar" runat="server" class="btn btn-success" Text="Enviar" ValidationGroup="grpDatos" Width="120px" OnClick="btnEnviar_Click" OnClientClick="javascript:if(!confirm('¿Desea ENVIAR este registro?'))return false" />
+                        <asp:Button ID="btnEnviar" runat="server" class="btn btn-success" Text="Enviar" ValidationGroup="grpDatos" Width="120px" OnClick="btnEnviar_Click" OnClientClick="javascript:if(!confirm('¿Desea ENVIAR este registro?'))return false"  ValidateRequestMode="Disabled"/>
                         <asp:Button ID="btnAnular" runat="server" class="btn btn-danger" Text="Anular" Width="120px" OnClick="btnAnular_Click" Visible="False" OnClientClick="javascript:if(!confirm('¿Desea ANULAR este registro?'))return false" />
                     </td>
                     <td style="width: 5%">&nbsp;</td>

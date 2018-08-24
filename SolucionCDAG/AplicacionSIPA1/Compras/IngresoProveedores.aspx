@@ -77,9 +77,11 @@
                     <td style="width: 5%">&nbsp;</td>
                     <td style="width: 5%">&nbsp;</td>
                     <td style="width: 5%">&nbsp;</td>
-                    <td colspan="12">Nit:<strong><asp:Label ID="lblErrorNit" runat="server" ForeColor="Red" style="font-size: medium">*</asp:Label>
+                    <td colspan="6">Nit:<strong><asp:Label ID="lblErrorNit" runat="server" ForeColor="Red" style="font-size: medium">*</asp:Label>
                         </strong></td>
-                    <td style="width: 5%">&nbsp;</td>
+                    <td colspan="6">Razón Social:<strong><asp:Label ID="lblErrorRazon" runat="server" ForeColor="Red" style="font-size: medium">*</asp:Label>
+                        </strong></td>
+                    
                     <td style="width: 5%">&nbsp;</td>
                     <td style="width: 5%">&nbsp;</td>
                     <td style="width: 5%">&nbsp;</td>
@@ -89,43 +91,10 @@
                     <td style="width: 5%">&nbsp;</td>
                     <td style="width: 5%">&nbsp;</td>
                     <td style="width: 5%">&nbsp;</td>
-                    <td colspan="12">
+                    <td colspan="6">
                         <asp:TextBox ID="txtNit" runat="server" BackColor="#FFFF99" class="form-control" required="true" Enabled="true" MaxLength="100" placeholder="" Width="100%"></asp:TextBox>
                     </td>
-                    <td style="width: 5%">&nbsp;</td>
-                    <td style="width: 5%">&nbsp;</td>
-                    <td style="width: 5%">&nbsp;</td>
-                    <td style="width: 5%">&nbsp;</td>
-                </tr>
-                <tr>
-                    <td style="width: 5%">&nbsp;</td>
-                    <td style="width: 5%">&nbsp;</td>
-                    <td style="width: 5%">&nbsp;</td>
-                    <td style="width: 5%">&nbsp;</td>
-                    <td colspan="12">&nbsp;</td>
-                    <td style="width: 5%">&nbsp;</td>
-                    <td style="width: 5%">&nbsp;</td>
-                    <td style="width: 5%">&nbsp;</td>
-                    <td style="width: 5%">&nbsp;</td>
-                </tr>
-                <tr>
-                    <td style="width: 5%">&nbsp;</td>
-                    <td style="width: 5%">&nbsp;</td>
-                    <td style="width: 5%">&nbsp;</td>
-                    <td style="width: 5%">&nbsp;</td>
-                    <td colspan="12">Razón Social:<strong><asp:Label ID="lblErrorRazon" runat="server" ForeColor="Red" style="font-size: medium">*</asp:Label>
-                        </strong></td>
-                    <td style="width: 5%">&nbsp;</td>
-                    <td style="width: 5%">&nbsp;</td>
-                    <td style="width: 5%">&nbsp;</td>
-                    <td style="width: 5%">&nbsp;</td>
-                </tr>
-                <tr>
-                    <td style="width: 5%">&nbsp;</td>
-                    <td style="width: 5%">&nbsp;</td>
-                    <td style="width: 5%">&nbsp;</td>
-                    <td style="width: 5%">&nbsp;</td>
-                    <td colspan="12">
+                     <td colspan="6">
                         <asp:TextBox ID="txtRazonSocial" runat="server" BackColor="#FFFF99" class="form-control" required="true" Enabled="true" MaxLength="100" placeholder="" Width="100%"></asp:TextBox>
                     </td>
                     <td style="width: 5%">&nbsp;</td>
@@ -133,17 +102,7 @@
                     <td style="width: 5%">&nbsp;</td>
                     <td style="width: 5%">&nbsp;</td>
                 </tr>
-                <tr>
-                    <td style="width: 5%">&nbsp;</td>
-                    <td style="width: 5%">&nbsp;</td>
-                    <td style="width: 5%">&nbsp;</td>
-                    <td style="width: 5%">&nbsp;</td>
-                    <td colspan="12">&nbsp;</td>
-                    <td style="width: 5%">&nbsp;</td>
-                    <td style="width: 5%">&nbsp;</td>
-                    <td style="width: 5%">&nbsp;</td>
-                    <td style="width: 5%">&nbsp;</td>
-                </tr>
+                
                 <tr>
                     <td style="width: 5%">&nbsp;</td>
                     <td style="width: 5%">&nbsp;</td>
@@ -169,17 +128,7 @@
                     <td style="width: 5%">&nbsp;</td>
                     <td style="width: 5%">&nbsp;</td>
                 </tr>
-                <tr>
-                    <td style="width: 5%">&nbsp;</td>
-                    <td style="width: 5%">&nbsp;</td>
-                    <td style="width: 5%">&nbsp;</td>
-                    <td style="width: 5%">&nbsp;</td>
-                    <td colspan="12">&nbsp;</td>
-                    <td style="width: 5%">&nbsp;</td>
-                    <td style="width: 5%">&nbsp;</td>
-                    <td style="width: 5%">&nbsp;</td>
-                    <td style="width: 5%">&nbsp;</td>
-                </tr>
+                
                 <tr>
                     <td style="width: 5%">&nbsp;</td>
                     <td style="width: 5%">&nbsp;</td>
@@ -205,17 +154,7 @@
                     <td style="width: 5%">&nbsp;</td>
                     <td style="width: 5%">&nbsp;</td>
                 </tr>
-                <tr>
-                    <td style="width: 5%">&nbsp;</td>
-                    <td style="width: 5%">&nbsp;</td>
-                    <td style="width: 5%">&nbsp;</td>
-                    <td style="width: 5%">&nbsp;</td>
-                    <td colspan="12">&nbsp;</td>
-                    <td style="width: 5%">&nbsp;</td>
-                    <td style="width: 5%">&nbsp;</td>
-                    <td style="width: 5%">&nbsp;</td>
-                    <td style="width: 5%">&nbsp;</td>
-                </tr>
+               
                 <tr>
                     <td style="width: 5%">&nbsp;</td>
                     <td style="width: 5%">&nbsp;</td>
@@ -242,6 +181,96 @@
                             <asp:ListItem Selected="True" Value="1">Alta</asp:ListItem>
                             <asp:ListItem Value="2">Baja</asp:ListItem>
                         </asp:DropDownList>
+                    </td>
+                    <td style="width: 5%">&nbsp;</td>
+                    <td style="width: 5%">&nbsp;</td>
+                    <td style="width: 5%">&nbsp;</td>
+                    <td style="width: 5%">&nbsp;</td>
+                </tr>
+                 <tr>
+                    <td style="width: 5%">&nbsp;</td>
+                    <td style="width: 5%">&nbsp;</td>
+                    <td style="width: 5%">&nbsp;</td>
+                    <td style="width: 5%">&nbsp;</td>
+                    <td colspan="6">Régimen Pago de Impuestos:<strong><asp:Label ID="Label1" runat="server" ForeColor="Red" style="font-size: medium">*</asp:Label>
+                        </strong></td>
+                    <td colspan="6">Nombre Contacto:</td>
+                    <td style="width: 5%">&nbsp;</td>
+                    <td style="width: 5%">&nbsp;</td>
+                    <td style="width: 5%">&nbsp;</td>
+                    <td style="width: 5%">&nbsp;</td>
+                </tr>
+                <tr>
+                    <td style="width: 5%">&nbsp;</td>
+                    <td style="width: 5%">&nbsp;</td>
+                    <td style="width: 5%">&nbsp;</td>
+                    <td style="width: 5%">&nbsp;</td>
+                    <td colspan="6">
+                        <asp:DropDownList ID="ddlRegimen" runat="server" class="form-control" Width="100%">
+                            <asp:ListItem Selected="True" Value="0"><< Elija un Valor >> </asp:ListItem>
+                            <asp:ListItem Value="1">Pequeño Contribuyente</asp:ListItem>
+                            <asp:ListItem Value="1">Sujeto a Pagos Trimestrales</asp:ListItem>
+                            <asp:ListItem Value="1">Sujeto a Retención</asp:ListItem>
+                        </asp:DropDownList>
+                    </td>
+                    <td colspan="6">
+                        <asp:TextBox ID="txtNombreContacto" runat="server" class="form-control" Enabled="true" MaxLength="30" placeholder="" Width="100%"></asp:TextBox>
+                    </td>
+                    <td style="width: 5%">&nbsp;</td>
+                    <td style="width: 5%">&nbsp;</td>
+                    <td style="width: 5%">&nbsp;</td>
+                    <td style="width: 5%">&nbsp;</td>
+                </tr>
+                 <tr>
+                    <td style="width: 5%">&nbsp;</td>
+                    <td style="width: 5%">&nbsp;</td>
+                    <td style="width: 5%">&nbsp;</td>
+                    <td style="width: 5%">&nbsp;</td>
+                    <td colspan="6">Teléfono Contacto:</td>
+                    <td colspan="6">Email:</td>
+                    <td style="width: 5%">&nbsp;</td>
+                    <td style="width: 5%">&nbsp;</td>
+                    <td style="width: 5%">&nbsp;</td>
+                    <td style="width: 5%">&nbsp;</td>
+                </tr>
+                <tr>
+                    <td style="width: 5%">&nbsp;</td>
+                    <td style="width: 5%">&nbsp;</td>
+                    <td style="width: 5%">&nbsp;</td>
+                    <td style="width: 5%">&nbsp;</td>
+                    <td colspan="6">
+                       <asp:TextBox ID="txtTelefonoContacto" runat="server" class="form-control" Enabled="true" MaxLength="30" placeholder="" Width="100%"></asp:TextBox>
+                    </td>
+                    <td colspan="6">
+                        <asp:TextBox ID="txtEmail" runat="server" class="form-control" Enabled="true" MaxLength="30" placeholder="" Width="100%"></asp:TextBox>
+                    </td>
+                    <td style="width: 5%">&nbsp;</td>
+                    <td style="width: 5%">&nbsp;</td>
+                    <td style="width: 5%">&nbsp;</td>
+                    <td style="width: 5%">&nbsp;</td>
+                </tr>
+                <tr>
+                    <td style="width: 5%">&nbsp;</td>
+                    <td style="width: 5%">&nbsp;</td>
+                    <td style="width: 5%">&nbsp;</td>
+                    <td style="width: 5%">&nbsp;</td>
+                    <td colspan="6">Giro Comercial:</td>
+                    <td colspan="6">Especialización:</td>
+                    <td style="width: 5%">&nbsp;</td>
+                    <td style="width: 5%">&nbsp;</td>
+                    <td style="width: 5%">&nbsp;</td>
+                    <td style="width: 5%">&nbsp;</td>
+                </tr>
+                <tr>
+                    <td style="width: 5%">&nbsp;</td>
+                    <td style="width: 5%">&nbsp;</td>
+                    <td style="width: 5%">&nbsp;</td>
+                    <td style="width: 5%">&nbsp;</td>
+                    <td colspan="6">
+                       <asp:TextBox ID="txtGiroComercial" runat="server" class="form-control" Enabled="true" MaxLength="30" placeholder="" Width="100%"></asp:TextBox>
+                    </td>
+                    <td colspan="6">
+                        <asp:TextBox ID="txtEspecializacion" runat="server" class="form-control" Enabled="true" MaxLength="30" placeholder="" Width="100%"></asp:TextBox>
                     </td>
                     <td style="width: 5%">&nbsp;</td>
                     <td style="width: 5%">&nbsp;</td>

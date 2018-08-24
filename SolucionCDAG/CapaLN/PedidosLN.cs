@@ -832,6 +832,31 @@ namespace CapaLN
 
             return dsResultado;
         }
+        public DataSet AprobacionCentroCosto(int idPedido, int idTipoDocumento, string observaciones, string usuario, string ip, string mac, string pc)
+        {
+            DataSet dsResultado = armarDsResultado();
+
+            ObjAD = new PedidosAD();
+            try
+            {
+                DataTable dt = ObjAD.AprobacionCentroCostos(idPedido, idTipoDocumento, observaciones, usuario, ip, mac, pc);
+
+                if (!bool.Parse(dt.Rows[0]["RESULTADO"].ToString()))
+                    throw new Exception(dt.Rows[0]["MENSAJE"].ToString());
+
+                dsResultado.Tables[0].Rows[0]["ERRORES"] = "false";
+                dsResultado.Tables[0].Rows[0]["MSG_ERROR"] = string.Empty;
+                dsResultado.Tables[0].Rows[0]["VALOR"] = idPedido;
+                return dsResultado;
+            }
+            catch (Exception ex)
+            {
+                dsResultado.Tables[0].Rows[0]["MSG_ERROR"] = " CapaLN.AprobacionBodega(). " + ex.Message;
+            }
+
+            return dsResultado;
+        }
+
 
         public DataSet AprobacionEncargadoAjuste(int idSalida, int idTipoSalida, string observaciones, string usuario, string ip, string mac, string pc)
         {
@@ -953,6 +978,207 @@ namespace CapaLN
             catch (Exception ex)
             {
                 dsResultado.Tables[0].Rows[0]["MSG_ERROR"] = " CapaLN.RecodificacionPpto(). " + ex.Message;
+            }
+
+            return dsResultado;
+        }
+
+
+        public DataSet AprobacionCentroCostos(int idSalida, int idTipoSalida, string observaciones, string usuario, string ip, string mac, string pc)
+        {
+            DataSet dsResultado = armarDsResultado();
+
+            ObjAD = new PedidosAD();
+            try
+            {
+                DataTable dt = ObjAD.AprobacionCentroCostos(idSalida, idTipoSalida, observaciones, usuario, ip, mac, pc);
+
+                if (!bool.Parse(dt.Rows[0]["RESULTADO"].ToString()))
+                    throw new Exception(dt.Rows[0]["MENSAJE"].ToString());
+
+                dsResultado.Tables[0].Rows[0]["ERRORES"] = "false";
+                dsResultado.Tables[0].Rows[0]["MSG_ERROR"] = string.Empty;
+                dsResultado.Tables[0].Rows[0]["VALOR"] = idSalida;
+                return dsResultado;
+            }
+            catch (Exception ex)
+            {
+                dsResultado.Tables[0].Rows[0]["MSG_ERROR"] = " CapaLN.AprobacionEncargado(). " + ex.Message;
+            }
+
+            return dsResultado;
+        }
+
+        public DataSet AprobacionCoordinadorCompras(int idSalida, int idTipoSalida, string observaciones, string usuario, string ip, string mac, string pc)
+        {
+            DataSet dsResultado = armarDsResultado();
+
+            ObjAD = new PedidosAD();
+            try
+            {
+                DataTable dt = ObjAD.AprobacionCoordinadorCompras(idSalida, idTipoSalida, observaciones, usuario, ip, mac, pc);
+
+                if (!bool.Parse(dt.Rows[0]["RESULTADO"].ToString()))
+                    throw new Exception(dt.Rows[0]["MENSAJE"].ToString());
+
+                dsResultado.Tables[0].Rows[0]["ERRORES"] = "false";
+                dsResultado.Tables[0].Rows[0]["MSG_ERROR"] = string.Empty;
+                dsResultado.Tables[0].Rows[0]["VALOR"] = idSalida;
+                return dsResultado;
+            }
+            catch (Exception ex)
+            {
+                dsResultado.Tables[0].Rows[0]["MSG_ERROR"] = " CapaLN.AprobacionEncargado(). " + ex.Message;
+            }
+
+            return dsResultado;
+        }
+
+        public DataSet AprobacionPreorden(int idSalida, int idTipoSalida, string observaciones,string preorden, string usuario, string ip, string mac, string pc)
+        {
+            DataSet dsResultado = armarDsResultado();
+
+            ObjAD = new PedidosAD();
+            try
+            {
+                DataTable dt = ObjAD.AprobacionPreorden(idSalida, idTipoSalida, observaciones,preorden, usuario, ip, mac, pc);
+
+                if (!bool.Parse(dt.Rows[0]["RESULTADO"].ToString()))
+                    throw new Exception(dt.Rows[0]["MENSAJE"].ToString());
+
+                dsResultado.Tables[0].Rows[0]["ERRORES"] = "false";
+                dsResultado.Tables[0].Rows[0]["MSG_ERROR"] = string.Empty;
+                dsResultado.Tables[0].Rows[0]["VALOR"] = idSalida;
+                return dsResultado;
+            }
+            catch (Exception ex)
+            {
+                dsResultado.Tables[0].Rows[0]["MSG_ERROR"] = " CapaLN.AprobacionEncargado(). " + ex.Message;
+            }
+
+            return dsResultado;
+        }
+
+        public DataSet AprobacionTesoreria(int idSalida, int idTipoSalida, string observaciones, string usuario, string ip, string mac, string pc)
+        {
+            DataSet dsResultado = armarDsResultado();
+
+            ObjAD = new PedidosAD();
+            try
+            {
+                DataTable dt = ObjAD.AprobacionTesoreria(idSalida, idTipoSalida, observaciones, usuario, ip, mac, pc);
+
+                if (!bool.Parse(dt.Rows[0]["RESULTADO"].ToString()))
+                    throw new Exception(dt.Rows[0]["MENSAJE"].ToString());
+
+                dsResultado.Tables[0].Rows[0]["ERRORES"] = "false";
+                dsResultado.Tables[0].Rows[0]["MSG_ERROR"] = string.Empty;
+                dsResultado.Tables[0].Rows[0]["VALOR"] = idSalida;
+                return dsResultado;
+            }
+            catch (Exception ex)
+            {
+                dsResultado.Tables[0].Rows[0]["MSG_ERROR"] = " CapaLN.AprobacionEncargado(). " + ex.Message;
+            }
+
+            return dsResultado;
+        }
+
+        public DataSet RechazoCentroCostos(int idPedido, int idTipoSalida, string observaciones, string usuario, string ip, string mac, string pc)
+        {
+            DataSet dsResultado = armarDsResultado();
+
+            ObjAD = new PedidosAD();
+            try
+            {
+                DataTable dt = ObjAD.RechazoCentroCostos(idPedido, idTipoSalida, observaciones, usuario, ip, mac, pc);
+
+                if (!bool.Parse(dt.Rows[0]["RESULTADO"].ToString()))
+                    throw new Exception(dt.Rows[0]["MENSAJE"].ToString());
+
+                dsResultado.Tables[0].Rows[0]["ERRORES"] = "false";
+                dsResultado.Tables[0].Rows[0]["MSG_ERROR"] = string.Empty;
+                dsResultado.Tables[0].Rows[0]["VALOR"] = idPedido;
+                return dsResultado;
+            }
+            catch (Exception ex)
+            {
+                dsResultado.Tables[0].Rows[0]["MSG_ERROR"] = " CapaLN.RechazoPresupuesto(). " + ex.Message;
+            }
+
+            return dsResultado;
+        }
+
+        public DataSet RechazoCoordinadorCompras(int idPedido, int idTipoSalida, string observaciones, string usuario, string ip, string mac, string pc)
+        {
+            DataSet dsResultado = armarDsResultado();
+
+            ObjAD = new PedidosAD();
+            try
+            {
+                DataTable dt = ObjAD.RechazoCoordinadorCompras(idPedido, idTipoSalida, observaciones, usuario, ip, mac, pc);
+
+                if (!bool.Parse(dt.Rows[0]["RESULTADO"].ToString()))
+                    throw new Exception(dt.Rows[0]["MENSAJE"].ToString());
+
+                dsResultado.Tables[0].Rows[0]["ERRORES"] = "false";
+                dsResultado.Tables[0].Rows[0]["MSG_ERROR"] = string.Empty;
+                dsResultado.Tables[0].Rows[0]["VALOR"] = idPedido;
+                return dsResultado;
+            }
+            catch (Exception ex)
+            {
+                dsResultado.Tables[0].Rows[0]["MSG_ERROR"] = " CapaLN.RechazoPresupuesto(). " + ex.Message;
+            }
+
+            return dsResultado;
+        }
+
+        public DataSet RechazoPreorden(int idPedido, int idTipoSalida, string observaciones, string usuario, string ip, string mac, string pc)
+        {
+            DataSet dsResultado = armarDsResultado();
+
+            ObjAD = new PedidosAD();
+            try
+            {
+                DataTable dt = ObjAD.RechazoPreorden(idPedido, idTipoSalida, observaciones, usuario, ip, mac, pc);
+
+                if (!bool.Parse(dt.Rows[0]["RESULTADO"].ToString()))
+                    throw new Exception(dt.Rows[0]["MENSAJE"].ToString());
+
+                dsResultado.Tables[0].Rows[0]["ERRORES"] = "false";
+                dsResultado.Tables[0].Rows[0]["MSG_ERROR"] = string.Empty;
+                dsResultado.Tables[0].Rows[0]["VALOR"] = idPedido;
+                return dsResultado;
+            }
+            catch (Exception ex)
+            {
+                dsResultado.Tables[0].Rows[0]["MSG_ERROR"] = " CapaLN.RechazoPresupuesto(). " + ex.Message;
+            }
+
+            return dsResultado;
+        }
+
+        public DataSet RechazoTesoreria(int idPedido, int idTipoSalida, string observaciones, string usuario, string ip, string mac, string pc)
+        {
+            DataSet dsResultado = armarDsResultado();
+
+            ObjAD = new PedidosAD();
+            try
+            {
+                DataTable dt = ObjAD.RechazoTesoreria(idPedido, idTipoSalida, observaciones, usuario, ip, mac, pc);
+
+                if (!bool.Parse(dt.Rows[0]["RESULTADO"].ToString()))
+                    throw new Exception(dt.Rows[0]["MENSAJE"].ToString());
+
+                dsResultado.Tables[0].Rows[0]["ERRORES"] = "false";
+                dsResultado.Tables[0].Rows[0]["MSG_ERROR"] = string.Empty;
+                dsResultado.Tables[0].Rows[0]["VALOR"] = idPedido;
+                return dsResultado;
+            }
+            catch (Exception ex)
+            {
+                dsResultado.Tables[0].Rows[0]["MSG_ERROR"] = " CapaLN.RechazoPresupuesto(). " + ex.Message;
             }
 
             return dsResultado;
@@ -1943,6 +2169,25 @@ namespace CapaLN
 
             return dsResultado;
         }
+        public DataSet InformacionPreOrden(int id)
+        {
+            DataSet dsResultado = armarDsResultado();
+            ObjAD = new PedidosAD();
+
+            try
+            {
+                DataTable dt = ObjAD.InformacionPreorden(id);
+                dt.TableName = "BUSQUEDA";
+                dsResultado.Tables.Add(dt);
+                dsResultado.Tables[0].Rows[0]["ERRORES"] = false;
+            }
+            catch (Exception ex)
+            {
+                dsResultado.Tables[0].Rows[0]["MSG_ERROR"] = " CapaLN.InformacionPedido(). " + ex.Message;
+            }
+
+            return dsResultado;
+        }
 
         public DataSet InformacionDetallePedidoPpto(string id)
         {
@@ -2097,6 +2342,17 @@ namespace CapaLN
             {
                 dsResultado.Tables[0].Rows[0]["MSG_ERROR"] = " CapaLN.AsignarValorReal(). " + ex.Message;
             }
+
+            return dsResultado;
+        }
+
+        public DataTable EncabezadoMotorBusqueda(string id)
+        {
+            DataTable dsResultado = new DataTable();
+
+            ObjAD = new PedidosAD();
+            dsResultado = ObjAD.EncabezadoMotorBusqueda(id);
+           
 
             return dsResultado;
         }

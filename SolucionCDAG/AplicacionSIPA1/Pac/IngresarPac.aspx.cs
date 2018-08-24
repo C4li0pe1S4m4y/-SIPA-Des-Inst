@@ -1,4 +1,4 @@
-﻿using System;
+﻿    using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text.RegularExpressions;
@@ -611,7 +611,7 @@ namespace AplicacionSIPA1.Pac
                 int idPoa = 0;
                 int.TryParse(dsPoa.Tables[0].Rows[0]["ID_POA"].ToString(), out idPoa);
                 lblCIdPoa.Text = idPoa.ToString();
-
+                lblIdPoa.Text = idPoa.ToString();
                 string estadoPoa = dsPoa.Tables[0].Rows[0]["ID_ESTADO"].ToString() + " - " + dsPoa.Tables[0].Rows[0]["ESTADO"].ToString();
 
                 string estadoPac = dsPoa.Tables[0].Rows[0]["ID_ESTADO_PAC"].ToString();
@@ -1108,7 +1108,7 @@ namespace AplicacionSIPA1.Pac
 
                 string usuario = Session["usuario"].ToString();
                 pAnualLN = new PlanAnualLN();
-                pAnualLN.GridListadoPacs(gridPac, usuario, idPoa.ToString());
+                pAnualLN.GridListadoPacs(gridPac, ddlCAnios.SelectedValue, idPoa.ToString());
 
                 if (gridPac.Rows.Count > 0)
                 {
@@ -1287,8 +1287,8 @@ namespace AplicacionSIPA1.Pac
                     decimal.TryParse(dsResultado.Tables["ENCABEZADO"].Rows[0]["CODIFICADO"].ToString(), out codificado);
                     decimal.TryParse(dsResultado.Tables["ENCABEZADO"].Rows[0]["SALDO"].ToString(), out saldo);
 
-                    ddlAnios.SelectedValue = anio.ToString();
-                    ddlUnidades.SelectedValue = idUnidad.ToString();
+                    ddlAnios.SelectedValue = ddlCAnios.SelectedValue;
+                    ddlUnidades.SelectedValue = ddlCUnidades.SelectedValue;
                     ddlUnidades_SelectedIndexChanged(sender, e);
                     if (idDepend>0)
                     {
@@ -1359,7 +1359,10 @@ namespace AplicacionSIPA1.Pac
                     gridDet.FooterRow.Cells[2].Text = cantidadDetalle.ToString();
                     gridDet.FooterRow.Cells[3].Text = String.Format(CultureInfo.InvariantCulture, "Q.{0:0,0.00}", monto);
 
-                    validarPoaIngresoPac(idUnidad, anio);
+                    if (!ddlCDependencia.SelectedValue.Equals("0") && ddlCDependencia.SelectedValue != "")
+                        validarPoaIngresoPac(idDepend, anio);
+                    else
+                        validarPoaIngresoPac(idUnidad, anio);
                 }
             }
             catch (Exception ex)
@@ -1464,7 +1467,7 @@ namespace AplicacionSIPA1.Pac
                 int.TryParse(lblCIdPoa.Text, out idPoa);
 
                 int idUnidad = 0;
-                int.TryParse(ddlCUnidades.SelectedItem.Value, out idUnidad);
+                int.TryParse(ddlUnidades.SelectedItem.Value, out idUnidad);
 
                 if (idPoa > 0)
                 {
@@ -1681,7 +1684,7 @@ namespace AplicacionSIPA1.Pac
 
                 int idPoa = 0;
                 int.TryParse(lblCIdPoa.Text, out idPoa);
-
+                lblIdPoa.Text = lblCIdPoa.Text;
                 pAccionLN = new PlanAccionLN();
                 //pAccionLN.DdlAccionesPoa(ddlCAcciones, idPoa);
                 pAccionLN.DdlAcciones(ddlCAcciones, idPoa, 0, "", 3);

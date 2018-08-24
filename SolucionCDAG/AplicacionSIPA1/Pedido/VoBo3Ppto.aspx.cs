@@ -112,7 +112,7 @@ namespace AplicacionSIPA1.Pedido
 
                 pInsumoLN = new PedidosLN();
                 pInsumoLN.RblEstadosPedido(rblEstadosPedido);
-                rblEstadosPedido.SelectedValue = "6";
+                rblEstadosPedido.SelectedValue = "10";
                 rblEstadosPedido_SelectedIndexChanged(new Object(), new EventArgs());
 
                 pInsumoLN = new PedidosLN();
@@ -528,7 +528,7 @@ namespace AplicacionSIPA1.Pedido
                     int.TryParse(dsResultado.Tables["BUSQUEDA"].Rows[0]["ID_ESTADO_PEDIDO"].ToString(), out idEstado);
 
                     //EL PEDIDO ESTÁ EN ESTADO APROBACIÓN DE PPTO
-                    if (idEstado == 6)
+                    if (idEstado == 10)
                     {
                         btnAprobar.Visible = btnRechazar.Visible = true;
                         lblErrorPoa.Text = lblError.Text = string.Empty;
@@ -713,6 +713,10 @@ namespace AplicacionSIPA1.Pedido
 
                             btnAprobar.Visible = btnRechazar.Visible = false;
                             generarReporte(idSalida, idTipoSalida);
+                            EnvioDeCorreos objEC = new EnvioDeCorreos();
+                            objEC.EnvioCorreo(planOperativoLN.ObtenerCorreoxUsuario(jefeTemp[1].Trim()), "Nueva REQUISICIÓN/VALE APROBADA por Presupuesto", lblSuccess.Text + ", " + observaciones, usuario);
+                            objEC.EnvioCorreo(planOperativoLN.ObtenerCorreoxUsuario(solicitanteTemp[1].Trim()), "Nueva REQUISICIÓN/VALE APROBADA por Presupuesto", lblSuccess.Text + ", " + observaciones, usuario);
+                            
                         }
                         else
                             throw new Exception(lblError.Text);
@@ -752,7 +756,7 @@ namespace AplicacionSIPA1.Pedido
                     string extension;
 
                     ReportViewer rViewer = new ReportViewer();
-
+                    rViewer.LocalReport.EnableExternalImages = true;
                     DataTable dt = new DataTable();
                     GridView gridPlan = new GridView();
 
@@ -762,7 +766,7 @@ namespace AplicacionSIPA1.Pedido
                     if (bool.Parse(dsResultado.Tables[0].Rows[0]["ERRORES"].ToString()))
                         throw new Exception("No se CONSULTÓ la información del encabezado: " + dsResultado.Tables[0].Rows[0]["MSG_ERROR"].ToString());
 
-
+                    string nombre = dsResultado.Tables[1].Rows[0]["analista_ppto"].ToString();
                     ReportDataSource RD = new ReportDataSource();
                     RD.Value = dsResultado.Tables[1];
                     RD.Name = "DataSet1";
@@ -781,7 +785,12 @@ namespace AplicacionSIPA1.Pedido
                     RD2.Value = dsResultado.Tables[1];
                     RD2.Name = "DataSet2";
 
+                    //Imagen
+                   
+
+                    
                     dsResultado = pInsumoLN.InformacionProductoSub(ddlSubproducto.SelectedValue);
+                    //dsResultado.Tables[1].Rows[0][""];
                     ReportDataSource RD3 = new ReportDataSource();
                     RD3.Value = dsResultado.Tables[1];
                     RD3.Name = "DataSet3";
@@ -790,9 +799,35 @@ namespace AplicacionSIPA1.Pedido
                     rViewer.LocalReport.DataSources.Add(RD);
                     rViewer.LocalReport.DataSources.Add(RD2);
                     rViewer.LocalReport.DataSources.Add(RD3);
-                    rViewer.LocalReport.ReportEmbeddedResource = "\\Reportes/rptFINFOR23.rdlc";
-                    rViewer.LocalReport.ReportPath = @"Reportes\\rptFINFOR23.rdlc";
+                    if (nombre.Equals("DE LEON RUIZ HEDILMAR ISRAEL "))
+                    {
+                        rViewer.LocalReport.ReportEmbeddedResource = "\\Reportes/rptFINFOR23Hedi.rdlc";
+                        rViewer.LocalReport.ReportPath = @"Reportes\\rptFINFOR23Hedi.rdlc";
+                    }
+                    else if (nombre.Equals("ESCOBEDO DE LEON RITA GABRIELA "))
+                    {
+                        rViewer.LocalReport.ReportEmbeddedResource = "\\Reportes/rptFINFOR23Rita.rdlc";
+                        rViewer.LocalReport.ReportPath = @"Reportes\\rptFINFOR23Rita.rdlc";
+                    }
+                    else if (nombre.Equals("DIAZ FABIAN JUAN HUMBERTO "))
+                    {
+                        rViewer.LocalReport.ReportEmbeddedResource = "\\Reportes/rptFINFOR23Hedi.rdlc";
+                        rViewer.LocalReport.ReportPath = @"Reportes\\rptFINFOR23Hedi.rdlc";
+                    }
+                    else if (nombre.Equals("CORZO ROJAS RUTH ODILY "))
+                    {
+                        rViewer.LocalReport.ReportEmbeddedResource = "\\Reportes/rptFINFOR23Hedi.rdlc";
+                        rViewer.LocalReport.ReportPath = @"Reportes\\rptFINFOR23Hedi.rdlc";
+                    }
+                    else
+                    {
+                        rViewer.LocalReport.ReportEmbeddedResource = "\\Reportes/rptFINFOR23.rdlc";
+                        rViewer.LocalReport.ReportPath = @"Reportes\\rptFINFOR23.rdlc";
+                    }
+                    
+                   
                     rViewer.LocalReport.Refresh();
+                    
 
 
                     byte[] bytes = rViewer.LocalReport.Render(
@@ -990,7 +1025,7 @@ namespace AplicacionSIPA1.Pedido
                     string noSolicitud = dvPedido.Rows[1].Cells[1].Text;
                     string tipoSolicitud = dvPedido.Rows[3].Cells[1].Text;
 
-                    NuevaAprobacion();
+                   
                     lblSuccess.Text = tipoSolicitud + " No. " + noSolicitud + " RECHAZADA con éxito!";
                     EnvioDeCorreos objEC = new EnvioDeCorreos();
                     objEC.EnvioCorreo(planOperativoLN.ObtenerCorreoxUsuario(jefeTemp[1].Trim()), "Nueva REQUISICIÓN/VALE RECHAZADA por Presupuesto", lblSuccess.Text + ", " + observaciones, usuario);

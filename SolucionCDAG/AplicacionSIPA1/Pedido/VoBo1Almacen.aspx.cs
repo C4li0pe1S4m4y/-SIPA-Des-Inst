@@ -106,7 +106,7 @@ namespace AplicacionSIPA1.Pedido
 
                 pInsumoLN = new PedidosLN();
                 pInsumoLN.RblEstadosPedido(rblEstadosPedido);
-                rblEstadosPedido.SelectedValue = "2";
+                rblEstadosPedido.SelectedValue = "8";
                 rblEstadosPedido_SelectedIndexChanged(new Object(), new EventArgs());
 
             }
@@ -477,7 +477,7 @@ namespace AplicacionSIPA1.Pedido
                     int.TryParse(dsResultado.Tables["BUSQUEDA"].Rows[0]["ID_ESTADO_PEDIDO"].ToString(), out idEstado);
 
                     //EL PEDIDO ESTÁ EN ESTADO APROBACIÓN DE ALMACEN
-                    if (idEstado == 2)
+                    if (idEstado == 8)
                     {
                         btnAprobar.Visible = btnRechazar.Visible = true;
                         lblErrorPoa.Text = lblError.Text = string.Empty;
